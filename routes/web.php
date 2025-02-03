@@ -25,8 +25,17 @@ Route::get('/signup', function () {
 Route::get('/restaurant-list', function () {
     return view('restaurant-list');
 });
+Route::get('/search-result', function () {
+    return view('search-result');
+});
+Route::get('/restaurant-detail', function () {
+    return view('restaurant-detial');
+});
 Route::get('/booking', function () {
     return view('booking');
+});
+Route::get('/user-dashboard', function () {
+    return view('user-dashboard');
 });
 Route::get('/about-us', function () {
     return view('about');

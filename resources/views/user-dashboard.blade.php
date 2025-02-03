@@ -14,8 +14,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/vendors.css">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="{{asset('assets/css/vendors.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
 
   <title>GoTrip</title>
 </head>
@@ -49,8 +49,8 @@
     <div data-anim="fade" class="header__container px-30 sm:px-20">
       <div class="-left-side">
         <a href="index.html" class="header-logo" data-x="header-logo" data-x-toggle="is-logo-dark">
-          <img src="img/general/logo-dark.svg" alt="logo icon">
-          <img src="img/general/logo-dark.svg" alt="logo icon">
+          <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon">
+          <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon">
         </a>
       </div>
 
@@ -204,7 +204,7 @@
                                 </div>
 
                                 <div class="mega__image d-flex relative">
-                                  <img src="#" data-src="img/backgrounds/7.png" alt="image" class="rounded-4 js-lazy">
+                                  <img src="#" data-src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4 js-lazy">
 
                                   <div class="absolute w-full h-full px-30 py-24">
                                     <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
@@ -243,7 +243,7 @@
                                 </div>
 
                                 <div class="mega__image d-flex relative">
-                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+                                  <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
 
                                   <div class="absolute w-full h-full px-30 py-24">
                                     <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
@@ -282,7 +282,7 @@
                                 </div>
 
                                 <div class="mega__image d-flex relative">
-                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+                                  <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
 
                                   <div class="absolute w-full h-full px-30 py-24">
                                     <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
@@ -321,7 +321,7 @@
                                 </div>
 
                                 <div class="mega__image d-flex relative">
-                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+                                  <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
 
                                   <div class="absolute w-full h-full px-30 py-24">
                                     <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
@@ -360,7 +360,7 @@
                                 </div>
 
                                 <div class="mega__image d-flex relative">
-                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+                                  <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
 
                                   <div class="absolute w-full h-full px-30 py-24">
                                     <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
@@ -399,7 +399,7 @@
                                 </div>
 
                                 <div class="mega__image d-flex relative">
-                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+                                  <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
 
                                   <div class="absolute w-full h-full px-30 py-24">
                                     <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
@@ -425,7 +425,7 @@
                                 </div>
 
                                 <div class="mega__image d-flex relative">
-                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+                                  <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
 
                                   <div class="absolute w-full h-full px-30 py-24">
                                     <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
@@ -723,7 +723,7 @@
             </div>
 
             <div class="pl-15">
-              <img src="img/avatars/3.png" alt="image" class="size-50 rounded-22 object-cover">
+              <img src="{{asset('assets/img/avatars/3.png')}}" alt="image" class="size-50 rounded-22 object-cover">
             </div>
 
             <div class="d-none xl:d-flex x-gap-20 items-center pl-20" data-x="header-mobile-icons" data-x-toggle="text-white">
@@ -745,7 +745,7 @@
         <div class="sidebar__item">
           <div class="sidebar__button -is-active">
             <a href="db-dashboard.html" class="d-flex items-center text-15 lh-1 fw-500">
-              <img src="img/dashboard/sidebar/compass.svg" alt="image" class="mr-15">
+              <img src="{{asset('assets/img/dashboard/sidebar/compass.svg')}}" alt="image" class="mr-15">
               Dashboard
             </a>
           </div>
@@ -754,7 +754,7 @@
         <div class="sidebar__item">
           <div class="sidebar__button ">
             <a href="db-booking.html" class="d-flex items-center text-15 lh-1 fw-500">
-              <img src="img/dashboard/sidebar/booking.svg" alt="image" class="mr-15">
+              <img src="{{asset('assets/img/dashboard/sidebar/booking.svg')}}" alt="image" class="mr-15">
               Booking History
             </a>
           </div>
@@ -763,7 +763,7 @@
         <div class="sidebar__item">
           <div class="sidebar__button ">
             <a href="db-wishlist.html" class="d-flex items-center text-15 lh-1 fw-500">
-              <img src="img/dashboard/sidebar/bookmark.svg" alt="image" class="mr-15">
+              <img src="{{asset('assets/img/dashboard/sidebar/bookmark.svg')}}" alt="image" class="mr-15">
               Wishlist
             </a>
           </div>
@@ -772,7 +772,7 @@
         <div class="sidebar__item">
           <div class="sidebar__button ">
             <a href="db-settings.html" class="d-flex items-center text-15 lh-1 fw-500">
-              <img src="img/dashboard/sidebar/gear.svg" alt="image" class="mr-15">
+              <img src="{{asset('assets/img/dashboard/sidebar/gear.svg')}}" alt="image" class="mr-15">
               Settings
             </a>
           </div>
@@ -781,7 +781,7 @@
         <div class="sidebar__item">
           <div class="sidebar__button ">
             <a href="#" class="d-flex items-center text-15 lh-1 fw-500">
-              <img src="img/dashboard/sidebar/log-out.svg" alt="image" class="mr-15">
+              <img src="{{asset('assets/img/dashboard/sidebar/log-out.svg')}}" alt="image" class="mr-15">
               Logout
             </a>
           </div>
@@ -820,7 +820,7 @@
                 </div>
 
                 <div class="col-auto">
-                  <img src="img/dashboard/icons/1.svg" alt="icon">
+                  <img src="{{asset('assets/img/dashboard/icons/1.svg')}}" alt="icon">
                 </div>
               </div>
             </div>
@@ -836,7 +836,7 @@
                 </div>
 
                 <div class="col-auto">
-                  <img src="img/dashboard/icons/2.svg" alt="icon">
+                  <img src="{{asset('assets/img/dashboard/icons/2.svg')}}" alt="icon">
                 </div>
               </div>
             </div>
@@ -852,7 +852,7 @@
                 </div>
 
                 <div class="col-auto">
-                  <img src="img/dashboard/icons/3.svg" alt="icon">
+                  <img src="{{asset('assets/img/dashboard/icons/3.svg')}}" alt="icon">
                 </div>
               </div>
             </div>
@@ -868,7 +868,7 @@
                 </div>
 
                 <div class="col-auto">
-                  <img src="img/dashboard/icons/4.svg" alt="icon">
+                  <img src="{{asset('assets/img/dashboard/icons/4.svg')}}" alt="icon">
                 </div>
               </div>
             </div>
@@ -1044,8 +1044,8 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAz77U5XQuEME6TpftaMdX0bBelQxXRlM"></script>
   <script src="../../../unpkg.com/%40googlemaps/markerclusterer%402.5.3/dist/index.min.js"></script>
 
-  <script src="js/vendors.js"></script>
-  <script src="js/main.js"></script>
+  <script src="{{asset('assets/js/vendors.js')}}"></script>
+  <script src="{{asset('assets/js/main.js')}}"></script>
 </body>
 
 

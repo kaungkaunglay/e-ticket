@@ -52,8 +52,8 @@
           <div class="col-auto">
             <div class="d-flex items-center">
               <a href="index.html" class="header-logo mr-20" data-x="header-logo" data-x-toggle="is-logo-dark">
-                <img src="img/general/logo-light.svg" alt="logo icon">
-                <img src="img/general/logo-dark.svg" alt="logo icon">
+                <img src="{{asset('assets/img/general/logo-light.svg')}}" alt="logo icon">
+                <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon">
               </a>
 
 
@@ -188,7 +188,7 @@
                                   </div>
 
                                   <div class="mega__image d-flex relative">
-                                    <img src="#" data-src="img/backgrounds/7.png" alt="image" class="rounded-4 js-lazy">
+                                    <img src="#" data-src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4 js-lazy">
 
                                     <div class="absolute w-full h-full px-30 py-24">
                                       <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
@@ -227,7 +227,7 @@
                                   </div>
 
                                   <div class="mega__image d-flex relative">
-                                    <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+                                    <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
 
                                     <div class="absolute w-full h-full px-30 py-24">
                                       <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
@@ -266,7 +266,7 @@
                                   </div>
 
                                   <div class="mega__image d-flex relative">
-                                    <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+                                    <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
 
                                     <div class="absolute w-full h-full px-30 py-24">
                                       <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
@@ -305,7 +305,7 @@
                                   </div>
 
                                   <div class="mega__image d-flex relative">
-                                    <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+                                    <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
 
                                     <div class="absolute w-full h-full px-30 py-24">
                                       <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
@@ -344,7 +344,7 @@
                                   </div>
 
                                   <div class="mega__image d-flex relative">
-                                    <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+                                    <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
 
                                     <div class="absolute w-full h-full px-30 py-24">
                                       <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
@@ -383,7 +383,7 @@
                                   </div>
 
                                   <div class="mega__image d-flex relative">
-                                    <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+                                    <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
 
                                     <div class="absolute w-full h-full px-30 py-24">
                                       <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
@@ -409,7 +409,7 @@
                                   </div>
 
                                   <div class="mega__image d-flex relative">
-                                    <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+                                    <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
 
                                     <div class="absolute w-full h-full px-30 py-24">
                                       <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
@@ -712,7 +712,7 @@
 
                 <div class="col-auto">
                   <button class="d-flex items-center text-14 text-white" data-x-click="lang">
-                    <img src="img/general/lang.png" alt="image" class="rounded-full mr-10">
+                    <img src="{{asset('assets/img/general/lang.png')}}" alt="image" class="rounded-full mr-10">
                     <span class="js-language-mainTitle">United Kingdom</span>
                     <i class="icon-chevron-sm-down text-7 ml-15"></i>
                   </button>
@@ -874,7 +874,7 @@
 
         <div class="galleryGrid -type-1 pt-30">
           <div class="galleryGrid__item relative d-flex">
-            <img src="img/gallery/1/1.png" alt="image" class="rounded-4">
+            <img src="{{asset('assets/img/gallery/1/1.png')}}" alt="image" class="rounded-4">
 
             <div class="absolute px-20 py-20 col-12 d-flex justify-end">
               <button class="button -blue-1 size-40 rounded-full flex-center bg-white text-dark-1">
@@ -884,11 +884,11 @@
           </div>
 
           <div class="galleryGrid__item">
-            <img src="img/gallery/1/2.png" alt="image" class="rounded-4">
+            <img src="{{asset('assets/img/gallery/1/2.png')}}" alt="image" class="rounded-4">
           </div>
 
           <div class="galleryGrid__item relative d-flex">
-            <img src="img/gallery/1/3.png" alt="image" class="rounded-4">
+            <img src="{{asset('assets/img/gallery/1/3.png')}}" alt="image" class="rounded-4">
 
             <div class="absolute h-full col-12 flex-center">
               <a href="https://www.youtube.com/watch?v=ANYfx4-jyqY" class="button -blue-1 size-40 rounded-full flex-center bg-white text-dark-1 js-gallery" data-gallery="gallery1">
@@ -898,20 +898,20 @@
           </div>
 
           <div class="galleryGrid__item">
-            <img src="img/gallery/1/4.png" alt="image" class="rounded-4">
+            <img src="{{asset('assets/img/gallery/1/4.png')}}" alt="image" class="rounded-4">
           </div>
 
           <div class="galleryGrid__item relative d-flex">
-            <img src="img/gallery/1/5.png" alt="image" class="rounded-4">
+            <img src="{{asset('assets/img/gallery/1/5.png')}}" alt="image" class="rounded-4">
 
             <div class="absolute px-10 py-10 col-12 h-full d-flex justify-end items-end">
-              <a href="img/gallery/1/1.png" class="button -blue-1 px-24 py-15 bg-white text-dark-1 js-gallery" data-gallery="gallery2">
+              <a href="img/gallery/1/1.png')}}" class="button -blue-1 px-24 py-15 bg-white text-dark-1 js-gallery" data-gallery="gallery2">
                 See All 90 Photos
               </a>
-              <a href="img/gallery/1/2.png" class="js-gallery" data-gallery="gallery2"></a>
-              <a href="img/gallery/1/3.png" class="js-gallery" data-gallery="gallery2"></a>
-              <a href="img/gallery/1/4.png" class="js-gallery" data-gallery="gallery2"></a>
-              <a href="img/gallery/1/5.png" class="js-gallery" data-gallery="gallery2"></a>
+              <a href="img/gallery/1/2.png')}}" class="js-gallery" data-gallery="gallery2"></a>
+              <a href="img/gallery/1/3.png')}}" class="js-gallery" data-gallery="gallery2"></a>
+              <a href="img/gallery/1/4.png')}}" class="js-gallery" data-gallery="gallery2"></a>
+              <a href="img/gallery/1/5.png')}}" class="js-gallery" data-gallery="gallery2"></a>
             </div>
           </div>
         </div>
@@ -1186,7 +1186,7 @@
               </div>
 
               <div class="px-30 py-30 border-light rounded-4 mt-30">
-                <div class="flex-center ratio ratio-15:9 mb-15 js-lazy" data-bg="img/general/map.png">
+                <div class="flex-center ratio ratio-15:9 mb-15 js-lazy" data-bg="img/general/map.png')}}">
                   <button data-x-click="mapFilter" class="button py-15 px-24 -blue-1 bg-white text-dark-1 absolute">
                     <i class="icon-location text-22 mr-10"></i>
                     Show on map
@@ -1256,7 +1256,7 @@
                 <div class="roomGrid__grid">
                   <div>
                     <div class="ratio ratio-1:1">
-                      <img src="img/backgrounds/1.png" alt="image" class="img-ratio rounded-4">
+                      <img src="{{asset('assets/img/backgrounds/1.png')}}" alt="image" class="img-ratio rounded-4">
                     </div>
 
                     <div class="y-gap-5 mt-20">
@@ -1521,7 +1521,7 @@
                 <div class="roomGrid__grid">
                   <div>
                     <div class="ratio ratio-1:1">
-                      <img src="img/backgrounds/1.png" alt="image" class="img-ratio rounded-4">
+                      <img src="{{asset('assets/img/backgrounds/1.png')}}" alt="image" class="img-ratio rounded-4">
                     </div>
 
                     <div class="y-gap-5 mt-20">
@@ -1907,7 +1907,7 @@
           <div class="col-lg-6">
             <div class="row x-gap-20 y-gap-20 items-center">
               <div class="col-auto">
-                <img src="img/avatars/2.png" alt="image">
+                <img src="{{asset('assets/img/avatars/2.png')}}" alt="image">
               </div>
               <div class="col-auto">
                 <div class="fw-500 lh-15">Tonko</div>
@@ -1922,19 +1922,19 @@
             <div class="row x-gap-30 y-gap-30 pt-20">
 
               <div class="col-auto">
-                <img src="img/testimonials/1/1.png" alt="image" class="rounded-4">
+                <img src="{{asset('assets/img/testimonials/1/1.png')}}" alt="image" class="rounded-4">
               </div>
 
               <div class="col-auto">
-                <img src="img/testimonials/1/2.png" alt="image" class="rounded-4">
+                <img src="{{asset('assets/img/testimonials/1/2.png')}}" alt="image" class="rounded-4">
               </div>
 
               <div class="col-auto">
-                <img src="img/testimonials/1/3.png" alt="image" class="rounded-4">
+                <img src="{{asset('assets/img/testimonials/1/3.png')}}" alt="image" class="rounded-4">
               </div>
 
               <div class="col-auto">
-                <img src="img/testimonials/1/4.png" alt="image" class="rounded-4">
+                <img src="{{asset('assets/img/testimonials/1/4.png')}}" alt="image" class="rounded-4">
               </div>
 
             </div>
@@ -1957,7 +1957,7 @@
           <div class="col-lg-6">
             <div class="row x-gap-20 y-gap-20 items-center">
               <div class="col-auto">
-                <img src="img/avatars/2.png" alt="image">
+                <img src="{{asset('assets/img/avatars/2.png')}}" alt="image">
               </div>
               <div class="col-auto">
                 <div class="fw-500 lh-15">Tonko</div>
@@ -1972,19 +1972,19 @@
             <div class="row x-gap-30 y-gap-30 pt-20">
 
               <div class="col-auto">
-                <img src="img/testimonials/1/1.png" alt="image" class="rounded-4">
+                <img src="{{asset('assets/img/testimonials/1/1.png')}}" alt="image" class="rounded-4">
               </div>
 
               <div class="col-auto">
-                <img src="img/testimonials/1/2.png" alt="image" class="rounded-4">
+                <img src="{{asset('assets/img/testimonials/1/2.png')}}" alt="image" class="rounded-4">
               </div>
 
               <div class="col-auto">
-                <img src="img/testimonials/1/3.png" alt="image" class="rounded-4">
+                <img src="{{asset('assets/img/testimonials/1/3.png')}}" alt="image" class="rounded-4">
               </div>
 
               <div class="col-auto">
-                <img src="img/testimonials/1/4.png" alt="image" class="rounded-4">
+                <img src="{{asset('assets/img/testimonials/1/4.png')}}" alt="image" class="rounded-4">
               </div>
 
             </div>
@@ -2007,7 +2007,7 @@
           <div class="col-lg-6">
             <div class="row x-gap-20 y-gap-20 items-center">
               <div class="col-auto">
-                <img src="img/avatars/2.png" alt="image">
+                <img src="{{asset('assets/img/avatars/2.png')}}" alt="image">
               </div>
               <div class="col-auto">
                 <div class="fw-500 lh-15">Tonko</div>
@@ -2036,7 +2036,7 @@
           <div class="col-lg-6">
             <div class="row x-gap-20 y-gap-20 items-center">
               <div class="col-auto">
-                <img src="img/avatars/2.png" alt="image">
+                <img src="{{asset('assets/img/avatars/2.png')}}" alt="image">
               </div>
               <div class="col-auto">
                 <div class="fw-500 lh-15">Tonko</div>
@@ -2630,7 +2630,7 @@
               <div class="row x-gap-20 y-gap-20 items-center">
                 <div class="col-auto">
                   <div class="flex-center size-60 rounded-full bg-white">
-                    <img src="img/icons/health.svg" alt="icon">
+                    <img src="{{asset('assets/img/icons/health.svg')}}" alt="icon">
                   </div>
                 </div>
 
@@ -3220,7 +3220,7 @@
                 <div class="cardImage ratio ratio-1:1">
                   <div class="cardImage__content">
 
-                    <img class="rounded-4 col-12" src="img/hotels/1.png" alt="image">
+                    <img class="rounded-4 col-12" src="{{asset('assets/img/hotels/1.png')}}" alt="image">
 
 
                   </div>
@@ -3278,15 +3278,15 @@
                       <div class="swiper-wrapper">
 
                         <div class="swiper-slide">
-                          <img class="col-12" src="img/hotels/2.png" alt="image">
+                          <img class="col-12" src="{{asset('assets/img/hotels/2.png')}}" alt="image">
                         </div>
 
                         <div class="swiper-slide">
-                          <img class="col-12" src="img/hotels/1.png" alt="image">
+                          <img class="col-12" src="{{asset('assets/img/hotels/1.png')}}" alt="image">
                         </div>
 
                         <div class="swiper-slide">
-                          <img class="col-12" src="img/hotels/3.png" alt="image">
+                          <img class="col-12" src="{{asset('assets/img/hotels/3.png')}}" alt="image">
                         </div>
 
                       </div>
@@ -3350,7 +3350,7 @@
                 <div class="cardImage ratio ratio-1:1">
                   <div class="cardImage__content">
 
-                    <img class="rounded-4 col-12" src="img/hotels/3.png" alt="image">
+                    <img class="rounded-4 col-12" src="{{asset('assets/img/hotels/3.png')}}" alt="image">
 
 
                   </div>
@@ -3403,7 +3403,7 @@
                 <div class="cardImage ratio ratio-1:1">
                   <div class="cardImage__content">
 
-                    <img class="rounded-4 col-12" src="img/hotels/4.png" alt="image">
+                    <img class="rounded-4 col-12" src="{{asset('assets/img/hotels/4.png')}}" alt="image">
 
 
                   </div>
@@ -4616,7 +4616,7 @@
             <div class="row x-gap-20 y-gap-20">
               <div class="col-md-auto">
                 <div class="ratio ratio-1:1 size-120">
-                  <img src="img/hotels/1.png" alt="image" class="img-ratio rounded-4">
+                  <img src="{{asset('assets/img/hotels/1.png')}}" alt="image" class="img-ratio rounded-4">
                 </div>
               </div>
 
@@ -4671,7 +4671,7 @@
             <div class="row x-gap-20 y-gap-20">
               <div class="col-md-auto">
                 <div class="ratio ratio-1:1 size-120">
-                  <img src="img/hotels/1.png" alt="image" class="img-ratio rounded-4">
+                  <img src="{{asset('assets/img/hotels/1.png')}}" alt="image" class="img-ratio rounded-4">
                 </div>
               </div>
 
@@ -4726,7 +4726,7 @@
             <div class="row x-gap-20 y-gap-20">
               <div class="col-md-auto">
                 <div class="ratio ratio-1:1 size-120">
-                  <img src="img/hotels/1.png" alt="image" class="img-ratio rounded-4">
+                  <img src="{{asset('assets/img/hotels/1.png')}}" alt="image" class="img-ratio rounded-4">
                 </div>
               </div>
 
@@ -4781,7 +4781,7 @@
             <div class="row x-gap-20 y-gap-20">
               <div class="col-md-auto">
                 <div class="ratio ratio-1:1 size-120">
-                  <img src="img/hotels/1.png" alt="image" class="img-ratio rounded-4">
+                  <img src="{{asset('assets/img/hotels/1.png')}}" alt="image" class="img-ratio rounded-4">
                 </div>
               </div>
 
@@ -4836,7 +4836,7 @@
             <div class="row x-gap-20 y-gap-20">
               <div class="col-md-auto">
                 <div class="ratio ratio-1:1 size-120">
-                  <img src="img/hotels/1.png" alt="image" class="img-ratio rounded-4">
+                  <img src="{{asset('assets/img/hotels/1.png')}}" alt="image" class="img-ratio rounded-4">
                 </div>
               </div>
 
@@ -4891,7 +4891,7 @@
             <div class="row x-gap-20 y-gap-20">
               <div class="col-md-auto">
                 <div class="ratio ratio-1:1 size-120">
-                  <img src="img/hotels/1.png" alt="image" class="img-ratio rounded-4">
+                  <img src="{{asset('assets/img/hotels/1.png')}}" alt="image" class="img-ratio rounded-4">
                 </div>
               </div>
 
@@ -4946,7 +4946,7 @@
             <div class="row x-gap-20 y-gap-20">
               <div class="col-md-auto">
                 <div class="ratio ratio-1:1 size-120">
-                  <img src="img/hotels/1.png" alt="image" class="img-ratio rounded-4">
+                  <img src="{{asset('assets/img/hotels/1.png')}}" alt="image" class="img-ratio rounded-4">
                 </div>
               </div>
 
