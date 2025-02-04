@@ -114,15 +114,15 @@
                                                     <i class="icon icon-chevron-sm-down"></i>
                                                 </a>
 
-                                                <div class="mega">
+                                                <div class="mega" style="width: 300px;">
                                                     <div class="tabs -underline-2 js-tabs">
                                                         <div class="tabs__controls row x-gap-40 y-gap-10 lg:x-gap-20 pb-30 js-tabs-controls">
 
                                                             <div class="col-auto">
-                                                                <button class="tabs__button text-light-1 fw-500 js-tabs-button is-tab-el-active" data-tab-target=".-tab-item-1">Hotel</button>
+                                                                <button class="tabs__button text-light-1 fw-500 js-tabs-button is-tab-el-active" data-tab-target=".-tab-item-1">Sub-Category</button>
                                                             </div>
 
-                                                            <div class="col-auto">
+                                                            <!-- <div class="col-auto">
                                                                 <button class="tabs__button text-light-1 fw-500 js-tabs-button " data-tab-target=".-tab-item-2">Tour</button>
                                                             </div>
 
@@ -144,7 +144,7 @@
 
                                                             <div class="col-auto">
                                                                 <button class="tabs__button text-light-1 fw-500 js-tabs-button " data-tab-target=".-tab-item-7">Flights</button>
-                                                            </div>
+                                                            </div> -->
 
                                                         </div>
 
@@ -170,7 +170,7 @@
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="mega__item">
+                                                                        <!-- <div class="mega__item">
                                                                             <div class="text-15 fw-500">Hotel Single</div>
                                                                             <div class="y-gap-5 text-15 pt-5">
 
@@ -179,27 +179,27 @@
                                                                                 <div><a href="hotel-single-2.html">Hotel Single v2</a></div>
 
                                                                             </div>
-                                                                        </div>
+                                                                        </div> -->
 
-                                                                        <div class="mega__item">
+                                                                        <!-- <div class="mega__item">
                                                                             <div class="text-15 fw-500">Hotel Booking</div>
                                                                             <div class="y-gap-5 text-15 pt-5">
 
                                                                                 <div><a href="booking-pages.html">Booking Page</a></div>
 
                                                                             </div>
-                                                                        </div>
+                                                                        </div> -->
 
                                                                     </div>
 
-                                                                    <div class="mega__image d-flex relative">
+                                                                    <!-- <div class="mega__image d-flex relative">
                                                                         <img src="#" data-src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4 js-lazy">
 
                                                                         <div class="absolute w-full h-full px-30 py-24">
                                                                             <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
                                                                             <button class="button h-50 px-30 -blue-1 text-dark-1 bg-white mt-20">Experinces</button>
                                                                         </div>
-                                                                    </div>
+                                                                    </div> -->
                                                                 </div>
                                                             </div>
 
