@@ -935,7 +935,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -988,7 +988,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1065,7 +1065,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1118,7 +1118,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1171,7 +1171,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1224,7 +1224,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1277,7 +1277,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1330,7 +1330,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1386,7 +1386,7 @@
           <div class="row justify-center pt-40">
             <div class="col-auto">
 
-              <a href="#" class="button px-40 h-50 -outline-blue-1 text-blue-1">
+              <a href="{{route('restaurant-list')}}" class="button px-40 h-50 -outline-blue-1 text-blue-1">
                 View All <div class="icon-arrow-top-right ml-15"></div>
               </a>
 
@@ -1399,7 +1399,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1452,7 +1452,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1529,7 +1529,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1582,7 +1582,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1635,7 +1635,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1688,7 +1688,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1741,7 +1741,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1794,7 +1794,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1863,7 +1863,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1916,7 +1916,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1993,7 +1993,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2046,7 +2046,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2099,7 +2099,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2152,7 +2152,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2205,7 +2205,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2258,7 +2258,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2327,7 +2327,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2380,7 +2380,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2457,7 +2457,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2510,7 +2510,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2563,7 +2563,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2616,7 +2616,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2669,7 +2669,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2722,7 +2722,7 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2918,7 +2918,7 @@
 
         <div class="swiper-slide">
 
-          <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+          <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
             <div class="hotelsCard__image">
 
               <div class="cardImage ratio ratio-1:1">
@@ -2971,7 +2971,7 @@
 
         <div class="swiper-slide">
 
-          <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+          <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
             <div class="hotelsCard__image">
 
               <div class="cardImage ratio ratio-1:1">
@@ -3048,7 +3048,7 @@
 
         <div class="swiper-slide">
 
-          <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+          <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
             <div class="hotelsCard__image">
 
               <div class="cardImage ratio ratio-1:1">
@@ -3101,7 +3101,7 @@
 
         <div class="swiper-slide">
 
-          <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+          <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
             <div class="hotelsCard__image">
 
               <div class="cardImage ratio ratio-1:1">
