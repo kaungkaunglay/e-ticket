@@ -25,6 +25,9 @@ Route::get('/signup', function () {
 Route::get('/restaurant-list', function () {
     return view('restaurant-list');
 });
+Route::get('/restaurant-detail', function () {
+    return view('restaurant-detail');
+});
 Route::get('/booking', function () {
     return view('booking');
 });
