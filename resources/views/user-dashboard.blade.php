@@ -3,6 +3,7 @@
 
 
 <!-- Mirrored from creativelayers.net/themes/gotrip-html/db-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2025 09:19:31 GMT -->
+
 <head>
   <!-- Required meta tags -->
   <meta charset="UTF-8">
@@ -14,8 +15,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/vendors.css">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="{{asset('assets/css/vendors.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
 
   <title>GoTrip</title>
 </head>
@@ -48,9 +49,9 @@
   <header data-add-bg="" class="header -dashboard bg-white js-header" data-x="header" data-x-toggle="is-menu-opened">
     <div data-anim="fade" class="header__container px-30 sm:px-20">
       <div class="-left-side">
-        <a href="index.html" class="header-logo" data-x="header-logo" data-x-toggle="is-logo-dark">
-          <img src="img/general/logo-dark.svg" alt="logo icon">
-          <img src="img/general/logo-dark.svg" alt="logo icon">
+        <a href="{{route('home')}}" class="header-logo" data-x="header-logo" data-x-toggle="is-logo-dark">
+          <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon">
+          <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon">
         </a>
       </div>
 
@@ -82,7 +83,7 @@
                 <div class="menu js-navList">
                   <ul class="menu__nav text-dark-1 fw-500 -is-active">
 
-                    <li class="menu-item-has-children">
+                    <!-- <li class="menu-item-has-children">
                       <a data-barba href="#">
                         <span class="mr-10">Home</span>
                         <i class="icon icon-chevron-sm-down"></i>
@@ -116,8 +117,10 @@
 
                       </ul>
 
+                    </li> -->
+                    <li>
+                      <a href="{{route('home')}}">Home</a>
                     </li>
-
 
                     <li class="menu-item-has-children -has-mega-menu">
                       <a data-barba href="#">
@@ -204,7 +207,7 @@
                                 </div>
 
                                 <div class="mega__image d-flex relative">
-                                  <img src="#" data-src="img/backgrounds/7.png" alt="image" class="rounded-4 js-lazy">
+                                  <img src="#" data-src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4 js-lazy">
 
                                   <div class="absolute w-full h-full px-30 py-24">
                                     <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
@@ -243,7 +246,7 @@
                                 </div>
 
                                 <div class="mega__image d-flex relative">
-                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+                                  <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
 
                                   <div class="absolute w-full h-full px-30 py-24">
                                     <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
@@ -282,7 +285,7 @@
                                 </div>
 
                                 <div class="mega__image d-flex relative">
-                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+                                  <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
 
                                   <div class="absolute w-full h-full px-30 py-24">
                                     <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
@@ -321,7 +324,7 @@
                                 </div>
 
                                 <div class="mega__image d-flex relative">
-                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+                                  <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
 
                                   <div class="absolute w-full h-full px-30 py-24">
                                     <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
@@ -360,7 +363,7 @@
                                 </div>
 
                                 <div class="mega__image d-flex relative">
-                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+                                  <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
 
                                   <div class="absolute w-full h-full px-30 py-24">
                                     <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
@@ -399,7 +402,7 @@
                                 </div>
 
                                 <div class="mega__image d-flex relative">
-                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+                                  <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
 
                                   <div class="absolute w-full h-full px-30 py-24">
                                     <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
@@ -425,7 +428,7 @@
                                 </div>
 
                                 <div class="mega__image d-flex relative">
-                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+                                  <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
 
                                   <div class="absolute w-full h-full px-30 py-24">
                                     <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
@@ -597,107 +600,16 @@
                     </li>
 
                     <li>
-                      <a href="destinations.html">
-                        Destinations
-                      </a>
+                      <a href="{{route('user-dashboard')}}">Profile</a>
                     </li>
-
-
-                    <li class="menu-item-has-children">
-                      <a data-barba href="#">
-                        <span class="mr-10">Blog</span>
-                        <i class="icon icon-chevron-sm-down"></i>
-                      </a>
-
-
-                      <ul class="subnav">
-                        <li class="subnav__backBtn js-nav-list-back">
-                          <a href="#"><i class="icon icon-chevron-sm-down"></i> Blog</a>
-                        </li>
-
-                        <li><a href="blog-list-1.html">Blog list v1</a></li>
-
-                        <li><a href="blog-list-2.html">Blog list v2</a></li>
-
-                        <li><a href="blog-single.html">Blog single</a></li>
-
-                      </ul>
-
-                    </li>
-
-
-                    <li class="menu-item-has-children">
-                      <a data-barba href="#">
-                        <span class="mr-10">Pages</span>
-                        <i class="icon icon-chevron-sm-down"></i>
-                      </a>
-
-
-                      <ul class="subnav">
-                        <li class="subnav__backBtn js-nav-list-back">
-                          <a href="#"><i class="icon icon-chevron-sm-down"></i> Pages</a>
-                        </li>
-
-                        <li><a href="404.html">404</a></li>
-
-                        <li><a href="about.html">About</a></li>
-
-                        <li><a href="become-expert.html">Become expert</a></li>
-
-                        <li><a href="help-center.html">Help center</a></li>
-
-                        <li><a href="login.html">Login</a></li>
-
-                        <li><a href="signup.html">Register</a></li>
-
-                        <li><a href="terms.html">Terms</a></li>
-
-                        <li><a href="invoice.html">Invoice</a></li>
-
-                        <li><a href="ui-elements.html">UI elements</a></li>
-
-                      </ul>
-
-                    </li>
-
-
-                    <li class="menu-item-has-children">
-                      <a data-barba href="#">
-                        <span class="mr-10">Dashboard</span>
-                        <i class="icon icon-chevron-sm-down"></i>
-                      </a>
-
-
-                      <ul class="subnav">
-                        <li class="subnav__backBtn js-nav-list-back">
-                          <a href="#"><i class="icon icon-chevron-sm-down"></i> Dashboard</a>
-                        </li>
-
-                        <li><a href="db-dashboard.html">Dashboard</a></li>
-
-                        <li><a href="db-booking.html">Booking</a></li>
-
-                        <li><a href="db-settings.html">Settings</a></li>
-
-                        <li><a href="db-wishlist.html">Wishlist</a></li>
-
-                        <li><a href="db-vendor-dashboard.html">Vendor dashboard</a></li>
-
-                        <li><a href="db-vendor-add-hotel.html">Vendor add hotel</a></li>
-
-                        <li><a href="db-vendor-booking.html">Vendor booking</a></li>
-
-                        <li><a href="db-vendor-hotels.html">Vendor hotels</a></li>
-
-                        <li><a href="db-vendor-recovery.html">Vendor recovery</a></li>
-
-                      </ul>
-
-                    </li>
-
-
                     <li>
-                      <a href="contact.html">Contact</a>
+                      <a href="{{route('about')}}">About Us</a>
+                    </li>
+                    <li>
+                      <a href="{{route('restaurant-list')}}">Restaurant</a>
+                    </li>
+                    <li>
+                      <a href="{{route('contact')}}">Support</a>
                     </li>
                   </ul>
                 </div>
@@ -723,7 +635,7 @@
             </div>
 
             <div class="pl-15">
-              <img src="img/avatars/3.png" alt="image" class="size-50 rounded-22 object-cover">
+              <img src="{{asset('assets/img/avatars/3.png')}}" alt="image" class="size-50 rounded-22 object-cover">
             </div>
 
             <div class="d-none xl:d-flex x-gap-20 items-center pl-20" data-x="header-mobile-icons" data-x-toggle="text-white">
@@ -745,7 +657,7 @@
         <div class="sidebar__item">
           <div class="sidebar__button -is-active">
             <a href="db-dashboard.html" class="d-flex items-center text-15 lh-1 fw-500">
-              <img src="img/dashboard/sidebar/compass.svg" alt="image" class="mr-15">
+              <img src="{{asset('assets/img/dashboard/sidebar/compass.svg')}}" alt="image" class="mr-15">
               Dashboard
             </a>
           </div>
@@ -754,7 +666,7 @@
         <div class="sidebar__item">
           <div class="sidebar__button ">
             <a href="db-booking.html" class="d-flex items-center text-15 lh-1 fw-500">
-              <img src="img/dashboard/sidebar/booking.svg" alt="image" class="mr-15">
+              <img src="{{asset('assets/img/dashboard/sidebar/booking.svg')}}" alt="image" class="mr-15">
               Booking History
             </a>
           </div>
@@ -763,7 +675,7 @@
         <div class="sidebar__item">
           <div class="sidebar__button ">
             <a href="db-wishlist.html" class="d-flex items-center text-15 lh-1 fw-500">
-              <img src="img/dashboard/sidebar/bookmark.svg" alt="image" class="mr-15">
+              <img src="{{asset('assets/img/dashboard/sidebar/bookmark.svg')}}" alt="image" class="mr-15">
               Wishlist
             </a>
           </div>
@@ -772,7 +684,7 @@
         <div class="sidebar__item">
           <div class="sidebar__button ">
             <a href="db-settings.html" class="d-flex items-center text-15 lh-1 fw-500">
-              <img src="img/dashboard/sidebar/gear.svg" alt="image" class="mr-15">
+              <img src="{{asset('assets/img/dashboard/sidebar/gear.svg')}}" alt="image" class="mr-15">
               Settings
             </a>
           </div>
@@ -781,7 +693,7 @@
         <div class="sidebar__item">
           <div class="sidebar__button ">
             <a href="#" class="d-flex items-center text-15 lh-1 fw-500">
-              <img src="img/dashboard/sidebar/log-out.svg" alt="image" class="mr-15">
+              <img src="{{asset('assets/img/dashboard/sidebar/log-out.svg')}}" alt="image" class="mr-15">
               Logout
             </a>
           </div>
@@ -820,7 +732,7 @@
                 </div>
 
                 <div class="col-auto">
-                  <img src="img/dashboard/icons/1.svg" alt="icon">
+                  <img src="{{asset('assets/img/dashboard/icons/1.svg')}}" alt="icon">
                 </div>
               </div>
             </div>
@@ -836,7 +748,7 @@
                 </div>
 
                 <div class="col-auto">
-                  <img src="img/dashboard/icons/2.svg" alt="icon">
+                  <img src="{{asset('assets/img/dashboard/icons/2.svg')}}" alt="icon">
                 </div>
               </div>
             </div>
@@ -852,7 +764,7 @@
                 </div>
 
                 <div class="col-auto">
-                  <img src="img/dashboard/icons/3.svg" alt="icon">
+                  <img src="{{asset('assets/img/dashboard/icons/3.svg')}}" alt="icon">
                 </div>
               </div>
             </div>
@@ -868,7 +780,7 @@
                 </div>
 
                 <div class="col-auto">
-                  <img src="img/dashboard/icons/4.svg" alt="icon">
+                  <img src="{{asset('assets/img/dashboard/icons/4.svg')}}" alt="icon">
                 </div>
               </div>
             </div>
@@ -1044,10 +956,11 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAz77U5XQuEME6TpftaMdX0bBelQxXRlM"></script>
   <script src="../../../unpkg.com/%40googlemaps/markerclusterer%402.5.3/dist/index.min.js"></script>
 
-  <script src="js/vendors.js"></script>
-  <script src="js/main.js"></script>
+  <script src="{{asset('assets/js/vendors.js')}}"></script>
+  <script src="{{asset('assets/js/main.js')}}"></script>
 </body>
 
 
 <!-- Mirrored from creativelayers.net/themes/gotrip-html/db-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2025 09:19:36 GMT -->
+
 </html>
