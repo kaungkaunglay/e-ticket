@@ -121,6 +121,7 @@
   --color-yellow-4: #FFF8DD;
   --color-brown-1: #923E01;
   --color-purple-1: #7E53F9;
+  --color-red:#B22222;
   --color-red-1: #D93025;
   --color-red-2: #F1416C;
   --color-red-3: #FFF5F8;
@@ -948,8 +949,18 @@ button:focus {
   color: white !important;
 }
 
+.button.-outline-red {
+  border-color: var(--color-red);
+}
+
 .button.-outline-red-1 {
   border-color: var(--color-red-1);
+}
+
+.button.-outline-red:hover {
+  background-color: var(--color-red);
+  border-color: transparent;
+  color: white !important;
 }
 
 .button.-outline-red-1:hover {
@@ -2089,20 +2100,19 @@ h1, h2, h3, h4, h5, h6 {
 .masthead.-type-4 .masthead__content {
   position: relative;
   z-index: 1;
-  padding-top: 360px;
-  padding-bottom: 140px;
+  padding: 40px 0;
 }
 
 @media (max-width: 991px) {
   .masthead.-type-4 .masthead__content {
-    padding-top: 220px;
+    padding-top: 80px;
     padding-bottom: 120px;
   }
 }
 
 @media (max-width: 767px) {
   .masthead.-type-4 .masthead__content {
-    padding-top: 160px;
+    padding-top: 40px;
     padding-bottom: 100px;
   }
 }
@@ -2196,7 +2206,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .masthead.-type-4 .mainSearch {
-  margin-top: 90px;
+  margin-top: 40px;
 }
 
 @media (max-width: 767px) {
@@ -3799,6 +3809,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   z-index: 0;
 }
+
 
 .cardImage .cardImage-slider__pagination {
   position: absolute;
@@ -9372,6 +9383,10 @@ div[data-slider] > input[type=range]::-ms-tooltip {
   }
 }
 
+.bg-img{
+  background-image: url(../img/Subscribe.jpg);
+}
+
 .bg-white {
   background-color: var(--color-white) !important;
 }
@@ -9450,6 +9465,10 @@ div[data-slider] > input[type=range]::-ms-tooltip {
 
 .bg-purple-1 {
   background-color: var(--color-purple-1) !important;
+}
+
+.bg-red{
+  background-color: var(--color-red) !important;
 }
 
 .bg-red-1 {
@@ -9594,6 +9613,10 @@ div[data-slider] > input[type=range]::-ms-tooltip {
 
 .text-purple-1 {
   color: var(--color-purple-1);
+}
+
+.text-red {
+  color: var(--color-red);
 }
 
 .text-red-1 {
@@ -12016,4 +12039,29 @@ table.table-5 td {
   height: 100%;
   background-color: var(--color-light-2);
   z-index: -2;
+}
+
+/* home page custom css  */
+
+.bg-sub{
+  /* From https://css.glass */
+  background: rgba(0, 0, 0, 0);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 40px 0;
+}
+
+
+.home .hidden{
+  overflow: hidden;
+}
+
+.home .section-slider-nav.-prev{
+  left: 0;
+}
+
+.home .section-slider-nav.-next{
+  right: 0;
 }
