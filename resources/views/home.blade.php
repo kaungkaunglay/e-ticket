@@ -7,710 +7,232 @@
 
 <section data-anim-wrap class="masthead -type-4">
   <div data-anim-child="slide-up" class="masthead-slider overflow-x-hidden js-masthead-slider-4">
-    <div class="swiper-wrapper">
-
-      <div class="swiper-slide">
-        <div class="masthead__image">
-          <img src="{{asset('assets/img/masthead/4/bg.png')}}" alt="image">
-        </div>
-
-        <div class="container">
-          <div class="row justify-center">
-            <div class="col-xl-9">
-              <div class="masthead__content">
-                <div class="text-center">
-                  <h1 data-anim-child="slide-up delay-2" class="text-40 lg:text-40 md:text-30 text-white">Reserve Your Table at the Finest Restaurants Today!</h1>
-                  <p data-anim-child="slide-up delay-3" class="text-white mt-5">Discover amzaing places at exclusive deals</p>
-
-                  <div data-anim-child="slide-up delay-4" class="d-inline-block">
-                    <a href="#" class="button -md -outline-white h-50 text-white mt-30">Discover More</a>
-                  </div>
-                </div>
-
-                <div data-anim-child="slide-up delay-5" class="mainSearch bg-white rounded-4 shadow-1">
-                  <div class="button-grid">
-
-                    <div class="searchMenu-loc py-24 px-30 sm:py-15 sm:px-20 js-form-dd js-liverSearch">
-
-                      <div data-x-dd-click="searchMenu-loc">
-                        <h4 class="text-15 fw-500 ls-2 lh-16">Location</h4>
-
-                        <div class="text-15 text-light-1 ls-2 lh-16">
-                          <input autocomplete="off" type="search" placeholder="Where are you going?" class="js-search js-dd-focus" />
-                        </div>
-                      </div>
-
-
-                      <div class="searchMenu-loc__field shadow-2 js-popup-window" data-x-dd="searchMenu-loc" data-x-dd-toggle="-is-active">
-                        <div class="bg-white px-30 py-30 sm:px-0 sm:py-15 rounded-4">
-                          <div class="y-gap-5 js-results">
-
-                            <div>
-                              <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
-                                <div class="d-flex">
-                                  <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
-                                  <div class="ml-10">
-                                    <div class="text-15 lh-12 fw-500 js-search-option-target">London</div>
-                                    <div class="text-14 lh-12 text-light-1 mt-5">Greater London, United Kingdom</div>
-                                  </div>
-                                </div>
-                              </button>
-                            </div>
-
-                            <div>
-                              <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
-                                <div class="d-flex">
-                                  <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
-                                  <div class="ml-10">
-                                    <div class="text-15 lh-12 fw-500 js-search-option-target">New York</div>
-                                    <div class="text-14 lh-12 text-light-1 mt-5">New York State, United States</div>
-                                  </div>
-                                </div>
-                              </button>
-                            </div>
-
-                            <div>
-                              <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
-                                <div class="d-flex">
-                                  <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
-                                  <div class="ml-10">
-                                    <div class="text-15 lh-12 fw-500 js-search-option-target">Paris</div>
-                                    <div class="text-14 lh-12 text-light-1 mt-5">France</div>
-                                  </div>
-                                </div>
-                              </button>
-                            </div>
-
-                            <div>
-                              <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
-                                <div class="d-flex">
-                                  <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
-                                  <div class="ml-10">
-                                    <div class="text-15 lh-12 fw-500 js-search-option-target">Madrid</div>
-                                    <div class="text-14 lh-12 text-light-1 mt-5">Spain</div>
-                                  </div>
-                                </div>
-                              </button>
-                            </div>
-
-                            <div>
-                              <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
-                                <div class="d-flex">
-                                  <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
-                                  <div class="ml-10">
-                                    <div class="text-15 lh-12 fw-500 js-search-option-target">Santorini</div>
-                                    <div class="text-14 lh-12 text-light-1 mt-5">Greece</div>
-                                  </div>
-                                </div>
-                              </button>
-                            </div>
-
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="searchMenu-date py-24 px-30 sm:py-15 sm:px-20 js-form-dd js-calendar js-calendar-el">
-
-                      <div data-x-dd-click="searchMenu-date">
-                        <h4 class="text-15 fw-500 ls-2 lh-16">Check in - Check out</h4>
-
-                        <div class="capitalize text-15 text-light-1 ls-2 lh-16">
-                          <span class="js-first-date">Wed 2 Mar</span>
-                          -
-                          <span class="js-last-date">Fri 11 Apr</span>
-                        </div>
-                      </div>
-
-
-                      <div class="searchMenu-date__field shadow-2" data-x-dd="searchMenu-date" data-x-dd-toggle="-is-active">
-                        <div class="bg-white px-30 py-30 rounded-4">
-                          <div class="elCalendar js-calendar-el-calendar"></div>
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="searchMenu-guests py-24 px-30 sm:py-15 sm:px-20 js-form-dd js-form-counters">
-
-                      <div data-x-dd-click="searchMenu-guests">
-                        <h4 class="text-15 fw-500 ls-2 lh-16">Guest</h4>
-
-                        <div class="text-15 text-light-1 ls-2 lh-16">
-                          <span class="js-count-adult">2</span> adults
-                          -
-                          <span class="js-count-child">1</span> childeren
-                          -
-                          <span class="js-count-room">1</span> room
-                        </div>
-                      </div>
-
-
-                      <div class="searchMenu-guests__field shadow-2" data-x-dd="searchMenu-guests" data-x-dd-toggle="-is-active">
-                        <div class="bg-white px-30 py-30 rounded-4">
-                          <div class="row y-gap-10 justify-between items-center">
-                            <div class="col-auto">
-                              <div class="text-15 fw-500">Adults</div>
-                            </div>
-
-                            <div class="col-auto">
-                              <div class="d-flex items-center js-counter" data-value-change=".js-count-adult">
-                                <button class="button -outline-blue-1 text-red size-38 rounded-4 js-down">
-                                  <i class="icon-minus text-12"></i>
-                                </button>
-
-                                <div class="flex-center size-20 ml-15 mr-15">
-                                  <div class="text-15 js-count">2</div>
-                                </div>
-
-                                <button class="button -outline-blue-1 text-red size-38 rounded-4 js-up">
-                                  <i class="icon-plus text-12"></i>
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="border-top-light mt-24 mb-24"></div>
-
-                          <div class="row y-gap-10 justify-between items-center">
-                            <div class="col-auto">
-                              <div class="text-15 lh-12 fw-500">Children</div>
-                              <div class="text-14 lh-12 text-light-1 mt-5">Ages 0 - 17</div>
-                            </div>
-
-                            <div class="col-auto">
-                              <div class="d-flex items-center js-counter" data-value-change=".js-count-child">
-                                <button class="button -outline-blue-1 text-red size-38 rounded-4 js-down">
-                                  <i class="icon-minus text-12"></i>
-                                </button>
-
-                                <div class="flex-center size-20 ml-15 mr-15">
-                                  <div class="text-15 js-count">1</div>
-                                </div>
-
-                                <button class="button -outline-blue-1 text-red size-38 rounded-4 js-up">
-                                  <i class="icon-plus text-12"></i>
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="border-top-light mt-24 mb-24"></div>
-
-                          <div class="row y-gap-10 justify-between items-center">
-                            <div class="col-auto">
-                              <div class="text-15 fw-500">Rooms</div>
-                            </div>
-
-                            <div class="col-auto">
-                              <div class="d-flex items-center js-counter" data-value-change=".js-count-room">
-                                <button class="button -outline-blue-1 text-red size-38 rounded-4 js-down">
-                                  <i class="icon-minus text-12"></i>
-                                </button>
-
-                                <div class="flex-center size-20 ml-15 mr-15">
-                                  <div class="text-15 js-count">1</div>
-                                </div>
-
-                                <button class="button -outline-blue-1 text-red size-38 rounded-4 js-up">
-                                  <i class="icon-plus text-12"></i>
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="button-item h-full">
-                      <button class="button -dark-1 py-15 px-40 h-full col-12 rounded-0 bg-red text-white">
-                        <i class="icon-search text-20 mr-10"></i>
-                        Search
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="swiper-slide">
-        <div class="masthead__image">
-          <img src="{{asset('assets/img/masthead/4/bg.png')}}" alt="image">
-        </div>
-
-        <div class="container">
-          <div class="row justify-center">
-            <div class="col-xl-9">
-              <div class="masthead__content">
-                <div class="text-center">
-                  <h1 data-anim-child="slide-up delay-2" class="text-60 lg:text-40 md:text-30 text-white">Find Your Dream Luxury Hotel</h1>
-                  <p data-anim-child="slide-up delay-3" class="text-white mt-5">Discover amzaing places at exclusive deals</p>
-
-                  <div data-anim-child="slide-up delay-4" class="d-inline-block">
-                    <a href="#" class="button -md -outline-white h-50 text-white mt-30">Discover More</a>
-                  </div>
-                </div>
-
-                <div data-anim-child="slide-up delay-5" class="mainSearch bg-white rounded-4 shadow-1">
-                  <div class="button-grid">
-
-                    <div class="searchMenu-loc py-24 px-30 sm:py-15 sm:px-20 js-form-dd js-liverSearch">
-
-                      <div data-x-dd-click="searchMenu-loc">
-                        <h4 class="text-15 fw-500 ls-2 lh-16">Location</h4>
-
-                        <div class="text-15 text-light-1 ls-2 lh-16">
-                          <input autocomplete="off" type="search" placeholder="Where are you going?" class="js-search js-dd-focus" />
-                        </div>
-                      </div>
-
-
-                      <div class="searchMenu-loc__field shadow-2 js-popup-window" data-x-dd="searchMenu-loc" data-x-dd-toggle="-is-active">
-                        <div class="bg-white px-30 py-30 sm:px-0 sm:py-15 rounded-4">
-                          <div class="y-gap-5 js-results">
-
-                            <div>
-                              <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
-                                <div class="d-flex">
-                                  <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
-                                  <div class="ml-10">
-                                    <div class="text-15 lh-12 fw-500 js-search-option-target">London</div>
-                                    <div class="text-14 lh-12 text-light-1 mt-5">Greater London, United Kingdom</div>
-                                  </div>
-                                </div>
-                              </button>
-                            </div>
-
-                            <div>
-                              <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
-                                <div class="d-flex">
-                                  <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
-                                  <div class="ml-10">
-                                    <div class="text-15 lh-12 fw-500 js-search-option-target">New York</div>
-                                    <div class="text-14 lh-12 text-light-1 mt-5">New York State, United States</div>
-                                  </div>
-                                </div>
-                              </button>
-                            </div>
-
-                            <div>
-                              <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
-                                <div class="d-flex">
-                                  <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
-                                  <div class="ml-10">
-                                    <div class="text-15 lh-12 fw-500 js-search-option-target">Paris</div>
-                                    <div class="text-14 lh-12 text-light-1 mt-5">France</div>
-                                  </div>
-                                </div>
-                              </button>
-                            </div>
-
-                            <div>
-                              <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
-                                <div class="d-flex">
-                                  <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
-                                  <div class="ml-10">
-                                    <div class="text-15 lh-12 fw-500 js-search-option-target">Madrid</div>
-                                    <div class="text-14 lh-12 text-light-1 mt-5">Spain</div>
-                                  </div>
-                                </div>
-                              </button>
-                            </div>
-
-                            <div>
-                              <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
-                                <div class="d-flex">
-                                  <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
-                                  <div class="ml-10">
-                                    <div class="text-15 lh-12 fw-500 js-search-option-target">Santorini</div>
-                                    <div class="text-14 lh-12 text-light-1 mt-5">Greece</div>
-                                  </div>
-                                </div>
-                              </button>
-                            </div>
-
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="searchMenu-date py-24 px-30 sm:py-15 sm:px-20 js-form-dd js-calendar js-calendar-el">
-
-                      <div data-x-dd-click="searchMenu-date">
-                        <h4 class="text-15 fw-500 ls-2 lh-16">Check in - Check out</h4>
-
-                        <div class="capitalize text-15 text-light-1 ls-2 lh-16">
-                          <span class="js-first-date">Wed 2 Mar</span>
-                          -
-                          <span class="js-last-date">Fri 11 Apr</span>
-                        </div>
-                      </div>
-
-
-                      <div class="searchMenu-date__field shadow-2" data-x-dd="searchMenu-date" data-x-dd-toggle="-is-active">
-                        <div class="bg-white px-30 py-30 rounded-4">
-                          <div class="elCalendar js-calendar-el-calendar"></div>
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="searchMenu-guests py-24 px-30 sm:py-15 sm:px-20 js-form-dd js-form-counters">
-
-                      <div data-x-dd-click="searchMenu-guests">
-                        <h4 class="text-15 fw-500 ls-2 lh-16">Guest</h4>
-
-                        <div class="text-15 text-light-1 ls-2 lh-16">
-                          <span class="js-count-adult">2</span> adults
-                          -
-                          <span class="js-count-child">1</span> childeren
-                          -
-                          <span class="js-count-room">1</span> room
-                        </div>
-                      </div>
-
-
-                      <div class="searchMenu-guests__field shadow-2" data-x-dd="searchMenu-guests" data-x-dd-toggle="-is-active">
-                        <div class="bg-white px-30 py-30 rounded-4">
-                          <div class="row y-gap-10 justify-between items-center">
-                            <div class="col-auto">
-                              <div class="text-15 fw-500">Adults</div>
-                            </div>
-
-                            <div class="col-auto">
-                              <div class="d-flex items-center js-counter" data-value-change=".js-count-adult">
-                                <button class="button -outline-blue-1 text-red size-38 rounded-4 js-down">
-                                  <i class="icon-minus text-12"></i>
-                                </button>
-
-                                <div class="flex-center size-20 ml-15 mr-15">
-                                  <div class="text-15 js-count">2</div>
-                                </div>
-
-                                <button class="button -outline-blue-1 text-red size-38 rounded-4 js-up">
-                                  <i class="icon-plus text-12"></i>
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="border-top-light mt-24 mb-24"></div>
-
-                          <div class="row y-gap-10 justify-between items-center">
-                            <div class="col-auto">
-                              <div class="text-15 lh-12 fw-500">Children</div>
-                              <div class="text-14 lh-12 text-light-1 mt-5">Ages 0 - 17</div>
-                            </div>
-
-                            <div class="col-auto">
-                              <div class="d-flex items-center js-counter" data-value-change=".js-count-child">
-                                <button class="button -outline-blue-1 text-red size-38 rounded-4 js-down">
-                                  <i class="icon-minus text-12"></i>
-                                </button>
-
-                                <div class="flex-center size-20 ml-15 mr-15">
-                                  <div class="text-15 js-count">1</div>
-                                </div>
-
-                                <button class="button -outline-blue-1 text-red size-38 rounded-4 js-up">
-                                  <i class="icon-plus text-12"></i>
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="border-top-light mt-24 mb-24"></div>
-
-                          <div class="row y-gap-10 justify-between items-center">
-                            <div class="col-auto">
-                              <div class="text-15 fw-500">Rooms</div>
-                            </div>
-
-                            <div class="col-auto">
-                              <div class="d-flex items-center js-counter" data-value-change=".js-count-room">
-                                <button class="button -outline-blue-1 text-red size-38 rounded-4 js-down">
-                                  <i class="icon-minus text-12"></i>
-                                </button>
-
-                                <div class="flex-center size-20 ml-15 mr-15">
-                                  <div class="text-15 js-count">1</div>
-                                </div>
-
-                                <button class="button -outline-blue-1 text-red size-38 rounded-4 js-up">
-                                  <i class="icon-plus text-12"></i>
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="button-item h-full">
-                      <button class="button -dark-1 py-15 px-40 h-full col-12 rounded-0 bg-red text-white">
-                        <i class="icon-search text-20 mr-10"></i>
-                        Search
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="swiper-slide">
-        <div class="masthead__image">
-          <img src="{{asset('assets/img/masthead/4/bg.png')}}" alt="image">
-        </div>
-
-        <div class="container">
-          <div class="row justify-center">
-            <div class="col-xl-9">
-              <div class="masthead__content">
-                <div class="text-center">
-                  <h1 data-anim-child="slide-up delay-2" class="text-60 lg:text-40 md:text-30 text-white">Find Your Dream Luxury Hotel</h1>
-                  <p data-anim-child="slide-up delay-3" class="text-white mt-5">Discover amzaing places at exclusive deals</p>
-
-                  <div data-anim-child="slide-up delay-4" class="d-inline-block">
-                    <a href="#" class="button -md -outline-white h-50 text-white mt-30">Discover More</a>
-                  </div>
-                </div>
-
-                <div data-anim-child="slide-up delay-5" class="mainSearch bg-white rounded-4 shadow-1">
-                  <div class="button-grid">
-
-                    <div class="searchMenu-loc py-24 px-30 sm:py-15 sm:px-20 js-form-dd js-liverSearch">
-
-                      <div data-x-dd-click="searchMenu-loc">
-                        <h4 class="text-15 fw-500 ls-2 lh-16">Location</h4>
-
-                        <div class="text-15 text-light-1 ls-2 lh-16">
-                          <input autocomplete="off" type="search" placeholder="Where are you going?" class="js-search js-dd-focus" />
-                        </div>
-                      </div>
-
-
-                      <div class="searchMenu-loc__field shadow-2 js-popup-window" data-x-dd="searchMenu-loc" data-x-dd-toggle="-is-active">
-                        <div class="bg-white px-30 py-30 sm:px-0 sm:py-15 rounded-4">
-                          <div class="y-gap-5 js-results">
-
-                            <div>
-                              <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
-                                <div class="d-flex">
-                                  <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
-                                  <div class="ml-10">
-                                    <div class="text-15 lh-12 fw-500 js-search-option-target">London</div>
-                                    <div class="text-14 lh-12 text-light-1 mt-5">Greater London, United Kingdom</div>
-                                  </div>
-                                </div>
-                              </button>
-                            </div>
-
-                            <div>
-                              <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
-                                <div class="d-flex">
-                                  <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
-                                  <div class="ml-10">
-                                    <div class="text-15 lh-12 fw-500 js-search-option-target">New York</div>
-                                    <div class="text-14 lh-12 text-light-1 mt-5">New York State, United States</div>
-                                  </div>
-                                </div>
-                              </button>
-                            </div>
-
-                            <div>
-                              <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
-                                <div class="d-flex">
-                                  <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
-                                  <div class="ml-10">
-                                    <div class="text-15 lh-12 fw-500 js-search-option-target">Paris</div>
-                                    <div class="text-14 lh-12 text-light-1 mt-5">France</div>
-                                  </div>
-                                </div>
-                              </button>
-                            </div>
-
-                            <div>
-                              <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
-                                <div class="d-flex">
-                                  <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
-                                  <div class="ml-10">
-                                    <div class="text-15 lh-12 fw-500 js-search-option-target">Madrid</div>
-                                    <div class="text-14 lh-12 text-light-1 mt-5">Spain</div>
-                                  </div>
-                                </div>
-                              </button>
-                            </div>
-
-                            <div>
-                              <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
-                                <div class="d-flex">
-                                  <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
-                                  <div class="ml-10">
-                                    <div class="text-15 lh-12 fw-500 js-search-option-target">Santorini</div>
-                                    <div class="text-14 lh-12 text-light-1 mt-5">Greece</div>
-                                  </div>
-                                </div>
-                              </button>
-                            </div>
-
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="searchMenu-date py-24 px-30 sm:py-15 sm:px-20 js-form-dd js-calendar js-calendar-el">
-
-                      <div data-x-dd-click="searchMenu-date">
-                        <h4 class="text-15 fw-500 ls-2 lh-16">Check in - Check out</h4>
-
-                        <div class="capitalize text-15 text-light-1 ls-2 lh-16">
-                          <span class="js-first-date">Wed 2 Mar</span>
-                          -
-                          <span class="js-last-date">Fri 11 Apr</span>
-                        </div>
-                      </div>
-
-
-                      <div class="searchMenu-date__field shadow-2" data-x-dd="searchMenu-date" data-x-dd-toggle="-is-active">
-                        <div class="bg-white px-30 py-30 rounded-4">
-                          <div class="elCalendar js-calendar-el-calendar"></div>
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="searchMenu-guests py-24 px-30 sm:py-15 sm:px-20 js-form-dd js-form-counters">
-
-                      <div data-x-dd-click="searchMenu-guests">
-                        <h4 class="text-15 fw-500 ls-2 lh-16">Guest</h4>
-
-                        <div class="text-15 text-light-1 ls-2 lh-16">
-                          <span class="js-count-adult">2</span> adults
-                          -
-                          <span class="js-count-child">1</span> childeren
-                          -
-                          <span class="js-count-room">1</span> room
-                        </div>
-                      </div>
-
-
-                      <div class="searchMenu-guests__field shadow-2" data-x-dd="searchMenu-guests" data-x-dd-toggle="-is-active">
-                        <div class="bg-white px-30 py-30 rounded-4">
-                          <div class="row y-gap-10 justify-between items-center">
-                            <div class="col-auto">
-                              <div class="text-15 fw-500">Adults</div>
-                            </div>
-
-                            <div class="col-auto">
-                              <div class="d-flex items-center js-counter" data-value-change=".js-count-adult">
-                                <button class="button -outline-blue-1 text-red size-38 rounded-4 js-down">
-                                  <i class="icon-minus text-12"></i>
-                                </button>
-
-                                <div class="flex-center size-20 ml-15 mr-15">
-                                  <div class="text-15 js-count">2</div>
-                                </div>
-
-                                <button class="button -outline-blue-1 text-red size-38 rounded-4 js-up">
-                                  <i class="icon-plus text-12"></i>
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="border-top-light mt-24 mb-24"></div>
-
-                          <div class="row y-gap-10 justify-between items-center">
-                            <div class="col-auto">
-                              <div class="text-15 lh-12 fw-500">Children</div>
-                              <div class="text-14 lh-12 text-light-1 mt-5">Ages 0 - 17</div>
-                            </div>
-
-                            <div class="col-auto">
-                              <div class="d-flex items-center js-counter" data-value-change=".js-count-child">
-                                <button class="button -outline-blue-1 text-red size-38 rounded-4 js-down">
-                                  <i class="icon-minus text-12"></i>
-                                </button>
-
-                                <div class="flex-center size-20 ml-15 mr-15">
-                                  <div class="text-15 js-count">1</div>
-                                </div>
-
-                                <button class="button -outline-blue-1 text-red size-38 rounded-4 js-up">
-                                  <i class="icon-plus text-12"></i>
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="border-top-light mt-24 mb-24"></div>
-
-                          <div class="row y-gap-10 justify-between items-center">
-                            <div class="col-auto">
-                              <div class="text-15 fw-500">Rooms</div>
-                            </div>
-
-                            <div class="col-auto">
-                              <div class="d-flex items-center js-counter" data-value-change=".js-count-room">
-                                <button class="button -outline-blue-1 text-red size-38 rounded-4 js-down">
-                                  <i class="icon-minus text-12"></i>
-                                </button>
-
-                                <div class="flex-center size-20 ml-15 mr-15">
-                                  <div class="text-15 js-count">1</div>
-                                </div>
-
-                                <button class="button -outline-blue-1 text-red size-38 rounded-4 js-up">
-                                  <i class="icon-plus text-12"></i>
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="button-item h-full">
-                      <button class="button -dark-1 py-15 px-40 h-full col-12 rounded-0 bg-red text-white">
-                        <i class="icon-search text-20 mr-10"></i>
-                        Search
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+    <div class="masthead__image">
+      <img src="{{asset('assets/img/masthead/4/bg.png')}}" alt="image">
     </div>
+    <div class="container">
+      <div class="row justify-center">
+        <div class="col-xl-9">
+          <div class="masthead__content">
+            <div class="text-center">
+              <h1 data-anim-child="slide-up delay-2" class="text-40 lg:text-40 md:text-30 text-white">Reserve Your Table at the Finest Restaurants Today!</h1>
+              <p data-anim-child="slide-up delay-3" class="text-white mt-5">Discover amzaing places at exclusive deals</p>
 
-    <div class="masthead-slider__nav -prev js-prev">
-      <button class="button -outline-white size-50 flex-center text-white rounded-full">
-        <i class="icon-arrow-left"></i>
-      </button>
-    </div>
+              <div data-anim-child="slide-up delay-4" class="d-inline-block">
+                <a href="#" class="button -md -dark-1 bg-red h-50 text-white mt-30">Discover More</a>
+              </div>
+            </div>
 
-    <div class="masthead-slider__nav -next js-next">
-      <button class="button -outline-white size-50 flex-center text-white rounded-full">
-        <i class="icon-arrow-right"></i>
-      </button>
+            <div data-anim-child="slide-up delay-5" class="mainSearch bg-white rounded-4 shadow-1 overflow-hidden rounded-22">
+              <div class="button-grid">
+
+                <div class="searchMenu-loc py-24 px-30 sm:py-15 sm:px-20 js-form-dd js-liverSearch">
+
+                  <div data-x-dd-click="searchMenu-loc">
+                    <h4 class="text-15 fw-500 ls-2 lh-16">Location</h4>
+
+                    <div class="text-15 text-light-1 ls-2 lh-16">
+                      <input autocomplete="off" type="search" placeholder="Where are you going?" class="js-search js-dd-focus" />
+                    </div>
+                  </div>
+
+
+                  <div class="searchMenu-loc__field shadow-2 js-popup-window" data-x-dd="searchMenu-loc" data-x-dd-toggle="-is-active">
+                    <div class="bg-white px-30 py-30 sm:px-0 sm:py-15 rounded-4">
+                      <div class="y-gap-5 js-results">
+
+                        <div>
+                          <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
+                            <div class="d-flex">
+                              <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
+                              <div class="ml-10">
+                                <div class="text-15 lh-12 fw-500 js-search-option-target">London</div>
+                                <div class="text-14 lh-12 text-light-1 mt-5">Greater London, United Kingdom</div>
+                              </div>
+                            </div>
+                          </button>
+                        </div>
+
+                        <div>
+                          <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
+                            <div class="d-flex">
+                              <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
+                              <div class="ml-10">
+                                <div class="text-15 lh-12 fw-500 js-search-option-target">New York</div>
+                                <div class="text-14 lh-12 text-light-1 mt-5">New York State, United States</div>
+                              </div>
+                            </div>
+                          </button>
+                        </div>
+
+                        <div>
+                          <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
+                            <div class="d-flex">
+                              <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
+                              <div class="ml-10">
+                                <div class="text-15 lh-12 fw-500 js-search-option-target">Paris</div>
+                                <div class="text-14 lh-12 text-light-1 mt-5">France</div>
+                              </div>
+                            </div>
+                          </button>
+                        </div>
+
+                        <div>
+                          <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
+                            <div class="d-flex">
+                              <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
+                              <div class="ml-10">
+                                <div class="text-15 lh-12 fw-500 js-search-option-target">Madrid</div>
+                                <div class="text-14 lh-12 text-light-1 mt-5">Spain</div>
+                              </div>
+                            </div>
+                          </button>
+                        </div>
+
+                        <div>
+                          <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
+                            <div class="d-flex">
+                              <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
+                              <div class="ml-10">
+                                <div class="text-15 lh-12 fw-500 js-search-option-target">Santorini</div>
+                                <div class="text-14 lh-12 text-light-1 mt-5">Greece</div>
+                              </div>
+                            </div>
+                          </button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="searchMenu-date py-24 px-30 sm:py-15 sm:px-20 js-form-dd js-calendar js-calendar-el">
+
+                  <div data-x-dd-click="searchMenu-date">
+                    <h4 class="text-15 fw-500 ls-2 lh-16">Check in - Check out</h4>
+
+                    <div class="capitalize text-15 text-light-1 ls-2 lh-16">
+                      <span class="js-first-date">Wed 2 Mar</span>
+                      -
+                      <span class="js-last-date">Fri 11 Apr</span>
+                    </div>
+                  </div>
+
+
+                  <div class="searchMenu-date__field shadow-2" data-x-dd="searchMenu-date" data-x-dd-toggle="-is-active">
+                    <div class="bg-white px-30 py-30 rounded-4">
+                      <div class="elCalendar js-calendar-el-calendar"></div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="searchMenu-guests py-24 px-30 sm:py-15 sm:px-20 js-form-dd js-form-counters">
+
+                  <div data-x-dd-click="searchMenu-guests">
+                    <h4 class="text-15 fw-500 ls-2 lh-16">Guest</h4>
+
+                    <div class="text-15 text-light-1 ls-2 lh-16">
+                      <span class="js-count-adult">2</span> adults
+                      -
+                      <span class="js-count-child">1</span> childeren
+                      -
+                      <span class="js-count-room">1</span> room
+                    </div>
+                  </div>
+
+
+                  <div class="searchMenu-guests__field shadow-2" data-x-dd="searchMenu-guests" data-x-dd-toggle="-is-active">
+                    <div class="bg-white px-30 py-30 rounded-4">
+                      <div class="row y-gap-10 justify-between items-center">
+                        <div class="col-auto">
+                          <div class="text-15 fw-500">Adults</div>
+                        </div>
+
+                        <div class="col-auto">
+                          <div class="d-flex items-center js-counter" data-value-change=".js-count-adult">
+                            <button class="button -outline-blue-1 text-red size-38 rounded-4 js-down">
+                              <i class="icon-minus text-12"></i>
+                            </button>
+
+                            <div class="flex-center size-20 ml-15 mr-15">
+                              <div class="text-15 js-count">2</div>
+                            </div>
+
+                            <button class="button -outline-blue-1 text-red size-38 rounded-4 js-up">
+                              <i class="icon-plus text-12"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="border-top-light mt-24 mb-24"></div>
+
+                      <div class="row y-gap-10 justify-between items-center">
+                        <div class="col-auto">
+                          <div class="text-15 lh-12 fw-500">Children</div>
+                          <div class="text-14 lh-12 text-light-1 mt-5">Ages 0 - 17</div>
+                        </div>
+
+                        <div class="col-auto">
+                          <div class="d-flex items-center js-counter" data-value-change=".js-count-child">
+                            <button class="button -outline-blue-1 text-red size-38 rounded-4 js-down">
+                              <i class="icon-minus text-12"></i>
+                            </button>
+
+                            <div class="flex-center size-20 ml-15 mr-15">
+                              <div class="text-15 js-count">1</div>
+                            </div>
+
+                            <button class="button -outline-blue-1 text-red size-38 rounded-4 js-up">
+                              <i class="icon-plus text-12"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="border-top-light mt-24 mb-24"></div>
+
+                      <div class="row y-gap-10 justify-between items-center">
+                        <div class="col-auto">
+                          <div class="text-15 fw-500">Rooms</div>
+                        </div>
+
+                        <div class="col-auto">
+                          <div class="d-flex items-center js-counter" data-value-change=".js-count-room">
+                            <button class="button -outline-blue-1 text-red size-38 rounded-4 js-down">
+                              <i class="icon-minus text-12"></i>
+                            </button>
+
+                            <div class="flex-center size-20 ml-15 mr-15">
+                              <div class="text-15 js-count">1</div>
+                            </div>
+
+                            <button class="button -outline-blue-1 text-red size-38 rounded-4 js-up">
+                              <i class="icon-plus text-12"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="button-item h-full">
+                  <button class="button -dark-1 py-15 px-40 h-full col-12 rounded-0 bg-red text-white">
+                    <i class="icon-search text-20 mr-10"></i>
+                    Search
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
 </section>
 
 <section class="layout-pt-lg layout-pb-md home">
@@ -734,8 +256,8 @@
             </div>
 
             <div class="citiesCard__content mt-10">
-              <h4 class="text-18 lh-13 fw-500 text-dark-1">London, UK</h4>
-              <div class="text-14 text-light-1">4,090 properties</div>
+              <h4 class="text-18 lh-13 fw-500 text-dark-1">Restaurant Name</h4>
+              <div class="text-14 text-light-1">12 - Nov - 2024</div>
             </div>
           </a>
 
@@ -749,8 +271,8 @@
             </div>
 
             <div class="citiesCard__content mt-10">
-              <h4 class="text-18 lh-13 fw-500 text-dark-1">Edinburgh, UK</h4>
-              <div class="text-14 text-light-1">4,090 properties</div>
+              <h4 class="text-18 lh-13 fw-500 text-dark-1">Restaurant Name</h4>
+              <div class="text-14 text-light-1">12 - Nov - 2024</div>
             </div>
           </a>
 
@@ -764,8 +286,8 @@
             </div>
 
             <div class="citiesCard__content mt-10">
-              <h4 class="text-18 lh-13 fw-500 text-dark-1">Manchester, UK</h4>
-              <div class="text-14 text-light-1">4,090 properties</div>
+              <h4 class="text-18 lh-13 fw-500 text-dark-1">Restaurant Name</h4>
+              <div class="text-14 text-light-1">12 - Nov - 2024</div>
             </div>
           </a>
 
@@ -779,8 +301,8 @@
             </div>
 
             <div class="citiesCard__content mt-10">
-              <h4 class="text-18 lh-13 fw-500 text-dark-1">Liverpool, UK</h4>
-              <div class="text-14 text-light-1">4,090 properties</div>
+              <h4 class="text-18 lh-13 fw-500 text-dark-1">Restaurant Name</h4>
+              <div class="text-14 text-light-1">12 - Nov - 2024</div>
             </div>
           </a>
 
@@ -794,8 +316,8 @@
             </div>
 
             <div class="citiesCard__content mt-10">
-              <h4 class="text-18 lh-13 fw-500 text-dark-1">Birmingham, UK</h4>
-              <div class="text-14 text-light-1">4,090 properties</div>
+              <h4 class="text-18 lh-13 fw-500 text-dark-1">Restaurant Name</h4>
+              <div class="text-14 text-light-1">12 - Nov - 2024</div>
             </div>
           </a>
 
@@ -809,8 +331,8 @@
             </div>
 
             <div class="citiesCard__content mt-10">
-              <h4 class="text-18 lh-13 fw-500 text-dark-1">Glasgow, UK</h4>
-              <div class="text-14 text-light-1">4,090 properties</div>
+              <h4 class="text-18 lh-13 fw-500 text-dark-1">Restaurant Name</h4>
+              <div class="text-14 text-light-1">12 - Nov - 2024</div>
             </div>
           </a>
 
@@ -824,8 +346,8 @@
             </div>
 
             <div class="citiesCard__content mt-10">
-              <h4 class="text-18 lh-13 fw-500 text-dark-1">Manchester, UK</h4>
-              <div class="text-14 text-light-1">4,090 properties</div>
+              <h4 class="text-18 lh-13 fw-500 text-dark-1">Restaurant Name</h4>
+              <div class="text-14 text-light-1">12 - Nov - 2024</div>
             </div>
           </a>
 
@@ -839,8 +361,8 @@
             </div>
 
             <div class="citiesCard__content mt-10">
-              <h4 class="text-18 lh-13 fw-500 text-dark-1">Liverpool, UK</h4>
-              <div class="text-14 text-light-1">4,090 properties</div>
+              <h4 class="text-18 lh-13 fw-500 text-dark-1">Restaurant Name</h4>
+              <div class="text-14 text-light-1">12 - Nov - 2024</div>
             </div>
           </a>
 
@@ -854,8 +376,8 @@
             </div>
 
             <div class="citiesCard__content mt-10">
-              <h4 class="text-18 lh-13 fw-500 text-dark-1">Birmingham, UK</h4>
-              <div class="text-14 text-light-1">4,090 properties</div>
+              <h4 class="text-18 lh-13 fw-500 text-dark-1">Restaurant Name</h4>
+              <div class="text-14 text-light-1">12 - Nov - 2024</div>
             </div>
           </a>
 
@@ -869,8 +391,8 @@
             </div>
 
             <div class="citiesCard__content mt-10">
-              <h4 class="text-18 lh-13 fw-500 text-dark-1">Glasgow, UK</h4>
-              <div class="text-14 text-light-1">4,090 properties</div>
+              <h4 class="text-18 lh-13 fw-500 text-dark-1">Restaurant Name</h4>
+              <div class="text-14 text-light-1">12 - Nov - 2024</div>
             </div>
           </a>
 
@@ -965,14 +487,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Westminster Borough, London</p>
 
                   <div class="d-flex items-center mt-20">
-                    <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                    <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -1042,14 +564,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Ciutat Vella, Barcelona</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                    <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -1095,14 +617,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Manhattan, New York</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -1148,14 +670,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -1168,7 +690,7 @@
             <div class="col-auto">
 
               <a href="{{route('restaurant-list')}}" class="button px-40 h-50 -outline-red text-red">
-                View All <div class="icon-arrow-top-right ml-15"></div>
+                View All
               </a>
 
             </div>
@@ -1216,14 +738,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Westminster Borough, London</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -1293,14 +815,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Ciutat Vella, Barcelona</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -1346,14 +868,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Manhattan, New York</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -1399,14 +921,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -1452,14 +974,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -1505,14 +1027,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -1558,14 +1080,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -1611,14 +1133,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -1632,7 +1154,7 @@
             <div class="col-auto">
 
               <a href="#" class="button px-40 h-50 -outline-red text-red">
-                View All <div class="icon-arrow-top-right ml-15"></div>
+                View All
               </a>
 
             </div>
@@ -1680,14 +1202,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Westminster Borough, London</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -1757,14 +1279,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Ciutat Vella, Barcelona</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -1810,14 +1332,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Manhattan, New York</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -1863,14 +1385,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -1916,14 +1438,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -1969,14 +1491,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -2022,14 +1544,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -2075,14 +1597,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -2096,7 +1618,7 @@
             <div class="col-auto">
 
               <a href="#" class="button px-40 h-50 -outline-red text-red">
-                View All <div class="icon-arrow-top-right ml-15"></div>
+                View All
               </a>
 
             </div>
@@ -2144,14 +1666,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Westminster Borough, London</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -2221,14 +1743,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Ciutat Vella, Barcelona</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -2274,14 +1796,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Manhattan, New York</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -2327,14 +1849,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -2380,14 +1902,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -2433,14 +1955,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -2486,14 +2008,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -2539,14 +2061,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -2560,7 +2082,7 @@
             <div class="col-auto">
 
               <a href="#" class="button px-40 h-50 -outline-red text-red">
-                View All <div class="icon-arrow-top-right ml-15"></div>
+                View All
               </a>
 
             </div>
@@ -2646,14 +2168,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Westminster Borough, London</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -2723,14 +2245,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Ciutat Vella, Barcelona</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -2776,14 +2298,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Manhattan, New York</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -2829,14 +2351,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -2882,14 +2404,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -2935,14 +2457,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -2988,14 +2510,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -3041,14 +2563,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -3094,14 +2616,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Westminster Borough, London</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -3171,14 +2693,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Ciutat Vella, Barcelona</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -3224,14 +2746,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Manhattan, New York</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -3277,14 +2799,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -3330,14 +2852,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -3383,14 +2905,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -3436,14 +2958,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -3489,14 +3011,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -3542,14 +3064,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Westminster Borough, London</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -3619,14 +3141,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Ciutat Vella, Barcelona</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -3672,14 +3194,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Manhattan, New York</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -3725,14 +3247,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -3778,14 +3300,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -3831,14 +3353,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -3884,14 +3406,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -3937,14 +3459,14 @@
                   <p class="text-light-1 lh-14 text-14 mt-5">Vaticano Prati, Rome</p>
 
                   <div class="d-flex items-center mt-20">
-                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                                        <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                     <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                     <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                   </div>
 
                   <div class="mt-5">
-                    <div class="fw-500">
-                      Starting from <span class="text-red">US$72</span>
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
                 </div>
@@ -3958,7 +3480,7 @@
             <div class="col-auto">
 
               <a href="{{route('restaurant-list')}}" class="button px-40 h-50 -outline-red text-red">
-                Load More <div class="icon-arrow-top-right ml-15"></div>
+                Load More
               </a>
 
             </div>

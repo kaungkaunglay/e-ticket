@@ -643,7 +643,7 @@
 
                             <div class="d-flex items-center ml-20 is-menu-opened-hide md:d-none">
                                 <!-- <a href="login.html" class="button px-30 fw-400 text-14 -blue-1 bg-blue-1 h-50 text-white">Become An Expert</a> -->
-                                <a href="{{route('login')}}" class="button px-30 fw-400 text-14 -outline-blue-1 h-50 text-blue-1 ml-20">Sign In / Register</a>
+                                <a href="{{route('login')}}" class="button -outline-red  px-30 fw-400 text-14 h-50 text-red ml-20">Sign In / Register</a>
                             </div>
 
                             <div class="d-none xl:d-flex x-gap-20 items-center pl-30" data-x="header-mobile-icons" data-x-toggle="text-white">
@@ -775,142 +775,28 @@
             <div class="modalGrid px-30 py-30 sm:px-15 sm:py-15">
 
                 <div class="modalGrid__item js-item">
-                    <div class="py-10 px-15 sm:px-5 sm:py-5">
-                        <div class="text-15 lh-15 fw-500 text-dark-1">English</div>
-                        <div class="text-14 lh-15 mt-5 js-title">United States</div>
+                    <div class="py-10 px-15 sm:px-5 sm:py-5 d-flex">
+                        <div>
+                            <img src="{{asset('assets/img/general/lang.png')}}" alt="image" class="rounded-full mr-10">
+                            <div class="h-50"></div>
+                        </div>
+                        <div>
+                            <div class="text-15 lh-15 fw-500 text-dark-1">English</div>
+                            <div class="text-14 lh-15 mt-5 js-title">United States</div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="modalGrid__item js-item">
-                    <div class="py-10 px-15 sm:px-5 sm:py-5">
-                        <div class="text-15 lh-15 fw-500 text-dark-1">Türkçe</div>
-                        <div class="text-14 lh-15 mt-5 js-title">Turkey</div>
-                    </div>
-                </div>
-
-                <div class="modalGrid__item js-item">
-                    <div class="py-10 px-15 sm:px-5 sm:py-5">
-                        <div class="text-15 lh-15 fw-500 text-dark-1">Español</div>
-                        <div class="text-14 lh-15 mt-5 js-title">España</div>
-                    </div>
-                </div>
-
-                <div class="modalGrid__item js-item">
-                    <div class="py-10 px-15 sm:px-5 sm:py-5">
-                        <div class="text-15 lh-15 fw-500 text-dark-1">Français</div>
-                        <div class="text-14 lh-15 mt-5 js-title">France</div>
-                    </div>
-                </div>
-
-                <div class="modalGrid__item js-item">
-                    <div class="py-10 px-15 sm:px-5 sm:py-5">
-                        <div class="text-15 lh-15 fw-500 text-dark-1">Italiano</div>
-                        <div class="text-14 lh-15 mt-5 js-title">Italia</div>
-                    </div>
-                </div>
-
-                <div class="modalGrid__item js-item">
-                    <div class="py-10 px-15 sm:px-5 sm:py-5">
-                        <div class="text-15 lh-15 fw-500 text-dark-1">English</div>
-                        <div class="text-14 lh-15 mt-5 js-title">United States</div>
-                    </div>
-                </div>
-
-                <div class="modalGrid__item js-item">
-                    <div class="py-10 px-15 sm:px-5 sm:py-5">
-                        <div class="text-15 lh-15 fw-500 text-dark-1">Türkçe</div>
-                        <div class="text-14 lh-15 mt-5 js-title">Turkey</div>
-                    </div>
-                </div>
-
-                <div class="modalGrid__item js-item">
-                    <div class="py-10 px-15 sm:px-5 sm:py-5">
-                        <div class="text-15 lh-15 fw-500 text-dark-1">Español</div>
-                        <div class="text-14 lh-15 mt-5 js-title">España</div>
-                    </div>
-                </div>
-
-                <div class="modalGrid__item js-item">
-                    <div class="py-10 px-15 sm:px-5 sm:py-5">
-                        <div class="text-15 lh-15 fw-500 text-dark-1">Français</div>
-                        <div class="text-14 lh-15 mt-5 js-title">France</div>
-                    </div>
-                </div>
-
-                <div class="modalGrid__item js-item">
-                    <div class="py-10 px-15 sm:px-5 sm:py-5">
-                        <div class="text-15 lh-15 fw-500 text-dark-1">Italiano</div>
-                        <div class="text-14 lh-15 mt-5 js-title">Italia</div>
-                    </div>
-                </div>
-
-                <div class="modalGrid__item js-item">
-                    <div class="py-10 px-15 sm:px-5 sm:py-5">
-                        <div class="text-15 lh-15 fw-500 text-dark-1">English</div>
-                        <div class="text-14 lh-15 mt-5 js-title">United States</div>
-                    </div>
-                </div>
-
-                <div class="modalGrid__item js-item">
-                    <div class="py-10 px-15 sm:px-5 sm:py-5">
-                        <div class="text-15 lh-15 fw-500 text-dark-1">Türkçe</div>
-                        <div class="text-14 lh-15 mt-5 js-title">Turkey</div>
-                    </div>
-                </div>
-
-                <div class="modalGrid__item js-item">
-                    <div class="py-10 px-15 sm:px-5 sm:py-5">
-                        <div class="text-15 lh-15 fw-500 text-dark-1">Español</div>
-                        <div class="text-14 lh-15 mt-5 js-title">España</div>
-                    </div>
-                </div>
-
-                <div class="modalGrid__item js-item">
-                    <div class="py-10 px-15 sm:px-5 sm:py-5">
-                        <div class="text-15 lh-15 fw-500 text-dark-1">Français</div>
-                        <div class="text-14 lh-15 mt-5 js-title">France</div>
-                    </div>
-                </div>
-
-                <div class="modalGrid__item js-item">
-                    <div class="py-10 px-15 sm:px-5 sm:py-5">
-                        <div class="text-15 lh-15 fw-500 text-dark-1">Italiano</div>
-                        <div class="text-14 lh-15 mt-5 js-title">Italia</div>
-                    </div>
-                </div>
-
-                <div class="modalGrid__item js-item">
-                    <div class="py-10 px-15 sm:px-5 sm:py-5">
-                        <div class="text-15 lh-15 fw-500 text-dark-1">English</div>
-                        <div class="text-14 lh-15 mt-5 js-title">United States</div>
-                    </div>
-                </div>
-
-                <div class="modalGrid__item js-item">
-                    <div class="py-10 px-15 sm:px-5 sm:py-5">
-                        <div class="text-15 lh-15 fw-500 text-dark-1">Türkçe</div>
-                        <div class="text-14 lh-15 mt-5 js-title">Turkey</div>
-                    </div>
-                </div>
-
-                <div class="modalGrid__item js-item">
-                    <div class="py-10 px-15 sm:px-5 sm:py-5">
-                        <div class="text-15 lh-15 fw-500 text-dark-1">Español</div>
-                        <div class="text-14 lh-15 mt-5 js-title">España</div>
-                    </div>
-                </div>
-
-                <div class="modalGrid__item js-item">
-                    <div class="py-10 px-15 sm:px-5 sm:py-5">
-                        <div class="text-15 lh-15 fw-500 text-dark-1">Français</div>
-                        <div class="text-14 lh-15 mt-5 js-title">France</div>
-                    </div>
-                </div>
-
-                <div class="modalGrid__item js-item">
-                    <div class="py-10 px-15 sm:px-5 sm:py-5">
-                        <div class="text-15 lh-15 fw-500 text-dark-1">Italiano</div>
-                        <div class="text-14 lh-15 mt-5 js-title">Italia</div>
+                    <div class="py-10 px-15 sm:px-5 sm:py-5 d-flex">
+                        <div>
+                            <img src="{{asset('assets/img/general/lang.png')}}" alt="image" class="rounded-full mr-10">
+                            <div class="h-50"></div>
+                        </div>
+                        <div>
+                            <div class="text-15 lh-15 fw-500 text-dark-1">日本</div>
+                            <div class="text-14 lh-15 mt-5 js-title">Japan</div>
+                        </div>
                     </div>
                 </div>
 
