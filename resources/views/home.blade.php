@@ -3517,6 +3517,4 @@
   </div>
 </section>
 
-
-
 @endsection

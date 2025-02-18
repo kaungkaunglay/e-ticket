@@ -13,10 +13,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&amp;display=swap" rel="stylesheet">
-    @yield('style')
     <!-- Stylesheets -->
     <link rel="stylesheet" href="{{ asset('assets/css/vendors.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+    @yield('style')
 
     <title>GoTrip</title>
 </head>
