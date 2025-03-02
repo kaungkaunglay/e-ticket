@@ -14,8 +14,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&amp;display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/vendors.css">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="{{ asset('assets/css/vendors.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
 
   <title>GoTrip</title>
 </head>
@@ -2319,8 +2319,8 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAz77U5XQuEME6TpftaMdX0bBelQxXRlM"></script>
   <script src="../../../unpkg.com/%40googlemaps/markerclusterer%402.5.3/dist/index.min.js"></script>
 
-  <script src="js/vendors.js"></script>
-  <script src="js/main.js"></script>
+  <script src="{{ asset('assets/js/vendors.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 
 

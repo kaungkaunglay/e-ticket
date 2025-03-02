@@ -12065,3 +12065,20 @@ table.table-5 td {
 .home .section-slider-nav.-next{
   right: 0;
 }
+
+.pagination{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+
+.pagination .active{
+  background-color: var(--color-dark-1);
+  color: white;
+  border-radius: 50px;
+}
+
+.pagination ul li{
+  padding:10px;
+}
