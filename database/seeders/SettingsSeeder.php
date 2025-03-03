@@ -67,7 +67,7 @@ class SettingsSeeder extends Seeder
             ]
         ];  
         foreach($settings as $setting){
-            Settings::factory()->create($setting); 
+            Settings::create($setting);
         }
     }
 }
