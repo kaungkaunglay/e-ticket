@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Models\Resturant;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
@@ -95,4 +96,8 @@ Route::post('/register',[RegisterController::class,'store'])->name('register'); 
 Route::get('/login',[LoginController::class,'index'])->name('login');
 // Route::post('/login',[LoginController::class,'login'])->name('login'); // for form
 Route::post('/login',[LoginController::class,'store'])->name('login.store'); // for ajax
+Route::post('/logout',[LoginController::class,'logout'])->name('logout'); // for ajax
+Route::get('/logout',[LoginController::class,'destroy']); // for logout easily in development stage
+
+Route::get('/forget-password',[ForgetPasswordController::class,'index'])->name('forget_password');
 // end auth

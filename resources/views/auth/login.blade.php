@@ -25,10 +25,6 @@
                                             class="text-blue-1">Sign up for free</a></p>
                                 </div>
 
-                                <div class="col-12">
-                                    <div class="text-center" id="message"></div>
-                                </div>
-
                                 <div class="col-12 input-group">
 
                                     <div class="form-input ">
@@ -52,7 +48,11 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <a href="#" class="text-14 fw-500 text-blue-1 underline">Forgot your password?</a>
+                                    <a href="{{ route('forget_password')}}" class="text-14 fw-500 text-blue-1 underline">Forgot your password?</a>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="text-center" id="message"></div>
                                 </div>
 
                                 <div class="col-12">

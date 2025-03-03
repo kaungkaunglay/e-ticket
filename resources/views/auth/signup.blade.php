@@ -26,11 +26,6 @@
                                     </p>
                                 </div>
 
-
-                                <div class="col-12">
-                                    <div class="text-center" id="message"></div>
-                                </div>
-
                                 <div class="col-12 input-group">
 
                                     <div class="form-input ">
@@ -102,6 +97,10 @@
                                     </div>
 
                                 </div> --}}
+
+                                <div class="col-12">
+                                    <div class="text-center" id="message"></div>
+                                </div>
 
                                 <div class="col-12">
 
