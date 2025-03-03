@@ -689,7 +689,7 @@
 
                             <div class="mt-35">
                                 <div class="text-14 mt-30">Need live support?</div>
-                                <a href="#" class="text-14 fw-500 text-blue-1 mt-5">Email : email@gmail.com</a>
+                                <a href="#" class="text-14 fw-500 text-blue-1 mt-5">Email : {{config('email')}}</a>
                             </div>
                         </div>
 
