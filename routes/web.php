@@ -36,6 +36,7 @@ Route::domain('{locale}.localhost')->group(function () {
     Route::get('/terms', fn() => view('terms'))->name('terms');
     Route::get('/404', fn() => view('404'))->name('404');
     Route::get('/db-vendor-dashboard', fn() => view('db-vendor-dashboard'))->name('db-vendor-dashboard');
+    Route::get('/page1', fn() => view('Admin.Pages.page1'))->name('page1');
 
    
     Route::get('/resturant/user-dashboard', fn() => view('resturant.user-dashboard'))->name('resturant-user-dashboard');

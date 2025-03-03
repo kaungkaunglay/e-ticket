@@ -36,7 +36,7 @@
     <div class="row justify-center">
       <div class="col-xl-5 col-lg-7">
       <div class="text-22 fw-500 text-center py-20">
-        How Can I Help You
+        {{ translate('how_can_help_you')}}
       </div>
 
       <div class="row y-gap-20">
