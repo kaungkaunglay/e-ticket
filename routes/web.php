@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ResturantController;
 use App\Models\Resturant;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ResturantController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +21,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 })->name('home');
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
-Route::get('/signup', function () {
-    return view('signup');
-})->name('signup');
+// Route::get('/login', function () {
+//     return view('login');
+// })->name('login');
+// Route::get('/signup', function () {
+//     return view('signup');
+// })->name('signup');
 Route::get('/restaurant-list', function () {
     return view('restaurant-list');
 })->name('restaurant-list');
@@ -85,3 +87,12 @@ Route::delete('owner/categories/{category}', [CategoryController::class,'destroy
 // src="{{asset('assets/img
 // svg')}}"
 // png')}}"
+
+// start auth
+Route::get('/signup',[RegisterController::class,'index'])->name('signup');
+// Route::post('/register',[RegisterController::class,'register'])->name('register'); // for form
+Route::post('/register',[RegisterController::class,'store'])->name('register'); // for ajax
+Route::get('/login',[LoginController::class,'index'])->name('login');
+// Route::post('/login',[LoginController::class,'login'])->name('login'); // for form
+Route::post('/login',[LoginController::class,'store'])->name('login.store'); // for ajax
+// end auth
