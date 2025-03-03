@@ -723,7 +723,11 @@
           <div class="col-xl-9">
             <div class="text-center">
               <h1 data-anim-child="slide-up delay-4" class="text-60 lg:text-40 md:text-30 text-white">The World is Waiting For You</h1>
+<<<<<<< HEAD
               <p data-anim-child="slide-up delay-5" class="text-white mt-5">{{ translate('discover_amzaing') }}</p>
+=======
+              <p data-anim-child="slide-up delay-5" class="text-white mt-5">Discover amzaing places at exclusive deals</p>
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
             </div>
 
             <div data-anim-child="slide-up delay-6" class="mainSearch -w-900 bg-white px-10 py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-100 mt-40">

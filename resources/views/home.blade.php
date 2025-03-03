@@ -15,11 +15,19 @@
         <div class="col-xl-9">
           <div class="masthead__content">
             <div class="text-center">
+<<<<<<< HEAD
               <h1 data-anim-child="slide-up delay-2" class="text-40 lg:text-40 md:text-30 text-white"> {{ translate('reserve_table') }}</h1>
               <p data-anim-child="slide-up delay-3" class="text-white mt-5">{{ translate('discover_amzaing') }}</p>
 
               <div data-anim-child="slide-up delay-4" class="d-inline-block">
                 <a href="#" class="button -md -dark-1 bg-red h-50 text-white mt-30">{{ translate('discover_more') }}</a>
+=======
+              <h1 data-anim-child="slide-up delay-2" class="text-40 lg:text-40 md:text-30 text-white">Reserve Your Table at the Finest Restaurants Today!</h1>
+              <p data-anim-child="slide-up delay-3" class="text-white mt-5">Discover amzaing places at exclusive deals</p>
+
+              <div data-anim-child="slide-up delay-4" class="d-inline-block">
+                <a href="#" class="button -md -dark-1 bg-red h-50 text-white mt-30">Discover More</a>
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
               </div>
             </div>
 
@@ -223,7 +231,11 @@
                 <div class="button-item h-full">
                   <button class="button -dark-1 py-15 px-40 h-full col-12 rounded-0 bg-red text-white">
                     <i class="icon-search text-20 mr-10"></i>
+<<<<<<< HEAD
                     {{ translate('search_data') }}
+=======
+                    Search
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                   </button>
                 </div>
               </div>
@@ -240,7 +252,11 @@
     <div data-anim-child="slide-up delay-1" class="row y-gap-20 justify-center text-center">
       <div class="col-auto">
         <div class="sectionTitle -md">
+<<<<<<< HEAD
           <h2 class="sectionTitle__title">{{ translate('discount_restaurants') }}</h2>
+=======
+          <h2 class="sectionTitle__title">Discount Restaurants</h2>
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
         </div>
       </div>
     </div>
@@ -418,7 +434,11 @@
     <div data-anim-child="slide-up delay-1" class="row justify-center text-center">
       <div class="col-auto">
         <div class="sectionTitle -md">
+<<<<<<< HEAD
           <h2 class="sectionTitle__title">{{ translate('popular_restaurants') }}</h2>
+=======
+          <h2 class="sectionTitle__title">Popular Restaurants</h2>
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
         </div>
       </div>
     </div>
@@ -451,7 +471,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -504,7 +528,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -574,14 +602,22 @@
                       Starting from <span class="text-green-2">US$72</span>
                     </div>
                   </div>
+<<<<<<< HEAD
                 </div>  
+=======
+                </div>
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
               </a>
 
             </div>
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -634,7 +670,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -689,8 +729,13 @@
           <div class="row justify-center pt-40">
             <div class="col-auto">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-list')}}" class="button px-40 h-50 -outline-red text-red">
               {{ translate('view_all')}}
+=======
+              <a href="{{route('restaurant-list')}}" class="button px-40 h-50 -outline-red text-red">
+                View All
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
               </a>
 
             </div>
@@ -702,7 +747,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -755,7 +804,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -832,7 +885,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -885,7 +942,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -938,7 +999,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -991,7 +1056,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1044,7 +1113,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1097,7 +1170,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1166,7 +1243,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1219,7 +1300,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1296,7 +1381,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1349,7 +1438,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1402,7 +1495,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1455,7 +1552,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1508,7 +1609,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1561,7 +1666,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1630,7 +1739,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1683,7 +1796,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1760,7 +1877,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1813,7 +1934,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1866,7 +1991,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1919,7 +2048,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -1972,7 +2105,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2025,7 +2162,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2099,7 +2240,11 @@
     <div data-anim-child="slide-up delay-1" class="row justify-center text-center">
       <div class="col-auto">
         <div class="sectionTitle -md">
+<<<<<<< HEAD
           <h2 class="sectionTitle__title">{{ translate('restaurant_near') }}</h2>
+=======
+          <h2 class="sectionTitle__title">Restaurant Near Your Location</h2>
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
         </div>
       </div>
     </div>
@@ -2132,7 +2277,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2185,7 +2334,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2262,7 +2415,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2315,7 +2472,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2368,7 +2529,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2421,7 +2586,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2474,7 +2643,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2527,7 +2700,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2580,7 +2757,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2633,7 +2814,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2710,7 +2895,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2763,7 +2952,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2816,7 +3009,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2869,7 +3066,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2922,7 +3123,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -2975,7 +3180,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -3028,7 +3237,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -3081,7 +3294,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -3158,7 +3375,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -3211,7 +3432,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -3264,7 +3489,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -3317,7 +3546,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -3370,7 +3603,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -3423,7 +3660,11 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-detail')}}" class="hotelsCard -type-1 ">
+=======
+              <a href="{{route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                 <div class="hotelsCard__image">
 
                   <div class="cardImage ratio ratio-1:1">
@@ -3479,8 +3720,13 @@
           <div class="row justify-center pt-40">
             <div class="col-auto">
 
+<<<<<<< HEAD
               <a href="{{ translate('restaurant-list')}}" class="button px-40 h-50 -outline-red text-red">
                 {{translate('load_more')}}
+=======
+              <a href="{{route('restaurant-list')}}" class="button px-40 h-50 -outline-red text-red">
+                Load More
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
               </a>
 
             </div>
@@ -3501,6 +3747,7 @@
       <div class="col-auto">
         <i class="icon-newsletter text-60 sm:text-40 text-white"></i>
 
+<<<<<<< HEAD
         <h2 class="text-30 sm:text-24 lh-15 text-white mt-20">{{ translate('notify_new_update') }}</h2>
         <p class="text-white mt-5">{{translate ('enter_your_mail')}}</p>
 
@@ -3510,6 +3757,17 @@
           </div>
           <div class="col-auto">
             <button class="button -md -white h-60 bg-dark-1 text-white">{{translate('subscribe')}}</button>
+=======
+        <h2 class="text-30 sm:text-24 lh-15 text-white mt-20">Notify New Update & Discount</h2>
+        <p class="text-white mt-5">Enter your mail and send to us we will notify new update.</p>
+
+        <div class="single-field -w-410 d-flex x-gap-10 flex-wrap y-gap-20 pt-30">
+          <div class="col-auto">
+            <input class="col-12 bg-white h-60" type="text" placeholder="Your Email">
+          </div>
+          <div class="col-auto">
+            <button class="button -md -white h-60 bg-dark-1 text-white">Subscribe</button>
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
           </div>
         </div>
       </div>

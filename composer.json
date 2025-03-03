@@ -20,17 +20,24 @@
         "phpunit/phpunit": "^10.1",
         "spatie/laravel-ignition": "^2.0"
     },
+<<<<<<< HEAD
 
     
+=======
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
     "autoload": {
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
+<<<<<<< HEAD
         },
         "files": [
             "app/Helpers/helpers.php"
         ]
+=======
+        }
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
     },
     "autoload-dev": {
         "psr-4": {
@@ -57,8 +64,11 @@
             "dont-discover": []
         }
     },
+<<<<<<< HEAD
 
     
+=======
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",

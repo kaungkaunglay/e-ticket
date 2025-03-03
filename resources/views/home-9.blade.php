@@ -853,7 +853,11 @@
         <div class="d-flex items-center">
           <div class="text-white lh-15 text-right mr-10">
             <div class="fw-500">Scroll Down</div>
+<<<<<<< HEAD
             <div class="text-15">to {{ translate('discover_more') }}</div>
+=======
+            <div class="text-15">to discover more</div>
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
           </div>
 
           <div class="-icon">

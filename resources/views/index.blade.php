@@ -746,7 +746,11 @@
           <div class="col-auto">
             <div class="text-center">
               <h1 data-anim-child="slide-up delay-4" class="text-60 lg:text-40 md:text-30 text-white">Find Next Place To Visit</h1>
+<<<<<<< HEAD
               <p data-anim-child="slide-up delay-5" class="text-white mt-6 md:mt-10">{{ translate('discover_amzaing') }}</p>
+=======
+              <p data-anim-child="slide-up delay-5" class="text-white mt-6 md:mt-10">Discover amzaing places at exclusive deals</p>
+>>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
             </div>
 
             <div data-anim-child="slide-up delay-6" class="tabs -underline mt-60 js-tabs">
