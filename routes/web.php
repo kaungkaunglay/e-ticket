@@ -69,21 +69,6 @@ Route::get('/resturant/user-dashboard', function () {
     return view('resturant.user-dashboard');
 })->name('resturant-user-dashboard');
 
-Route::get('owner/resturant', [ResturantController::class, 'index'])->name('resturant.index');
-Route::get('owner/resturant/create', [ResturantController::class, 'create'])->name('resturant.create');
-Route::post('owner/resturant', [ResturantController::class, 'store'])->name('resturant.store');
-Route::get('owner/resturant/{restaurant}/edit', [ResturantController::class, 'edit'])->name('resturant.edit');
-Route::put('owner/resturant/{restaurant}', [ResturantController::class, 'update'])->name('resturant.update');
-Route::delete('owner/resturant/{restaurant}', [ResturantController::class, 'destroy'])->name('resturant.destroy');
-
-//category
-
-Route::get('owner/categories', [CategoryController::class, 'index'])->name('categories.index');
-Route::get('owner/categories/create', [CategoryController::class, 'create'])->name('categories.create');
-Route::post('owner/categories', [CategoryController::class, 'store'])->name('categories.store');
-Route::get('owner/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
-Route::put('owner/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
-Route::delete('owner/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
 
 
@@ -112,8 +97,8 @@ Route::get('/password/success',[ForgetPasswordController::class,'success'])->nam
 // end auth
 
 Route::middleware('guest')->group(function () {
-    Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
-    Route::post('/admin/login', [AdminLoginController::class, 'login']);
+    Route::get('/owner/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('/owner/login', [AdminLoginController::class, 'login']);
 
     Route::get('/vendor/login', [VendorLoginController::class, 'showLoginForm'])->name('vendor.login');
     Route::post('/vendor/login', [VendorLoginController::class, 'login']);
@@ -123,10 +108,25 @@ Route::middleware('guest')->group(function () {
 
 
 Route::middleware(['admin'])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
-    Route::post('/admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
+Route::get('/owner/dashboard', function () { return view('admin.dashboard');})->name('admin.dashboard');
+Route::get('owner/resturant', [ResturantController::class, 'index'])->name('resturant.index');
+Route::get('owner/resturant/create', [ResturantController::class, 'create'])->name('resturant.create');
+Route::post('owner/resturant', [ResturantController::class, 'store'])->name('resturant.store');
+Route::get('owner/resturant/{restaurant}/edit', [ResturantController::class, 'edit'])->name('resturant.edit');
+Route::put('owner/resturant/{restaurant}', [ResturantController::class, 'update'])->name('resturant.update');
+Route::delete('owner/resturant/{restaurant}', [ResturantController::class, 'destroy'])->name('resturant.destroy');
+
+//category
+
+Route::get('owner/categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::get('owner/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+Route::post('owner/categories', [CategoryController::class, 'store'])->name('categories.store');
+Route::get('owner/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+Route::put('owner/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
+Route::delete('owner/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+
+Route::post('/admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
 });
 
 Route::middleware(['vendor'])->group(function () {

@@ -14,6 +14,6 @@ class AdminMiddleware
             return $next($request);
         }
 
-        return redirect('/admin/login')->with('error', 'Access denied.');
+        return redirect('/owner/login')->with('error', 'Access denied.');
     }
 }

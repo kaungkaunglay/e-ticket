@@ -3,6 +3,7 @@
 
 
 <!-- Mirrored from creativelayers.net/themes/gotrip-html/db-vendor-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2025 09:19:36 GMT -->
+
 <head>
   <!-- Required meta tags -->
   <meta charset="UTF-8">
@@ -821,6 +822,19 @@
 
 
         </div>
+        <div class="sidebar__item">
+          <a href="#" class="sidebar__button d-flex items-center text-15 lh-1 fw-500"
+            onclick="event.preventDefault(); document.getElementById('admin-logout-form').submit();">
+            <img src="{{ asset('/assets/img/dashboard/sidebar/log-out.svg') }}" alt="Logout Icon" class="mr-15">
+            Logout
+          </a>
+        </div>
+
+        <form id="admin-logout-form" method="POST" action="{{ route('admin.logout') }}" style="display: none;">
+          @csrf
+        </form>
+
+
 
         <!-- <div class="sidebar__item ">
 
@@ -1067,7 +1081,7 @@
 
     <div class="dashboard__main">
       <div class="dashboard__content bg-light-2">
-        
+
         @yield('content')
 
         <footer class="footer -dashboard mt-60">
@@ -1112,9 +1126,10 @@
   <script src="../../../unpkg.com/%40googlemaps/markerclusterer%402.5.3/dist/index.min.js"></script>
 
   <script src="{{ asset('assets/js/vendors.js') }}"></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
+  <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 
 
 <!-- Mirrored from creativelayers.net/themes/gotrip-html/db-vendor-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2025 09:19:38 GMT -->
+
 </html>
