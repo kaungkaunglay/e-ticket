@@ -18,6 +18,10 @@ class ResturantController extends Controller {
         return view('resturant.restaurant', compact('categories'));
     }
 
+    public function show(Restaurant $restaurant) {
+        return view('resturant.restaurant-detail', compact('restaurant'));
+    }
+
     public function store(Request $request) {
         $request->validate([
             'category_id' => 'required|exists:categories,id',

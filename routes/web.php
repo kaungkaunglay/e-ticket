@@ -68,6 +68,7 @@ Route::get('/resturant/user-dashboard', function () {
 })->name('resturant-user-dashboard');
 
 Route::get('owner/resturant', [ResturantController::class,'index'])->name('resturant.index');
+Route::get('owner/resturant/detail/{restaurant}', [ResturantController::class,'show'])->name('resturant.show');
 Route::get('owner/resturant/create', [ResturantController::class,'create'])->name('resturant.create');
 Route::post('owner/resturant', [ResturantController::class,'store'])->name('resturant.store');
 Route::get('owner/resturant/{restaurant}/edit', [ResturantController::class,'edit'])->name('resturant.edit');
