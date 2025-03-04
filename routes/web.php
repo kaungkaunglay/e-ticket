@@ -99,5 +99,12 @@ Route::post('/login',[LoginController::class,'store'])->name('login.store'); // 
 Route::post('/logout',[LoginController::class,'logout'])->name('logout'); // for ajax
 Route::get('/logout',[LoginController::class,'destroy']); // for logout easily in development stage
 
-Route::get('/forget-password',[ForgetPasswordController::class,'index'])->name('forget_password');
+// start forget password
+Route::get('/password/forget',[ForgetPasswordController::class,'index'])->name('forget_password');
+Route::post('/password/sent',[ForgetPasswordController::class,'sendResetLink'])->name('sent_reset_link');
+Route::get('/password/sent/{email}',[ForgetPasswordController::class,'showSentLinkSuccess'])->name('show_sent_link_success');
+Route::get('/password/reset/{token}',[ForgetPasswordController::class,'showResetForm'])->name('show_reset_form');
+Route::post('/password/reset',[ForgetPasswordController::class,'reset'])->name('reset_password');
+Route::get('/password/success',[ForgetPasswordController::class,'success'])->name('reset_success');
+// end forget password
 // end auth

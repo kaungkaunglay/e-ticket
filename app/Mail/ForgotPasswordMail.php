@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ForgotPasswordMail extends Mailable
+class ForgotPasswordMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -45,7 +45,7 @@ class ForgotPasswordMail extends Mailable
             view: 'email.forget-password-mail',
             with: [
                 'user' => $this->user,
-                'url' => $this->token
+                'url' => route('show_reset_form',$this->token)
             ]
         );
     }

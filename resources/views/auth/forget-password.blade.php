@@ -1,7 +1,7 @@
 @extends('includes.guest')
 @section('style')
 <style>
-    form#login_form button.button {
+    form button.button {
         width: 100%;
     }
 
@@ -16,7 +16,7 @@
             <div class="row justify-center">
                 <div class="col-xl-6 col-lg-7 col-md-9">
                     <div class="px-50 py-50 sm:px-20 sm:py-20 bg-white shadow-4 rounded-4">
-                        <form id="login_form" method="POST">
+                        <form id="sent_reset_link_form" method="POST">
                             @csrf
                             <div class="row y-gap-20">
                                 <div class="col-12">
@@ -65,6 +65,53 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
+            $("#sent_reset_link_form").submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                var form = $(this);
+
+                $.ajax({
+                    url: "{{ route('sent_reset_link') }}",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        form.find('button[type="submit"]').prop('disabled', true);
+                    },
+                    success: function(response) {
+                        if (response.status) {
+                            window.location.href = response.redirect;
+                        } else {
+
+                            $('#message').html(response.message ?? '');
+
+                            var errors = response.errors ?? '';
+
+                            var fields = [
+                                'email'
+                            ];
+
+                            fields.forEach(function(field) {
+                                const inputGroup = $(`#${field}`).closest('.input-group');
+                                const errorSpan = inputGroup.find('span.invalid-feedback');
+
+                                if (errors[field]) {
+                                    errorSpan.addClass('d-block').html(errors[field]);
+                                } else {
+                                    errorSpan.removeClass('d-block').html('');
+                                }
+                            });
+                        }
+                    },
+                    complete: function() {
+                        form.find('button[type="submit"]').prop('disabled', false);
+                    }
+                });
+            });
         });
+
     </script>
 @endsection

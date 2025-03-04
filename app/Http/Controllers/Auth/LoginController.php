@@ -96,7 +96,7 @@ class LoginController extends Controller
         } catch(Exception $e) {
             Log::error('Authentication failed', ['error' => $e->getMessage()]);
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'An error occurred during authentication.',
             ]);
         }
@@ -116,7 +116,7 @@ class LoginController extends Controller
         } catch(Exception $e) {
             Log::error('Logout failed', ['error' => $e->getMessage()]);
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'An error occurred during logout.',
             ]);
         }
