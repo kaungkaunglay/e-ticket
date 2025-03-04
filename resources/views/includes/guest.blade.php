@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-x="html" data-x-toggle="html-overflow-hidden">
 
-
-<!-- Mirrored from creativelayers.net/themes/gotrip-html/home-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2025 09:17:30 GMT -->
-
 <head>
     <!-- Required meta tags -->
     <meta charset="UTF-8">
@@ -57,8 +54,5 @@
 
     @yield('script')
 </body>
-
-
-<!-- Mirrored from creativelayers.net/themes/gotrip-html/home-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2025 09:17:58 GMT -->
 
 </html>

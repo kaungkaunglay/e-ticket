@@ -2,12 +2,16 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Translation;
 
 class TranslationSeeder extends Seeder
 {
-    public function run()
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
     {
         $translations = [
             ['key' => 'reserve_table', 'en' => 'Reserve Your Table at the Finest Restaurants Today...', 'jp' => '今すぐ最高級レストランのテーブルを予約しましょう!'],

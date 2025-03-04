@@ -103,7 +103,7 @@
 
                   </li> -->
                                             <li>
-                                                <a href="{{ translate('home')}}">Home</a>
+                                                <a href="{{locale_route('home')}} ">Home</a>
                                             </li>
 
 
@@ -586,16 +586,16 @@
                                             </li>
 
                                             <li>
-                                                <a href="{{ translate('user-dashboard')}}">Profile</a>
+                                                <a href="{{locale_route('user-dashboard')}}">Profile</a>
                                             </li>
                                             <li>
-                                                <a href="{{ translate('about')}}">About Us</a>
+                                                <a href="{{locale_route('about')}}">About Us</a>
                                             </li>
                                             <li>
-                                                <a href="{{ translate('restaurant-list')}}">Restaurant</a>
+                                                <a href="{{locale_route('restaurant-list')}}">Restaurant</a>
                                             </li>
                                             <li>
-                                                <a href="{{ translate('contact')}}">Support</a>
+                                                <a href="{{locale_route('contact')}}">Support</a>
                                             </li>
 
                                         </ul>
@@ -609,7 +609,7 @@
                         </div>
                     </div>
                     <div class="col-auto">
-                        <a href="{{ translate('home')}}" class="header-logo mr-20" data-x="header-logo" data-x-toggle="is-logo-dark">
+                        <a href="{{locale_route('home')}}" class="header-logo mr-20" data-x="header-logo" data-x-toggle="is-logo-dark">
                             <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon">
                             <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon">
                         </a>
@@ -643,7 +643,11 @@
 
                             <div class="d-flex items-center ml-20 is-menu-opened-hide md:d-none">
                                 <!-- <a href="login.html" class="button px-30 fw-400 text-14 -blue-1 bg-blue-1 h-50 text-white">Become An Expert</a> -->
-                                <a href="{{ translate('login')}}" class="button -outline-red  px-30 fw-400 text-14 h-50 text-red ml-20">Sign In / Register</a>
+                                @auth
+                                <a href="" class="button -outline-red  px-30 fw-400 text-14 h-50 text-red ml-20">{{auth()->user()->first_name}} {{ auth()->user()->last_name}}</a>
+                                @else
+                                <a href="{{locale_route('login')}}" class="button -outline-red  px-30 fw-400 text-14 h-50 text-red ml-20">Sign In / Register</a>
+                                @endauth
                             </div>
 
                             <div class="d-none xl:d-flex x-gap-20 items-center pl-30" data-x="header-mobile-icons" data-x-toggle="text-white">
@@ -665,19 +669,19 @@
                 <div class="pt-60 pb-60">
                     <div class="row y-gap-40 justify-between xl:justify-start">
                     <div class="col-xl-2 col-lg-4 col-sm-6 d-flex flex-column">
-                           
-                           
-                            
+
+
+
                     <a href="index.html" class="header-logo mr-20" data-x="header-logo" data-x-toggle="is-logo-dark">
                             <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon">
                             <!-- <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon"> -->
                      </a>
 
-                            
-                            <p class="text-14 mt-30 fw-500 text-dark-1">"Reserve Your Table at the Finest Restaurants Today!"</p>
-                         
 
-                        
+                            <p class="text-14 mt-30 fw-500 text-dark-1">"Reserve Your Table at the Finest Restaurants Today!"</p>
+
+
+
                         </div>
                         <div class="col-xl-2 col-lg-4 col-sm-6">
                             <h5 class="text-20 fw-500 mb-30">Contact Us</h5>
@@ -689,14 +693,14 @@
 
                             <div class="mt-35">
                                 <div class="text-14 mt-30">Need live support?</div>
-                                <a href="#" class="text-14 fw-500 text-blue-1 mt-5">Email : email@gmail.com</a>
+                                <a href="#" class="text-14 fw-500 text-blue-1 mt-5">Email : {{config('email')}}</a>
                             </div>
                         </div>
 
                         <div class="col-xl-2 col-lg-4 col-sm-6">
                             <h5 class="text-20 fw-500 mb-30">Company</h5>
                             <div class="d-flex y-gap-10 flex-column">
-                                <a href="{{ translate('about')}}">About Us</a>
+                                <a href="{{locale_route('about')}}">About Us</a>
                                 <a href="#">Subscribe</a>
                             </div>
                         </div>
@@ -705,25 +709,25 @@
                             <h5 class="text-20 fw-500 mb-30">Support</h5>
                             <div class="d-flex y-gap-10 flex-column">
                                 <a href="#">FAQ</a>
-                                <a href="{{ translate('terms')}}">Terms & Conditions</a>
+                                <a href="{{locale_route('terms')}}">Terms & Conditions</a>
                                 <a href="#">Privacy Policy</a>
-                                <a href="{{ translate('contact')}}">Contact</a>
+                                <a href="{{locale_route('contact')}}">Contact</a>
                             </div>
                         </div>
 
                         <div class="col-xl-2 col-lg-4 col-sm-6">
                             <h5 class="text-20 fw-500 mb-30">Other</h5>
                             <div class="d-flex y-gap-10 flex-column">
-                                <a href="{{ translate('home')}}">Home</a>
+                                <a href="{{locale_route('home')}}">Home</a>
                                 <a href="#">Category</a>
-                                <a href="{{ translate('login')}}">Sign in</a>
-                                <a href="{{ translate('signup')}}">Register</a>
-                                <a href="{{ translate('user-dashboard')}}">Dashboard</a>
-                                <a href="{{ translate('restaurant-list')}}">Restaurants</a>
+                                <a href="{{locale_route('login')}}">Sign in</a>
+                                <a href="{{locale_route('signup')}}">Register</a>
+                                <a href="{{locale_route('user-dashboard')}}">Dashboard</a>
+                                <a href="{{locale_route('restaurant-list')}}">Restaurants</a>
                             </div>
                         </div>
 
-                       
+
                     </div>
                 </div>
 
@@ -750,7 +754,7 @@
                         <div class="col-auto">
                             <div class="row y-gap-10 items-center">
                                 <div class="col-auto">
-                                    <a href="{{ translate('terms')}}">Terms& Conditions</a>
+                                    <a href="{{locale_route('terms')}}">Terms& Conditions</a>
                                 </div>
                             </div>
                         </div>

@@ -782,11 +782,11 @@
                 <ul class="list-disc pt-15 pb-5 pl-40">
 
                   <li>
-                    <a href="{{ translate('categories.index') }}" class="text-15">All Resturants Type</a>
+                    <a href="{{ route('categories.index') }}" class="text-15">All Resturants Type</a>
                   </li>
 
                   <li>
-                    <a href="{{ translate('categories.create') }}" class="text-15">Add Resturants Type</a>
+                    <a href="{{ route('categories.create') }}" class="text-15">Add Resturants Type</a>
                   </li>
                 </ul>
               </div>
@@ -808,11 +808,11 @@
                 <ul class="list-disc pt-15 pb-5 pl-40">
 
                   <li>
-                    <a href="{{ translate('resturant.index') }}" class="text-15">All Resturants</a>
+                    <a href="{{ route('resturant.index') }}" class="text-15">All Resturants</a>
                   </li>
 
                   <li>
-                    <a href="{{ translate('resturant.create') }}" class="text-15">Add Resturant</a>
+                    <a href="{{ route('resturant.create') }}" class="text-15">Add Resturant</a>
                   </li>
                 </ul>
               </div>

@@ -750,7 +750,7 @@
               City to the World
             </h1>
 
-            <div class="text-white mt-15">{{ translate('discover_amzaing') }}</div>
+            <div class="text-white mt-15">Discover amzaing places at exclusive deals</div>
 
             <div class="d-inline-block">
               <a href="#" class="button -md -blue-1 w-180 bg-white text-dark-1 mt-30 md:mt-20">Register</a>

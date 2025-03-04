@@ -18,7 +18,7 @@ class LoginController extends Controller
     // login view
     public function index()
     {
-        return view('login');
+        return view('auth.login');
     }
 
     // for form
@@ -100,5 +100,32 @@ class LoginController extends Controller
                 'message' => 'An error occurred during authentication.',
             ]);
         }
+    }
+
+    // for ajax
+    public function logout()
+    {
+        try{
+            Auth::logout();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Logged out successfully.',
+                'redirect' => route('home')
+            ]);
+        } catch(Exception $e) {
+            Log::error('Logout failed', ['error' => $e->getMessage()]);
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred during logout.',
+            ]);
+        }
+    }
+
+    // for form
+    public function destroy()
+    {
+        Auth::logout();
+        return redirect()->route('home');
     }
 }

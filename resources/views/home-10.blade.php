@@ -719,11 +719,7 @@
           <div class="col-lg-auto">
             <div class="masthead__content">
               <h1 data-anim-child="slide-up delay-1" class="text-60 lg:text-40 sm:text-30">Where do You Want To Fly</h1>
-<<<<<<< HEAD
-              <p data-anim-child="slide-up delay-2" class="mt-5">{{ translate('discover_amzaing') }}</p>
-=======
               <p data-anim-child="slide-up delay-2" class="mt-5">Discover amzaing places at exclusive deals</p>
->>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
 
               <div data-anim-child="slide-up delay-3">
                 <div class="row y-gap-20 items-center pt-30">

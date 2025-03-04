@@ -749,11 +749,7 @@
                   </div>
 
                   <div data-anim-child="slide-up delay-1" class="text-white">
-<<<<<<< HEAD
-                    {{ translate('discover_amzaing') }}
-=======
                     Discover amzaing places at exclusive deals
->>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                   </div>
 
                   <h1 data-anim-child="slide-up delay-2" class="text-60 lg:text-40 md:text-30 text-white">
@@ -773,11 +769,7 @@
                   </div>
 
                   <div data-anim-child="slide-up delay-1" class="text-white">
-<<<<<<< HEAD
-                    {{ translate('discover_amzaing') }}
-=======
                     Discover amzaing places at exclusive deals
->>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                   </div>
 
                   <h1 data-anim-child="slide-up delay-2" class="text-60 lg:text-40 md:text-30 text-white">
@@ -797,11 +789,7 @@
                   </div>
 
                   <div data-anim-child="slide-up delay-1" class="text-white">
-<<<<<<< HEAD
-                    {{ translate('discover_amzaing') }}
-=======
                     Discover amzaing places at exclusive deals
->>>>>>> 3c46dfe8d22304afa20f1b32fd48e3ec8e9bf531
                   </div>
 
                   <h1 data-anim-child="slide-up delay-2" class="text-60 lg:text-40 md:text-30 text-white">
