@@ -646,7 +646,7 @@
                                 @auth
                                 <a href="" class="button -outline-red  px-30 fw-400 text-14 h-50 text-red ml-20">{{auth()->user()->first_name}} {{ auth()->user()->last_name}}</a>
                                 @else
-                                <a href="{{locale_route('login')}}" class="button -outline-red  px-30 fw-400 text-14 h-50 text-red ml-20">Sign In / Register</a>
+                                <a href="{{route('login')}}" class="button -outline-red  px-30 fw-400 text-14 h-50 text-red ml-20">Sign In / Register</a>
                                 @endauth
                             </div>
 
