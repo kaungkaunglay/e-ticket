@@ -103,7 +103,7 @@
 
                   </li> -->
                                             <li>
-                                                <a href="{{route('home')}}">Home</a>
+                                                <a href="{{locale_route('home')}} ">Home</a>
                                             </li>
 
 
@@ -586,16 +586,16 @@
                                             </li>
 
                                             <li>
-                                                <a href="{{route('user-dashboard')}}">Profile</a>
+                                                <a href="{{locale_route('user-dashboard')}}">Profile</a>
                                             </li>
                                             <li>
-                                                <a href="{{route('about')}}">About Us</a>
+                                                <a href="{{locale_route('about')}}">About Us</a>
                                             </li>
                                             <li>
-                                                <a href="{{route('restaurant-list')}}">Restaurant</a>
+                                                <a href="{{locale_route('restaurant-list')}}">Restaurant</a>
                                             </li>
                                             <li>
-                                                <a href="{{route('contact')}}">Support</a>
+                                                <a href="{{locale_route('contact')}}">Support</a>
                                             </li>
 
                                         </ul>
@@ -609,7 +609,7 @@
                         </div>
                     </div>
                     <div class="col-auto">
-                        <a href="{{route('home')}}" class="header-logo mr-20" data-x="header-logo" data-x-toggle="is-logo-dark">
+                        <a href="{{locale_route('home')}}" class="header-logo mr-20" data-x="header-logo" data-x-toggle="is-logo-dark">
                             <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon">
                             <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon">
                         </a>
@@ -700,7 +700,7 @@
                         <div class="col-xl-2 col-lg-4 col-sm-6">
                             <h5 class="text-20 fw-500 mb-30">Company</h5>
                             <div class="d-flex y-gap-10 flex-column">
-                                <a href="{{route('about')}}">About Us</a>
+                                <a href="{{locale_route('about')}}">About Us</a>
                                 <a href="#">Subscribe</a>
                             </div>
                         </div>
@@ -709,21 +709,21 @@
                             <h5 class="text-20 fw-500 mb-30">Support</h5>
                             <div class="d-flex y-gap-10 flex-column">
                                 <a href="#">FAQ</a>
-                                <a href="{{route('terms')}}">Terms & Conditions</a>
+                                <a href="{{locale_route('terms')}}">Terms & Conditions</a>
                                 <a href="#">Privacy Policy</a>
-                                <a href="{{route('contact')}}">Contact</a>
+                                <a href="{{locale_route('contact')}}">Contact</a>
                             </div>
                         </div>
 
                         <div class="col-xl-2 col-lg-4 col-sm-6">
                             <h5 class="text-20 fw-500 mb-30">Other</h5>
                             <div class="d-flex y-gap-10 flex-column">
-                                <a href="{{route('home')}}">Home</a>
+                                <a href="{{locale_route('home')}}">Home</a>
                                 <a href="#">Category</a>
-                                <a href="{{route('login')}}">Sign in</a>
-                                <a href="{{route('signup')}}">Register</a>
-                                <a href="{{route('user-dashboard')}}">Dashboard</a>
-                                <a href="{{route('restaurant-list')}}">Restaurants</a>
+                                <a href="{{locale_route('login')}}">Sign in</a>
+                                <a href="{{locale_route('signup')}}">Register</a>
+                                <a href="{{locale_route('user-dashboard')}}">Dashboard</a>
+                                <a href="{{locale_route('restaurant-list')}}">Restaurants</a>
                             </div>
                         </div>
 
@@ -754,7 +754,7 @@
                         <div class="col-auto">
                             <div class="row y-gap-10 items-center">
                                 <div class="col-auto">
-                                    <a href="{{route('terms')}}">Terms& Conditions</a>
+                                    <a href="{{locale_route('terms')}}">Terms& Conditions</a>
                                 </div>
                             </div>
                         </div>
