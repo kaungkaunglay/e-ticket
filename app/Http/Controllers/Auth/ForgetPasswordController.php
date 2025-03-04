@@ -72,9 +72,27 @@ class ForgetPasswordController extends Controller
         }
     }
 
+    public function resetPassword(Request $request)
+    {
+        try{
+
+            $token = $request->token;
+
+            return view('Auth/reset-password',compact('token'));
+
+        } catch (Exception $e) {
+            Log::error('Showing reset password form failed', ['error' => $e->getMessage()]);
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred during showing reset password form.',
+            ]);
+        }
+    }
+
     public function reset(Request $request){
         try {
             $validator = Validator::make($request->all(), [
+                'token' => 'required',
                 'password' => 'required|min:8|confirmed'
             ]);
 
