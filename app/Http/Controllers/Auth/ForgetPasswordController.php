@@ -10,9 +10,11 @@ use App\Mail\ForgotPasswordMail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Jobs\SendForgotPasswordMail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\RateLimiter;
 
 class ForgetPasswordController extends Controller
 {
@@ -24,6 +26,14 @@ class ForgetPasswordController extends Controller
     public function sendResetLink(Request $request)
     {
         try{
+
+            $key = 'sent|' . $request->ip();
+            if (RateLimiter::tooManyAttempts($key, 5)) {
+                return back()->withErrors([
+                    'email' =>  'Too many resent link requests. Please try again after 60 seconds.',
+                ])->onlyInput('email');
+            }
+
             $validator = Validator::make($request->all(),[
                 'email' => 'required|email',
             ]);
@@ -55,35 +65,50 @@ class ForgetPasswordController extends Controller
                 'created_at' => now(),
             ]);
 
-            Mail::to($user->email)->send(new ForgotPasswordMail($user,$token));
+            RateLimiter::hit($key, 60);
+            dispatch(new SendForgotPasswordMail($user, $token));
 
             return response()->json([
                 'status' => true,
-                'message' => 'Reset Link Sent',
+                'message' => 'Reset link sent successfully.',
+                'redirect' => route('show_sent_link_success',$user->email)
             ]);
 
 
         } catch (Exception $e) {
             Log::error('Sending reset password link failed', ['error' => $e->getMessage()]);
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'An error occurred during sending password reset link.',
             ]);
         }
     }
 
-    public function resetPassword(Request $request)
+    public function showSentLinkSuccess($email)
     {
         try{
 
-            $token = $request->token;
+            return view('Auth/sent-success',compact('email'));
+
+        } catch (Exception $e) {
+            Log::error('Showing reset link success form failed', ['error' => $e->getMessage()]);
+            return response()->json([
+                'status' => false,
+                'message' => 'An error occurred during showing reset link success form.',
+            ]);
+        }
+    }
+
+    public function showResetForm($token)
+    {
+        try{
 
             return view('Auth/reset-password',compact('token'));
 
         } catch (Exception $e) {
             Log::error('Showing reset password form failed', ['error' => $e->getMessage()]);
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'An error occurred during showing reset password form.',
             ]);
         }
@@ -125,14 +150,14 @@ class ForgetPasswordController extends Controller
 
             return response()->json([
                 'status' => true,
-                'message' => 'Password Reset Success'
-
+                'message' => 'Password reset successfully',
+                'redirect' => route('reset_success')
             ]);
 
         } catch (Exception $e) {
             Log::error('Reseting password failed', ['error' => $e->getMessage()]);
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'An error occurred during reseting password.',
             ]);
         }
@@ -140,7 +165,7 @@ class ForgetPasswordController extends Controller
 
     public function success()
     {
-        return view('email.password-reset-success');
+        return view('auth.password-reset-success');
     }
 
 }

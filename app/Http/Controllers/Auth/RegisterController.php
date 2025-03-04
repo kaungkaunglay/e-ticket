@@ -76,7 +76,7 @@ class RegisterController extends Controller
         }catch(Exception $e) {
             Log::error('Registration failed', ['error' => $e->getMessage()]);
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'An error occurred during registration.',
             ]);
         }

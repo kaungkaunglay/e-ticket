@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -45,7 +44,7 @@ class ForgotPasswordMail extends Mailable
             view: 'email.forget-password-mail',
             with: [
                 'user' => $this->user,
-                'url' => $this->token
+                'url' => env('APP_URL').'/password/reset/'.$this->token
             ]
         );
     }

@@ -10,8 +10,41 @@
             color: red;
         }
 
+        .success-icon-container {
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: #28a745;
+            animation: scaleIn 0.5s ease-in-out, bounce 1s ease-in-out 0.5s;
+        }
+
+        .card-header {
+            background-color: #f8f9fa;
+        }
         .loading {
             animation: bounce 1s ease-in-out 0.5s infinite;
+        }
+
+
+        @keyframes scaleIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            80% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
         @keyframes bounce {
@@ -32,6 +65,38 @@
                 transform: translateY(-10px);
             }
         }
+
+        .pop-in {
+            animation: popIn 0.8s ease-in-out 0.3s both;
+            opacity: 0;
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in-out 0.6s both;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
     </style>
 @endsection
 @section('contents')
@@ -43,21 +108,28 @@
                         <form id="sent_reset_link_form" method="POST">
                             @csrf
                             <div class="row y-gap-20">
-                                <div class="col-12">
-                                    <h1 class="text-22 fw-500">Forget Password</h1>
-                                    <p class="mt-10">Do you remember it? <a href="{{ route('login') }}"
-                                            class="text-blue-1">Log in</a></p>
+
+                                <div class="col-12 text-center py-5">
+                                    <div class="success-icon-container mb-2">
+                                        <div class="success-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"
+                                                fill="currentColor" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <h2 class="card-title mb-3 pop-in">Success!</h2>
+                                    <p class="card-text mb-3 pop-in" style="animation-delay: 0.4s;">Reset link sent
+                                        successfully.</p>
                                 </div>
 
                                 <div class="col-12 input-group">
-
                                     <div class="form-input ">
-                                        <input type="text" name="email" id="email" required>
-                                        <label class="lh-1 text-14 text-light-1">Email</label>
+                                        <input type="hidden" name="email" id="email" value="{{ $email }}"
+                                            required >
                                     </div>
-
                                     <span class="invalid-feedback"></span>
-
                                 </div>
 
                                 <div class="col-12">
@@ -67,7 +139,7 @@
                                 <div class="col-12">
 
                                     <button type="submit" class="button py-20 -dark-1 bg-blue-1 text-white">
-                                        Confirm <div class="icon-arrow-top-right ml-15"></div>
+                                        Resent Link <div class="icon-arrow-top-right ml-15"></div>
                                     </button>
 
                                 </div>
@@ -108,6 +180,7 @@
                     },
                     success: function(response) {
                         if (response.status) {
+                            console.log(response.message);
                             window.location.href = response.redirect;
                         } else {
 

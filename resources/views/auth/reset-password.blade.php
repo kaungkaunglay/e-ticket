@@ -40,11 +40,11 @@
             <div class="row justify-center">
                 <div class="col-xl-6 col-lg-7 col-md-9">
                     <div class="px-50 py-50 sm:px-20 sm:py-20 bg-white shadow-4 rounded-4">
-                        <form id="sent_reset_link_form" method="POST">
+                        <form id="reset_password_form" method="POST">
                             @csrf
                             <div class="row y-gap-20">
                                 <div class="col-12">
-                                    <h1 class="text-22 fw-500">Forget Password</h1>
+                                    <h1 class="text-22 fw-500">Reset Password</h1>
                                     <p class="mt-10">Do you remember it? <a href="{{ route('login') }}"
                                             class="text-blue-1">Log in</a></p>
                                 </div>
@@ -52,9 +52,28 @@
                                 <div class="col-12 input-group">
 
                                     <div class="form-input ">
-                                        <input type="text" name="email" id="email" required>
-                                        <label class="lh-1 text-14 text-light-1">Email</label>
+                                        <input type="password" name="password" id="password" required>
+                                        <label class="lh-1 text-14 text-light-1">New Password</label>
                                     </div>
+
+                                    <span class="invalid-feedback"></span>
+
+                                </div>
+
+                                <div class="col-12 input-group">
+
+                                    <div class="form-input ">
+                                        <input type="password" name="password_confirmation" id="password_confirmation"
+                                            required>
+                                        <label class="lh-1 text-14 text-light-1">Confirm Password</label>
+                                    </div>
+
+                                    <span class="invalid-feedback"></span>
+
+                                </div>
+
+                                <div class="col-12 input-group">
+                                    <input type="hidden" value="{{ $token }}" name="token" />
 
                                     <span class="invalid-feedback"></span>
 
@@ -67,7 +86,7 @@
                                 <div class="col-12">
 
                                     <button type="submit" class="button py-20 -dark-1 bg-blue-1 text-white">
-                                        Confirm <div class="icon-arrow-top-right ml-15"></div>
+                                        Reset <div class="icon-arrow-top-right ml-15"></div>
                                     </button>
 
                                 </div>
@@ -89,13 +108,13 @@
                 }
             });
 
-            $("#sent_reset_link_form").submit(function(e) {
+            $("#reset_password_form").submit(function(e) {
                 e.preventDefault();
                 var formData = new FormData(this);
                 var form = $(this);
 
                 $.ajax({
-                    url: "{{ route('sent_reset_link') }}",
+                    url: "{{ route('reset_password') }}",
                     type: 'POST',
                     dataType: 'json',
                     data: formData,
@@ -108,6 +127,7 @@
                     },
                     success: function(response) {
                         if (response.status) {
+                            console.log(response.success);
                             window.location.href = response.redirect;
                         } else {
 
@@ -116,7 +136,8 @@
                             var errors = response.errors ?? '';
 
                             var fields = [
-                                'email'
+                                'password',
+                                'password_confirmation'
                             ];
 
                             fields.forEach(function(field) {
