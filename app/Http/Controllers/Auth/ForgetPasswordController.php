@@ -10,6 +10,7 @@ use App\Mail\ForgotPasswordMail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Jobs\SendForgotPasswordMail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -65,7 +66,7 @@ class ForgetPasswordController extends Controller
             ]);
 
             RateLimiter::hit($key, 60);
-            Mail::to($user->email)->send(new ForgotPasswordMail($user,$token));
+            dispatch(new SendForgotPasswordMail($user, $token));
 
             return response()->json([
                 'status' => true,

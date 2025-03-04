@@ -1,14 +1,38 @@
 @extends('includes.guest')
 @section('style')
-<style>
-    form button.button {
-        width: 100%;
-    }
+    <style>
+        form button.button {
+            width: 100%;
+        }
 
-    span.invalid-feedback, div#message{
-        color: red;
-    }
-</style>
+        span.invalid-feedback,
+        div#message {
+            color: red;
+        }
+
+        .loading {
+            animation: bounce 1s ease-in-out 0.5s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-20px);
+            }
+
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
 @endsection
 @section('contents')
     <section class="layout-pt-lg layout-pb-lg bg-blue-2">
@@ -39,7 +63,8 @@
                                 <div class="col-12 input-group">
 
                                     <div class="form-input ">
-                                        <input type="password" name="password_confirmation" id="password_confirmation" required>
+                                        <input type="password" name="password_confirmation" id="password_confirmation"
+                                            required>
                                         <label class="lh-1 text-14 text-light-1">Confirm Password</label>
                                     </div>
 
@@ -72,7 +97,6 @@
             </div>
         </div>
     </section>
-
 @endsection
 
 @section('script')
@@ -97,7 +121,9 @@
                     contentType: false,
                     processData: false,
                     beforeSend: function() {
-                        form.find('button[type="submit"]').prop('disabled', true);
+                        const button = form.find('button[type="submit"]');
+                        button.prop('disabled', true);
+                        button.find('div.icon-arrow-top-right').addClass('loading');
                     },
                     success: function(response) {
                         if (response.status) {
@@ -115,8 +141,10 @@
                             ];
 
                             fields.forEach(function(field) {
-                                const inputGroup = $(`#${field}`).closest('.input-group');
-                                const errorSpan = inputGroup.find('span.invalid-feedback');
+                                const inputGroup = $(`#${field}`).closest(
+                                    '.input-group');
+                                const errorSpan = inputGroup.find(
+                                    'span.invalid-feedback');
 
                                 if (errors[field]) {
                                     errorSpan.addClass('d-block').html(errors[field]);
@@ -127,11 +155,12 @@
                         }
                     },
                     complete: function() {
-                        form.find('button[type="submit"]').prop('disabled', false);
+                        const button = form.find('button[type="submit"]');
+                        button.find('button[type="submit"]').prop('disabled', false);
+                        button.find('div.icon-arrow-top-right').removeClass('loading');
                     }
                 });
             });
         });
-
     </script>
 @endsection

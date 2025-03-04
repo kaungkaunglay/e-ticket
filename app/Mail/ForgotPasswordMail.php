@@ -3,13 +3,12 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ForgotPasswordMail extends Mailable implements ShouldQueue
+class ForgotPasswordMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -45,7 +44,7 @@ class ForgotPasswordMail extends Mailable implements ShouldQueue
             view: 'email.forget-password-mail',
             with: [
                 'user' => $this->user,
-                'url' => route('show_reset_form',$this->token)
+                'url' => env('APP_URL').'/password/reset/'.$this->token
             ]
         );
     }

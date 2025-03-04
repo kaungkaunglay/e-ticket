@@ -1,15 +1,37 @@
 @extends('includes.guest')
 @section('style')
-<style>
-    form#register_form button.button {
-        width: 100%;
-    }
+    <style>
+        form#register_form button.button {
+            width: 100%;
+        }
 
-    span.invalid-feedback div#message{
-        color: red;
-    }
-</style>
+        span.invalid-feedback div#message {
+            color: red;
+        }
 
+        .loading {
+            animation: bounce 1s ease-in-out 0.5s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-20px);
+            }
+
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
 @endsection
 @section('contents')
     <section class="layout-pt-lg layout-pb-lg bg-blue-2">
@@ -33,7 +55,7 @@
                                         <label class="lh-1 text-14 text-light-1">First Name</label>
                                     </div>
 
-                                    <span  class="invalid-feedback"></span>
+                                    <span class="invalid-feedback"></span>
 
                                 </div>
 
@@ -55,7 +77,7 @@
                                         <label class="lh-1 text-14 text-light-1">Email</label>
                                     </div>
 
-                                    <span  class="invalid-feedback"></span>
+                                    <span class="invalid-feedback"></span>
 
                                 </div>
 
@@ -66,7 +88,7 @@
                                         <label class="lh-1 text-14 text-light-1">Password</label>
                                     </div>
 
-                                    <span  class="invalid-feedback"></span>
+                                    <span class="invalid-feedback"></span>
 
                                 </div>
 
@@ -77,7 +99,7 @@
                                         <label class="lh-1 text-14 text-light-1">Confirm Password</label>
                                     </div>
 
-                                    <span  class="invalid-feedback"></span>
+                                    <span class="invalid-feedback"></span>
 
                                 </div>
 
@@ -146,35 +168,35 @@
     </section>
 
     <!-- <section class="layout-pt-md layout-pb-md bg-dark-2">
-          <div class="container">
-            <div class="row y-gap-30 justify-between items-center">
-              <div class="col-auto">
-                <div class="row y-gap-20  flex-wrap items-center">
+              <div class="container">
+                <div class="row y-gap-30 justify-between items-center">
                   <div class="col-auto">
-                    <div class="icon-newsletter text-60 sm:text-40 text-white"></div>
+                    <div class="row y-gap-20  flex-wrap items-center">
+                      <div class="col-auto">
+                        <div class="icon-newsletter text-60 sm:text-40 text-white"></div>
+                      </div>
+
+                      <div class="col-auto">
+                        <h4 class="text-26 text-white fw-600">Your Travel Journey Starts Here</h4>
+                        <div class="text-white">Sign up and we'll send the best deals to you</div>
+                      </div>
+                    </div>
                   </div>
 
                   <div class="col-auto">
-                    <h4 class="text-26 text-white fw-600">Your Travel Journey Starts Here</h4>
-                    <div class="text-white">Sign up and we'll send the best deals to you</div>
+                    <div class="single-field -w-410 d-flex x-gap-10 y-gap-20">
+                      <div>
+                        <input class="bg-white h-60" type="text" placeholder="Your Email">
+                      </div>
+
+                      <div>
+                        <button class="button -md h-60 bg-blue-1 text-white">Subscribe</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-
-              <div class="col-auto">
-                <div class="single-field -w-410 d-flex x-gap-10 y-gap-20">
-                  <div>
-                    <input class="bg-white h-60" type="text" placeholder="Your Email">
-                  </div>
-
-                  <div>
-                    <button class="button -md h-60 bg-blue-1 text-white">Subscribe</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section> -->
+            </section> -->
 @endsection
 
 @section('script')
@@ -199,7 +221,9 @@
                     contentType: false,
                     processData: false,
                     beforeSend: function() {
-                        form.find('button[type="submit"]').prop('disabled', true);
+                        const button = form.find('button[type="submit"]');
+                        button.prop('disabled', true);
+                        button.find('div.icon-arrow-top-right').addClass('loading');
                     },
                     success: function(response) {
                         if (response.status) {
@@ -219,8 +243,10 @@
                             ];
 
                             fields.forEach(function(field) {
-                                const inputGroup = $(`#${field}`).closest('.input-group');
-                                const errorSpan = inputGroup.find('span.invalid-feedback');
+                                const inputGroup = $(`#${field}`).closest(
+                                    '.input-group');
+                                const errorSpan = inputGroup.find(
+                                    'span.invalid-feedback');
 
                                 if (errors[field]) {
                                     errorSpan.addClass('d-block').html(errors[field]);
@@ -231,7 +257,9 @@
                         }
                     },
                     complete: function() {
-                        form.find('button[type="submit"]').prop('disabled', false);
+                        const button = form.find('button[type="submit"]');
+                        button.find('button[type="submit"]').prop('disabled', false);
+                        button.find('div.icon-arrow-top-right').removeClass('loading');
                     }
                 });
             });

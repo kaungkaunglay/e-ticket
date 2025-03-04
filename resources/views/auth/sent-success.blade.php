@@ -26,6 +26,10 @@
         .card-header {
             background-color: #f8f9fa;
         }
+        .loading {
+            animation: bounce 1s ease-in-out 0.5s infinite;
+        }
+
 
         @keyframes scaleIn {
             0% {
@@ -170,7 +174,9 @@
                     contentType: false,
                     processData: false,
                     beforeSend: function() {
-                        form.find('button[type="submit"]').prop('disabled', true);
+                        const button = form.find('button[type="submit"]');
+                        button.prop('disabled', true);
+                        button.find('div.icon-arrow-top-right').addClass('loading');
                     },
                     success: function(response) {
                         if (response.status) {
@@ -201,7 +207,9 @@
                         }
                     },
                     complete: function() {
-                        form.find('button[type="submit"]').prop('disabled', false);
+                        const button = form.find('button[type="submit"]');
+                        button.find('button[type="submit"]').prop('disabled', false);
+                        button.find('div.icon-arrow-top-right').removeClass('loading');
                     }
                 });
             });
