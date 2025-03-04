@@ -111,13 +111,13 @@ Route::get('/password/success',[ForgetPasswordController::class,'success'])->nam
 // end forget password
 // end auth
 
-Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
-Route::post('/admin/login', [AdminLoginController::class, 'login']);
+Route::middleware('guest')->group(function () {
+    Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('/admin/login', [AdminLoginController::class, 'login']);
 
-
-
-Route::get('/vendor/login', [VendorLoginController::class, 'showLoginForm'])->name('vendor.login');
-Route::post('/vendor/login', [VendorLoginController::class, 'login']);
+    Route::get('/vendor/login', [VendorLoginController::class, 'showLoginForm'])->name('vendor.login');
+    Route::post('/vendor/login', [VendorLoginController::class, 'login']);
+});
 
 
 
