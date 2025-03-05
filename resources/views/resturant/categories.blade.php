@@ -49,18 +49,11 @@
                                 <td class="text-blue-1 fw-500">{{$category->id}}</td>
                                 <td class="text-blue-1 fw-500">{{$category->name}}</td>
                                 <td>
-                                    <img src="{{$category->image}}" alt="{{$category->name}}" style="width: 20%;">
+                                    <img src="{{asset($category->image)}}" alt="{{$category->name}}" style="width: 20%;">
                                 </td>
                                 <td>{{$category->created_at->format('d m y')}}</td>
                                 <td>
                                     <div class="row x-gap-10 y-gap-10 items-center">
-
-                                        <div class="col-auto">
-                                            <button class="flex-center bg-light-2 rounded-4 size-35">
-                                                <i class="icon-eye text-16 text-light-1"></i>
-                                            </button>
-                                        </div>
-
                                         <div class="col-auto">
                                             <a href="{{ route('categories.edit', $category->id) }}">
                                                 <button class="flex-center bg-light-2 rounded-4 size-35">
