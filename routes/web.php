@@ -10,6 +10,8 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\VendorLoginController;
 use App\Http\Controllers\Auth\UserLoginController;
+use App\Http\Controllers\SupportController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -87,12 +89,12 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout'); // f
 Route::get('/logout', [LoginController::class, 'destroy']); // for logout easily in development stage
 
 // start forget password
-Route::get('/password/forget',[ForgetPasswordController::class,'index'])->name('forget_password');
-Route::post('/password/sent',[ForgetPasswordController::class,'sendResetLink'])->name('sent_reset_link');
-Route::get('/password/sent/{email}',[ForgetPasswordController::class,'showSentLinkSuccess'])->name('show_sent_link_success');
-Route::get('/password/reset/{token}',[ForgetPasswordController::class,'showResetForm'])->name('show_reset_form');
-Route::post('/password/reset',[ForgetPasswordController::class,'reset'])->name('reset_password');
-Route::get('/password/success',[ForgetPasswordController::class,'success'])->name('reset_success');
+Route::get('/password/forget', [ForgetPasswordController::class, 'index'])->name('forget_password');
+Route::post('/password/sent', [ForgetPasswordController::class, 'sendResetLink'])->name('sent_reset_link');
+Route::get('/password/sent/{email}', [ForgetPasswordController::class, 'showSentLinkSuccess'])->name('show_sent_link_success');
+Route::get('/password/reset/{token}', [ForgetPasswordController::class, 'showResetForm'])->name('show_reset_form');
+Route::post('/password/reset', [ForgetPasswordController::class, 'reset'])->name('reset_password');
+Route::get('/password/success', [ForgetPasswordController::class, 'success'])->name('reset_success');
 // end forget password
 // end auth
 
@@ -108,25 +110,40 @@ Route::middleware('guest')->group(function () {
 
 
 Route::middleware(['admin'])->group(function () {
-Route::get('/owner/dashboard', function () { return view('admin.dashboard');})->name('admin.dashboard');
-Route::get('owner/resturant', [ResturantController::class, 'index'])->name('resturant.index');
-Route::get('owner/resturant/create', [ResturantController::class, 'create'])->name('resturant.create');
-Route::post('owner/resturant', [ResturantController::class, 'store'])->name('resturant.store');
-Route::get('owner/resturant/{restaurant}/edit', [ResturantController::class, 'edit'])->name('resturant.edit');
-Route::put('owner/resturant/{restaurant}', [ResturantController::class, 'update'])->name('resturant.update');
-Route::delete('owner/resturant/{restaurant}', [ResturantController::class, 'destroy'])->name('resturant.destroy');
+    Route::get('/owner/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+    Route::get('owner/resturant', [ResturantController::class, 'index'])->name('resturant.index');
+    Route::get('owner/resturant/create', [ResturantController::class, 'create'])->name('resturant.create');
+    Route::post('owner/resturant', [ResturantController::class, 'store'])->name('resturant.store');
+    Route::get('owner/resturant/{restaurant}/edit', [ResturantController::class, 'edit'])->name('resturant.edit');
+    Route::put('owner/resturant/{restaurant}', [ResturantController::class, 'update'])->name('resturant.update');
+    Route::delete('owner/resturant/{restaurant}', [ResturantController::class, 'destroy'])->name('resturant.destroy');
 
-//category
+    //category
 
-Route::get('owner/categories', [CategoryController::class, 'index'])->name('categories.index');
-Route::get('owner/categories/create', [CategoryController::class, 'create'])->name('categories.create');
-Route::post('owner/categories', [CategoryController::class, 'store'])->name('categories.store');
-Route::get('owner/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
-Route::put('owner/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
-Route::delete('owner/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+    Route::get('owner/categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('owner/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('owner/categories', [CategoryController::class, 'store'])->name('categories.store');
+    Route::get('owner/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::put('owner/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('owner/categoriefs/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+    //support
+    Route::get('owner/support', [SupportController::class, 'index'])->name('support.index');
+    Route::get('owner/createsupport/{id?}', [SupportController::class, 'postcreate'])->name('createsupport.create');
+    Route::post('owner/storeOrUpdate/{id?}', [SupportController::class, 'storeOrUpdate'])->name('createsupport.storeOrUpdate');
+    Route::delete('owner/question/{id}', [SupportController::class, 'questiondestroy'])->name('question.destroy');
 
 
-Route::post('/admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
+    Route::get('owner/supportcategory', [SupportController::class, 'category'])->name('support.category');
+    Route::get('owner/createcategory/{id?}', [SupportController::class, 'createcategory'])->name('support.createcategory');
+    Route::post('owner/storecategory', [SupportController::class, 'storecategory'])->name('support.storecategory');
+    Route::put('owner/updatecategory/{id}', [SupportController::class, 'update'])->name('support.updatecategory');
+    Route::get('owner/support-category/{id}/edit', [SupportController::class, 'edit'])->name('support-category.edit');
+    Route::delete('owner/support-category/{id}', [SupportController::class, 'destroy'])->name('support-category.destroy');
+
+    Route::post('/admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
 });
 
 Route::middleware(['vendor'])->group(function () {

@@ -674,7 +674,7 @@
                           <a href="#"><i class="icon icon-chevron-sm-down"></i> Dashboard</a>
                         </li>
 
-                        <li><a href="db-dashboard.html">Dashboard</a></li>
+                        <li><a href="#">Dashboard</a></li>
 
                         <li><a href="db-booking.html">Booking</a></li>
 
@@ -745,7 +745,7 @@
         <div class="sidebar__item ">
 
 
-          <a href="db-dashboard.html" class="sidebar__button d-flex items-center text-15 lh-1 fw-500">
+          <a href="{{ route('admin.dashboard') }}" class="sidebar__button d-flex items-center text-15 lh-1 fw-500">
             <img src="{{ asset('assets/img/dashboard/sidebar/compass.svg') }}" alt="image" class="mr-15">
             Dashboard
           </a>
@@ -820,7 +820,32 @@
             </div>
           </div>
 
+          <div class="accordion -db-sidebar js-accordion">
+            <div class="accordion__item">
+              <div class="accordion__button">
+                <div class="sidebar__button col-12 d-flex items-center justify-between">
+                  <div class="d-flex items-center text-15 lh-1 fw-500">
+                    <img src="{{asset('/assets/img/dashboard/sidebar/hotel.svg')}}" alt="image" class="mr-10">
+                    Support
+                  </div>
+                  <div class="icon-chevron-sm-down text-7"></div>
+                </div>
+              </div>
 
+              <div class="accordion__content">
+                <ul class="list-disc pt-15 pb-5 pl-40">
+
+                  <li>
+                    <a href="{{ route('support.index') }}" class="text-15">All Support List</a>
+                  </li>
+
+                  <li>
+                    <a href="{{ route('support.category') }}" class="text-15">Support  Category</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="sidebar__item">
           <a href="#" class="sidebar__button d-flex items-center text-15 lh-1 fw-500"
