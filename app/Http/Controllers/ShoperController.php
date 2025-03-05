@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 
-class ResturantController extends Controller
+class ShoperController extends Controller
 {
     public function index()
     {
@@ -21,7 +21,7 @@ class ResturantController extends Controller
             $restaurants = Restaurant::where('user_id', $user->id)->latest()->paginate(10);
         }
 
-        return view('resturant.restaurants', compact('restaurants'));
+        return view('shoper.restaurants', compact('restaurants'));
     }
 
 
@@ -29,12 +29,12 @@ class ResturantController extends Controller
     {
         $categories = Category::all();
         $restaurant = new Restaurant();
-        return view('resturant.restaurant', compact('categories', 'restaurant'));
+        return view('shoper.restaurant', compact('categories', 'restaurant'));
     }
 
     public function show(Restaurant $restaurant)
     {
-        return view('resturant.restaurant-detail', compact('restaurant'));
+        return view('shoper.restaurant-detail', compact('restaurant'));
     }
 
     public function store(Request $request)
@@ -129,7 +129,7 @@ class ResturantController extends Controller
             'user_id' => $userId,
         ]);
 
-        return redirect()->route('resturant.index')->with('success', 'Restaurant created successfully!');
+        return redirect()->route('shoper.index')->with('success', 'Restaurant created successfully!');
     }
 
 
@@ -137,7 +137,7 @@ class ResturantController extends Controller
     public function edit(Restaurant $restaurant)
     {
         $categories = Category::all();
-        return view('resturant.restaurant', compact('restaurant', 'categories'));
+        return view('shoper.restaurant', compact('restaurant', 'categories'));
     }
 
 
@@ -219,7 +219,7 @@ class ResturantController extends Controller
 
         $restaurant->update($request->except(['logo', 'cover_image', 'multi_images']));
 
-        return redirect()->route('resturant.index')->with('success', 'Restaurant updated successfully!');
+        return redirect()->route('shoper.index')->with('success', 'Restaurant updated successfully!');
     }
 
     public function destroy(Restaurant $restaurant)
@@ -234,6 +234,6 @@ class ResturantController extends Controller
 
         $restaurant->delete();
 
-        return redirect()->route('resturant.index')->with('success', 'Restaurant deleted successfully!');
+        return redirect()->route('shoper.index')->with('success', 'Restaurant deleted successfully!');
     }
 }

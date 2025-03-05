@@ -12,7 +12,7 @@
 @endforeach
 
 <div class="py-30 px-30 rounded-4 bg-white shadow-3">
-    <form action="{{ isset($restaurant) && $restaurant->id ? route('resturant.update', $restaurant->id) : route('resturant.store') }}" method="POST" enctype="multipart/form-data" class="contact-form">
+    <form action="{{ isset($restaurant) && $restaurant->id ? route('vendor.resturant.update', $restaurant->id) : route('vendor.resturant.store') }}" method="POST" enctype="multipart/form-data" class="contact-form">
         @csrf
         @if(isset($restaurant) && $restaurant->id)
         @method('PUT')
@@ -188,7 +188,7 @@
                 </div>
 
                 <!-- Status -->
-                <div class="col-12">
+                <div class="col-12" style="display: none;">
                     <label class="lh-1 text-16 text-light-1">Status</label>
                     <div class="form-input">
 
@@ -252,7 +252,7 @@
         const multiImagesInput = document.getElementById('multi_images');
         const imagePreview = document.getElementById('image-preview');
 
-        // Handle file input change
+
         multiImagesInput.addEventListener('change', function(e) {
             const files = e.target.files;
             for (const file of files) {
@@ -282,7 +282,7 @@
         });
     });
 
-    // Function to remove existing images
+
     function removeImage(element) {
         element.parentElement.remove();
     }

@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Restaurant extends Model
 {
+    protected $casts = [
+        'multi_images' => 'array', 
+    ];
     use HasFactory;
 
     protected $fillable = [
@@ -15,6 +18,7 @@ class Restaurant extends Model
         'logo',
         'cover_image',
         'description',
+        'multi_images',
         'address',
         'city',
         'zip_code',
@@ -30,6 +34,9 @@ class Restaurant extends Model
         'parking_availability',
         'outdoor_seating',
         'social_links',
+        'status',
+        'avaliable',
+        'user_id',
     ];
 
     public function category()
@@ -37,4 +44,8 @@ class Restaurant extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function getMultiImagesAttribute($value)
+    {
+        return json_decode($value, true);
+    }
 }

@@ -807,14 +807,18 @@
 
               <div class="accordion__content">
                 <ul class="list-disc pt-15 pb-5 pl-40">
-
                   <li>
-                    <a href="{{ route('resturant.index') }}" class="text-15">All Resturants</a>
+                    <a href="{{ auth()->user()->hasRole('admin') ? route('resturant.index', [], false) : route('vendor.resturant.index', [], false) }}" class="text-15">
+                      All Restaurants
+                    </a>
                   </li>
 
                   <li>
-                    <a href="{{ route('resturant.create') }}" class="text-15">Add Resturant</a>
+                    <a href="{{ auth()->user()->hasRole('admin') ? route('resturant.create', [], false) : route('vendor.resturant.create', [], false) }}" class="text-15">
+                      Add Restaurant
+                    </a>
                   </li>
+
                 </ul>
               </div>
             </div>
@@ -840,7 +844,7 @@
                   </li>
 
                   <li>
-                    <a href="{{ route('support.category') }}" class="text-15">Support  Category</a>
+                    <a href="{{ route('support.category') }}" class="text-15">Support Category</a>
                   </li>
                 </ul>
               </div>
@@ -849,15 +853,16 @@
         </div>
         <div class="sidebar__item">
           <a href="#" class="sidebar__button d-flex items-center text-15 lh-1 fw-500"
-            onclick="event.preventDefault(); document.getElementById('admin-logout-form').submit();">
+            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <img src="{{ asset('/assets/img/dashboard/sidebar/log-out.svg') }}" alt="Logout Icon" class="mr-15">
             Logout
           </a>
         </div>
 
-        <form id="admin-logout-form" method="POST" action="{{ route('admin.logout') }}" style="display: none;">
+        <form id="logout-form" method="POST" action="{{ auth()->user()->hasRole('admin') ? route('admin.logout') : route('vendor.logout') }}" style="display: none;">
           @csrf
         </form>
+
 
 
 

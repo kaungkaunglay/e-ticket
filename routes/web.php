@@ -11,6 +11,8 @@ use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\VendorLoginController;
 use App\Http\Controllers\Auth\UserLoginController;
 use App\Http\Controllers\SupportController;
+use App\Http\Controllers\ShoperController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -150,6 +152,11 @@ Route::middleware(['vendor'])->group(function () {
     Route::get('/vendor/dashboard', function () {
         return view('vendor.dashboard');
     })->name('vendor.dashboard');
-
+    Route::get('vendor/resturant', [ShoperController::class, 'index'])->name('vendor.resturant.index');
+    Route::get('vendor/resturant/create', [ShoperController::class, 'create'])->name('vendor.resturant.create');
+    Route::post('vendor/resturant', [ShoperController::class, 'store'])->name('vendor.resturant.store');
+    Route::get('vendor/resturant/{restaurant}/edit', [ShoperController::class, 'edit'])->name('vendor.resturant.edit');
+    Route::put('vendor/resturant/{restaurant}', [ShoperController::class, 'update'])->name('vendor.resturant.update');
+    Route::delete('vendor/resturant/{restaurant}', [ShoperController::class, 'destroy'])->name('vendor.resturant.destroy');
     Route::post('/vendor/logout', [VendorLoginController::class, 'logout'])->name('vendor.logout');
 });

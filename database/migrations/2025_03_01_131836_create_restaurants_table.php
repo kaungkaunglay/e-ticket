@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('logo');
             $table->string('cover_image')->nullable();
+            $table->text('multi_images')->nullable();
             $table->text('description');
             $table->string('address');
             $table->string('city');
@@ -33,6 +34,9 @@ return new class extends Migration
             $table->boolean('parking_availability')->default(false);
             $table->boolean('outdoor_seating')->default(false);
             $table->json('social_links')->nullable();
+            $table->string('status'); 
+            $table->string('avaliable');
+            $table->string('user_id');
             $table->timestamps();
         });
     }
