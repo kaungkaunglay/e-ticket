@@ -129,7 +129,7 @@ class ShoperController extends Controller
             'user_id' => $userId,
         ]);
 
-        return redirect()->route('shoper.index')->with('success', 'Restaurant created successfully!');
+        return redirect()->route('vendor.resturant.index')->with('success', 'Restaurant created successfully!');
     }
 
 
@@ -219,7 +219,7 @@ class ShoperController extends Controller
 
         $restaurant->update($request->except(['logo', 'cover_image', 'multi_images']));
 
-        return redirect()->route('shoper.index')->with('success', 'Restaurant updated successfully!');
+        return redirect()->route('vendor.resturant.index')->with('success', 'Restaurant updated successfully!');
     }
 
     public function destroy(Restaurant $restaurant)
@@ -234,6 +234,6 @@ class ShoperController extends Controller
 
         $restaurant->delete();
 
-        return redirect()->route('shoper.index')->with('success', 'Restaurant deleted successfully!');
+        return redirect()->route('vendor.shoper.index')->with('success', 'Restaurant deleted successfully!');
     }
 }
