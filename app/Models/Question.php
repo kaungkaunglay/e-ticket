@@ -20,4 +20,9 @@ class Question extends Model
     {
         return $this->belongsTo(Support::class, 'support_category');
     }
+
+    public function support()
+    {
+        return $this->belongsTo(Support::class, 'support_category', 'id');
+    }
 }

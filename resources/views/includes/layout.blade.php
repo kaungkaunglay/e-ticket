@@ -595,7 +595,7 @@
                                                 <a href="{{route('restaurant-list')}}">Restaurant</a>
                                             </li>
                                             <li>
-                                                <a href="{{route('contact')}}">Support</a>
+                                                <a href="{{route('support.page')}}">Support</a>
                                             </li>
 
                                         </ul>
@@ -711,7 +711,7 @@
                                 <a href="#">FAQ</a>
                                 <a href="{{route('terms')}}">Terms & Conditions</a>
                                 <a href="#">Privacy Policy</a>
-                                <a href="{{route('contact')}}">Contact</a>
+                                <a href="{{route('support.page')}}">Contact</a>
                             </div>
                         </div>
 

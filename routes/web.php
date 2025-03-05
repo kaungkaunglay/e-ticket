@@ -51,9 +51,9 @@ Route::get('/user-dashboard', function () {
 Route::get('/about-us', function () {
     return view('about');
 })->name('about');
-Route::get('/support', function () {
-    return view('contact');
-})->name('contact');
+
+Route::get('/support', [SupportController::class, 'supportPage'])->name('support.page');
+
 Route::get('/terms', function () {
     return view('terms');
 })->name('terms');

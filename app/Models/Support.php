@@ -12,4 +12,9 @@ class Support extends Model
     protected $table = 'supports'; 
 
     protected $fillable = ['title']; 
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class, 'support_category', 'id'); 
+    }
 }

@@ -17,6 +17,17 @@ class SupportController extends Controller
         return view('support.support', compact('questions'));
     }
 
+    public function supportPage()
+    {
+        $supports = Support::with(['questions' => function ($query) {
+            $query->whereNotNull('description')->where('description', '!=', '');
+        }])->get()->filter(function ($support) {
+            return $support->questions->isNotEmpty();
+        });
+
+        return view('contact', compact('supports'));
+    }
+
 
     public function postcreate($id = null)
     {
