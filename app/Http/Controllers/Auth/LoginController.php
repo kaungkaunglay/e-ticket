@@ -24,21 +24,29 @@ class LoginController extends Controller
     // for form
     public function login(Request $request)
     {
-
-        // $key = 'login|' . $request->ip();
-        // if (RateLimiter::tooManyAttempts($key, 5)) {
-        //     return back()->withErrors([
-        //         'email' => 'Too many login attempts. Please try again later.',
-        //     ])->onlyInput('email');
-        // }
-
+     
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:8'
         ]);
 
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            throw ValidationException::withMessages([
+                'email' => 'These credentials do not match our records.',
+            ]);
+        }
+
+      
+        if (is_null($user->email_confirmed_at)) {
+            throw ValidationException::withMessages([
+                'email' => 'Please confirm your email before logging in.',
+            ]);
+        }
+
+
         if (!Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {
-            // RateLimiter::increment($key, 60);
             throw ValidationException::withMessages([
                 'email' => __('auth.failed'),
             ]);
@@ -52,60 +60,44 @@ class LoginController extends Controller
     // for ajax
     public function store(Request $request)
     {
-        try{
-
-            // $key = 'login|' . $request->ip();
-            // if (RateLimiter::tooManyAttempts($key, 5)) {
-            //     return response()->json([
-            //         'status' => false,
-            //         'message' => 'Too many login attempts. Please try again later.',
-            //     ]);
-            // }
-
-            $validator = Validator::make($request->all(),[
-                'email' => 'required|email',
-                'password' => 'required|min:8'
-            ]);
-
-            if($validator->fails()){
-                // RateLimiter::increment($key, 60);
-                return response()->json([
-                    'status' => false,
-                    'errors' => $validator->errors()
-                ]);
-            }
-
-            $user = User::where('email',$request->email)->first();
-
-            if(!$user || !Hash::check($request->password, $user->password))
-            {
-                return response()->json([
-                    'status' => false,
-                    'message' => "Provided email or password is Incorrect"
-                ]);
-            }
-
-            Auth::login($user);
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Login successful.',
-                'redirect' => redirect()->intended(route('home'))->getTargetUrl(),
-            ]);
-
-        } catch(Exception $e) {
-            Log::error('Authentication failed', ['error' => $e->getMessage()]);
-            return response()->json([
-                'status' => false,
-                'message' => 'An error occurred during authentication.',
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:8'
+        ]);
+    
+      
+        $user = User::where('email', $request->email)->first();
+    
+       
+        if (!$user) {
+            throw ValidationException::withMessages([
+                'email' => 'These credentials do not match our records.',
             ]);
         }
+    
+      
+        if (is_null($user->email_confirmed_at)) {
+            throw ValidationException::withMessages([
+                'email' => 'Please confirm your email before logging in.',
+            ]);
+        }
+    
+        if (!Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {
+            throw ValidationException::withMessages([
+                'email' => __('auth.failed'),
+            ]);
+        }
+    
+        $request->session()->regenerate();
+    
+        return redirect()->route('home');
+        
     }
 
     // for ajax
     public function logout()
     {
-        try{
+        try {
             Auth::logout();
 
             return response()->json([
@@ -113,7 +105,7 @@ class LoginController extends Controller
                 'message' => 'Logged out successfully.',
                 'redirect' => route('home')
             ]);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             Log::error('Logout failed', ['error' => $e->getMessage()]);
             return response()->json([
                 'status' => false,

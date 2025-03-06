@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use App\Models\PromotionCode;
+use App\Mail\VendorConfirmationMail;
+use Carbon\Carbon;
 
 
 class VendorLoginController extends Controller
@@ -13,11 +20,18 @@ class VendorLoginController extends Controller
 
 
 
-
+ 
     public function showLoginForm()
     {
         return view('auth.vendor-login');
     }
+    
+    public function showRegisterForm()
+    {
+        return view('auth.vendor-register');
+    }
+     
+    
 
 
     public function login(Request $request)

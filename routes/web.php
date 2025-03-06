@@ -12,7 +12,7 @@ use App\Http\Controllers\Auth\VendorLoginController;
 use App\Http\Controllers\Auth\UserLoginController;
 use App\Http\Controllers\SupportController;
 use App\Http\Controllers\ShoperController;
-
+use App\Http\Controllers\VendorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +28,7 @@ use App\Http\Controllers\ShoperController;
 Route::get('/', function () {
     return view('home');
 })->name('home');
+
 // Route::get('/login', function () {
 //     return view('login');
 // })->name('login');
@@ -84,6 +85,7 @@ Route::get('/resturant/user-dashboard', function () {
 Route::get('/signup', [RegisterController::class, 'index'])->name('signup');
 // Route::post('/register',[RegisterController::class,'register'])->name('register'); // for form
 Route::post('/register', [RegisterController::class, 'store'])->name('register'); // for ajax
+Route::get('/confirm/{token}', [RegisterController::class, 'confirmEmail'])->name('confirm');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 // Route::post('/login',[LoginController::class,'login'])->name('login'); // for form
 Route::post('/login', [LoginController::class, 'store'])->name('login.store'); // for ajax
@@ -100,12 +102,17 @@ Route::get('/password/success', [ForgetPasswordController::class, 'success'])->n
 // end forget password
 // end auth
 
-Route::middleware('guest')->group(function () {
-    Route::get('/owner/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
-    Route::post('/owner/login', [AdminLoginController::class, 'login']);
 
+
+Route::middleware('guest')->group(function () {
+
+    Route::post('/admin/login', [AdminLoginController::class, 'admin.login']);
     Route::get('/vendor/login', [VendorLoginController::class, 'showLoginForm'])->name('vendor.login');
-    Route::post('/vendor/login', [VendorLoginController::class, 'login']);
+    Route::post('/vendor/login', [VendorLoginController::class, 'vendor.login']);
+    Route::get('/vendor/register', [VendorLoginController::class, 'showRegisterForm'])->name('vendor.register');
+    Route::post('/vendor/register', [VendorLoginController::class, 'registerVendor'])->name('vendor.register.submit');
+    // Route::get('/vendor/confirm/{token}', [VendorLoginController::class, 'confirmEmail'])->name('vendor.confirm');
+    Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
 });
 
 
@@ -116,7 +123,7 @@ Route::middleware(['admin'])->group(function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
     Route::get('owner/resturant', [ResturantController::class, 'index'])->name('resturant.index');
-    Route::get('owner/resturant/detail/{restaurant}', [ResturantController::class,'show'])->name('resturant.show');
+    Route::get('owner/resturant/detail/{restaurant}', [ResturantController::class, 'show'])->name('resturant.show');
     Route::get('owner/resturant/create', [ResturantController::class, 'create'])->name('resturant.create');
     Route::post('owner/resturant', [ResturantController::class, 'store'])->name('resturant.store');
     Route::get('owner/resturant/{restaurant}/edit', [ResturantController::class, 'edit'])->name('resturant.edit');

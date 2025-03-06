@@ -1,127 +1,135 @@
 @extends('includes.guest')
 @section('style')
-    <style>
-        form#login_form button.button {
-            width: 100%;
+<style>
+    form#login_form button.button {
+        width: 100%;
+    }
+
+    span.invalid-feedback,
+    div#message {
+        color: red;
+    }
+
+    .loading {
+        animation: bounce 1s ease-in-out 0.5s infinite;
+    }
+
+    @keyframes bounce {
+
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+            transform: translateY(0);
         }
 
-        span.invalid-feedback,
-        div#message {
-            color: red;
+        40% {
+            transform: translateY(-20px);
         }
 
-        .loading {
-            animation: bounce 1s ease-in-out 0.5s infinite;
+        60% {
+            transform: translateY(-10px);
         }
-
-        @keyframes bounce {
-
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
-                transform: translateY(0);
-            }
-
-            40% {
-                transform: translateY(-20px);
-            }
-
-            60% {
-                transform: translateY(-10px);
-            }
-        }
-    </style>
+    }
+</style>
 @endsection
 @section('contents')
-    <section class="layout-pt-lg layout-pb-lg bg-blue-2">
-        <div class="container">
-            <div class="row justify-center">
-                <div class="col-xl-6 col-lg-7 col-md-9">
-                    <div class="px-50 py-50 sm:px-20 sm:py-20 bg-white shadow-4 rounded-4">
-                        <form id="login_form" method="POST">
-                            @csrf
-                            <div class="row y-gap-20">
-                                <div class="col-12">
-                                    <h1 class="text-22 fw-500">Welcome back</h1>
-                                    <p class="mt-10">Don't have an account yet? <a href="{{ route('signup') }}"
-                                            class="text-blue-1">Sign up for free</a></p>
-                                </div>
-
-                                <div class="col-12 input-group">
-
-                                    <div class="form-input ">
-                                        <input type="text" name="email" id="email" required>
-                                        <label class="lh-1 text-14 text-light-1">Email</label>
-                                    </div>
-
-                                    <span class="invalid-feedback"></span>
-
-                                </div>
-
-                                <div class="col-12 input-group">
-
-                                    <div class="form-input ">
-                                        <input type="password" name="password" id="password" required>
-                                        <label class="lh-1 text-14 text-light-1">Password</label>
-                                    </div>
-
-                                    <span class="invalid-feedback"></span>
-
-                                </div>
-
-                                <div class="col-12">
-                                    <a href="{{ route('forget_password') }}"
-                                        class="text-14 fw-500 text-blue-1 underline">Forgot your password?</a>
-                                </div>
-
-                                <div class="col-12">
-                                    <div class="text-center" id="message"></div>
-                                </div>
-
-                                <div class="col-12">
-
-                                    <button type="submit" class="button py-20 -dark-1 bg-blue-1 text-white">
-                                        Sign In <div class="icon-arrow-top-right ml-15"></div>
-                                    </button>
-
-                                </div>
-                            </div>
-                        </form>
-
-                        <div class="row y-gap-20 pt-30">
+<section class="layout-pt-lg layout-pb-lg bg-blue-2">
+    <div class="container">
+        <div class="row justify-center">
+            <div class="col-xl-6 col-lg-7 col-md-9">
+                <div class="px-50 py-50 sm:px-20 sm:py-20 bg-white shadow-4 rounded-4">
+                    <form id="login_form" action="{{locale_route('login.store') }}" method="POST">
+                        @csrf
+                        <div class="row y-gap-20">
                             <div class="col-12">
-                                <div class="text-center">or sign in with</div>
+                                <h1 class="text-22 fw-500">Welcome back</h1>
+                                <p class="mt-10">Don't have an account yet? <a href="{{locale_route('signup') }}"
+                                        class="text-blue-1">Sign up for free</a></p>
+                            </div>
 
-                                <button class="button col-12 -outline-blue-1 text-blue-1 py-15 rounded-8 mt-10">
-                                    <i class="icon-apple text-15 mr-10"></i>
-                                    Facebook
-                                </button>
+                            <div class="col-12 input-group">
 
-                                <button class="button col-12 -outline-red-1 text-red-1 py-15 rounded-8 mt-15">
-                                    <i class="icon-apple text-15 mr-10"></i>
-                                    Google
-                                </button>
+                                <div class="form-input ">
+                                    <input type="text" name="email" id="email" required>
+                                    <label class="lh-1 text-14 text-light-1">Email</label>
+                                </div>
 
-                                <button class="button col-12 -outline-dark-2 text-dark-2 py-15 rounded-8 mt-15">
-                                    <i class="icon-apple text-15 mr-10"></i>
-                                    Apple
-                                </button>
+                                @error('email')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="col-12 input-group">
+
+                                <div class="form-input ">
+                                    <input type="password" name="password" id="password" required>
+                                    <label class="lh-1 text-14 text-light-1">Password</label>
+                                </div>
+
+                                @error('password')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+
                             </div>
 
                             <div class="col-12">
-                                <div class="text-center px-30">By creating an account, you agree to our Terms of Service and
-                                    Privacy Statement.</div>
+                                <a href="{{locale_route('forget_password') }}"
+                                    class="text-14 fw-500 text-blue-1 underline">Forgot your password?</a>
                             </div>
+
+                            <div class="col-12">
+                                <div class="text-center" id="message">
+                                    @if ($errors->any())
+                                    <span class="invalid-feedback">{{ $errors->first() }}</span>
+                                    @endif
+                                </div>
+                            </div>
+
+
+                            <div class="col-12">
+
+                                <button type="submit" class="button py-20 -dark-1 bg-blue-1 text-white">
+                                    Sign In <div class="icon-arrow-top-right ml-15"></div>
+                                </button>
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="row y-gap-20 pt-30">
+                        <div class="col-12">
+                            <div class="text-center">or sign in with</div>
+
+                            <button class="button col-12 -outline-blue-1 text-blue-1 py-15 rounded-8 mt-10">
+                                <i class="icon-apple text-15 mr-10"></i>
+                                Facebook
+                            </button>
+
+                            <button class="button col-12 -outline-red-1 text-red-1 py-15 rounded-8 mt-15">
+                                <i class="icon-apple text-15 mr-10"></i>
+                                Google
+                            </button>
+
+                            <button class="button col-12 -outline-dark-2 text-dark-2 py-15 rounded-8 mt-15">
+                                <i class="icon-apple text-15 mr-10"></i>
+                                Apple
+                            </button>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="text-center px-30">By creating an account, you agree to our Terms of Service and
+                                Privacy Statement.</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- <section class="layout-pt-md layout-pb-md bg-dark-2">
+<!-- <section class="layout-pt-md layout-pb-md bg-dark-2">
               <div class="container">
                 <div class="row y-gap-30 justify-between items-center">
                   <div class="col-auto">
@@ -154,7 +162,7 @@
 @endsection
 
 @section('script')
-    <script>
+<!-- <script>
         $(document).ready(function() {
             $.ajaxSetup({
                 headers: {
@@ -168,7 +176,7 @@
                 var form = $(this);
 
                 $.ajax({
-                    url: "{{ route('login') }}",
+                    url: "{{locale_route('login') }}",
                     type: 'POST',
                     dataType: 'json',
                     data: formData,
@@ -215,5 +223,5 @@
                 });
             });
         });
-    </script>
+    </script> -->
 @endsection
