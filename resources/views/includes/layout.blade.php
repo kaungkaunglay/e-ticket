@@ -103,14 +103,14 @@
 
                   </li> -->
                                             <li>
-                                                <a href="{{locale_route('home')}} ">Home</a>
+                                                <a href="{{locale_route('home')}} ">{{translate('home')}}</a>
                                             </li>
 
 
 
                                             <li class="menu-item-has-children -has-mega-menu">
                                                 <a data-barba href="#">
-                                                    <span class="mr-10">Categories</span>
+                                                    <span class="mr-10">{{ translate('categories') }}</span>
                                                     <i class="icon icon-chevron-sm-down"></i>
                                                 </a>
 
@@ -121,30 +121,6 @@
                                                             <div class="col-auto">
                                                                 <button class="tabs__button text-light-1 fw-500 js-tabs-button is-tab-el-active" data-tab-target=".-tab-item-1">Sub-Category</button>
                                                             </div>
-
-                                                            <!-- <div class="col-auto">
-                                                                <button class="tabs__button text-light-1 fw-500 js-tabs-button " data-tab-target=".-tab-item-2">Tour</button>
-                                                            </div>
-
-                                                            <div class="col-auto">
-                                                                <button class="tabs__button text-light-1 fw-500 js-tabs-button " data-tab-target=".-tab-item-3">Activity</button>
-                                                            </div>
-
-                                                            <div class="col-auto">
-                                                                <button class="tabs__button text-light-1 fw-500 js-tabs-button " data-tab-target=".-tab-item-4">Holiday Rentals</button>
-                                                            </div>
-
-                                                            <div class="col-auto">
-                                                                <button class="tabs__button text-light-1 fw-500 js-tabs-button " data-tab-target=".-tab-item-5">Car</button>
-                                                            </div>
-
-                                                            <div class="col-auto">
-                                                                <button class="tabs__button text-light-1 fw-500 js-tabs-button " data-tab-target=".-tab-item-6">Cruise</button>
-                                                            </div>
-
-                                                            <div class="col-auto">
-                                                                <button class="tabs__button text-light-1 fw-500 js-tabs-button " data-tab-target=".-tab-item-7">Flights</button>
-                                                            </div> -->
 
                                                         </div>
 
@@ -169,37 +145,8 @@
 
                                                                             </div>
                                                                         </div>
-
-                                                                        <!-- <div class="mega__item">
-                                                                            <div class="text-15 fw-500">Hotel Single</div>
-                                                                            <div class="y-gap-5 text-15 pt-5">
-
-                                                                                <div><a href="hotel-single-1.html">Hotel Single v1</a></div>
-
-                                                                                <div><a href="hotel-single-2.html">Hotel Single v2</a></div>
-
-                                                                            </div>
-                                                                        </div> -->
-
-                                                                        <!-- <div class="mega__item">
-                                                                            <div class="text-15 fw-500">Hotel Booking</div>
-                                                                            <div class="y-gap-5 text-15 pt-5">
-
-                                                                                <div><a href="booking-pages.html">Booking Page</a></div>
-
-                                                                            </div>
-                                                                        </div> -->
-
                                                                     </div>
 
-                                                                    <!-- <div class="mega__image d-flex relative">
-                                                                        <img src="#" data-src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4 js-lazy">
-
-                                                                        <div class="absolute w-full h-full px-30 py-24">
-                                                                            <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
-                                                                            <button class="button h-50 px-30 -blue-1 text-dark-1 bg-white mt-20">Experinces</button>
-                                                                        </div>
-                                                                    </div> -->
                                                                 </div>
                                                             </div>
 
@@ -586,16 +533,16 @@
                                             </li>
 
                                             <li>
-                                                <a href="{{locale_route('user-dashboard')}}">Profile</a>
+                                                <a href="{{locale_route('user-dashboard')}}">{{translate('profile')}}</a>
                                             </li>
                                             <li>
-                                                <a href="{{locale_route('about')}}">About Us</a>
+                                                <a href="{{locale_route('about')}}">{{translate('about_us')}}</a>
                                             </li>
                                             <li>
-                                                <a href="{{locale_route('restaurant-list')}}">Restaurant</a>
+                                                <a href="{{locale_route('restaurant-list')}}">{{translate('restaurants')}}</a>
                                             </li>
                                             <li>
-                                                <a href="{{locale_route('support.page')}}">Support</a>
+                                                <a href="{{locale_route('support.page')}}">{{translate('support')}}</a>
                                             </li>
 
                                         </ul>
@@ -620,17 +567,6 @@
                         <div class="d-flex items-center">
 
                             <div class="row x-gap-20 items-center xxl:d-none">
-                                <!-- <div class="col-auto">
-              <button class="d-flex items-center text-14 text-dark-1" data-x-click="currency">
-                <span class="js-currencyMenu-mainTitle">USD</span>
-                <i class="icon-chevron-sm-down text-7 ml-10"></i>
-              </button>
-            </div>
-
-            <div class="col-auto">
-              <div class="w-1 h-20 bg-black-20"></div>
-            </div> -->
-
                                 <div class="col-auto">
                                     <button class="d-flex items-center text-14 text-dark-1" data-x-click="lang">
                                         <img src="{{asset('assets/img/general/lang.png')}}" alt="image" class="rounded-full mr-10">
@@ -642,16 +578,14 @@
 
 
                             <div class="d-flex items-center ml-20 is-menu-opened-hide md:d-none">
-                                <!-- <a href="login.html" class="button px-30 fw-400 text-14 -blue-1 bg-blue-1 h-50 text-white">Become An Expert</a> -->
                                 @auth
                                 <a href="" class="button -outline-red  px-30 fw-400 text-14 h-50 text-red ml-20">{{auth()->user()->first_name}} {{ auth()->user()->last_name}}</a>
                                 @else
-                                <a href="{{locale_route('login')}}" class="button -outline-red  px-30 fw-400 text-14 h-50 text-red ml-20">Sign In / Register</a>
+                                <a href="{{locale_route('login')}}" class="button -outline-red  px-30 fw-400 text-14 h-50 text-red ml-20">{{translate('sign_in')}} / {{translate('register')}}</a>
                                 @endauth
                             </div>
 
                             <div class="d-none xl:d-flex x-gap-20 items-center pl-30" data-x="header-mobile-icons" data-x-toggle="text-white">
-                                <!-- <div><a href="login.html" class="d-flex items-center icon-user text-inherit text-22"></a></div> -->
                                 <div><button class="d-flex items-center icon-menu text-20" data-x-click="html, header, header-logo, header-mobile-icons, mobile-menu"></button></div>
                             </div>
                         </div>
@@ -674,56 +608,55 @@
 
                     <a href="index.html" class="header-logo mr-20" data-x="header-logo" data-x-toggle="is-logo-dark">
                             <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon">
-                            <!-- <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon"> -->
                      </a>
 
 
-                            <p class="text-14 mt-30 fw-500 text-dark-1">"Reserve Your Table at the Finest Restaurants Today!"</p>
+                            <p class="text-14 mt-30 fw-500 text-dark-1">{{translate('reserve_table')}}</p>
 
 
 
                         </div>
                         <div class="col-xl-2 col-lg-4 col-sm-6">
-                            <h5 class="text-20 fw-500 mb-30">Contact Us</h5>
+                            <h5 class="text-20 fw-500 mb-30">{{translate('contact_us')}}</h5>
 
                             <div class="mt-30">
-                                <div class="text-14 mt-30">Toll Free Customer Care</div>
-                                <a href="#" class="text-14 fw-500 text-blue-1 mt-5">Phone : 098888888</a>
+                                <div class="text-14 mt-30">{{translate('toll_free_customer_care')}}</div>
+                                <a href="#" class="text-14 fw-500 text-blue-1 mt-5">{{translate('phone')}} : 098888888</a>
                             </div>
 
                             <div class="mt-35">
                                 <div class="text-14 mt-30">Need live support?</div>
-                                <a href="#" class="text-14 fw-500 text-blue-1 mt-5">Email : {{config('email')}}</a>
+                                <a href="#" class="text-14 fw-500 text-blue-1 mt-5">{{translate('email')}} : {{config('email')}}</a>
                             </div>
                         </div>
 
                         <div class="col-xl-2 col-lg-4 col-sm-6">
-                            <h5 class="text-20 fw-500 mb-30">Company</h5>
+                            <h5 class="text-20 fw-500 mb-30">{{translate('company')}}</h5>
                             <div class="d-flex y-gap-10 flex-column">
-                                <a href="{{locale_route('about')}}">About Us</a>
-                                <a href="#">Subscribe</a>
+                                <a href="{{locale_route('about')}}">{{translate('about_us')}}</a>
+                                <a href="#">{{translate('subscribe')}}</a>
                             </div>
                         </div>
 
                         <div class="col-xl-2 col-lg-4 col-sm-6">
-                            <h5 class="text-20 fw-500 mb-30">Support</h5>
+                            <h5 class="text-20 fw-500 mb-30">{{translate('support')}}</h5>
                             <div class="d-flex y-gap-10 flex-column">
-                                <a href="#">FAQ</a>
-                                <a href="{{locale_route('terms')}}">Terms & Conditions</a>
-                                <a href="#">Privacy Policy</a>
-                                <a href="{{locale_route('support.page')}}">Contact</a>
+                                <a href="#">{{translate('faqs')}}</a>
+                                <a href="{{locale_route('terms')}}">{{translate('terms_conditions')}}</a>
+                                <a href="#">{{translate('privacy_policy')}}</a>
+                                <a href="{{locale_route('support.page')}}">{{translate('contact')}}</a>
                             </div>
                         </div>
 
                         <div class="col-xl-2 col-lg-4 col-sm-6">
-                            <h5 class="text-20 fw-500 mb-30">Other</h5>
+                            <h5 class="text-20 fw-500 mb-30">{{translate('other')}}</h5>
                             <div class="d-flex y-gap-10 flex-column">
-                                <a href="{{locale_route('home')}}">Home</a>
-                                <a href="#">Category</a>
-                                <a href="{{locale_route('login')}}">Sign in</a>
-                                <a href="{{locale_route('signup')}}">Register</a>
-                                <a href="{{locale_route('user-dashboard')}}">Dashboard</a>
-                                <a href="{{locale_route('restaurant-list')}}">Restaurants</a>
+                                <a href="{{locale_route('home')}}">{{translate('home')}}</a>
+                                <a href="#">{{translate('categories')}}</a>
+                                <a href="{{locale_route('login')}}">{{translate('sign_in')}}</a>
+                                <a href="{{locale_route('signup')}}">{{ translate('register')}} </a>
+                                <a href="{{locale_route('user-dashboard')}}">{{translate('profile')}}</a>
+                                <a href="{{locale_route('restaurant-list')}}">{{translate('restaurants')}}</a>
                             </div>
                         </div>
 
