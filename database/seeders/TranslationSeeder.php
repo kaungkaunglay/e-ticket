@@ -85,7 +85,30 @@ class TranslationSeeder extends Seeder
             ['key' => 'easy_quick_booking', 'en' => 'Easy & Quick Booking', 'jp' => '簡単で迅速な予約'],
             ['key' => 'customer_care_24_7', 'en' => 'Customer Care 24/7', 'jp' => '24時間年中無休のカスタマーケア'],
             ['key' => 'about_r_buzz', 'en' => 'About R-buzz.com', 'jp' => 'R-buzz.comについて'],
-     
+
+            ['key' => 'show_on_map', 'en' => 'Show on map', 'jp' => '地図で表示'],
+            ['key' => 'price', 'en' => 'Price', 'jp' => '価格'],
+            ['key' => 'rating', 'en' => 'Rating', 'jp' => '評価'],
+            ['key' => 'top_picks_for_your_search', 'en' => 'Top picks for your search', 'jp' => 'あなたの検索に最適なおすすめ'],
+            ['key' => 'style', 'en' => 'Style', 'jp' => 'スタイル'],
+            ['key' => 'budget', 'en' => 'Budget', 'jp' => '予算'],
+            ['key' => 'mid_range', 'en' => 'Mid-range', 'jp' => 'ミドルレンジ'],
+            ['key' => 'luxury', 'en' => 'Luxury', 'jp' => '高級'],
+            ['key' => 'family_friendly', 'en' => 'Family-friendly', 'jp' => 'ファミリー向け'],
+            ['key' => 'business', 'en' => 'Business', 'jp' => 'ビジネス'],
+            ['key' => 'see_availability', 'en' => 'See Availability', 'jp' => '空き状況を見る'],
+            ['key' => 'welcome_back', 'en' => 'Welcome back', 'jp' => 'おかえりなさい'],
+            ['key' => 'dont_have_account', 'en' => "Don't have an account yet?", 'jp' => 'まだアカウントをお持ちでないですか？'],
+            ['key' => 'password', 'en' => 'Password', 'jp' => 'パスワード'],
+            ['key' => 'forgot_password', 'en' => 'Forgot your password?', 'jp' => 'パスワードをお忘れですか？'],
+            ['key' => 'sign_in', 'en' => 'Sign In', 'jp' => 'サインイン'],
+            ['key' => 'or_sign_in_with', 'en' => 'Or sign in with', 'jp' => 'または次でサインイン'],
+            ['key' => 'agree_terms', 'en' => 'By creating an account, you agree to our Terms of Service and Privacy Statement.', 'jp' => 'アカウントを作成することで、利用規約およびプライバシーポリシーに同意したことになります。'],
+
+            ['key' => 'forget_password', 'en' => 'Forget Password', 'jp' => 'パスワードを忘れた'],
+            ['key' => 'do_you_remember_it', 'en' => 'Do you remember it?', 'jp' => '覚えていますか？'],
+            ['key' => 'log_in', 'en' => 'Log in', 'jp' => 'ログイン'],
+            ['key' => 'confirm', 'en' => 'Confirm', 'jp' => '確認'],
         ];
 
         foreach ($translations as $data) {

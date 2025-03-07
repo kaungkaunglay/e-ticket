@@ -101,30 +101,6 @@
   </div>
 </section>
 
-<section data-anim-wrap class="section-bg layout-pt-lg layout-pb-lg">
-  <div data-anim-child="fade delay-1" class="section-bg__item -mx-20">
-    <img src="{{asset('assets/img/Subscribe.jpg')}}" alt="subscribe">
-  </div>
-
-  <div class="container">
-    <div data-anim-child="slide-up delay-2" class="row items-center justify-center text-center bg-sub">
-      <div class="col-auto">
-        <i class="icon-newsletter text-60 sm:text-40 text-white"></i>
-
-        <h2 class="text-30 sm:text-24 lh-15 text-white mt-20">Notify New Update & Discount</h2>
-        <p class="text-white mt-5">Enter your mail and send to us we will notify new update.</p>
-
-        <div class="single-field -w-410 d-flex x-gap-10 flex-wrap y-gap-20 pt-30">
-          <div class="col-auto">
-            <input class="col-12 bg-white h-60" type="text" placeholder="Your Email">
-          </div>
-          <div class="col-auto">
-            <button class="button -md -white h-60 bg-dark-1 text-white">Subscribe</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+@include('includes.subscribe')
 
 @endsection

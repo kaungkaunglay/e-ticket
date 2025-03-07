@@ -581,7 +581,7 @@
                                 @auth
                                 <a href="" class="button -outline-red  px-30 fw-400 text-14 h-50 text-red ml-20">{{auth()->user()->first_name}} {{ auth()->user()->last_name}}</a>
                                 @else
-                                <a href="{{locale_route('login')}}" class="button -outline-red  px-30 fw-400 text-14 h-50 text-red ml-20">{{translate('sign_in')}} / {{translate('register')}}</a>
+                                <a href="{{locale_route('login')}}" class="button -outline-red  px-30 fw-400 text-14 h-50 text-red ml-20">{{translate('log_in')}} / {{translate('register')}}</a>
                                 @endauth
                             </div>
 
@@ -653,7 +653,7 @@
                             <div class="d-flex y-gap-10 flex-column">
                                 <a href="{{locale_route('home')}}">{{translate('home')}}</a>
                                 <a href="#">{{translate('categories')}}</a>
-                                <a href="{{locale_route('login')}}">{{translate('sign_in')}}</a>
+                                <a href="{{locale_route('login')}}">{{translate('log_in')}}</a>
                                 <a href="{{locale_route('signup')}}">{{ translate('register')}} </a>
                                 <a href="{{locale_route('user-dashboard')}}">{{translate('profile')}}</a>
                                 <a href="{{locale_route('restaurant-list')}}">{{translate('restaurants')}}</a>

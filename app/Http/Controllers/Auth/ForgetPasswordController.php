@@ -30,7 +30,7 @@ class ForgetPasswordController extends Controller
             $key = 'sent|' . $request->ip();
             if (RateLimiter::tooManyAttempts($key, 5)) {
                 return back()->withErrors([
-                    'email' =>  'Too many resent link requests. Please try again after 60 seconds.',
+                    'email' =>  'リセットリンクのリクエストが多すぎます。60秒後に再試行してください。',
                 ])->onlyInput('email');
             }
 
@@ -51,7 +51,7 @@ class ForgetPasswordController extends Controller
             {
                 return response()->json([
                     'status' => false,
-                    'message' => "Provided email doest not match our record"
+                    'message' => "提供されたメールアドレスは、当社の記録と一致しません"
                 ]);
             }
 
@@ -70,7 +70,7 @@ class ForgetPasswordController extends Controller
 
             return response()->json([
                 'status' => true,
-                'message' => 'Reset link sent successfully.',
+                'message' => 'リセットリンクが正常に送信されました。',
                 'redirect' => route('show_sent_link_success',$user->email)
             ]);
 
@@ -79,7 +79,7 @@ class ForgetPasswordController extends Controller
             Log::error('Sending reset password link failed', ['error' => $e->getMessage()]);
             return response()->json([
                 'status' => false,
-                'message' => 'An error occurred during sending password reset link.',
+                'message' => 'パスワードリセットリンクの送信中にエラーが発生しました。',
             ]);
         }
     }
@@ -94,7 +94,7 @@ class ForgetPasswordController extends Controller
             Log::error('Showing reset link success form failed', ['error' => $e->getMessage()]);
             return response()->json([
                 'status' => false,
-                'message' => 'An error occurred during showing reset link success form.',
+                'message' => 'リセットリンク成功フォームの表示中にエラーが発生しました。',
             ]);
         }
     }
@@ -109,7 +109,7 @@ class ForgetPasswordController extends Controller
             Log::error('Showing reset password form failed', ['error' => $e->getMessage()]);
             return response()->json([
                 'status' => false,
-                'message' => 'An error occurred during showing reset password form.',
+                'message' => 'パスワードリセットフォームの表示中にエラーが発生しました。',
             ]);
         }
     }
@@ -139,7 +139,7 @@ class ForgetPasswordController extends Controller
             {
                 return response()->json([
                     'status' => false,
-                    'message' => "Provided email doest not match our record"
+                    'message' => "提供されたメールアドレスは、当社の記録と一致しません"
                 ]);
             }
 
@@ -150,7 +150,7 @@ class ForgetPasswordController extends Controller
 
             return response()->json([
                 'status' => true,
-                'message' => 'Password reset successfully',
+                'message' => 'パスワードのリセットが成功しました',
                 'redirect' => route('reset_success')
             ]);
 
@@ -158,7 +158,7 @@ class ForgetPasswordController extends Controller
             Log::error('Reseting password failed', ['error' => $e->getMessage()]);
             return response()->json([
                 'status' => false,
-                'message' => 'An error occurred during reseting password.',
+                'message' => 'パスワードのリセット中にエラーが発生しました。',
             ]);
         }
     }
