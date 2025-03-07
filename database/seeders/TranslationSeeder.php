@@ -78,6 +78,13 @@ class TranslationSeeder extends Seeder
             ['key' => 'notify_update_discount', 'en' => 'Notify New Update & Discount', 'jp' => '新しい更新情報と割引を通知'],
             ['key' => 'enter_email_send', 'en' => 'Enter your mail and send to us we will notify new update.', 'jp' => 'メールアドレスを入力して送信してください。最新情報をお知らせします。'],
             ['key' => 'your_email', 'en' => 'Your Email', 'jp' => 'あなたのメール'],
+
+            ['key' => 'why_choose_us', 'en' => 'Why choose Us', 'jp' => 'なぜ私たちを選ぶのか'],
+            ['key' => 'popular_destinations_offer', 'en' => 'These popular destinations have a lot to offer', 'jp' => 'これらの人気の目的地には多くの魅力があります'],
+            ['key' => 'best_price_guarantee', 'en' => 'Best Price Guarantee', 'jp' => '最低価格保証'],
+            ['key' => 'easy_quick_booking', 'en' => 'Easy & Quick Booking', 'jp' => '簡単で迅速な予約'],
+            ['key' => 'customer_care_24_7', 'en' => 'Customer Care 24/7', 'jp' => '24時間年中無休のカスタマーケア'],
+            ['key' => 'about_r_buzz', 'en' => 'About R-buzz.com', 'jp' => 'R-buzz.comについて'],
      
         ];
 
