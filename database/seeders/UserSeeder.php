@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Carbon\Carbon;
 
 class UserSeeder extends Seeder
 {
@@ -29,6 +30,15 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password')
         ]);
         $adminUser->assignRole(1); 
+
+        $user = User::create([
+            'first_name' => 'user',
+            'email' => 'user@gmail.com',
+            'password' => Hash::make('password'),
+            'email_confirmed_at' => Carbon::now(), 
+        ]);
+
+        $user->assignRole(3); 
     
      
         $shoperUser = User::create([

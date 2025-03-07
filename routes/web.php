@@ -75,11 +75,6 @@ Route::get('/resturant/user-dashboard', function () {
 
 
 
-
-// src="{{asset('assets/img
-// svg')}}"
-// png')}}"
-
 // start auth
 Route::get('/signup', [RegisterController::class, 'index'])->name('signup');
 // Route::post('/register',[RegisterController::class,'register'])->name('register'); // for form
