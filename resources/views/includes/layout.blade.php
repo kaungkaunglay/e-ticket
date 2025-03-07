@@ -709,7 +709,7 @@
                             <div class="d-flex y-gap-10 flex-column">
                                 <a href="{{locale_route('home')}}">{{translate('home')}}</a>
                                 <a href="#">{{translate('categories')}}</a>
-                                <a href="{{locale_route('login')}}">{{translate('sign_in')}}</a>
+                                <a href="{{locale_route('login')}}">{{translate('log_in')}}</a>
                                 <a href="{{locale_route('signup')}}">{{ translate('register')}} </a>
                                 <a href="{{locale_route('user-dashboard')}}">{{translate('profile')}}</a>
                                 <a href="{{locale_route('restaurant-list')}}">{{translate('restaurants')}}</a>

@@ -44,16 +44,16 @@
                         @csrf
                         <div class="row y-gap-20">
                             <div class="col-12">
-                                <h1 class="text-22 fw-500">Welcome back</h1>
-                                <p class="mt-10">Don't have an account yet? <a href="{{locale_route('signup') }}"
-                                        class="text-blue-1">Sign up for free</a></p>
+                                <h1 class="text-22 fw-500">{{translate('welcome_back')}}</h1>
+                                <p class="mt-10">{{translate('dont_have_account')}} <a href="{{locale_route('signup') }}"
+                                        class="text-blue-1">{{translate('register')}}</a></p>
                             </div>
 
                             <div class="col-12 input-group">
 
                                 <div class="form-input ">
                                     <input type="text" name="email" id="email" required>
-                                    <label class="lh-1 text-14 text-light-1">Email</label>
+                                    <label class="lh-1 text-14 text-light-1">{{translate('email')}}</label>
                                 </div>
 
                                 @error('email')
@@ -65,7 +65,7 @@
 
                                 <div class="form-input ">
                                     <input type="password" name="password" id="password" required>
-                                    <label class="lh-1 text-14 text-light-1">Password</label>
+                                    <label class="lh-1 text-14 text-light-1">{{translate('password')}}</label>
                                 </div>
 
                                 @error('password')
@@ -76,7 +76,7 @@
 
                             <div class="col-12">
                                 <a href="{{locale_route('forget_password') }}"
-                                    class="text-14 fw-500 text-blue-1 underline">Forgot your password?</a>
+                                    class="text-14 fw-500 text-blue-1 underline">{{translate('forgot_password')}}</a>
                             </div>
 
                             <div class="col-12">
@@ -91,7 +91,7 @@
                             <div class="col-12">
 
                                 <button type="submit" class="button py-20 -dark-1 bg-blue-1 text-white">
-                                    Sign In <div class="icon-arrow-top-right ml-15"></div>
+                                {{translate('log_in')}} <div class="icon-arrow-top-right ml-15"></div>
                                 </button>
 
                             </div>
@@ -100,7 +100,7 @@
 
                     <div class="row y-gap-20 pt-30">
                         <div class="col-12">
-                            <div class="text-center">or sign in with</div>
+                            <div class="text-center">{{translate('or_sign_in_with')}}</div>
 
                             <button class="button col-12 -outline-blue-1 text-blue-1 py-15 rounded-8 mt-10">
                                 <i class="icon-apple text-15 mr-10"></i>
@@ -119,8 +119,7 @@
                         </div>
 
                         <div class="col-12">
-                            <div class="text-center px-30">By creating an account, you agree to our Terms of Service and
-                                Privacy Statement.</div>
+                            <div class="text-center px-30">{{translate('agree_terms')}}</div>
                         </div>
                     </div>
                 </div>

@@ -44,16 +44,16 @@
                             @csrf
                             <div class="row y-gap-20">
                                 <div class="col-12">
-                                    <h1 class="text-22 fw-500">Forget Password</h1>
-                                    <p class="mt-10">Do you remember it? <a href="{{ route('login') }}"
-                                            class="text-blue-1">Log in</a></p>
+                                    <h1 class="text-22 fw-500">{{translate('forget_password')}}</h1>
+                                    <p class="mt-10">{{translate('do_you_remember_it')}} <a href="{{ route('login') }}"
+                                            class="text-blue-1">{{translate('log_in')}}</a></p>
                                 </div>
 
                                 <div class="col-12 input-group">
 
                                     <div class="form-input ">
                                         <input type="text" name="email" id="email" required>
-                                        <label class="lh-1 text-14 text-light-1">Email</label>
+                                        <label class="lh-1 text-14 text-light-1">{{translate('email')}}</label>
                                     </div>
 
                                     <span class="invalid-feedback"></span>
@@ -67,7 +67,7 @@
                                 <div class="col-12">
 
                                     <button type="submit" class="button py-20 -dark-1 bg-blue-1 text-white">
-                                        Confirm <div class="icon-arrow-top-right ml-15"></div>
+                                    {{translate('confirm')}} <div class="icon-arrow-top-right ml-15"></div>
                                     </button>
 
                                 </div>

@@ -33,7 +33,7 @@ class LoginController extends Controller
 
         if (!$user) {
             throw ValidationException::withMessages([
-                'email' => 'These credentials do not match our records.',
+                'email' => 'これらの認証情報は、当社の記録と一致しません。',
             ]);
         }
 
@@ -43,7 +43,7 @@ class LoginController extends Controller
 
         if ($roleId == 2 && is_null($user->email_confirmed_at)) {
             throw ValidationException::withMessages([
-                'email' => 'Please confirm your email before logging in.',
+                'email' => 'ログインする前に、メールアドレスを確認してください。',
             ]);
         }
 
@@ -73,7 +73,7 @@ class LoginController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('home')->with('success', 'Logged out successfully.');
+        return redirect()->route('home')->with('success', '正常にログアウトしました。');
     }
 
    

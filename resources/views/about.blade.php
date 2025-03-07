@@ -12,7 +12,7 @@
   <div class="container">
     <div class="row justify-center text-center">
       <div class="col-xl-6 col-lg-8 col-md-10">
-        <h1 class="text-40 md:text-25 fw-600 text-white">About Us</h1>
+        <h1 class="text-40 md:text-25 fw-600 text-white">{{translate('about_us')}}</h1>
       </div>
     </div>
   </div>
@@ -23,8 +23,8 @@
     <div data-anim-child="slide-up delay-1" class="row justify-center text-center">
       <div class="col-auto">
         <div class="sectionTitle -md">
-          <h2 class="sectionTitle__title">Why Choose Us</h2>
-          <p class=" sectionTitle__text mt-5 sm:mt-0">These popular destinations have a lot to offer</p>
+          <h2 class="sectionTitle__title">{{translate('why_choose_us')}}</h2>
+          <p class=" sectionTitle__text mt-5 sm:mt-0">{{translate('popular_destinations_offer')}}</p>
         </div>
       </div>
     </div>
@@ -39,8 +39,8 @@
           </div>
 
           <div class="text-center mt-30">
-            <h4 class="text-18 fw-500">Best Price Guarantee</h4>
-            <p class="text-15 mt-10">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h4 class="text-18 fw-500">{{translate('best_price_guarantee')}}</h4>
+            <p class="text-15 mt-10">ロレム・イプサムは単なるダミーテキストです。</p>
           </div>
         </div>
 
@@ -54,8 +54,8 @@
           </div>
 
           <div class="text-center mt-30">
-            <h4 class="text-18 fw-500">Easy & Quick Booking</h4>
-            <p class="text-15 mt-10">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h4 class="text-18 fw-500">{{translate('easy_quick_booking')}}</h4>
+            <p class="text-15 mt-10">ロレム・イプサムは単なるダミーテキストです。</p>
           </div>
         </div>
 
@@ -69,8 +69,8 @@
           </div>
 
           <div class="text-center mt-30">
-            <h4 class="text-18 fw-500">Customer Care 24/7</h4>
-            <p class="text-15 mt-10">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h4 class="text-18 fw-500">{{translate('customer_care_24_7')}}</h4>
+            <p class="text-15 mt-10">ロレム・イプサムは単なるダミーテキストです。</p>
           </div>
         </div>
 
@@ -84,13 +84,13 @@
   <div data-anim-wrap class="container">
     <div class="row y-gap-30 justify-between items-center">
       <div data-anim-child="slide-up delay-1" class="col-lg-5">
-        <h2 class="text-30 fw-600">About Restaurant-Booking.Com</h2>
-        <p class="mt-5">The popular restaurant near your location</p>
+        <h2 class="text-30 fw-600">{{translate('about_r_buzz')}}</h2>
+        <p class="mt-5">{{translate('restaurant_near')}}</p>
 
         <p class="text-dark-1 mt-60 lg:mt-40 md:mt-20">
-          London is a shining example of a metropolis at the highest peak of modernity and boasts an economy and cultural diversity that’s the envy of other global superpowers.
+          東京は革新と伝統が融合する都市であり、最先端の現代性と深い歴史を兼ね備え、世界中の国々から称賛されています。
           <br><br>
-          Take the opportunity to acquaint yourself with its fascinating history chronicled by institutions like the British Museum as well as see how far it has come by simply riding the Tube and passing by celebrated landmarks like Buckingham Palace, Westminster Abbey, and marvels like Big Ben, the London Eye, and the Tower Bridge.
+          明治神宮や江戸東京博物館などの象徴的な名所でその豊かな歴史を感じつつ、渋谷や秋葉原といった地区では最先端の技術と文化に触れることができます。山手線に乗れば、皇居、東京タワー、煌びやかな新宿のスカイライン、そして圧巻の東京スカイツリーなど、世界的に有名なランドマークを巡ることができます。
         </p>
       </div>
 
@@ -101,30 +101,6 @@
   </div>
 </section>
 
-<section data-anim-wrap class="section-bg layout-pt-lg layout-pb-lg">
-  <div data-anim-child="fade delay-1" class="section-bg__item -mx-20">
-    <img src="{{asset('assets/img/Subscribe.jpg')}}" alt="subscribe">
-  </div>
-
-  <div class="container">
-    <div data-anim-child="slide-up delay-2" class="row items-center justify-center text-center bg-sub">
-      <div class="col-auto">
-        <i class="icon-newsletter text-60 sm:text-40 text-white"></i>
-
-        <h2 class="text-30 sm:text-24 lh-15 text-white mt-20">Notify New Update & Discount</h2>
-        <p class="text-white mt-5">Enter your mail and send to us we will notify new update.</p>
-
-        <div class="single-field -w-410 d-flex x-gap-10 flex-wrap y-gap-20 pt-30">
-          <div class="col-auto">
-            <input class="col-12 bg-white h-60" type="text" placeholder="Your Email">
-          </div>
-          <div class="col-auto">
-            <button class="button -md -white h-60 bg-dark-1 text-white">Subscribe</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+@include('includes.subscribe')
 
 @endsection
