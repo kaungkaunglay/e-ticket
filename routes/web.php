@@ -28,7 +28,6 @@ use App\Http\Controllers\VendorController;
 Route::get('/', function () {
     return view('home');
 })->name('home');
-
 // Route::get('/login', function () {
 //     return view('login');
 // })->name('login');
@@ -104,16 +103,15 @@ Route::get('/password/success', [ForgetPasswordController::class, 'success'])->n
 
 
 
-Route::middleware('guest')->group(function () {
-
-    Route::post('/admin/login', [AdminLoginController::class, 'admin.login']);
-    Route::get('/vendor/login', [VendorLoginController::class, 'showLoginForm'])->name('vendor.login');
-    Route::post('/vendor/login', [VendorLoginController::class, 'vendor.login']);
-    Route::get('/vendor/register', [VendorLoginController::class, 'showRegisterForm'])->name('vendor.register');
-    Route::post('/vendor/register', [VendorLoginController::class, 'registerVendor'])->name('vendor.register.submit');
-    // Route::get('/vendor/confirm/{token}', [VendorLoginController::class, 'confirmEmail'])->name('vendor.confirm');
-    Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
-});
+    Route::middleware('guest')->group(function () {
+        Route::post('/admin/login', [AdminLoginController::class,  'login'])->name('admin.login');
+        Route::get('/vendor/login', [VendorLoginController::class, 'showLoginForm'])->name('vendor.login');
+        Route::post('/vendor/login', [VendorLoginController::class,'login'])->name('vendor.login');
+        Route::get('/vendor/register', [VendorLoginController::class, 'showRegisterForm'])->name('vendor.register');
+        Route::post('/vendor/register', [VendorLoginController::class, 'registerVendor'])->name('vendor.register.submit');
+        // Route::get('/vendor/confirm/{token}', [VendorLoginController::class, 'confirmEmail'])->name('vendor.confirm');
+        Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+    });
 
 
 

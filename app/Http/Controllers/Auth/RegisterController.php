@@ -52,7 +52,7 @@ class RegisterController extends Controller
     // for ajax
     public function store(Request $request)
     {
-
+   
         $request->validate([
             'first_name' => 'required|min:3|max:50',
             'last_name' => 'required|min:3|max:50',
@@ -103,8 +103,6 @@ class RegisterController extends Controller
 
     public function confirmEmail($token)
     {
-
-
         $user = User::where('confirmation_token', $token)->first();
         if (!$user) {
             return redirect()->route('vendor.login')->with('error', 'Invalid confirmation token.');

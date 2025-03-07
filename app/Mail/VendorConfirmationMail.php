@@ -27,13 +27,14 @@ class VendorConfirmationMail extends Mailable
 
     public function build()
     {
-        return $this->subject('Confirm Your Vendor Registration')
-            ->view('emails.vendor_confirmation')
-            ->with([
-                'name' => $this->vendor->first_name,
-                'promoCode' => $this->promoCode,
-                'expiresAt' => $this->expiresAt, 
-                'confirmationLink' => route('confirm', ['token' => $this->confirmationToken]),
-            ]);
-        }
+        return $this->from('noreply@r-buzz.net', 'R-buzz.net')
+                    ->subject('ベンダー登録を確認してください')
+                    ->view('emails.vendor_confirmation')
+                    ->with([
+                        'name' => $this->vendor->first_name,
+                        'promoCode' => $this->promoCode,
+                        'expiresAt' => $this->expiresAt,
+                        'confirmationLink' => route('confirm', ['token' => $this->confirmationToken]),
+                    ]);
     }
+}

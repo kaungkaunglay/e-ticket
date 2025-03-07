@@ -16,10 +16,10 @@
           <div class="masthead__content">
             <div class="text-center">
               <h1 data-anim-child="slide-up delay-2" class="text-40 lg:text-40 md:text-30 text-white">{{translate('reserve_table')}}</h1>
-              <p data-anim-child="slide-up delay-3" class="text-white mt-5">Discover amzaing places at exclusive deals</p>
+              <!-- <p data-anim-child="slide-up delay-3" class="text-white mt-5">Discover amzaing places at exclusive deals</p> -->
 
               <div data-anim-child="slide-up delay-4" class="d-inline-block">
-                <a href="#" class="button -md -dark-1 bg-red h-50 text-white mt-30">Discover More</a>
+                <a href="#" class="button -md -dark-1 bg-red h-50 text-white mt-30">{{translate('discover_more')}}</a>
               </div>
             </div>
 
@@ -29,15 +29,15 @@
                 <div class="searchMenu-loc py-24 px-30 sm:py-15 sm:px-20 js-form-dd js-liverSearch">
 
                   <div data-x-dd-click="searchMenu-loc">
-                    <h4 class="text-15 fw-500 ls-2 lh-16">Location</h4>
+                    <h4 class="text-15 fw-500 ls-2 lh-16">{{translate('location')}}</h4>
 
                     <div class="text-15 text-light-1 ls-2 lh-16">
-                      <input autocomplete="off" type="search" placeholder="Where are you going?" class="js-search js-dd-focus" />
+                      <input autocomplete="off" type="search" placeholder="{{ translate('where_are_you_going')}}" class="js-search js-dd-focus" />
                     </div>
                   </div>
 
 
-                  <div class="searchMenu-loc__field shadow-2 js-popup-window" data-x-dd="searchMenu-loc" data-x-dd-toggle="-is-active">
+                  <!-- <div class="searchMenu-loc__field shadow-2 js-popup-window" data-x-dd="searchMenu-loc" data-x-dd-toggle="-is-active">
                     <div class="bg-white px-30 py-30 sm:px-0 sm:py-15 rounded-4">
                       <div class="y-gap-5 js-results">
 
@@ -103,14 +103,14 @@
 
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
 
 
                 <div class="searchMenu-date py-24 px-30 sm:py-15 sm:px-20 js-form-dd js-calendar js-calendar-el">
 
                   <div data-x-dd-click="searchMenu-date">
-                    <h4 class="text-15 fw-500 ls-2 lh-16">Check in - Check out</h4>
+                    <h4 class="text-15 fw-500 ls-2 lh-16">{{translate('check_in')}} - {{translate('check_out')}}</h4>
 
                     <div class="capitalize text-15 text-light-1 ls-2 lh-16">
                       <span class="js-first-date">Wed 2 Mar</span>
@@ -131,7 +131,7 @@
                 <div class="searchMenu-guests py-24 px-30 sm:py-15 sm:px-20 js-form-dd js-form-counters">
 
                   <div data-x-dd-click="searchMenu-guests">
-                    <h4 class="text-15 fw-500 ls-2 lh-16">Guest</h4>
+                    <h4 class="text-15 fw-500 ls-2 lh-16">{{translate('guest')}}</h4>
 
                     <div class="text-15 text-light-1 ls-2 lh-16">
                       <span class="js-count-adult">2</span> adults
@@ -223,7 +223,7 @@
                 <div class="button-item h-full">
                   <button class="button -dark-1 py-15 px-40 h-full col-12 rounded-0 bg-red text-white">
                     <i class="icon-search text-20 mr-10"></i>
-                    Search
+                    {{translate('search')}}
                   </button>
                 </div>
               </div>
@@ -240,7 +240,7 @@
     <div data-anim-child="slide-up delay-1" class="row y-gap-20 justify-center text-center">
       <div class="col-auto">
         <div class="sectionTitle -md">
-          <h2 class="sectionTitle__title">Discount Restaurants</h2>
+          <h2 class="sectionTitle__title">{{translate('discount_restaurants')}}</h2>
         </div>
       </div>
     </div>
@@ -418,32 +418,13 @@
     <div data-anim-child="slide-up delay-1" class="row justify-center text-center">
       <div class="col-auto">
         <div class="sectionTitle -md">
-          <h2 class="sectionTitle__title">Popular Restaurants</h2>
+          <h2 class="sectionTitle__title">{{translate('popular_restaurants')}}</h2>
         </div>
       </div>
     </div>
 
     <div data-anim-child="slide-up delay-2" class="tabs -pills-2 pt-40 js-tabs">
-      <!-- <div class="tabs__controls row x-gap-15 justify-center js-tabs-controls">
-
-        <div class="col-auto">
-          <button class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button is-tab-el-active" data-tab-target=".-tab-item-1">New York</button>
-        </div>
-
-        <div class="col-auto">
-          <button class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button " data-tab-target=".-tab-item-2">London</button>
-        </div>
-
-        <div class="col-auto">
-          <button class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button " data-tab-target=".-tab-item-3">Paris</button>
-        </div>
-
-        <div class="col-auto">
-          <button class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button " data-tab-target=".-tab-item-4">Istanbul</button>
-        </div>
-
-      </div> -->
-
+      
       <div class="tabs__content pt-40 js-tabs-content">
 
         <div class="tabs__pane -tab-item-1 is-tab-el-active">
@@ -690,7 +671,7 @@
             <div class="col-auto">
 
               <a href="{{locale_route('restaurant-list')}}" class="button px-40 h-50 -outline-red text-red">
-                View All
+              {{translate('view_all')}}
               </a>
 
             </div>
@@ -2099,31 +2080,12 @@
     <div data-anim-child="slide-up delay-1" class="row justify-center text-center">
       <div class="col-auto">
         <div class="sectionTitle -md">
-          <h2 class="sectionTitle__title">Restaurant Near Your Location</h2>
+          <h2 class="sectionTitle__title">{{translate('restaurant_near_location')}}</h2>
         </div>
       </div>
     </div>
 
     <div data-anim-child="slide-up delay-2" class="tabs -pills-2 pt-40 js-tabs">
-      <!-- <div class="tabs__controls row x-gap-15 justify-center js-tabs-controls">
-
-        <div class="col-auto">
-          <button class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button is-tab-el-active" data-tab-target=".-tab-item-1">New York</button>
-        </div>
-
-        <div class="col-auto">
-          <button class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button " data-tab-target=".-tab-item-2">London</button>
-        </div>
-
-        <div class="col-auto">
-          <button class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button " data-tab-target=".-tab-item-3">Paris</button>
-        </div>
-
-        <div class="col-auto">
-          <button class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button " data-tab-target=".-tab-item-4">Istanbul</button>
-        </div>
-
-      </div> -->
 
       <div class="tabs__content pt-40 js-tabs-content">
 
@@ -3480,7 +3442,7 @@
             <div class="col-auto">
 
               <a href="{{locale_route('restaurant-list')}}" class="button px-40 h-50 -outline-red text-red">
-                Load More
+              {{translate('load_more')}}
               </a>
 
             </div>
@@ -3501,15 +3463,15 @@
       <div class="col-auto">
         <i class="icon-newsletter text-60 sm:text-40 text-white"></i>
 
-        <h2 class="text-30 sm:text-24 lh-15 text-white mt-20">Notify New Update & Discount</h2>
-        <p class="text-white mt-5">Enter your mail and send to us we will notify new update.</p>
+        <h2 class="text-30 sm:text-24 lh-15 text-white mt-20">{{translate('notify_update_discount')}}</h2>
+        <p class="text-white mt-5">{{translate('enter_email_send')}}</p>
 
         <div class="single-field -w-410 d-flex x-gap-10 flex-wrap y-gap-20 pt-30">
           <div class="col-auto">
-            <input class="col-12 bg-white h-60" type="text" placeholder="Your Email">
+            <input class="col-12 bg-white h-60" type="text" placeholder="{{translate('your_email')}}">
           </div>
           <div class="col-auto">
-            <button class="button -md -white h-60 bg-dark-1 text-white">Subscribe</button>
+            <button class="button -md -white h-60 bg-dark-1 text-white">{{translate('subscribe')}}</button>
           </div>
         </div>
       </div>

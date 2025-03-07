@@ -8,6 +8,9 @@
     span.invalid-feedback, div#message{
         color: red;
     }
+    .button {
+    width: 100% !important;
+}
 </style>
 @endsection
 @section('contents')
@@ -16,7 +19,7 @@
             <div class="row justify-center">
                 <div class="col-xl-6 col-lg-7 col-md-9">
                     <div class="px-50 py-50 sm:px-20 sm:py-20 bg-white shadow-4 rounded-4">
-                        <form id="login_form" method="POST">
+                        <form action="{{ locale_route('vendor.login') }}" method="POST"> 
                             @csrf
                             <div class="row y-gap-20">
                                 <div class="col-12">
@@ -63,6 +66,7 @@
 
                                 </div>
                             </div>
+                        
                         </form>
 
                         <div class="row y-gap-20 pt-30">
@@ -100,7 +104,7 @@
 @endsection
 
 @section('script')
-<script>
+<!-- <script>
     $(document).ready(function() {
         $("#login_form").submit(function(e) {
             e.preventDefault();
@@ -123,5 +127,5 @@
             });
         });
     });
-</script>
+</script> -->
 @endsection

@@ -13,6 +13,10 @@
         animation: bounce 1s ease-in-out 0.5s infinite;
     }
 
+    .button {
+        width: 100% !important;
+    }
+
     @keyframes bounce {
 
         0%,
@@ -30,6 +34,7 @@
         60% {
             transform: translateY(-10px);
         }
+
     }
 </style>
 @endsection
@@ -39,7 +44,7 @@
         <div class="row justify-center">
             <div class="col-xl-6 col-lg-7 col-md-9">
                 <div class="px-50 py-50 sm:px-20 sm:py-20 bg-white shadow-4 rounded-4">
-                    <form action="{{ route('register') }}" method="POST">
+                    <form action="{{ locale_route('register') }}" method="POST">
                         @csrf
                         <div class="row y-gap-20">
                             <div class="col-12">
@@ -164,5 +169,5 @@
         </div>
     </div>
 </section>
-                            
+
 @endsection

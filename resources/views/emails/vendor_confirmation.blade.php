@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vendor Registration Confirmation</title>
+    <title>ベンダー登録確認</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,6 +12,7 @@
             margin: 0;
             padding: 0;
         }
+
         .email-container {
             max-width: 600px;
             margin: 0 auto;
@@ -19,29 +21,35 @@
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         .header {
             background-color: #007BFF;
             padding: 20px;
             text-align: center;
         }
+
         .header img {
             max-width: 150px;
             height: auto;
         }
+
         .content {
             padding: 20px;
             color: #333333;
         }
+
         .content h1 {
             font-size: 24px;
             margin-bottom: 20px;
             color: #007BFF;
         }
+
         .content p {
             font-size: 16px;
             line-height: 1.6;
             margin-bottom: 20px;
         }
+
         .promo-code {
             background-color: #f8f9fa;
             padding: 15px;
@@ -52,6 +60,7 @@
             color: #007BFF;
             margin-bottom: 20px;
         }
+
         .button {
             display: inline-block;
             padding: 12px 24px;
@@ -62,6 +71,7 @@
             font-size: 16px;
             text-align: center;
         }
+
         .footer {
             background-color: #f4f4f4;
             padding: 20px;
@@ -71,27 +81,30 @@
         }
     </style>
 </head>
+
 <body>
     <div class="email-container">
         <div class="header">
-            <img src="logo.png" alt="Company Logo">
+            <img src="logo.png" alt="会社ロゴ">
         </div>
         <div class="content">
-            <h1>Hello, {{ $name }}!</h1>
-            <p>Thank you for registering as a vendor with us. We're excited to have you on board!</p>
-            <p>Your exclusive promotion code is:</p>
+            <h1>こんにちは、{{ $name }}さん!</h1>
+            <p>ベンダーとして登録いただきありがとうございます。あなたを迎えられることを楽しみにしています！</p>
+            <p>あなたの独占プロモーションコードは：</p>
             <div class="promo-code">
                 {{ $promoCode }}
             </div>
-            <p>Please confirm your email address to activate your account and start using your promotion code.</p>
-            <a href="{{ $confirmationLink }}" class="button">Confirm Email</a>
-            <p>If the button above doesn't work, copy and paste the following link into your browser:</p>
-            <p><a href="{{ $confirmationLink }}">{{ $confirmationLink }}</a></p>
+            <p>このプロモーションコードは2ヶ月後に期限切れになりますので、お早めにご利用ください。</p>
+            <p>アカウントを有効化し、プロモーションコードを使用するには、メールアドレスを確認してください。</p>
+            <a href="{{ $confirmationLink }}" class="button" style="color: white;">メールを確認する</a>
+            <p>上のボタンが機能しない場合は、以下のリンクをコピーしてブラウザに貼り付けてください：</p>
+            <p style="color: white;"><a href="{{ $confirmationLink }}" style="color: white; background-color: #007BFF; padding: 5px; border-radius: 4px;">{{ $confirmationLink }}</a></p>
         </div>
         <div class="footer">
-            <p>If you did not register with us, please ignore this email.</p>
-            <p>&copy; {{ date('Y') }} Your Company. All rights reserved.</p>
+            <p>もしこのメールに心当たりがない場合は、そのまま無視してください。</p>
+            <p>&copy; {{ date('Y') }} あなたの会社. 全著作権所有.</p>
         </div>
     </div>
 </body>
+
 </html>

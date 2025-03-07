@@ -24,27 +24,27 @@ class AdminLoginController extends Controller
 
         $user = DB::table('users')->where('email', $request->email)->first();
         if (!$user) {
-            return response()->json(['status' => false, 'message' => 'Admin name no found.']);
+            return redirect()->back()->with('error', 'Admin name not found.');
         }
 
-
         if (!password_verify($request->password, $user->password)) {
-            return response()->json(['status' => false, 'message' => 'Incorrect password.']);
+            return redirect()->back()->with('error', 'Incorrect password.');
         }
 
 
         $role = DB::table('user_roles')->where('user_id', $user->id)->first();
         if (!$role || $role->role_id != 1) {
-            return response()->json(['status' => false, 'message' => 'You are not authorized as a admin.']);
+            return redirect()->back()->with('error', 'You are not authorized as an admin.');
         }
 
 
         if (Auth::attempt($credentials)) {
-            return response()->json(['status' => true, 'redirect' => route('admin.dashboard')]);
+            return redirect()->route('admin.dashboard');
         }
 
-        return response()->json(['status' => false, 'message' => 'Invalid credentials']);
+        return redirect()->back()->with('error', 'Invalid credentials.');
     }
+
 
 
 
