@@ -109,6 +109,14 @@ class TranslationSeeder extends Seeder
             ['key' => 'do_you_remember_it', 'en' => 'Do you remember it?', 'jp' => '覚えていますか？'],
             ['key' => 'log_in', 'en' => 'Log in', 'jp' => 'ログイン'],
             ['key' => 'confirm', 'en' => 'Confirm', 'jp' => '確認'],
+            ['key' => 'shop_name', 'en' => 'Shop Name', 'jp' => 'ショップ名'],
+            ['key' => 'sign_in_or_create_account', 'en' => 'Sign in or create an account', 'jp' => 'サインインまたはアカウントを作成'],
+            ['key' => 'already_have_account', 'en' => 'Already have an account?', 'jp' => 'すでにアカウントをお持ちですか？'],
+            ['key' => 'first_name', 'en' => 'First Name', 'jp' => '名'],
+            ['key' => 'last_name', 'en' => 'Last Name', 'jp' => '姓'],
+            ['key' => 'email', 'en' => 'Email', 'jp' => 'メールアドレス'],
+            ['key' => 'password', 'en' => 'Password', 'jp' => 'パスワード'],
+            ['key' => 'confirm_password', 'en' => 'Confirm Password', 'jp' => 'パスワード確認'],
         ];
 
         foreach ($translations as $data) {

@@ -634,8 +634,8 @@
                                         {{ translate('Register') }}
                                     </button>
                                     <div class="dropdown-content">
-                                        <a href="{{ locale_route('signup') }}">{{ translate('User Register') }}</a>
-                                        <a href="{{ locale_route('vendor.register') }}">{{ translate('Shop Register') }}</a>
+                                        <a href="{{ locale_route('signup') }}">{{ translate('user_register') }}</a>
+                                        <a href="{{ locale_route('vendor.register') }}">{{ translate('shop_register') }}</a>
                                     </div>
                                 </div>
                                 @endauth
