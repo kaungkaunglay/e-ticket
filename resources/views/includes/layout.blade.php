@@ -19,6 +19,36 @@
     @yield('style')
 
     <title>GoTrip</title>
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
 </head>
 
 <body>
@@ -566,7 +596,7 @@
                     <div class="col-auto">
                         <div class="d-flex items-center">
 
-                            <div class="row x-gap-20 items-center xxl:d-none">
+                            <!-- <div class="row x-gap-20 items-center xxl:d-none">
                                 <div class="col-auto">
                                     <button class="d-flex items-center text-14 text-dark-1" data-x-click="lang">
                                         <img src="{{asset('assets/img/general/lang.png')}}" alt="image" class="rounded-full mr-10">
@@ -574,14 +604,40 @@
                                         <i class="icon-chevron-sm-down text-7 ml-15"></i>
                                     </button>
                                 </div>
-                            </div>
+                            </div> -->
 
 
                             <div class="d-flex items-center ml-20 is-menu-opened-hide md:d-none">
                                 @auth
-                                <a href="" class="button -outline-red  px-30 fw-400 text-14 h-50 text-red ml-20">{{auth()->user()->first_name}} {{ auth()->user()->last_name}}</a>
+                                @php
+                                    $user = auth()->user();
+                                    $role = $user->roles()->first()->id ?? null;
+                                    $dashboardRoute = '/home'; // Default route
+
+                                    if ($role == 1) {
+                                        $dashboardRoute = route('admin.dashboard');
+                                    } elseif ($role == 2) {
+                                        $dashboardRoute = route('vendor.dashboard');
+                                    } elseif ($role == 3) {
+                                        $dashboardRoute = route('user.dashboard');
+                                    }
+                                @endphp
+                                <a href="{{ $dashboardRoute }}" class="button -outline-red px-30 fw-400 text-14 h-50 text-red ml-20">
+                                    {{ auth()->user()->first_name }} 
+                                </a>
                                 @else
-                                <a href="{{locale_route('login')}}" class="button -outline-red  px-30 fw-400 text-14 h-50 text-red ml-20">{{translate('sign_in')}} / {{translate('register')}}</a>
+                                <a href="{{ locale_route('login') }}" class="button -outline-red px-30 fw-400 text-14 h-50 text-red ml-20">
+                                    {{ translate('sign_in') }}
+                                </a>
+                                <div class="dropdown">
+                                    <button class="button -outline-red px-30 fw-400 text-14 h-50 text-red ml-20">
+                                        {{ translate('Register') }}
+                                    </button>
+                                    <div class="dropdown-content">
+                                        <a href="{{ locale_route('signup') }}">{{ translate('User Register') }}</a>
+                                        <a href="{{ locale_route('vendor.register') }}">{{ translate('Shop Register') }}</a>
+                                    </div>
+                                </div>
                                 @endauth
                             </div>
 
@@ -602,13 +658,13 @@
             <div class="container">
                 <div class="pt-60 pb-60">
                     <div class="row y-gap-40 justify-between xl:justify-start">
-                    <div class="col-xl-2 col-lg-4 col-sm-6 d-flex flex-column">
+                        <div class="col-xl-2 col-lg-4 col-sm-6 d-flex flex-column">
 
 
 
-                    <a href="index.html" class="header-logo mr-20" data-x="header-logo" data-x-toggle="is-logo-dark">
-                            <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon">
-                     </a>
+                            <a href="index.html" class="header-logo mr-20" data-x="header-logo" data-x-toggle="is-logo-dark">
+                                <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon">
+                            </a>
 
 
                             <p class="text-14 mt-30 fw-500 text-dark-1">{{translate('reserve_table')}}</p>
@@ -670,7 +726,7 @@
                             <div class="row x-gap-30 y-gap-10">
                                 <div class="col-auto">
                                     <div class="d-flex items-center">
-                                    Copy-right 2025 by Andfun Yangon Co.,LTD
+                                        Copy-right 2025 by Andfun Yangon Co.,LTD
                                     </div>
                                 </div>
 

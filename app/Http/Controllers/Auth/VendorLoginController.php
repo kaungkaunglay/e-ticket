@@ -67,12 +67,37 @@ class VendorLoginController extends Controller
     }
 
 
+    public function registerVendor(Request $request)
+    {
+        $request->validate([
+            'first_name' => 'required|min:3|max:50',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8|confirmed',
+            'confirm_password' => 'required'
+        ]);
+
+        $user = User::create([
+            'first_name' => $request->first_name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+
+        $user->assignRole(3);
+
+        return to_route('login')->with('success', 'Registration successful. Please log in.');
+    }
+
+
+
+
+
+
 
     public function logout(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('vendor.login')->with('success', 'Logged out successfully.');
+        return redirect()->route('home')->with('success', 'Logged out successfully.');
     }
 }
