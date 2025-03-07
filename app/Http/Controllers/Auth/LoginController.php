@@ -34,14 +34,14 @@ class LoginController extends Controller
 
         if (!$user) {
             throw ValidationException::withMessages([
-                'email' => 'These credentials do not match our records.',
+                'email' => 'これらの認証情報は、当社の記録と一致しません。',
             ]);
         }
 
       
         if (is_null($user->email_confirmed_at)) {
             throw ValidationException::withMessages([
-                'email' => 'Please confirm your email before logging in.',
+                'email' => 'ログインする前に、メールアドレスを確認してください。',
             ]);
         }
 
@@ -71,14 +71,14 @@ class LoginController extends Controller
        
         if (!$user) {
             throw ValidationException::withMessages([
-                'email' => 'These credentials do not match our records.',
+                'email' => 'これらの認証情報は、当社の記録と一致しません。',
             ]);
         }
     
       
         if (is_null($user->email_confirmed_at)) {
             throw ValidationException::withMessages([
-                'email' => 'Please confirm your email before logging in.',
+                'email' => 'ログインする前に、メールアドレスを確認してください。',
             ]);
         }
     
@@ -102,14 +102,14 @@ class LoginController extends Controller
 
             return response()->json([
                 'status' => true,
-                'message' => 'Logged out successfully.',
+                'message' => '正常にログアウトしました。',
                 'redirect' => route('home')
             ]);
         } catch (Exception $e) {
             Log::error('Logout failed', ['error' => $e->getMessage()]);
             return response()->json([
                 'status' => false,
-                'message' => 'An error occurred during logout.',
+                'message' => 'ログアウト中にエラーが発生しました。',
             ]);
         }
     }
