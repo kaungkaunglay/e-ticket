@@ -117,6 +117,8 @@ class TranslationSeeder extends Seeder
             ['key' => 'email', 'en' => 'Email', 'jp' => 'メールアドレス'],
             ['key' => 'password', 'en' => 'Password', 'jp' => 'パスワード'],
             ['key' => 'confirm_password', 'en' => 'Confirm Password', 'jp' => 'パスワード確認'],
+            ['key' => 'user_register', 'en' => 'User Register', 'jp' => 'ユーザー登録'],
+            ['key' => 'shop_register', 'en' => 'Shop Register', 'jp' => 'ショップ登録'],
         ];
 
         foreach ($translations as $data) {

@@ -627,7 +627,7 @@
                                 </a>
                                 @else
                                 <a href="{{ locale_route('login') }}" class="button -outline-red px-30 fw-400 text-14 h-50 text-red ml-20">
-                                    {{ translate('sign_in') }}
+                                    {{ translate('log_in') }}
                                 </a>
                                 <div class="dropdown">
                                     <button class="button -outline-red px-30 fw-400 text-14 h-50 text-red ml-20">
