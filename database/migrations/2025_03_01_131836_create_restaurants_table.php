@@ -30,13 +30,14 @@ return new class extends Migration
             $table->string('operating_hours');
             $table->string('closed_days')->nullable();
             $table->string('price_range');
+            $table->text('discount')->nullable();
             $table->boolean('wifi_availability')->default(false);
             $table->boolean('parking_availability')->default(false);
             $table->boolean('outdoor_seating')->default(false);
             $table->json('social_links')->nullable();
             $table->string('status'); 
-            $table->string('avaliable');
-            $table->string('user_id');
+            $table->string('available');
+            $table->string('user_id')->nullable();
             $table->timestamps();
         });
     }

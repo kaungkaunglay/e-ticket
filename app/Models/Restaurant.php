@@ -35,8 +35,9 @@ class Restaurant extends Model
         'outdoor_seating',
         'social_links',
         'status',
-        'avaliable',
+        'available',
         'user_id',
+        'discount',
     ];
 
     public function category()

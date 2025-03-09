@@ -95,19 +95,15 @@ Route::get('/password/sent/{email}', [ForgetPasswordController::class, 'showSent
 Route::get('/password/reset/{token}', [ForgetPasswordController::class, 'showResetForm'])->name('show_reset_form');
 Route::post('/password/reset', [ForgetPasswordController::class, 'reset'])->name('reset_password');
 Route::get('/password/success', [ForgetPasswordController::class, 'success'])->name('reset_success');
-
+Route::PUT('/user/password', [UserController::class, 'userpassword'])->name('user.password');
 
 
 
 
 Route::middleware(['auth', 'user'])->group(function () {
-    
-
     Route::get('/user-dashboard', [UserController::class, 'show'])->name('user.dashboard');
-
-    // Route::get('/user-dashboard/', [UserController::class, 'show'])->name('user.profile');
-
-
+    Route::PUT('/user/profileupdate', [UserController::class, 'profileupdate'])->name('user.profileupdate');
+   
 });
 
 Route::middleware('guest')->group(function () {

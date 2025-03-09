@@ -51,61 +51,65 @@ class RegisterController extends Controller
 
     // for ajax
     public function store(Request $request)
-    {
-        $request->validate([
-            'first_name' => 'required|min:3|max:50',
-            'last_name' => 'required|min:3|max:50',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:8|confirmed',
-           
-        ]);
+{
+    $request->validate([
+        'first_name' => 'required|min:3|max:50',
+        'last_name' => 'required|min:3|max:50',
+        'email' => 'required|email|unique:users',
+        'password' => 'required|min:8|confirmed',
+        
+    ]);
 
-        $confirmationToken = Str::random(60);
+    $confirmationToken = Str::random(60);
 
-        $vendor = User::create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'password' => Hash::make($request->password),
-            'role' => 'user',
-            'email_verified_at' => null,
-            'confirmation_token' => $confirmationToken,
-        ]);
 
-        DB::table('user_roles')->insert([
-            'user_id' => $vendor->id,
-            'role_id' => 3,
-        ]);
+    $vendor = User::create([
+        'first_name' => $request->first_name,
+        'last_name' => $request->last_name,
+        'email' => $request->email,
+        'phone' => $request->phone,
+        'password' => Hash::make($request->password),
+        'role' => 'user',
+        'email_verified_at' => null,
+        'confirmation_token' => $confirmationToken,
+        'postal_code' => $request->postal_code,  
+        'address' => $request->address,          
+    ]);
 
-        $year = date('Y');
-        $month = date('m');
-        $day = date('d');
-        $latestCode = PromotionCode::whereYear('created_at', $year)
-            ->whereMonth('created_at', $month)
-            ->whereDay('created_at', $day)
-            ->latest('id')
-            ->value('code');
+  
+    DB::table('user_roles')->insert([
+        'user_id' => $vendor->id,
+        'role_id' => 3,
+    ]);
 
-        $incremental = $latestCode ? (int)substr($latestCode, -3) + 1 : 1;
-        $promoCode = sprintf("%s%s%s%03d", $year, $month, $day, $incremental);
-        $expirationDate = Carbon::now()->addMonths(2);
+    $year = date('Y');
+    $month = date('m');
+    $day = date('d');
+    $latestCode = PromotionCode::whereYear('created_at', $year)
+        ->whereMonth('created_at', $month)
+        ->whereDay('created_at', $day)
+        ->latest('id')
+        ->value('code');
 
-        PromotionCode::create([
-            'user_id' => $vendor->id,
-            'code' => $promoCode,
-            'expires_at' => $expirationDate,
-        ]);
+    $incremental = $latestCode ? (int)substr($latestCode, -3) + 1 : 1;
+    $promoCode = sprintf("%s%s%s%03d", $year, $month, $day, $incremental);
+    $expirationDate = Carbon::now()->addMonths(2);
 
-        try {
-            Mail::to($vendor->email)->send(new VendorConfirmationMail($vendor, $promoCode, $confirmationToken));
-        } catch (\Exception $e) {
-            \Log::error('Email sending failed: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Failed to send confirmation email. Please try again.');
-        }
+    PromotionCode::create([
+        'user_id' => $vendor->id,
+        'code' => $promoCode,
+        'expires_at' => $expirationDate,
+    ]);
 
-        return redirect()->route('login')->with('success', 'Registration successful! Please check your email for confirmation.');
+    try {
+        Mail::to($vendor->email)->send(new VendorConfirmationMail($vendor, $promoCode, $confirmationToken));
+    } catch (\Exception $e) {
+        \Log::error('Email sending failed: ' . $e->getMessage());
+        return redirect()->back()->with('error', 'Failed to send confirmation email. Please try again.');
     }
+
+    return redirect()->route('login')->with('success', 'Registration successful! Please check your email for confirmation.');
+}
 
 
     public function confirmEmail($token)

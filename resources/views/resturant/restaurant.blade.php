@@ -50,13 +50,13 @@
                 <img src="{{ asset($restaurant->logo) }}" alt="Logo" width="100" class="mt-2">
                 @endif
             </div>
-            <div class="col-12">
+            <!-- <div class="col-12">
                 <label class="lh-1 text-16 text-light-1">{{translate('cover_image')}}</label>
                 <input type="file" name="cover_image" class="form-control">
                 @if(isset($restaurant) && $restaurant->cover_image)
                 <img src="{{ asset($restaurant->cover_image) }}" alt="Cover Image" width="200" class="mt-2">
                 @endif
-            </div>
+            </div> -->
             <div class="col-12">
                 <label class="lh-1 text-16 text-light-1">{{translate('multiple_image')}}</label>
                 <input type="file" name="multi_images[]" class="form-control" id="multi_images" multiple>
@@ -150,6 +150,10 @@
 
                     </div>
                 </div>
+
+             
+
+
                 <div class="col-12">
                     <label class="lh-1 text-16 text-light-1">{{translate('closed_day')}}</label>
                     <div class="form-input">
@@ -164,7 +168,13 @@
 
                     </div>
                 </div>
+                <div class="col-12">
+                    <label class="lh-1 text-16 text-light-1">{{translate('Discount')}}</label>
+                    <div class="form-input">
+                        <input type="text" name="discount" value="{{ old('discount', $restaurant->discount ?? '') }}" >
 
+                    </div>
+                </div>
                 <!-- Additional Features -->
                 <div class="col-12">
                     <div class="form-check">
@@ -182,7 +192,7 @@
                 <div class="col-12">
                     <label class="lh-1 text-16 text-light-1">{{translate('available')}}</label>
                     <div class="form-input">
-                        <input type="text" name="available" value="{{ old('avaliable', $restaurant->avaliable ?? '') }}">
+                        <input type="text" name="available" value="{{ old('available', $restaurant->available ?? '') }}" require>
 
                     </div>
                 </div>

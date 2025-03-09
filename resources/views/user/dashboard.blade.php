@@ -64,84 +64,9 @@
             </div>
 
             <div class="tabs__content pt-30 js-tabs-content">
-                <div class="tabs__pane -tab-item-1 is-tab-el-active">
-                    <div class="row y-gap-30 items-center">
-                        <div class="col-auto">
-                            <div class="d-flex ratio ratio-1:1 w-200">
-                                <img src="{{ asset('img/misc/avatar-1.png') }}"  class="profile-avatar">
-                                <div class="d-flex justify-end px-10 py-10 h-100 w-1/1 absolute">
-                                    <div class="size-40 bg-white rounded-4">
-                                        <i class="icon-trash text-16"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <h4 class="text-22 fw-500">Name: {{ $user->first_name }} </h4>
-                          
-                            <div class="d-inline-block mt-15">
-                                <button class="button h-50 px-24 -dark-1 bg-blue-1 text-white">
-                                    <i class="icon-upload-file text-20 mr-10"></i>
-                                    Upload New Photo
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="border-top-light mt-30 mb-30"></div>
-
-                    <div class="profile-info">
-                        <div class="row x-gap-20 y-gap-20">
-                            <div class="col-12 info-item">
-                                <div class="info-label">First Name</div>
-                                <div class="info-value">{{ $user->first_name }}</div>
-                            </div>
-
-                            <div class="col-12 info-item">
-                                <div class="info-label">Last Name</div>
-                                <div class="info-value">{{ $user->last_name }}</div>
-                            </div>
-
-                            <div class="col-12 info-item">
-                                <div class="info-label">Email</div>
-                                <div class="info-value">{{ $user->email }}</div>
-                            </div>
-
-                            <div class="col-12 info-item">
-                                <div class="info-label">Phone Number</div>
-                                <div class="info-value">{{ $user->phone }}</div>
-                            </div>
-
-                            <!-- <div class="col-12 info-item">
-                                <div class="info-label">Role</div>
-                                <div class="info-value">{{ $user->role }}</div>
-                            </div> -->
-
-                            <div class="col-12 info-item">
-                                <div class="info-label">Created At</div>
-                                <div class="info-value">{{ $user->created_at->format('Y-m-d H:i:s') }}</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="profile-actions">
-                        <a href="#" class="button h-50 px-24 -dark-1 bg-blue-1 text-white">
-                            Save Changes <div class="icon-arrow-top-right ml-15"></div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="tabs__pane -tab-item-2">
-                    <div class="col-xl-9">
-                       
-                    </div>
-                </div>
-
-                <div class="tabs__pane -tab-item-3">
-                    <div class="col-xl-9">
-                      
-                    </div>
-                </div>
+                @include('user.personal-info', ['user' => $user]) 
+                @include('user.location-info', ['user' => $user]) 
+                @include('user.change-password', ['user' => $user]) 
             </div>
         </div>
     </div>

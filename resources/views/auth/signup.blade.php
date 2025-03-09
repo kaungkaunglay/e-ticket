@@ -95,7 +95,27 @@
                                 <span class="invalid-feedback"></span>
 
                             </div>
-                            
+
+                            <div class="col-12 input-group">
+
+                            <div class="form-input ">
+                                <input type="text" name="postal_code" id="postal_code" required>
+                                <label class="lh-1 text-14 text-light-1">Postal Code</label>
+                            </div>
+
+                            <span class="invalid-feedback"></span>
+
+                            </div>
+                             
+                     <div class="col-12 input-group">
+                        <div class="form-input">
+                            <textarea name="address" id="address" required></textarea>
+                            <label class="lh-1 text-14 text-light-1">Address</label>
+                        </div>
+                        <span class="invalid-feedback"></span>
+                    </div>
+
+                                                        
 
                             <div class="col-12 input-group">
 

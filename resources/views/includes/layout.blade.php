@@ -614,32 +614,57 @@
             $role = $user->roles()->first()->id ?? null;
             $dashboardRoute = '/home'; // Default route
 
-                                    if ($role == 1) {
-                                        $dashboardRoute = route('admin.dashboard');
-                                    } elseif ($role == 2) {
-                                        $dashboardRoute = route('vendor.dashboard');
-                                    } elseif ($role == 3) {
-                                        $dashboardRoute = route('user.dashboard');
-                                    }
-                                @endphp
-                                <a href="{{ $dashboardRoute }}" class="button -outline-red px-30 fw-400 text-14 h-50 text-red ml-20">
-                                    {{ auth()->user()->first_name }} 
-                                </a>
-                                @else
-                                <a href="{{ locale_route('login') }}" class="button -outline-red px-30 fw-400 text-14 h-50 text-red ml-20">
-                                    {{ translate('log_in') }}
-                                </a>
-                                <div class="dropdown">
-                                    <button class="button -outline-red px-30 fw-400 text-14 h-50 text-red ml-20">
-                                        {{ translate('Register') }}
-                                    </button>
-                                    <div class="dropdown-content">
-                                        <a href="{{ locale_route('signup') }}">{{ translate('user_register') }}</a>
-                                        <a href="{{ locale_route('vendor.register') }}">{{ translate('shop_register') }}</a>
-                                    </div>
-                                </div>
-                                @endauth
-                            </div>
+            if ($role == 1) {
+                $dashboardRoute = route('admin.dashboard');
+                $logoutRoute = route('admin.logout');
+            } elseif ($role == 2) {
+                $dashboardRoute = route('vendor.dashboard');
+                $logoutRoute = route('vendor.logout');
+            } elseif ($role == 3) {
+                $dashboardRoute = route('user.dashboard');
+                $logoutRoute = route('logout');
+            }
+        @endphp
+
+        <div class="dropdown" style="position: relative; display: inline-block;">
+            <a href="#" class="button -outline-red px-30 fw-400 text-14 h-50 text-red ml-20" style="display: flex; align-items: center;">
+                {{ auth()->user()->first_name }}
+                <i class="icon-chevron-down ml-10" style="font-size: 12px;"></i>
+            </a>
+            <div class="dropdown-content" style="display: none; position: absolute; right: 0; background-color: #fff; min-width: 160px; box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1); border-radius: 8px; z-index: 1000; padding: 8px 0;">
+                <a href="{{ $dashboardRoute }}" style="display: block; padding: 8px 16px; color: #333; text-decoration: none; font-size: 14px; transition: background-color 0.2s;">
+                    {{ translate('Dashboard') }}
+                </a>
+                <form action="{{ $logoutRoute }}" method="POST" style="margin: 0;">
+                    @csrf
+                    @method($role == 1 || $role == 2 ? 'POST' : 'GET')
+                    <button type="submit" style="display: block; width: 100%; text-align: left; padding: 8px 16px; background: none; border: none; color: #333; font-size: 14px; cursor: pointer; transition: background-color 0.2s;">
+                        {{ translate('Logout') }}
+                    </button>
+                </form>
+            </div>
+        </div>
+    @else
+        <a href="{{ locale_route('login') }}" class="button -outline-red px-30 fw-400 text-14 h-50 text-red ml-20">
+            {{ translate('sign_in') }}
+        </a>
+        <div class="dropdown" style="position: relative; display: inline-block;">
+            <button class="button -outline-red px-30 fw-400 text-14 h-50 text-red ml-20" style="display: flex; align-items: center;">
+                {{ translate('Register') }}
+                <i class="icon-chevron-down ml-10" style="font-size: 12px;"></i>
+            </button>
+            <div class="dropdown-content" style="display: none; position: absolute; right: 0; background-color: #fff; min-width: 160px; box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1); border-radius: 8px; z-index: 1000; padding: 8px 0;">
+                <a href="{{ locale_route('signup') }}" style="display: block; padding: 8px 16px; color: #333; text-decoration: none; font-size: 14px; transition: background-color 0.2s;">
+                    {{ translate('User Register') }}
+                </a>
+                <a href="{{ locale_route('vendor.register') }}" style="display: block; padding: 8px 16px; color: #333; text-decoration: none; font-size: 14px; transition: background-color 0.2s;">
+                    {{ translate('Shop Register') }}
+                </a>
+            </div>
+        </div>
+    @endauth
+</div>
+
 
                             <div class="d-none xl:d-flex x-gap-20 items-center pl-30" data-x="header-mobile-icons" data-x-toggle="text-white">
                                 <div><button class="d-flex items-center icon-menu text-20" data-x-click="html, header, header-logo, header-mobile-icons, mobile-menu"></button></div>
