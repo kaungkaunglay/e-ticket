@@ -26,14 +26,14 @@
                         @csrf
                         <div class="row y-gap-20">
                             <div class="col-12">
-                                <h1 class="text-22 fw-500">Admin Login</h1>
-                                <p class="mt-10">Only authorized admins can access this panel.</p>
+                                <h1 class="text-22 fw-500">{{translate('admin_login')}}</h1>
+                                <p class="mt-10">{{translate('only_authorized_admins')}}</p>
                             </div>
 
                             <div class="col-12 input-group">
                                 <div class="form-input">
                                     <input type="text" name="email" id="email" required>
-                                    <label class="lh-1 text-14 text-light-1">Email</label>
+                                    <label class="lh-1 text-14 text-light-1">{{translate('email')}} </label>
                                 </div>
                                 <span class="invalid-feedback"></span>
                             </div>
@@ -41,13 +41,13 @@
                             <div class="col-12 input-group">
                                 <div class="form-input">
                                     <input type="password" name="password" id="password" required>
-                                    <label class="lh-1 text-14 text-light-1">Password</label>
+                                    <label class="lh-1 text-14 text-light-1">{{translate('password')}} </label>
                                 </div>
                                 <span class="invalid-feedback"></span>
                             </div>
 
                             <div class="col-12">
-                                <a href="{{ route('forget_password')}}" class="text-14 fw-500 text-blue-1 underline">Forgot password?</a>
+                                <a href="{{ route('forget_password')}}" class="text-14 fw-500 text-blue-1 underline">{{translate('forget_password')}}</a>
                             </div>
 
                             <div class="col-12">
@@ -56,7 +56,7 @@
 
                             <div class="col-12">
                                 <button type="submit" class="button py-20 -dark-1 bg-blue-1 text-white">
-                                    Sign In <div class="icon-arrow-top-right ml-15"></div>
+                                    {{translate('log_in')}} <div class="icon-arrow-top-right ml-15"></div>
                                 </button>
                             </div>
                         </div>

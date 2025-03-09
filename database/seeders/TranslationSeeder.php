@@ -119,6 +119,8 @@ class TranslationSeeder extends Seeder
             ['key' => 'confirm_password', 'en' => 'Confirm Password', 'jp' => 'パスワード確認'],
             ['key' => 'user_register', 'en' => 'User Register', 'jp' => 'ユーザー登録'],
             ['key' => 'shop_register', 'en' => 'Shop Register', 'jp' => 'ショップ登録'],
+            ['key' => 'only_authorized_admins', 'en' => 'Only authorized admins can access this panel.', 'jp' => 'このパネルには、認可された管理者のみがアクセスできます。'],
+            ['key' => 'admin_login', 'en' => 'Admin Login', 'jp' => '管理者ログイン'],
         ];
 
         foreach ($translations as $data) {

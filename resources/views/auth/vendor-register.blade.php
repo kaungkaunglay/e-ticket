@@ -50,7 +50,7 @@
                         <div class="row y-gap-20">
                             <div class="col-12">
                                 <h1 class="text-22 fw-500">{{translate('sign_in_or_create_account')}}</h1>
-                                <p class="mt-10">{{translate('already_have_account')}} <a href="#" class="text-blue-1">{{translate('log_in')}}</a>
+                                <p class="mt-10">{{translate('already_have_account')}} <a href="{{route('login')}}" class="text-blue-1">{{translate('log_in')}}</a>
                                 </p>
                             </div>
 
