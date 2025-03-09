@@ -4,7 +4,7 @@
 <div class="row y-gap-20 justify-between items-end pb-60 lg:pb-40 md:pb-32">
     <div class="col-auto">
 
-        <h1 class="text-30 lh-14 fw-600">All Resturants Type</h1>
+        <h1 class="text-30 lh-14 fw-600">{{translate('all_restaurant_type')}}</h1>
 
     </div>
 
@@ -12,7 +12,7 @@
 
 
         <a href="{{ route('categories.create') }}" class="button h-50 px-24 -dark-1 bg-blue-1 text-white">
-            Add resturant Type <div class="icon-arrow-top-right ml-15"></div>
+            {{translate('add_restaurant_type')}} <div class="icon-arrow-top-right ml-15"></div>
         </a>
 
 
@@ -25,7 +25,7 @@
         <div class="tabs__controls row x-gap-40 y-gap-10 lg:x-gap-20 js-tabs-controls">
 
             <div class="col-auto">
-                <button class="tabs__button text-18 lg:text-16 text-light-1 fw-500 pb-5 lg:pb-0 js-tabs-button is-tab-el-active" data-tab-target=".-tab-item-1">All Categories</button>
+                <button class="tabs__button text-18 lg:text-16 text-light-1 fw-500 pb-5 lg:pb-0 js-tabs-button is-tab-el-active" data-tab-target=".-tab-item-1">{{translate('all_restaurant_type')}}</button>
             </div>
         </div>
 
@@ -36,11 +36,11 @@
                     <table class="table-4 -border-bottom col-12">
                         <thead class="bg-light-2">
                             <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Image</th>
-                                <th>Created</th>
-                                <th>Action</th>
+                                <th>{{translate('id')}}</th>
+                                <th>{{translate('name')}}</th>
+                                <th>{{translate('image')}}</th>
+                                <th>{{translate('created')}}</th>
+                                <th>{{translate('action')}}</th>
                             </tr>
                         </thead>
                         <tbody>

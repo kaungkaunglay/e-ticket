@@ -3,7 +3,7 @@
 
 <div class="row y-gap-20 justify-between items-end pb-60 lg:pb-40 md:pb-32">
     <div class="col-auto">
-        <h1 class="text-30 lh-14 fw-600">{{ isset($restaurant) ? 'Edit' : 'Add' }} Restaurant</h1>
+        <h1 class="text-30 lh-14 fw-600">{{ isset($restaurant) ? translate('edit') : translate('add') }} {{translate('restaurants')}}</h1>
     </div>
 </div>
 
@@ -23,7 +23,7 @@
             <div class="col-12">
                 <div class="form-input">
                     <select name="category_id" class="form-control" required>
-                        <option value="">Select Category</option>
+                        <option value="">{{translate('select_category')}}</option>
                         @foreach($categories as $category)
                         <option value="{{ $category->id }}" {{ isset($restaurant) && $restaurant->category_id == $category->id ? 'selected' : '' }}>
                             {{ $category->name }}
@@ -35,7 +35,7 @@
 
             <!-- Name -->
             <div class="col-12">
-                <label class="lh-1 text-16 text-light-1">Restaurant Name</label>
+                <label class="lh-1 text-16 text-light-1">{{translate('restaurant_name')}}</label>
                 <div class="form-input">
                     <input type="text" name="name" value="{{ old('name', $restaurant->name ?? '') }}" required>
 
@@ -44,21 +44,21 @@
 
             <!-- Logo & Cover Image -->
             <div class="col-12">
-                <label class="lh-1 text-16 text-light-1">Logo</label>
+                <label class="lh-1 text-16 text-light-1">{{translate('logo')}}</label>
                 <input type="file" name="logo" class="form-control" {{ isset($restaurant) ? '' : 'required' }}>
                 @if(isset($restaurant) && $restaurant->logo)
                 <img src="{{ asset($restaurant->logo) }}" alt="Logo" width="100" class="mt-2">
                 @endif
             </div>
             <div class="col-12">
-                <label class="lh-1 text-16 text-light-1">Cover Image</label>
+                <label class="lh-1 text-16 text-light-1">{{translate('cover_image')}}</label>
                 <input type="file" name="cover_image" class="form-control">
                 @if(isset($restaurant) && $restaurant->cover_image)
                 <img src="{{ asset($restaurant->cover_image) }}" alt="Cover Image" width="200" class="mt-2">
                 @endif
             </div>
             <div class="col-12">
-                <label class="lh-1 text-16 text-light-1">Multiple Images</label>
+                <label class="lh-1 text-16 text-light-1">{{translate('multiple_image')}}</label>
                 <input type="file" name="multi_images[]" class="form-control" id="multi_images" multiple>
                 <div id="image-preview" class="mt-2">
                     @if($restaurant->multi_images)
@@ -75,28 +75,28 @@
                 </div>
                 <!-- Description, Address, City, Zip Code -->
                 <div class="col-12">
-                    <label class="lh-1 text-16 text-light-1">Description</label>
+                    <label class="lh-1 text-16 text-light-1">{{translate('description')}}</label>
                     <div class="form-input">
                         <textarea name="description" rows="5" required>{{ old('description', $restaurant->description ?? '') }}</textarea>
 
                     </div>
                 </div>
                 <div class="col-12">
-                    <label class="lh-1 text-16 text-light-1">Address</label>
+                    <label class="lh-1 text-16 text-light-1">{{translate('address')}}</label>
                     <div class="form-input">
                         <input type="text" name="address" value="{{ old('address', $restaurant->address ?? '') }}" required>
 
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label class="lh-1 text-16 text-light-1">City</label>
+                    <label class="lh-1 text-16 text-light-1">{{translate('city')}}</label>
                     <div class="form-input">
                         <input type="text" name="city" value="{{ old('city', $restaurant->city ?? '') }}" required>
 
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label class="lh-1 text-16 text-light-1">Zip Code</label>
+                    <label class="lh-1 text-16 text-light-1">{{translate('zip_code')}}</label>
                     <div class="form-input">
                         <input type="text" name="zip_code" value="{{ old('zip_code', $restaurant->zip_code ?? '') }}" required>
 
@@ -105,14 +105,14 @@
 
                 <!-- Latitude & Longitude -->
                 <div class="col-md-6">
-                    <label class="lh-1 text-16 text-light-1">Latitude</label>
+                    <label class="lh-1 text-16 text-light-1">{{translate('latitude')}}</label>
                     <div class="form-input">
                         <input type="text" name="latitude" value="{{ old('latitude', $restaurant->latitude ?? '') }}">
 
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label class="lh-1 text-16 text-light-1">Longitude</label>
+                    <label class="lh-1 text-16 text-light-1">{{translate('longitude')}}</label>
                     <div class="form-input">
                         <input type="text" name="longitude" value="{{ old('longitude', $restaurant->longitude ?? '') }}">
 
@@ -121,21 +121,21 @@
 
                 <!-- Phone, Email, Website URL -->
                 <div class="col-md-4">
-                    <label class="lh-1 text-16 text-light-1">Phone Number</label>
+                    <label class="lh-1 text-16 text-light-1">{{translate('phone')}}</label>
                     <div class="form-input">
                         <input type="text" name="phone_number" value="{{ old('phone_number', $restaurant->phone_number ?? '') }}" required>
 
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <label class="lh-1 text-16 text-light-1">Email</label>
+                    <label class="lh-1 text-16 text-light-1">{{translate('email')}}</label>
                     <div class="form-input">
                         <input type="email" name="email" value="{{ old('email', $restaurant->email ?? '') }}" required>
 
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <label class="lh-1 text-16 text-light-1">Website URL</label>
+                    <label class="lh-1 text-16 text-light-1">{{translate('website_url')}}</label>
                     <div class="form-input">
                         <input type="text" name="website_url" value="{{ old('website_url', $restaurant->website_url ?? '') }}">
 
@@ -144,21 +144,21 @@
 
                 <!-- Operating Hours, Closed Days, Price Range -->
                 <div class="col-12">
-                    <label class="lh-1 text-16 text-light-1">Operating Hours</label>
+                    <label class="lh-1 text-16 text-light-1">{{translate('operating_hours')}}</label>
                     <div class="form-input">
                         <input type="text" name="operating_hours" value="{{ old('operating_hours', $restaurant->operating_hours ?? '') }}" required>
 
                     </div>
                 </div>
                 <div class="col-12">
-                    <label class="lh-1 text-16 text-light-1">Closed Days</label>
+                    <label class="lh-1 text-16 text-light-1">{{translate('closed_day')}}</label>
                     <div class="form-input">
                         <input type="text" name="closed_days" value="{{ old('closed_days', $restaurant->closed_days ?? '') }}">
 
                     </div>
                 </div>
                 <div class="col-12">
-                    <label class="lh-1 text-16 text-light-1">Price Range</label>
+                    <label class="lh-1 text-16 text-light-1">{{translate('price_range')}}</label>
                     <div class="form-input">
                         <input type="text" name="price_range" value="{{ old('price_range', $restaurant->price_range ?? '') }}">
 
@@ -168,19 +168,19 @@
                 <!-- Additional Features -->
                 <div class="col-12">
                     <div class="form-check">
-                        <input type="checkbox" name="wifi_availability" value="1" {{ old('wifi_availability', $restaurant->wifi_availability ?? false) ? 'checked' : '' }}> WiFi Available
+                        <input type="checkbox" name="wifi_availability" value="1" {{ old('wifi_availability', $restaurant->wifi_availability ?? false) ? 'checked' : '' }}> {{translate('wifi_available')}}
                     </div>
                     <div class="form-check">
-                        <input type="checkbox" name="parking_availability" value="1" {{ old('parking_availability', $restaurant->parking_availability ?? false) ? 'checked' : '' }}> Parking Available
+                        <input type="checkbox" name="parking_availability" value="1" {{ old('parking_availability', $restaurant->parking_availability ?? false) ? 'checked' : '' }}> {{translate('parking_available')}} 
                     </div>
                     <div class="form-check">
-                        <input type="checkbox" name="outdoor_seating" value="1" {{ old('outdoor_seating', $restaurant->outdoor_seating ?? false) ? 'checked' : '' }}> Outdoor Seating
+                        <input type="checkbox" name="outdoor_seating" value="1" {{ old('outdoor_seating', $restaurant->outdoor_seating ?? false) ? 'checked' : '' }}> {{translate('outdoor_seating')}}
                     </div>
                 </div>
 
                 <!-- Available -->
                 <div class="col-12">
-                    <label class="lh-1 text-16 text-light-1">Available</label>
+                    <label class="lh-1 text-16 text-light-1">{{translate('available')}}</label>
                     <div class="form-input">
                         <input type="text" name="available" value="{{ old('avaliable', $restaurant->avaliable ?? '') }}">
 
@@ -189,18 +189,18 @@
 
                 <!-- Status -->
                 <div class="col-12">
-                    <label class="lh-1 text-16 text-light-1">Status</label>
+                    <label class="lh-1 text-16 text-light-1">{{translate('status')}}</label>
                     <div class="form-input">
 
                         <select name="status" class="form-control" required>
-                            <option value="0" {{ $restaurant->status == 0 ? 'selected' : '' }}>Not Approve</option>
-                            <option value="1" {{ $restaurant->status == 1 ? 'selected' : '' }}>Approve</option>
+                            <option value="0" {{ $restaurant->status == 0 ? 'selected' : '' }}>{{translate('not_approve')}}</option>
+                            <option value="1" {{ $restaurant->status == 1 ? 'selected' : '' }}>{{translate('approve')}}</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="d-inline-block pt-30">
-                    <button type="submit" class="button h-50 px-24 -dark-1 bg-blue-1 text-white">{{ isset($restaurant) ? 'Update' : 'Add' }} Restaurant</button>
+                    <button type="submit" class="button h-50 px-24 -dark-1 bg-blue-1 text-white">{{translate('save_changes')}}</button>
                 </div>
             </div>
     </form>

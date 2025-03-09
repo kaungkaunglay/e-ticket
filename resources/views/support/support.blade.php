@@ -3,12 +3,12 @@
 @section('content')
 <div class="row y-gap-20 justify-between items-end pb-60 lg:pb-40 md:pb-32">
     <div class="col-auto">
-        <h1 class="text-30 lh-14 fw-600">Support Question and Answer</h1>
+        <h1 class="text-30 lh-14 fw-600">{{translate('support_qna')}}</h1>
     </div>
 
     <div class="col-auto">
         <a href="{{ route('createsupport.create') }}" class="button h-50 px-24 -dark-1 bg-blue-1 text-white">
-            Add Question <div class="icon-arrow-top-right ml-15"></div>
+            {{translate('add_question')}} <div class="icon-arrow-top-right ml-15"></div>
         </a>
     </div>
 </div>
@@ -19,7 +19,7 @@
             <div class="col-auto">
                 <button class="tabs__button text-18 lg:text-16 text-light-1 fw-500 pb-5 lg:pb-0 js-tabs-button is-tab-el-active" 
                         data-tab-target=".-tab-item-1">
-                    All Questions
+                        {{translate('all_questions')}}
                 </button>
             </div>
         </div>
@@ -30,10 +30,10 @@
                     <table class="table-4 -border-bottom col-12">
                         <thead class="bg-light-2">
                             <tr>
-                                <th>Category</th>
-                                <th>Description</th>
-                                <th>Created At</th>
-                                <th>Action</th>
+                                <th>{{translate('name')}}</th>
+                                <th>{{translate('description')}}</th>
+                                <th>{{translate('created')}}</th>
+                                <th>{{translate('action')}}</th>
                             </tr>
                         </thead>
                         <tbody>

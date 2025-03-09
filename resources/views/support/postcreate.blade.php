@@ -3,7 +3,7 @@
 
 <div class="row y-gap-20 justify-between items-end pb-60 lg:pb-40 md:pb-32">
     <div class="col-auto">
-        <h1 class="text-30 lh-14 fw-600">{{ isset($question) ? 'Edit' : 'Add' }} Question</h1>
+        <h1 class="text-30 lh-14 fw-600">{{ isset($question) ? translate('edit') : translate('add') }} {{translate('question')}}</h1>
     </div>
 </div>
 
@@ -21,7 +21,7 @@
             <div class="col-12">
                 <div class="form-input">
                     <select name="support_category" class="form-control" required>
-                        <option value="">Select Category</option>
+                        <option value="">{{translate('select_category')}}</option>
                         @foreach($categories as $category)
                         <option value="{{ $category->id }}"
                             {{ isset($question) && $question->support_category == $category->id ? 'selected' : '' }}>
@@ -36,14 +36,14 @@
             <div class="col-12">
                 <div class="form-input">
                     <textarea name="description" required>{{ old('description', isset($question) ? $question->description : '') }}</textarea>
-                    <label class="lh-1 text-16 text-light-1">Description</label>
+                    <label class="lh-1 text-16 text-light-1">{{translate('description')}}</label>
                 </div>
             </div>
         </div>
 
         <div class="d-inline-block pt-30">
             <button type="submit" class="button h-50 px-24 -dark-1 bg-blue-1 text-white">
-                {{ isset($question) ? 'Update' : 'Add' }} Question
+                {{translate('save_changes')}} <div class="icon-arrow-top-right ml-15"></div>
             </button>
         </div>
     </form>
