@@ -11,6 +11,7 @@ use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\VendorLoginController;
 use App\Http\Controllers\Auth\UserLoginController;
 use App\Http\Controllers\SupportController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShoperController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\UserController;
@@ -27,9 +28,14 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+
+Route::get('/', [HomeController::class, 'Home'])->name('home');
+Route::get('/restaurant/{id}', [HomeController::class, 'detail'])->name('restaurant.detail');
+
+Route::get('/search', [HomeController::class, 'search'])->name('restaurant.search');
+
+Route::get('/get-cities', [HomeController::class, 'getCities'])->name('cities.get');
+
 // Route::get('/login', function () {
 //     return view('login');
 // })->name('login');
