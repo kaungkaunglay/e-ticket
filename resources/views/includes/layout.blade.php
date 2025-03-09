@@ -608,11 +608,11 @@
 
 
                             <div class="d-flex items-center ml-20 is-menu-opened-hide md:d-none">
-                                @auth
-                                @php
-                                    $user = auth()->user();
-                                    $role = $user->roles()->first()->id ?? null;
-                                    $dashboardRoute = '/home'; // Default route
+    @auth
+        @php
+            $user = auth()->user();
+            $role = $user->roles()->first()->id ?? null;
+            $dashboardRoute = '/home'; // Default route
 
                                     if ($role == 1) {
                                         $dashboardRoute = route('admin.dashboard');
@@ -2046,3 +2046,19 @@
 <!-- Mirrored from creativelayers.net/themes/gotrip-html/home-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2025 09:17:58 GMT -->
 
 </html>
+
+
+<script>
+    // Add hover functionality to show/hide dropdown
+    document.addEventListener('DOMContentLoaded', function () {
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('mouseenter', () => {
+                dropdown.querySelector('.dropdown-content').style.display = 'block';
+            });
+            dropdown.addEventListener('mouseleave', () => {
+                dropdown.querySelector('.dropdown-content').style.display = 'none';
+            });
+        });
+    });
+</script>

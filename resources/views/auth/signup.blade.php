@@ -85,6 +85,17 @@
                                 <span class="invalid-feedback"></span>
 
                             </div>
+                            <div class="col-12 input-group">
+
+                                <div class="form-input ">
+                                    <input type="text" name="phone" id="phone" required>
+                                    <label class="lh-1 text-14 text-light-1">Phone</label>
+                                </div>
+
+                                <span class="invalid-feedback"></span>
+
+                            </div>
+                            
 
                             <div class="col-12 input-group">
 

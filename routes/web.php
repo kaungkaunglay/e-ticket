@@ -13,6 +13,8 @@ use App\Http\Controllers\Auth\UserLoginController;
 use App\Http\Controllers\SupportController;
 use App\Http\Controllers\ShoperController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -99,9 +101,13 @@ Route::get('/password/success', [ForgetPasswordController::class, 'success'])->n
 
 
 Route::middleware(['auth', 'user'])->group(function () {
-    Route::get('/user-dashboard', function () {
-        return view('user.dashboard');
-    })->name('user.dashboard');
+    
+
+    Route::get('/user-dashboard', [UserController::class, 'show'])->name('user.dashboard');
+
+    // Route::get('/user-dashboard/', [UserController::class, 'show'])->name('user.profile');
+
+
 });
 
 Route::middleware('guest')->group(function () {
