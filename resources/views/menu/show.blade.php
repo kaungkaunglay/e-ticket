@@ -3,7 +3,7 @@
 @section('content')
 <div class="row y-gap-20 justify-between items-end pb-60 lg:pb-40 md:pb-32">
     <div class="col-auto">
-        <h1 class="text-30 lh-14 fw-600">{{translate('all_restaurant_type')}}</h1>
+        <h1 class="text-30 lh-14 fw-600">{{translate('all_menu_list')}}</h1>
     </div>
 
     <div class="col-auto">
@@ -17,7 +17,7 @@
     <div class="tabs -underline-2 js-tabs">
         <div class="tabs__controls row x-gap-40 y-gap-10 lg:x-gap-20 js-tabs-controls">
             <div class="col-auto">
-                <button class="tabs__button text-18 lg:text-16 text-light-1 fw-500 pb-5 lg:pb-0 js-tabs-button is-tab-el-active" data-tab-target=".-tab-item-1">{{translate('all_restaurant_type')}}</button>
+                <button class="tabs__button text-18 lg:text-16 text-light-1 fw-500 pb-5 lg:pb-0 js-tabs-button is-tab-el-active" data-tab-target=".-tab-item-1">{{translate('all_menu_list')}}</button>
             </div>
         </div>
 
@@ -29,6 +29,7 @@
                             <tr>
                                 <th>{{translate('id')}}</th>
                                 <th>{{translate('menu')}}</th>
+                                <th>{{translate('image')}}</th>
                                 <th>{{translate('created')}}</th>
                                 <th>{{translate('action')}}</th>
                             </tr>
@@ -38,6 +39,11 @@
                                 <tr>
                                     <td>{{ $menu->id }}</td>
                                     <td>{{ $menu->menu }}</td>
+                                      <td>  @if ($menu->image)
+                                            <img src="{{ asset('storage/' . $menu->image) }}" alt="Menu Image" style="max-width: 200px;">
+                                        @else
+                                            <p>No image available</p>
+                                        @endif</td>
                                     <td>{{ $menu->created_at->format('Y-m-d H:i:s') }}</td>
                                     <td>
                                 <div class="d-flex align-items-center gap-10">

@@ -1,6 +1,49 @@
 @extends('resturant.includes.layout')
 @section('content')
+<style>
+    .form-input {
+        margin-bottom: 1rem;
+    }
 
+    .form-control {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .error-message {
+        font-size: 0.9rem;
+        margin-top: 0.25rem;
+    }
+
+    .image-preview-item {
+        position: relative;
+        display: inline-block;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    .remove-image {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: red;
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        line-height: 20px;
+        cursor: pointer;
+    }
+    .buttoncss{
+        background-color: #950000;
+    border: none;
+    color: white;
+    padding: 0px;
+    }
+</style>
 <div class="row y-gap-20 justify-between items-end pb-60 lg:pb-40 md:pb-32">
     <div class="col-auto">
         <h1 class="text-30 lh-14 fw-600">{{ isset($restaurant) ? translate('edit') : translate('add') }} {{translate('restaurants')}}</h1>
@@ -39,20 +82,27 @@
 
 
             <div class="col-12">
-            <label class="lh-1 text-16 text-light-1">Menu</label>
-                <div class="form-input">
-                    <select name="menu" class="form-control" required>
-                        <option value="">{{translate('select_menu')}}</option>
-                        @foreach($menus as $menu)
-                        <option value="{{ $menu->menu }}"  {{ isset($restaurant) && $restaurant->menu == $menu->name ? 'selected' : '' }}>
-                            {{ $menu->menu }}
-                        </option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-
-            
+    <label class="lh-1 text-16 text-light-1">Menu</label>
+    <div class="form-input">
+       
+        <select id="menu-select" class="form-control">
+            <option value="">Select a menu</option>
+            @foreach($menus as $menu)
+                <option value="{{ $menu->menu }}">{{ $menu->menu }}</option>
+            @endforeach
+        </select>
+        
+        <button type="button" id="add-menu" class="button h-50 px-24 -dark-1 bg-blue-1 text-white mt-10">
+            Add Menu
+        </button>
+    </div>
+ 
+    <div id="selected-menus" class="mt-20">
+        <ul id="selected-menus-list" class="list-group"></ul>
+    </div>
+   
+    <input type="hidden" name="menu" id="selected-menu-ids">
+</div>
 
             <!-- Name -->
             <div class="col-12">
@@ -140,7 +190,7 @@
                     </div>
                 </div>
 
-                <!-- Phone, Email, Website URL -->
+           
                 <div class="col-md-4">
                     <label class="lh-1 text-16 text-light-1">{{translate('phone')}}</label>
                     <div class="form-input">
@@ -163,7 +213,7 @@
                     </div>
                 </div>
 
-                <!-- Operating Hours, Closed Days, Price Range -->
+              
                 <div class="col-12">
                     <label class="lh-1 text-16 text-light-1">{{translate('operating_hours')}}</label>
                     <div class="form-input">
@@ -176,12 +226,11 @@
 
 
                 <div class="col-12">
-                    <label class="lh-1 text-16 text-light-1">{{translate('closed_day')}}</label>
-                    <div class="form-input">
-                        <input type="text" name="closed_days" value="{{ old('closed_days', $restaurant->closed_days ?? '') }}">
-
-                    </div>
+                <label class="lh-1 text-16 text-light-1">{{ translate('closed_day') }}</label>
+                <div class="form-input">
+                    <input type="text" name="closed_days" id="closed_days" class="form-control" value="{{ old('closed_days', $restaurant->closed_days ?? '') }}">
                 </div>
+            </div>
                 <div class="col-12">
                     <label class="lh-1 text-16 text-light-1">{{translate('price_range')}}</label>
                     <div class="form-input">
@@ -239,82 +288,148 @@
 
 @endsection
 
-<style>
-    .form-input {
-        margin-bottom: 1rem;
-    }
 
-    .form-control {
-        width: 100%;
-        padding: 0.5rem;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
+<!-- Select2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
-    .error-message {
-        font-size: 0.9rem;
-        margin-top: 0.25rem;
-    }
+<!-- Flatpickr CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
-    .image-preview-item {
-        position: relative;
-        display: inline-block;
-        margin-right: 10px;
-        margin-bottom: 10px;
-    }
-
-    .remove-image {
-        position: absolute;
-        top: 0;
-        right: 0;
-        background: red;
-        color: white;
-        border-radius: 50%;
-        width: 20px;
-        height: 20px;
-        text-align: center;
-        line-height: 20px;
-        cursor: pointer;
-    }
-</style>
-
+<!-- Flatpickr JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Handle multi-image upload preview
         const multiImagesInput = document.getElementById('multi_images');
         const imagePreview = document.getElementById('image-preview');
-
-        // Handle file input change
-        multiImagesInput.addEventListener('change', function(e) {
-            const files = e.target.files;
-            for (const file of files) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.width = 100;
-                    img.classList.add('mr-2', 'mt-2');
-
-                    const removeButton = document.createElement('span');
-                    removeButton.textContent = '×';
-                    removeButton.classList.add('remove-image');
-                    removeButton.addEventListener('click', function() {
-                        imagePreview.removeChild(div);
-                    });
-
-                    const div = document.createElement('div');
-                    div.classList.add('image-preview-item');
-                    div.appendChild(img);
-                    div.appendChild(removeButton);
-
-                    imagePreview.appendChild(div);
-                };
-                reader.readAsDataURL(file);
-            }
+        flatpickr('#closed_days', {
+            noCalendar: false, // Show calendar for day and month
+            dateFormat: 'Y-m-d', // Format: Year-Month-Day
+            defaultDate: '{{ old("closed_days", $restaurant->closed_days ?? "") }}', // Set default value
+            disableMobile: true // Disable mobile native picker
         });
+
+        if (multiImagesInput && imagePreview) {
+            multiImagesInput.addEventListener('change', function(e) {
+                const files = e.target.files;
+                for (const file of files) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.width = 100;
+                        img.classList.add('mr-2', 'mt-2');
+
+                        const removeButton = document.createElement('span');
+                        removeButton.textContent = '×';
+                        removeButton.classList.add('remove-image');
+                        removeButton.addEventListener('click', function() {
+                            imagePreview.removeChild(div);
+                        });
+
+                        const div = document.createElement('div');
+                        div.classList.add('image-preview-item');
+                        div.appendChild(img);
+                        div.appendChild(removeButton);
+
+                        imagePreview.appendChild(div);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        // Handle menu selection and removal
+        const menuSelect = document.getElementById('menu-select');
+        const addMenuButton = document.getElementById('add-menu');
+        const selectedMenusList = document.getElementById('selected-menus-list');
+        const selectedMenuIdsInput = document.getElementById('selected-menu-ids');
+
+        // Array to store selected menu IDs
+        let selectedMenus = [];
+
+        // Function to update the hidden input with selected menu IDs
+        function updateSelectedMenuIds() {
+            if (selectedMenuIdsInput) {
+                selectedMenuIdsInput.value = JSON.stringify(selectedMenus);
+            }
+        }
+
+        // Function to add a menu to the selected list
+        function addMenu() {
+            if (menuSelect && selectedMenusList) {
+                const selectedMenuId = menuSelect.value;
+                const selectedMenuName = menuSelect.options[menuSelect.selectedIndex].text;
+
+                if (selectedMenuId && !selectedMenus.includes(selectedMenuId)) {
+                    // Add the menu ID to the array
+                    selectedMenus.push(selectedMenuId);
+
+                    // Add the menu to the list
+                    const listItem = document.createElement('li');
+                    listItem.className = 'list-group-item';
+                    listItem.textContent = selectedMenuName;
+
+                    // Add a remove button
+                    const removeButton = document.createElement('button');
+                    removeButton.className = 'btn btn-danger btn-sm float-right buttoncss';
+                    removeButton.textContent = 'Remove';
+                    removeButton.onclick = function() {
+                        // Remove the menu from the array
+                        selectedMenus = selectedMenus.filter(id => id !== selectedMenuId);
+                        // Remove the list item
+                        selectedMenusList.removeChild(listItem);
+                        // Update the hidden input
+                        updateSelectedMenuIds();
+                    };
+
+                    listItem.appendChild(removeButton);
+                    selectedMenusList.appendChild(listItem);
+
+                    // Update the hidden input
+                    updateSelectedMenuIds();
+                }
+            }
+        }
+
+        // Add event listener for the "Add" button
+        if (addMenuButton) {
+            addMenuButton.addEventListener('click', addMenu);
+        }
+
+        // Pre-populate selected menus if editing
+        const initialSelectedMenus = JSON.parse('{!! json_encode($restaurant->menu) !!}');
+        if (selectedMenusList && menuSelect) {
+            initialSelectedMenus.forEach(menuId => {
+                const menuName = document.querySelector(`#menu-select option[value="${menuId}"]`).textContent;
+                const listItem = document.createElement('li');
+                listItem.className = 'list-group-item';
+                listItem.textContent = menuName;
+
+                const removeButton = document.createElement('button');
+                removeButton.className = 'btn btn-danger btn-sm float-right';
+                removeButton.textContent = 'Remove';
+                removeButton.onclick = function() {
+                    selectedMenusList.removeChild(listItem);
+                    selectedMenus = selectedMenus.filter(id => id !== menuId);
+                    updateSelectedMenuIds();
+                };
+
+                listItem.appendChild(removeButton);
+                selectedMenusList.appendChild(listItem);
+            });
+
+            // Initialize the selectedMenus array with the pre-populated IDs
+            selectedMenus = initialSelectedMenus;
+            updateSelectedMenuIds();
+        }
     });
 
-    // Function to remove existing images
+    // Function to remove an image preview
     function removeImage(element) {
-        element.parentElement.remove();
+        if (element && element.parentElement) {
+            element.parentElement.remove();
+        }
     }
 </script>

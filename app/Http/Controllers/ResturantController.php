@@ -69,10 +69,11 @@ class ResturantController extends Controller
             'social_links' => 'nullable|json',
             'available' => 'nullable|string',
             'status' => 'required|in:0,1',
-            'google_map' => 'nullable|string', 
-            'menu' => 'nullable|string', 
+            'google_map' => 'nullable|string',
+            'menu' => 'required|json', 
         ]);
     
+       
         $destinationPath = public_path('assets/restaurants');
         if (!File::exists($destinationPath)) {
             File::makeDirectory($destinationPath, 0755, true);
@@ -95,6 +96,7 @@ class ResturantController extends Controller
             }
         }
     
+      
         $user = auth()->user();
         $isAdmin = $user->roles()->where('name', 'admin')->exists();
         $userId = $isAdmin ? null : $user->id;
@@ -120,10 +122,10 @@ class ResturantController extends Controller
             'social_links' => $request->social_links,
             'status' => $request->status,
             'available' => $request->available,
-            'discount' => $request->discount, 
+            'discount' => $request->discount,
             'user_id' => $userId,
-            'google_map' => $request->google_map, // Storing Google Map
-            'menu' => $request->menu, // Storing Menu
+            'google_map' => $request->google_map,
+            'menu' => $request->menu, 
         ]);
     
         return redirect()->route('resturant.index')->with('success', 'Restaurant created successfully!');
@@ -137,7 +139,9 @@ class ResturantController extends Controller
     {
         $categories = Category::all();
         $menus = Menu::all();
-        return view('resturant.restaurant', compact('restaurant', 'categories','menus'));
+        $restaurant->menu = json_decode($restaurant->menu, true) ?? [];
+        // dd($restaurant);
+        return view('resturant.restaurant', compact('restaurant', 'categories', 'menus'));
     }
 
 
@@ -167,7 +171,7 @@ class ResturantController extends Controller
             'available' => 'nullable|string',
             'status' => 'required|in:0,1',
             'google_map' => 'nullable|string',
-            'menu' => 'nullable|string', 
+            'menu' => 'required|json',
         ]);
     
         $destinationPath = public_path('assets/restaurants');
