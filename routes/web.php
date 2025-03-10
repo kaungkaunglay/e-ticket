@@ -16,7 +16,7 @@ use App\Http\Controllers\ShoperController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MenuController;
-
+use App\Http\Controllers\BookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +32,10 @@ use App\Http\Controllers\MenuController;
 
 Route::get('/', [HomeController::class, 'Home'])->name('home');
 Route::get('/restaurant/{id}', [HomeController::class, 'detail'])->name('restaurant.detail');
+
+Route::get('/booking/detail/{id}', [BookingController::class, 'show'])->name('booking.detail');
+Route::post('/booking/save', [BookingController::class, 'booksave'])->name('booking.save');
+Route::get('/booking/thank-you', [BookingController::class, 'thankYou'])->name('booking.thankyou');
 
 Route::get('/search', [HomeController::class, 'search'])->name('restaurant.search');
 
@@ -114,6 +118,7 @@ Route::post('/promotion/update', [SupportController::class, 'updatePromo'])->nam
 Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/user-dashboard', [UserController::class, 'show'])->name('user.dashboard');
     Route::PUT('/user/profileupdate', [UserController::class, 'profileupdate'])->name('user.profileupdate');
+    Route::get('/user_booking', [UserController::class, 'userbooking'])->name('userbooking.dashboard');
    
 });
 
@@ -166,6 +171,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('owner/support-category/{id}/edit', [SupportController::class, 'edit'])->name('support-category.edit');
     Route::delete('owner/support-category/{id}', [SupportController::class, 'destroy'])->name('support-category.destroy');
     
+    Route::get('owner/admin_booking', [UserController::class, 'adminbooking'])->name('adminbooking.dashboard');
 
 
     Route::get('/menu', [MenuController::class, 'index'])->name('menu.index');

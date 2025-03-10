@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\City;
 use App\Models\Restaurant;
 
 class HomeController extends Controller
@@ -50,12 +51,10 @@ class HomeController extends Controller
     }
     
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    
+    public function booking()
     {
-        //
+       
     }
 
     /**

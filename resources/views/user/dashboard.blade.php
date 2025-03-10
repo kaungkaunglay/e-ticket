@@ -65,7 +65,7 @@
 
             <div class="tabs__content pt-30 js-tabs-content">
                 @include('user.personal-info', ['user' => $user]) 
-                @include('user.location-info', ['user' => $user]) 
+                @include('user.location-info', ['bookings' => $bookings]) 
                 @include('user.change-password', ['user' => $user]) 
             </div>
         </div>
