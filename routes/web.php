@@ -37,15 +37,17 @@ Route::get('/search', [HomeController::class, 'search'])->name('restaurant.searc
 
 Route::get('/get-cities', [HomeController::class, 'getCities'])->name('cities.get');
 
+Route::get('/restaurant-list', [ResturantController::class, 'all'])->name('restaurant-list');
+
 // Route::get('/login', function () {
 //     return view('login');
 // })->name('login');
 // Route::get('/signup', function () {
 //     return view('signup');
 // })->name('signup');
-Route::get('/restaurant-list', function () {
-    return view('restaurant-list');
-})->name('restaurant-list');
+// Route::get('/restaurant-list', function () {
+//     return view('restaurant-list');
+// })->name('restaurant-list');
 Route::get('/search-result', function () {
     return view('search-result');
 })->name('search-result');
@@ -116,13 +118,13 @@ Route::middleware(['auth', 'user'])->group(function () {
 });
 
 Route::middleware('guest')->group(function () {
-    Route::post('/admin/login', [AdminLoginController::class,  'login'])->name('admin.login');
-    Route::get('/vendor/login', [VendorLoginController::class, 'showLoginForm'])->name('vendor.login');
-    Route::post('/vendor/login', [VendorLoginController::class, 'login'])->name('vendor.login');
+    Route::post('/admin/login', [AdminLoginController::class,  'login'])->name('admin.post.login');
+    Route::get('/vendor/login', [VendorLoginController::class, 'showLoginForm'])->name('vendor.get.login');
+    Route::post('/vendor/login', [VendorLoginController::class, 'login'])->name('vendor.post.login');
     Route::get('/vendor/register', [VendorLoginController::class, 'showRegisterForm'])->name('vendor.register');
     Route::post('/vendor/register', [VendorLoginController::class, 'registerVendor'])->name('vendor.register.submit');
     // Route::get('/vendor/confirm/{token}', [VendorLoginController::class, 'confirmEmail'])->name('vendor.confirm');
-    Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+    Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.get.login');
 });
 
 

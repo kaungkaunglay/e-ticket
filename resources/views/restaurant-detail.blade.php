@@ -64,7 +64,7 @@
 
                         <div class="col-auto">
                             <a href="#" class="button h-50 px-24 -dark-1 bg-blue-1 text-white">
-                                Select Room
+                                Book
                                 <div class="icon-arrow-top-right ml-15"></div>
                             </a>
                         </div>
@@ -122,7 +122,7 @@
 
                     <div class="col-auto">
                         <a href="#" class="button h-50 px-24 -dark-1 bg-blue-1 text-white">
-                            Select Room
+                            Booking
                             <div class="icon-arrow-top-right ml-15"></div>
                         </a>
                     </div>
@@ -197,28 +197,14 @@
                             <div class="col-lg-3 col-6">
                                 <div class="text-center">
                                     <i class="icon-city text-24 text-blue-1"></i>
-                                    <div class="text-15 lh-1 mt-10">In London City Centre</div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3 col-6">
-                                <div class="text-center">
-                                    <i class="icon-airplane text-24 text-blue-1"></i>
-                                    <div class="text-15 lh-1 mt-10">Airport transfer</div>
+                                    <div class="text-15 lh-1 mt-10">{{$restaurant->city}}</div>
                                 </div>
                             </div>
 
                             <div class="col-lg-3 col-6">
                                 <div class="text-center">
                                     <i class="icon-bell-ring text-24 text-blue-1"></i>
-                                    <div class="text-15 lh-1 mt-10">Front desk [24-hour]</div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3 col-6">
-                                <div class="text-center">
-                                    <i class="icon-tv text-24 text-blue-1"></i>
-                                    <div class="text-15 lh-1 mt-10">Premium TV channels</div>
+                                    <div class="text-15 lh-1 mt-10">Front desk [{{$restaurant->operating_hours}}]</div>
                                 </div>
                             </div>
                         </div>
@@ -232,7 +218,7 @@
                        
                     </div>
 
-                    <div class="col-12">
+                    <!-- <div class="col-12">
                         <h3 class="text-22 fw-500 pt-40 border-top-light">Most Popular Facilities</h3>
                         <div class="row y-gap-10 pt-20">
                             <div class="col-md-5">
@@ -277,30 +263,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-12">
-                        <div class="px-24 py-20 rounded-4 bg-green-1">
-                            <div class="row x-gap-20 y-gap-20 items-center">
-                                <div class="col-auto">
-                                    <div class="flex-center size-60 rounded-full bg-white">
-                                        <i class="icon-star text-yellow-1 text-30"></i>
-                                    </div>
-                                </div>
-
-                                <div class="col-auto">
-                                    <h4 class="text-18 lh-15 fw-500">This property is in high demand!</h4>
-                                    <div class="text-15 lh-15">7 travelers have booked today.</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
             <div class="col-xl-4">
                 <div class="ml-50 lg:ml-0">
-                    <div class="px-30 py-30 border-light rounded-4 shadow-4">
+                    <!-- <div class="px-30 py-30 border-light rounded-4 shadow-4">
                         <div class="d-flex items-center justify-between">
                             <div class="">
                                 <span class="text-20 fw-500">US$72</span>
@@ -431,7 +400,7 @@
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="px-30 py-30 border-light rounded-4 mt-30">
                         <div class="flex-center ratio ratio-15:9 mb-15 js-lazy" data-bg="img/general/map.png')}}">
@@ -445,21 +414,14 @@
                             <div class="col-12">
                                 <div class="d-flex items-center">
                                     <i class="icon-award text-20 text-blue-1"></i>
-                                    <div class="text-14 fw-500 ml-10">Exceptional location - Inside city center</div>
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <div class="d-flex items-center">
-                                    <i class="icon-pedestrian text-20 text-blue-1"></i>
-                                    <div class="text-14 fw-500 ml-10">Exceptional for walking</div>
+                                    <div class="text-14 fw-500 ml-10">Exceptional location - {{$restaurant->city}}</div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="border-top-light mt-15 mb-15"></div>
 
-                        <div class="text-15 fw-500">Popular landmarks</div>
+                        <!-- <div class="text-15 fw-500">Popular landmarks</div>
 
                         <div class="d-flex justify-between pt-10">
                             <div class="text-14">Royal Pump Room Museum</div>
@@ -471,7 +433,7 @@
                             <div class="text-14 text-light-1">0.1 km</div>
                         </div>
 
-                        <a href="#" class="d-block text-14 fw-500 underline text-blue-1 mt-10">Show More</a>
+                        <a href="#" class="d-block text-14 fw-500 underline text-blue-1 mt-10">Show More</a> -->
                     </div>
                 </div>
             </div>
@@ -2446,7 +2408,7 @@
       </div>
     </section> -->
 
-<section class="layout-pt-md layout-pb-lg">
+<!-- <section class="layout-pt-md layout-pb-lg">
     <div class="container">
         <div class="row justify-center text-center">
             <div class="col-auto">
@@ -2649,37 +2611,9 @@
             </div>
         </div>
     </div>
-</section>
-
-<section class="layout-pt-md layout-pb-md bg-dark-2">
-    <div class="container">
-        <div class="row y-gap-30 justify-between items-center">
-            <div class="col-auto">
-                <div class="row y-gap-20 flex-wrap items-center">
-                    <div class="col-auto">
-                        <div class="icon-newsletter text-60 sm:text-40 text-white"></div>
-                    </div>
-
-                    <div class="col-auto">
-                        <h4 class="text-26 text-white fw-600">Your Travel Journey Starts Here</h4>
-                        <div class="text-white">Sign up and we'll send the best deals to you</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-auto">
-                <div class="single-field -w-410 d-flex x-gap-10 y-gap-20">
-                    <div>
-                        <input class="bg-white h-60" type="text" placeholder="Your Email" />
-                    </div>
-
-                    <div>
-                        <button class="button -md h-60 bg-blue-1 text-white">Subscribe</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+</section> -->
+<section class="mt-40">
+@include('includes.subscribe')
 </section>
 
 @endsection
