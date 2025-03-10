@@ -433,37 +433,37 @@
                       </div>
 
                       <div class="col-auto">
-                        <a href="www.google.com" class="d-block text-14 text-blue-1 underline">Show on map</a>
+                        <a href="www.google.com" class="d-block text-14 text-blue-1 underline">{{translate('show_on_map')}}</a>
                       </div>
                     </div>
 
                     <div class="text-14 lh-15 mt-20">
-                      <div class="fw-500">About Resturant</div>
+                      <div class="fw-500">{{translate('about_restaurant')}}</div>
                       <div class="text-light-1">{{$restaurant->description}}</div>
                     </div>
 
                     <div class="text-14 text-green-2 lh-15 mt-10">
-                      <div class="fw-500">Free cancellation</div>
-                      <div class="">You can cancel later, so lock in this great price today.</div>
+                      <div class="fw-500">{{translate('free_cancellation')}}</div>
+                      <div class="">{{translate('cancel_later')}}</div>
                     </div>
 
                     <div class="row x-gap-10 y-gap-10 pt-20">
 
                     @if($restaurant->wifi_availability)
                       <div class="col-auto">
-                        <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">WiFi</div>
+                        <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">{{translate('wifi')}}</div>
                       </div>
                     @endif
                     @if($restaurant->parking_availability)
 
                       <div class="col-auto">
-                        <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">Parking</div>
+                        <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">{{translate('parking')}}</div>
                       </div>
                     @endif
                     @if($restaurant->outdoor_seating)
 
                       <div class="col-auto">
-                        <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">Outdoor Seat</div>
+                        <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">{{translate('outdoor_seat')}}</div>
                       </div>
                     @endif
 
@@ -484,9 +484,9 @@
                     </div> -->
 
                     <div class="">
-                      <div class="text-14 text-light-1 mt-50 md:mt-20">This resturant's food menu start form</div>
+                      <div class="text-14 text-light-1 mt-50 md:mt-20">{{translate('restaurant_menu_start')}}</div>
                       <div class="text-22 lh-12 fw-600 mt-5">¥{{ $restaurant-> price_range}}</div>
-                      <div class="text-14 text-light-1 mt-5">in this price taxes are not include.</div>
+                      <div class="text-14 text-light-1 mt-5">{{translate('taxes_not_included')}}</div>
 
 
                       <a href="{{ route('restaurant.detail', ['id' => $restaurant->id]) }}" class="button -md -dark-1 bg-blue-1 text-white mt-24">

@@ -175,6 +175,15 @@ class TranslationSeeder extends Seeder
             ['key' => 'add_question_category', 'en' => 'Add Question Category', 'jp' => '質問カテゴリを追加'],
             ['key' => 'question_category', 'en' => 'Question Category', 'jp' => '質問カテゴリ'],
             ['key' => 'question', 'en' => 'Question', 'jp' => '質問'],
+            ['key' => 'free_cancellation', 'en' => 'Free Cancellation', 'jp' => '無料キャンセル'],
+            ['key' => 'cancel_later', 'en' => 'You can cancel later, so lock in this great price today.', 'jp' => '後でキャンセル可能なので、今すぐお得な価格を確保しましょう。'],
+            ['key' => 'wifi', 'en' => 'WiFi', 'jp' => 'WiFi'],
+            ['key' => 'parking', 'en' => 'Parking', 'jp' => '駐車場'],
+            ['key' => 'outdoor_seat', 'en' => 'Outdoor Seat', 'jp' => '屋外席'],
+            ['key' => 'restaurant_menu_start', 'en' => "This restaurant's food menu starts from", 'jp' => 'このレストランのフードメニューは次の価格から'],
+            ['key' => 'taxes_not_included', 'en' => 'In this price, taxes are not included.', 'jp' => 'この価格には税金が含まれていません。'],
+            ['key' => 'show_on_map', 'en' => 'Show on Map', 'jp' => '地図で表示'],
+            ['key' => 'about_restaurant', 'en' => 'About Restaurant', 'jp' => 'レストランについて'],
         ];
 
         foreach ($translations as $data) {
