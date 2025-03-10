@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Exception;
 use App\Models\User;
+use App\Models\Booking;
+use App\Models\Restaurant;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -29,12 +31,29 @@ class UserController extends Controller
         return view('user.dashboard');
     }
     
-    public function show()
-    {
+        public function show()
+        {
+            $user = Auth::user();
+
+            $bookings = Booking::select('bookings.*', 'restaurants.name as restaurant_name', 'restaurants.address as restaurant_address') 
+                        ->where('bookings.user_id', $user->id)
+                        ->join('restaurants', 'bookings.restaurant_id', '=', 'restaurants.id') 
+                        ->get();
+            return view('user.dashboard', compact('user', 'bookings'));
+        }
+
+        public function adminbooking()
+        {
+            $bookings = Booking::select('bookings.*', 'restaurants.name as restaurant_name', 'restaurants.address as restaurant_address', 'restaurants.city', 'restaurants.phone_number', 'restaurants.price_range', 'restaurants.website_url')
+                                ->join('restaurants', 'bookings.restaurant_id', '=', 'restaurants.id') 
+                                ->get();
         
-        $user = Auth::user();
-        return view('user.dashboard', compact('user'));
-    } 
+            return view('resturant.booking', compact('bookings'));
+        }
+
+        
+
+
     
     public function profileupdate(Request $request)
 {

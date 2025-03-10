@@ -76,7 +76,7 @@
             var formData = new FormData(this);
 
             $.ajax({
-                url: "{{ route('admin.login') }}",
+                url: "{{ route('admin.post.login') }}",
                 type: 'POST',
                 dataType: 'json',
                 data: formData,

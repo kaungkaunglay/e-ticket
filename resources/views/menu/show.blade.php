@@ -66,7 +66,7 @@
     </div>
 
     <div class="pt-30 pagination d-flex">
-        <!-- Pagination links can be added here if needed -->
+        
     </div>
 </div>
 @endsection
