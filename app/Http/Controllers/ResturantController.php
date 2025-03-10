@@ -37,6 +37,13 @@ class ResturantController extends Controller
         return view('resturant.restaurant-detail', compact('restaurant'));
     }
 
+    public function all()
+    {
+        $restaurants = Restaurant::where('status', 1)->paginate(10);
+        return view('restaurant-list', compact('restaurants'));
+        
+    }
+
     public function store(Request $request)
 {
     $request->validate([

@@ -36,15 +36,17 @@ Route::get('/search', [HomeController::class, 'search'])->name('restaurant.searc
 
 Route::get('/get-cities', [HomeController::class, 'getCities'])->name('cities.get');
 
+Route::get('/restaurant-list', [ResturantController::class, 'all'])->name('restaurant-list');
+
 // Route::get('/login', function () {
 //     return view('login');
 // })->name('login');
 // Route::get('/signup', function () {
 //     return view('signup');
 // })->name('signup');
-Route::get('/restaurant-list', function () {
-    return view('restaurant-list');
-})->name('restaurant-list');
+// Route::get('/restaurant-list', function () {
+//     return view('restaurant-list');
+// })->name('restaurant-list');
 Route::get('/search-result', function () {
     return view('search-result');
 })->name('search-result');

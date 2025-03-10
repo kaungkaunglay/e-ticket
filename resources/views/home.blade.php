@@ -1783,7 +1783,7 @@
            
             @foreach($restaurants as $restaurant)
             <div class="col-xl-3 col-lg-3 col-sm-6">
-              <a href="{{ locale_route('restaurant-detail', ['id' => $restaurant->id]) }}" class="hotelsCard -type-1">
+              <a href="{{ route('restaurant.detail', ['id' => $restaurant->id]) }}" class="hotelsCard -type-1">
                 <div class="hotelsCard__image">
                   <div class="cardImage ratio ratio-1:1">
                     <div class="cardImage__content">
