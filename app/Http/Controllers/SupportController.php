@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Support;
 use App\Models\Question;
 use Illuminate\Http\Request;
+use App\Models\PromotionCode;
+use App\Models\User;
 
 class SupportController extends Controller
 {
@@ -129,5 +131,82 @@ class SupportController extends Controller
         $question->delete();
 
         return redirect()->route('support.index')->with('success', 'Question deleted successfully!');
+    }
+
+    
+    public function promoshow(){
+      return view('resturant.promotion');
+    }
+     
+    public function search(Request $request)
+{
+    $request->validate([
+        'code' => 'required|string',
+    ]);
+
+    // Retrieve the promotion code from the request body
+    $promoCode = $request->input('code');
+
+    $promotion = PromotionCode::where('code', $promoCode)
+        ->with('user') // Load the user relationship
+        ->first();
+
+    if (!$promotion) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Promotion code not found',
+        ], 404);
+    }
+
+    return response()->json([
+        'success' => true,
+        'data' => [
+            'promotion_code' => $promotion->code,
+            'expires_at' => $promotion->expires_at,
+            'status' => $promotion->status,
+            'user' => [
+                'id' => $promotion->user->id,
+                'first_name' => $promotion->user->first_name,
+                'last_name' => $promotion->user->last_name,
+                'email' => $promotion->user->email,
+                'address' => $promotion->user->address,
+                'postal_code' => $promotion->user->postal_code,
+                'phone' => $promotion->user->phone,
+            ],
+        ],
+    ]);
+}
+
+
+
+
+    public function updatePromo(Request $request)
+    {
+      
+        $request->validate([
+            'code' => 'required|string|exists:promotion_codes,code',
+        ]);
+
+
+        $promotion = PromotionCode::where('code', $request->code)->first();
+
+        if (!$promotion) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Promotion code not found',
+            ], 404);
+        }
+
+      
+        $promotion->update(['status' => 1]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Promotion status updated successfully',
+            'data' => [
+                'code' => $promotion->code,
+                'status' => $promotion->status,
+            ]
+        ]);
     }
 }

@@ -15,6 +15,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShoperController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MenuController;
 
 
 /*
@@ -102,7 +103,9 @@ Route::get('/password/reset/{token}', [ForgetPasswordController::class, 'showRes
 Route::post('/password/reset', [ForgetPasswordController::class, 'reset'])->name('reset_password');
 Route::get('/password/success', [ForgetPasswordController::class, 'success'])->name('reset_success');
 Route::PUT('/user/password', [UserController::class, 'userpassword'])->name('user.password');
-
+Route::get('/promotion/show', [SupportController::class, 'promoshow'])->name('promo.show');
+Route::POST('/promotion/search', [SupportController::class, 'search'])->name('promo.search');
+Route::post('/promotion/update', [SupportController::class, 'updatePromo'])->name('update.promo');
 
 
 
@@ -151,6 +154,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('owner/createsupport/{id?}', [SupportController::class, 'postcreate'])->name('createsupport.create');
     Route::post('owner/storeOrUpdate/{id?}', [SupportController::class, 'storeOrUpdate'])->name('createsupport.storeOrUpdate');
     Route::delete('owner/question/{id}', [SupportController::class, 'questiondestroy'])->name('question.destroy');
+    
 
 
     Route::get('owner/supportcategory', [SupportController::class, 'category'])->name('support.category');
@@ -159,9 +163,20 @@ Route::middleware(['admin'])->group(function () {
     Route::put('owner/updatecategory/{id}', [SupportController::class, 'update'])->name('support.updatecategory');
     Route::get('owner/support-category/{id}/edit', [SupportController::class, 'edit'])->name('support-category.edit');
     Route::delete('owner/support-category/{id}', [SupportController::class, 'destroy'])->name('support-category.destroy');
+    
 
-    Route::post('/admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
+
+    Route::get('/menu', [MenuController::class, 'index'])->name('menu.index');
+    Route::get('menu/manage/{id?}', [MenuController::class, 'manage'])->name('menu.manage');
+    Route::post('menu/store-or-update/{id?}', [MenuController::class, 'storeOrUpdate'])->name('menu.storeOrUpdate');
+
+
+    
+    //promotion
+     Route::post('/admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
 });
+
+
 
 Route::middleware(['vendor'])->group(function () {
     Route::get('/vendor/dashboard', function () {

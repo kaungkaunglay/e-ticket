@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class PromotionCode extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'code', 'expires_at'];
+    protected $fillable = ['user_id', 'code', 'expires_at','status'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

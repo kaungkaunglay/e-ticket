@@ -189,6 +189,13 @@
                 </div>
 
                 <div class="sidebar__item">
+                    <a href="{{ route('promo.show')}}" class="sidebar__button d-flex items-center text-15 lh-1 fw-500">
+                        <img src="{{asset('/assets/img/dashboard/sidebar/booking.svg')}}" alt="image" class="mr-15" />
+                        {{translate('promotion_code')}}
+                    </a>
+                </div>
+
+                <div class="sidebar__item">
                     <div class="accordion -db-sidebar js-accordion">
                         <div class="accordion__item">
                             <div class="accordion__button">
@@ -243,7 +250,15 @@
                             </div>
                         </div>
                     </div>
-
+                      
+                    
+                    <div class="sidebar__item">
+                    <a href="{{ route('menu.index')}}" class="sidebar__button d-flex items-center text-15 lh-1 fw-500">
+                        <img src="{{asset('/assets/img/dashboard/sidebar/booking.svg')}}" alt="image" class="mr-15" />
+                        {{translate('menu')}}
+                    </a>
+                </div>
+                
                     <div class="accordion -db-sidebar js-accordion">
                         <div class="accordion__item">
                             <div class="accordion__button">
