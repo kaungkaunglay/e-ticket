@@ -35,8 +35,10 @@ return new class extends Migration
             $table->boolean('parking_availability')->default(false);
             $table->boolean('outdoor_seating')->default(false);
             $table->json('social_links')->nullable();
+            $table->string('menu')->nullable();
+            $table->text('google_map')->nullable();
             $table->string('status'); 
-            $table->string('available');
+            $table->string('available')->nullable();
             $table->string('user_id')->nullable();
             $table->timestamps();
         });

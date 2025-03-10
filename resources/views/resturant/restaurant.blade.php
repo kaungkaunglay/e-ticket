@@ -20,7 +20,11 @@
 
         <div class="row x-gap-20 y-gap-20">
             <!-- Category -->
+           
+
+
             <div class="col-12">
+            <label class="lh-1 text-16 text-light-1">Restaurant Type</label>
                 <div class="form-input">
                     <select name="category_id" class="form-control" required>
                         <option value="">{{translate('select_category')}}</option>
@@ -32,6 +36,23 @@
                     </select>
                 </div>
             </div>
+
+
+            <div class="col-12">
+            <label class="lh-1 text-16 text-light-1">Menu</label>
+                <div class="form-input">
+                    <select name="menu" class="form-control" required>
+                        <option value="">{{translate('select_menu')}}</option>
+                        @foreach($menus as $menu)
+                        <option value="{{ $menu->menu }}"  {{ isset($restaurant) && $restaurant->menu == $menu->name ? 'selected' : '' }}>
+                            {{ $menu->menu }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+            
 
             <!-- Name -->
             <div class="col-12">
@@ -104,17 +125,17 @@
                 </div>
 
                 <!-- Latitude & Longitude -->
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                     <label class="lh-1 text-16 text-light-1">{{translate('latitude')}}</label>
                     <div class="form-input">
                         <input type="text" name="latitude" value="{{ old('latitude', $restaurant->latitude ?? '') }}">
 
                     </div>
-                </div>
+                </div> -->
                 <div class="col-md-6">
-                    <label class="lh-1 text-16 text-light-1">{{translate('longitude')}}</label>
+                    <label class="lh-1 text-16 text-light-1">{{translate('google_map')}}</label>
                     <div class="form-input">
-                        <input type="text" name="longitude" value="{{ old('longitude', $restaurant->longitude ?? '') }}">
+                        <input type="text" name="google_map" value="{{ old('google_map', $restaurant->google_map ?? '') }}">
 
                     </div>
                 </div>

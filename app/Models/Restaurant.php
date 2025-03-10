@@ -38,6 +38,8 @@ class Restaurant extends Model
         'available',
         'user_id',
         'discount',
+        'menu',
+        'google_map',
     ];
 
     public function category()
@@ -48,5 +50,10 @@ class Restaurant extends Model
     public function getMultiImagesAttribute($value)
     {
         return json_decode($value, true);
+    }
+
+    public function menus()
+    {
+        return $this->belongsToMany(Menu::class, 'restaurant_menu', 'restaurant_id', 'menu_id');
     }
 }
