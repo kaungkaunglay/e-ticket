@@ -9,7 +9,7 @@
       <div class="col-auto">
         <div class="row x-gap-10 y-gap-5 items-center text-14 text-light-1">
           <div class="col-auto">
-            <div class="">Home</div>
+            <div class="">{{translate('home')}}</div>
           </div>
           <div class="col-auto">
             <div class="">></div>
@@ -28,52 +28,6 @@
     </div>
   </div>
 </section>
-
-<div class="singleMenu js-singleMenu">
-  <div class="singleMenu__content">
-    <div class="container">
-      <div class="row y-gap-20 justify-between items-center">
-        <div class="col-auto">
-          <div class="singleMenu__links row x-gap-30 y-gap-10">
-            <div class="col-auto">
-              <a href="#overview">Overview</a>
-            </div>
-            <div class="col-auto">
-              <a href="#rooms">Rooms</a>
-            </div>
-            <div class="col-auto">
-              <a href="#reviews">Reviews</a>
-            </div>
-            <div class="col-auto">
-              <a href="#facilities">Facilities</a>
-            </div>
-            <div class="col-auto">
-              <a href="#faq">Faq</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-auto">
-          <div class="row x-gap-15 y-gap-15 items-center">
-            <div class="col-auto">
-              <div class="text-14">
-                From
-                <span class="text-22 text-dark-1 fw-500">US$72</span>
-              </div>
-            </div>
-
-            <div class="col-auto">
-              <a href="#" class="button h-50 px-24 -dark-1 bg-blue-1 text-white">
-                Book
-                <div class="icon-arrow-top-right ml-15"></div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <section class="pt-40">
   <div class="container">
@@ -122,7 +76,7 @@
 
           <div class="col-auto">
             <a href="#" class="button h-50 px-24 -dark-1 bg-blue-1 text-white">
-              Booking
+              {{translate('booking')}}
               <div class="icon-arrow-top-right ml-15"></div>
             </a>
           </div>
@@ -173,7 +127,7 @@
         @if($firstImage)
         <div class="absolute px-10 py-10 col-12 h-full d-flex justify-end items-end">
           <a href="{{ asset($firstImage) }}" class="button -blue-1 px-24 py-15 bg-white text-dark-1 js-gallery" data-gallery="gallery2">
-            See All {{ count($images) }} Photos
+            {{translate('see_all')}} {{ count($images) }} {{translate('photos')}}
           </a>
 
           @foreach($images as $image)
@@ -192,7 +146,7 @@
       <div class="col-xl-8">
         <div class="row y-gap-40">
           <div class="col-12">
-            <h3 class="text-22 fw-500">Property highlights</h3>
+            <h3 class="text-22 fw-500">{{translate('property_highlights')}}</h3>
             <div class="row y-gap-20 pt-30">
               <div class="col-lg-3 col-6">
                 <div class="text-center">
@@ -204,14 +158,14 @@
               <div class="col-lg-3 col-6">
                 <div class="text-center">
                   <i class="icon-bell-ring text-24 text-blue-1"></i>
-                  <div class="text-15 lh-1 mt-10">Front desk [{{$restaurant->operating_hours}}]</div>
+                  <div class="text-15 lh-1 mt-10">{{translate('operating_hours')}} [{{$restaurant->operating_hours}}]</div>
                 </div>
               </div>
             </div>
           </div>
 
           <div id="overview" class="col-12">
-            <h3 class="text-22 fw-500 pt-40 border-top-light">Overview</h3>
+            <h3 class="text-22 fw-500 pt-40 border-top-light">{{translate('overview')}}</h3>
             <p class="text-dark-1 text-15 mt-20">
               {{$restaurant->description}}
             </p>
@@ -258,21 +212,21 @@
               <div class="col-lg-3 col-6">
                 <div class="text-center">
                   <i class="icon-nearby text-24 text-blue-1"></i>
-                  <div class="text-15 lh-1 mt-10">Phone - {{$restaurant->phone_number}}</div>
+                  <div class="text-15 lh-1 mt-10">{{translate('phone')}} - {{$restaurant->phone_number}}</div>
                 </div>
               </div>
 
               <div class="col-lg-3 col-6">
                 <div class="text-center">
                   <i class="icon-newsletter text-24 text-blue-1"></i>
-                  <div class="text-15 lh-1 mt-10">Email - {{$restaurant->email}}</div>
+                  <div class="text-15 lh-1 mt-10">{{translate('email')}} - {{$restaurant->email}}</div>
                 </div>
               </div>
 
               <div class="col-lg-3 col-6">
                 <div class="text-center">
                 <i class="icon-city text-24 text-blue-1"></i>
-                <div class="text-15 lh-1 mt-10">Address - {{$restaurant->address}}</div>
+                <div class="text-15 lh-1 mt-10">{{translate('address')}} - {{$restaurant->address}}</div>
                 </div>
               </div>
             </div>
@@ -464,9 +418,9 @@
 
           <div class="px-30 py-30 border-light rounded-4 mt-30">
             <div class="flex-center ratio ratio-15:9 mb-15 js-lazy" data-bg="img/general/map.png')}}">
-              <a href="www.google.com" class="button py-15 px-24 -blue-1 bg-white text-dark-1 absolute">
+              <a href="{{ $restaurant -> google_map}}" class="button py-15 px-24 -blue-1 bg-white text-dark-1 absolute" target="_blank">
                 <i class="icon-location text-22 mr-10"></i>
-                Show on map
+                {{translate('show_on_map')}}
               </a>
             </div>
 
@@ -474,7 +428,7 @@
               <div class="col-12">
                 <div class="d-flex items-center">
                   <i class="icon-award text-20 text-blue-1"></i>
-                  <div class="text-14 fw-500 ml-10">Exceptional location - {{$restaurant->city}}</div>
+                  <div class="text-14 fw-500 ml-10">{{translate('location')}} - {{$restaurant->city}}</div>
                 </div>
               </div>
             </div>
