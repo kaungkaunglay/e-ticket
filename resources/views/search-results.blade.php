@@ -103,7 +103,7 @@
     <div class="row y-gap-30">
       <div class="col-xl-3 col-lg-4 lg:d-none">
         <aside class="sidebar y-gap-40">
-          <div class="sidebar__item -no-border">
+          <!-- <div class="sidebar__item -no-border">
             <div class="flex-center ratio ratio-15:9 js-lazy" data-bg="{{asset('assets/img/general/map.png')}}">
               <button class="button py-15 px-24 -blue-1 bg-white text-dark-1 absolute" data-x-click="mapFilter">
                 <i class="icon-destination text-22 mr-10"></i>
@@ -120,7 +120,7 @@
                 <i class="icon-search text-20 px-15 text-dark-1"></i>
               </button>
             </div>
-          </div>
+          </div> -->
 
           <div class="sidebar__item pb-30">
             <h5 class="text-18 fw-500 mb-10">{{translate('price')}}</h5>
