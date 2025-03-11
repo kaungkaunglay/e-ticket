@@ -44,7 +44,8 @@
         color: white;
         padding: 0px;
     }
-    .movespace{
+
+    .movespace {
         padding: 18px;
         color: red;
     }
@@ -68,10 +69,10 @@
 
         <div class="row x-gap-20 y-gap-20">
             <!-- Category -->
-        <div class="col-12">
+            <div class="col-12">
                 <label class="lh-1 text-16 text-light-1">Restaurant Type</label>
                 <div class="form-input">
-                    <select name="category_id" class="form-control" required>
+                    <select name="category_id" class="form-control">
                         <option value="">{{translate('select_category')}}</option>
                         @foreach($categories as $category)
                         <option value="{{ $category->id }}" {{ isset($restaurant) && $restaurant->category_id == $category->id ? 'selected' : '' }}>
@@ -90,7 +91,7 @@
                     <select id="menu-select" class="form-control">
                         <option value="">Select a menu</option>
                         @foreach($menus as $menu)
-                        <option value="{{ $menu->menu }}">{{ $menu->menu }}</option>
+                        <option value="{{ $menu->id }}">{{ $menu->menu }}</option>
                         @endforeach
                     </select>
 
@@ -105,6 +106,10 @@
 
                 <input type="hidden" name="menu" id="selected-menu-ids">
             </div>
+
+
+
+
 
             <!-- Name -->
             <div class="col-12">
@@ -226,13 +231,24 @@
 
 
 
-
                 <div class="col-12">
-                    <label class="lh-1 text-16 text-light-1">{{ translate('closed_day') }}</label>
+                    <label class="lh-1 text-16 text-light-1">Closed Days</label>
                     <div class="form-input">
-                        <input type="text" name="closed_days" id="closed_days" class="form-control" value="{{ old('closed_days', $restaurant->closed_days ?? '') }}">
+                        <select id="week-select" class="form-control" >
+                            <option value="">Select a week</option>
+                            @foreach($weeks as $week)
+                            <option value="{{ $week->id }}">{{ $week->day }}</option>
+                            @endforeach
+                        </select>
+                        <button type="button" id="add-week" class="bg-red button h-50 px-24 -dark-1 bg-blue-1 text-white mt-10">Add Week</button>
                     </div>
+                    <div id="selected-weeks" class="mt-20">
+                        <ul id="selected-weeks-list" class="list-group"></ul>
+                    </div>
+                    <input type="hidden" name="closed_days" id="selected-week-ids">
                 </div>
+
+
                 <div class="col-12">
                     <label class="lh-1 text-16 text-light-1">{{translate('price_range')}}</label>
                     <div class="form-input">
@@ -241,10 +257,9 @@
                     </div>
                 </div>
                 <div class="col-12">
-                    <label class="lh-1 text-16 text-light-1">{{translate('Discount')}}</label>
+                    <label class="lh-1 text-16 text-light-1">{{ translate('Discount') }}</label>
                     <div class="form-input">
-                        <input type="text" name="discount" value="{{ old('discount', $restaurant->discount ?? '') }}">
-
+                        <input type="text" name="discount" value="{{ old('discount', $restaurant->discount ?? 0) }}">
                     </div>
                 </div>
                 <!-- Additional Features -->
@@ -264,7 +279,7 @@
                 <div class="col-12">
                     <label class="lh-1 text-16 text-light-1">{{translate('available')}}</label>
                     <div class="form-input">
-                        <input type="text" name="available" value="{{ old('available', $restaurant->available ?? '') }}" require>
+                        <input type="text" name="available" value="{{ old('available', $restaurant->available ?? '') }}">
 
                     </div>
                 </div>
@@ -298,6 +313,8 @@
     document.addEventListener('DOMContentLoaded', function() {
         const multiImagesInput = document.getElementById('multi_images');
         const imagePreview = document.getElementById('image-preview');
+
+        // Initialize Flatpickr for closed days
         flatpickr('#closed_days', {
             noCalendar: false,
             dateFormat: 'Y-m-d',
@@ -305,6 +322,7 @@
             disableMobile: true
         });
 
+        // Image preview functionality
         if (multiImagesInput && imagePreview) {
             multiImagesInput.addEventListener('change', function(e) {
                 const files = e.target.files;
@@ -335,15 +353,12 @@
             });
         }
 
-
+        /** MENU SELECTION **/
         const menuSelect = document.getElementById('menu-select');
         const addMenuButton = document.getElementById('add-menu');
         const selectedMenusList = document.getElementById('selected-menus-list');
         const selectedMenuIdsInput = document.getElementById('selected-menu-ids');
-
-
         let selectedMenus = [];
-
 
         function updateSelectedMenuIds() {
             if (selectedMenuIdsInput) {
@@ -351,49 +366,100 @@
             }
         }
 
-
         function addMenu() {
-            if (menuSelect && selectedMenusList) {
-                const selectedMenuId = menuSelect.value;
-                const selectedMenuName = menuSelect.options[menuSelect.selectedIndex].text;
-
-                if (selectedMenuId && !selectedMenus.includes(selectedMenuId)) {
-
-                    selectedMenus.push(selectedMenuId);
-
-
-                    const listItem = document.createElement('li');
-                    listItem.className = 'list-group-item';
-                    listItem.textContent = selectedMenuName;
-
-
-                    const removeButton = document.createElement('button');
-                    removeButton.className = 'btn btn-danger btn-sm float-right buttoncss';
-                    removeButton.textContent = 'Remove';
-                    removeButton.onclick = function() {
-
-                        selectedMenus = selectedMenus.filter(id => id !== selectedMenuId);
-
-                        selectedMenusList.removeChild(listItem);
-
-                        updateSelectedMenuIds();
-                    };
-
-                    listItem.appendChild(removeButton);
-                    selectedMenusList.appendChild(listItem);
-
-
+            const selectedMenuId = menuSelect.value;
+            const selectedMenuName = menuSelect.options[menuSelect.selectedIndex].text;
+            if (selectedMenuId && !selectedMenus.includes(selectedMenuId)) {
+                selectedMenus.push(selectedMenuId);
+                const listItem = document.createElement('li');
+                listItem.className = 'list-group-item';
+                listItem.textContent = selectedMenuName;
+                const removeButton = document.createElement('button');
+                removeButton.className = 'btn btn-danger btn-sm float-right movespace';
+                removeButton.textContent = 'Remove';
+                removeButton.onclick = function() {
+                    selectedMenus = selectedMenus.filter(id => id !== selectedMenuId);
+                    selectedMenusList.removeChild(listItem);
                     updateSelectedMenuIds();
-                }
+                };
+                listItem.appendChild(removeButton);
+                selectedMenusList.appendChild(listItem);
+                updateSelectedMenuIds();
             }
         }
-
 
         if (addMenuButton) {
             addMenuButton.addEventListener('click', addMenu);
         }
 
+        /** WEEK SELECTION **/
+        const weekSelect = document.getElementById('week-select');
+        const addWeekButton = document.getElementById('add-week');
+        const selectedWeeksList = document.getElementById('selected-weeks-list');
+        const selectedWeekIdsInput = document.getElementById('selected-week-ids');
+        let selectedWeeks = [];
 
+        function updateSelectedWeekIds() {
+            if (selectedWeekIdsInput) {
+                selectedWeekIdsInput.value = JSON.stringify(selectedWeeks);
+            }
+        }
+
+        function addWeek() {
+            const selectedWeekId = weekSelect.value;
+            const selectedWeekName = weekSelect.options[weekSelect.selectedIndex].text;
+            if (selectedWeekId && !selectedWeeks.includes(selectedWeekId)) {
+                selectedWeeks.push(selectedWeekId);
+                const listItem = document.createElement('li');
+                listItem.className = 'list-group-item';
+                listItem.textContent = selectedWeekName;
+                const removeButton = document.createElement('button');
+                removeButton.className = 'btn btn-danger btn-sm float-right movespace';
+                removeButton.textContent = 'Remove';
+                removeButton.onclick = function() {
+                    selectedWeeks = selectedWeeks.filter(id => id !== selectedWeekId);
+                    selectedWeeksList.removeChild(listItem);
+                    updateSelectedWeekIds();
+                };
+                listItem.appendChild(removeButton);
+                selectedWeeksList.appendChild(listItem);
+                updateSelectedWeekIds();
+            }
+        }
+
+        if (addWeekButton) {
+            addWeekButton.addEventListener('click', addWeek);
+        }
+
+
+        const initialSelectedWeeks = JSON.parse('{!! json_encode($restaurant->weeks) !!}');
+        if (selectedWeeksList && weekSelect) {
+            initialSelectedWeeks.forEach(weekId => {
+                const weekOption = document.querySelector(`#week-select option[value="${weekId}"]`);
+                if (weekOption) {
+                    const weekName = weekOption.textContent;
+                    const listItem = document.createElement('li');
+                    listItem.className = 'list-group-item';
+                    listItem.textContent = weekName;
+
+                    const removeButton = document.createElement('button');
+                    removeButton.className = 'btn btn-danger btn-sm float-right movespace';
+                    removeButton.textContent = 'Remove';
+                    removeButton.onclick = function() {
+                        selectedWeeksList.removeChild(listItem);
+                        selectedWeeks = selectedWeeks.filter(id => id !== weekId);
+                        updateSelectedWeekIds();
+                    };
+
+                    listItem.appendChild(removeButton);
+                    selectedWeeksList.appendChild(listItem);
+                }
+            });
+            selectedWeeks = initialSelectedWeeks;
+            updateSelectedWeekIds();
+        }
+
+        /** PREPOPULATE SELECTED MENUS **/
         const initialSelectedMenus = JSON.parse('{!! json_encode($restaurant->menu) !!}');
         if (selectedMenusList && menuSelect) {
             initialSelectedMenus.forEach(menuId => {
@@ -401,30 +467,25 @@
                 const listItem = document.createElement('li');
                 listItem.className = 'list-group-item';
                 listItem.textContent = menuName;
-
                 const removeButton = document.createElement('button');
-                removeButton.className = 'btn btn-danger btn-sm float-right movespace ';
+                removeButton.className = 'btn btn-danger btn-sm float-right movespace';
                 removeButton.textContent = 'Remove';
                 removeButton.onclick = function() {
                     selectedMenusList.removeChild(listItem);
                     selectedMenus = selectedMenus.filter(id => id !== menuId);
                     updateSelectedMenuIds();
                 };
-
                 listItem.appendChild(removeButton);
                 selectedMenusList.appendChild(listItem);
             });
-
-
             selectedMenus = initialSelectedMenus;
             updateSelectedMenuIds();
         }
-    });
 
-
-    function removeImage(element) {
-        if (element && element.parentElement) {
-            element.parentElement.remove();
+        function removeImage(element) {
+            if (element && element.parentElement) {
+                element.parentElement.remove();
+            }
         }
-    }
+    });
 </script>

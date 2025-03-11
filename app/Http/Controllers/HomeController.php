@@ -34,6 +34,7 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('city');
+        $checkIn = $request->input('check_in');
 
         $restaurants = Restaurant::where('status', 1)
             ->when($query, function ($q) use ($query) {
@@ -41,21 +42,64 @@ class HomeController extends Controller
             })
             ->paginate(10);
 
-        return view('search-results', compact('restaurants', 'query'));
+        return view('search-results', compact('restaurants', 'query', 'checkIn'));
     }
+
+
+    public function pricesearch(Request $request)
+    {
+
+        $query = $request->input('city');
+        $checkIn = $request->input('check_in');
+        $minPrice = $request->input('min_price');
+        $maxPrice = $request->input('max_price');
+
+
+        $restaurants = Restaurant::where('status', 1)
+            ->when($query, function ($q) use ($query) {
+                return $q->where('city', 'LIKE', "%{$query}%");
+            })
+            ->when($minPrice && $maxPrice, function ($q) use ($minPrice, $maxPrice) {
+                return $q->whereBetween('price_range', [$minPrice, $maxPrice]);
+            })
+            ->paginate(10);
+        
+        return view('search-results', compact('restaurants', 'query', 'checkIn', 'minPrice', 'maxPrice'));
+    }
+
+    public function searchcheckbox(Request $request)
+    {
+        $query = $request->input('city');
+        $checkIn = $request->input('check_in');
+        $minPrice = $request->input('min_price');
+        $maxPrice = $request->input('max_price');
+        $filterPrice = $request->input('filter_price', []);
+    
+       
+        $restaurants = Restaurant::where('status', 1)
+            ->when($minPrice && $maxPrice, function ($q) use ($minPrice, $maxPrice) {
+                return $q->whereBetween('price_range', [$minPrice, $maxPrice]);
+            });
+    
+       
+        $restaurants = $restaurants->get(); 
+    
+        // dd($restaurants); 
+    
+        return view('search-results', compact('restaurants', 'query', 'checkIn', 'minPrice', 'maxPrice'));
+    }
+    
+
 
     public function getCities()
     {
-        $cities = City::all();
-        return response()->json($cities);
+        // $cities = City::all();
+        // return response()->json($cities);
     }
-    
 
-    
-    public function booking()
-    {
-       
-    }
+
+
+    public function booking() {}
 
     /**
      * Store a newly created resource in storage.

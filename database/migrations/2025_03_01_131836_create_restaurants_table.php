@@ -31,9 +31,9 @@ return new class extends Migration
             $table->string('closed_days')->nullable();
             $table->string('price_range');
             $table->text('discount')->nullable();
-            $table->boolean('wifi_availability')->default(false);
-            $table->boolean('parking_availability')->default(false);
-            $table->boolean('outdoor_seating')->default(false);
+            $table->boolean('wifi_availability')->default(false)->nullable();
+            $table->boolean('parking_availability')->default(false)->nullable();
+            $table->boolean('outdoor_seating')->default(false)->nullable();
             $table->json('social_links')->nullable();
             $table->string('menu')->nullable();
             $table->text('google_map')->nullable();

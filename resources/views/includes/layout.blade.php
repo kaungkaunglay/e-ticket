@@ -569,7 +569,7 @@
                                                 <a href="{{locale_route('about')}}">{{translate('about_us')}}</a>
                                             </li>
                                             <li>
-                                                <a href="{{locale_route('restaurant-list')}}">{{translate('restaurants')}}</a>
+                                                <a href="/restaurant-lists">{{translate('restaurants')}}</a>
                                             </li>
                                             <li>
                                                 <a href="{{locale_route('support.page')}}">{{translate('support')}}</a>
