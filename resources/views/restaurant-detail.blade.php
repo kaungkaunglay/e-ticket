@@ -164,15 +164,75 @@
             </div>
           </div>
 
-                    <div id="overview" class="col-12">
-                        <h3 class="text-22 fw-500 pt-40 border-top-light">Overview</h3>
-                        <p class="text-dark-1 text-15 mt-20">
-                           {{$restaurant->description}}
-                        </p>
-                       
-                    </div>
+          <div id="overview" class="col-12">
+            <h3 class="text-22 fw-500 pt-40 border-top-light">{{translate('overview')}}</h3>
+            <p class="text-dark-1 text-15 mt-20">
+              {{$restaurant->description}}
+            </p>
 
-                    <!-- <div class="col-12">
+          </div>
+          <div class="col-md">
+
+            <div class="row x-gap-10 y-gap-10 pt-20">
+
+              @if($restaurant->wifi_availability)
+              <div class="col-auto">
+                <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">{{translate('wifi')}}</div>
+              </div>
+              @endif
+              @if($restaurant->parking_availability)
+
+              <div class="col-auto">
+                <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">{{translate('parking')}}</div>
+              </div>
+              @endif
+              @if($restaurant->outdoor_seating)
+
+              <div class="col-auto">
+                <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">{{translate('outdoor_seat')}}</div>
+              </div>
+              @endif
+
+              <div class="col-auto">
+                <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">{{$restaurant->available}}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <h3 class="text-22 fw-500">{{translate('contact_us')}}</h3>
+            <div class="row y-gap-20 pt-30">
+              <div class="col-lg-3 col-6">
+                <div class="text-center">
+                  <i class="icon-city text-24 text-blue-1"></i>
+                  <div class="text-15 lh-1 mt-10">{{$restaurant->city}}</div>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-6">
+                <div class="text-center">
+                  <i class="icon-nearby text-24 text-blue-1"></i>
+                  <div class="text-15 lh-1 mt-10">{{translate('phone')}} - {{$restaurant->phone_number}}</div>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-6">
+                <div class="text-center">
+                  <i class="icon-newsletter text-24 text-blue-1"></i>
+                  <div class="text-15 lh-1 mt-10">{{translate('email')}} - {{$restaurant->email}}</div>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-6">
+                <div class="text-center">
+                <i class="icon-city text-24 text-blue-1"></i>
+                <div class="text-15 lh-1 mt-10">{{translate('address')}} - {{$restaurant->address}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="col-12">
                         <h3 class="text-22 fw-500 pt-40 border-top-light">Most Popular Facilities</h3>
                         <div class="row y-gap-10 pt-20">
                             <div class="col-md-5">
@@ -218,8 +278,8 @@
                             </div>
                         </div>
                     </div> -->
-                </div>
-            </div>
+        </div>
+      </div>
 
             <div class="col-xl-4">
                 <div class="ml-50 lg:ml-0">
@@ -375,7 +435,7 @@
 
             <div class="border-top-light mt-15 mb-15"></div>
 
-                        <!-- <div class="text-15 fw-500">Popular landmarks</div>
+            <!-- <div class="text-15 fw-500">Popular landmarks</div>
 
                         <div class="d-flex justify-between pt-10">
                             <div class="text-14">Royal Pump Room Museum</div>
@@ -388,11 +448,11 @@
                         </div>
 
                         <a href="#" class="d-block text-14 fw-500 underline text-blue-1 mt-10">Show More</a> -->
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 <div id="reviews"></div>
 <section class="mt-40">
