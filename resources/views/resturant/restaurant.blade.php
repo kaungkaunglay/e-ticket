@@ -37,11 +37,16 @@
         line-height: 20px;
         cursor: pointer;
     }
-    .buttoncss{
+
+    .buttoncss {
         background-color: #950000;
-    border: none;
-    color: white;
-    padding: 0px;
+        border: none;
+        color: white;
+        padding: 0px;
+    }
+    .movespace{
+        padding: 18px;
+        color: red;
     }
 </style>
 <div class="row y-gap-20 justify-between items-end pb-60 lg:pb-40 md:pb-32">
@@ -63,11 +68,8 @@
 
         <div class="row x-gap-20 y-gap-20">
             <!-- Category -->
-           
-
-
-            <div class="col-12">
-            <label class="lh-1 text-16 text-light-1">Restaurant Type</label>
+        <div class="col-12">
+                <label class="lh-1 text-16 text-light-1">Restaurant Type</label>
                 <div class="form-input">
                     <select name="category_id" class="form-control" required>
                         <option value="">{{translate('select_category')}}</option>
@@ -82,27 +84,27 @@
 
 
             <div class="col-12">
-    <label class="lh-1 text-16 text-light-1">Menu</label>
-    <div class="form-input">
-       
-        <select id="menu-select" class="form-control">
-            <option value="">Select a menu</option>
-            @foreach($menus as $menu)
-                <option value="{{ $menu->menu }}">{{ $menu->menu }}</option>
-            @endforeach
-        </select>
-        
-        <button type="button" id="add-menu" class="button h-50 px-24 -dark-1 bg-blue-1 text-white mt-10">
-            Add Menu
-        </button>
-    </div>
- 
-    <div id="selected-menus" class="mt-20">
-        <ul id="selected-menus-list" class="list-group"></ul>
-    </div>
-   
-    <input type="hidden" name="menu" id="selected-menu-ids">
-</div>
+                <label class="lh-1 text-16 text-light-1">Menu</label>
+                <div class="form-input">
+
+                    <select id="menu-select" class="form-control">
+                        <option value="">Select a menu</option>
+                        @foreach($menus as $menu)
+                        <option value="{{ $menu->menu }}">{{ $menu->menu }}</option>
+                        @endforeach
+                    </select>
+
+                    <button type="button" id="add-menu" class="bg-red button h-50 px-24 -dark-1 bg-blue-1 text-white mt-10">
+                        Add Menu
+                    </button>
+                </div>
+
+                <div id="selected-menus" class="mt-20">
+                    <ul id="selected-menus-list" class="list-group"></ul>
+                </div>
+
+                <input type="hidden" name="menu" id="selected-menu-ids">
+            </div>
 
             <!-- Name -->
             <div class="col-12">
@@ -190,7 +192,7 @@
                     </div>
                 </div>
 
-           
+
                 <div class="col-md-4">
                     <label class="lh-1 text-16 text-light-1">{{translate('phone')}}</label>
                     <div class="form-input">
@@ -213,7 +215,7 @@
                     </div>
                 </div>
 
-              
+
                 <div class="col-12">
                     <label class="lh-1 text-16 text-light-1">{{translate('operating_hours')}}</label>
                     <div class="form-input">
@@ -222,15 +224,15 @@
                     </div>
                 </div>
 
-             
+
 
 
                 <div class="col-12">
-                <label class="lh-1 text-16 text-light-1">{{ translate('closed_day') }}</label>
-                <div class="form-input">
-                    <input type="text" name="closed_days" id="closed_days" class="form-control" value="{{ old('closed_days', $restaurant->closed_days ?? '') }}">
+                    <label class="lh-1 text-16 text-light-1">{{ translate('closed_day') }}</label>
+                    <div class="form-input">
+                        <input type="text" name="closed_days" id="closed_days" class="form-control" value="{{ old('closed_days', $restaurant->closed_days ?? '') }}">
+                    </div>
                 </div>
-            </div>
                 <div class="col-12">
                     <label class="lh-1 text-16 text-light-1">{{translate('price_range')}}</label>
                     <div class="form-input">
@@ -241,7 +243,7 @@
                 <div class="col-12">
                     <label class="lh-1 text-16 text-light-1">{{translate('Discount')}}</label>
                     <div class="form-input">
-                        <input type="text" name="discount" value="{{ old('discount', $restaurant->discount ?? '') }}" >
+                        <input type="text" name="discount" value="{{ old('discount', $restaurant->discount ?? '') }}">
 
                     </div>
                 </div>
@@ -251,7 +253,7 @@
                         <input type="checkbox" name="wifi_availability" value="1" {{ old('wifi_availability', $restaurant->wifi_availability ?? false) ? 'checked' : '' }}> {{translate('wifi_available')}}
                     </div>
                     <div class="form-check">
-                        <input type="checkbox" name="parking_availability" value="1" {{ old('parking_availability', $restaurant->parking_availability ?? false) ? 'checked' : '' }}> {{translate('parking_available')}} 
+                        <input type="checkbox" name="parking_availability" value="1" {{ old('parking_availability', $restaurant->parking_availability ?? false) ? 'checked' : '' }}> {{translate('parking_available')}}
                     </div>
                     <div class="form-check">
                         <input type="checkbox" name="outdoor_seating" value="1" {{ old('outdoor_seating', $restaurant->outdoor_seating ?? false) ? 'checked' : '' }}> {{translate('outdoor_seating')}}
@@ -288,26 +290,19 @@
 
 @endsection
 
-
-<!-- Select2 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
-<!-- Flatpickr CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
-<!-- Flatpickr JS -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Handle multi-image upload preview
         const multiImagesInput = document.getElementById('multi_images');
         const imagePreview = document.getElementById('image-preview');
         flatpickr('#closed_days', {
-            noCalendar: false, // Show calendar for day and month
-            dateFormat: 'Y-m-d', // Format: Year-Month-Day
-            defaultDate: '{{ old("closed_days", $restaurant->closed_days ?? "") }}', // Set default value
-            disableMobile: true // Disable mobile native picker
+            noCalendar: false,
+            dateFormat: 'Y-m-d',
+            defaultDate: '{{ old("closed_days", $restaurant->closed_days ?? "") }}',
+            disableMobile: true
         });
 
         if (multiImagesInput && imagePreview) {
@@ -340,65 +335,65 @@
             });
         }
 
-        // Handle menu selection and removal
+
         const menuSelect = document.getElementById('menu-select');
         const addMenuButton = document.getElementById('add-menu');
         const selectedMenusList = document.getElementById('selected-menus-list');
         const selectedMenuIdsInput = document.getElementById('selected-menu-ids');
 
-        // Array to store selected menu IDs
+
         let selectedMenus = [];
 
-        // Function to update the hidden input with selected menu IDs
+
         function updateSelectedMenuIds() {
             if (selectedMenuIdsInput) {
                 selectedMenuIdsInput.value = JSON.stringify(selectedMenus);
             }
         }
 
-        // Function to add a menu to the selected list
+
         function addMenu() {
             if (menuSelect && selectedMenusList) {
                 const selectedMenuId = menuSelect.value;
                 const selectedMenuName = menuSelect.options[menuSelect.selectedIndex].text;
 
                 if (selectedMenuId && !selectedMenus.includes(selectedMenuId)) {
-                    // Add the menu ID to the array
+
                     selectedMenus.push(selectedMenuId);
 
-                    // Add the menu to the list
+
                     const listItem = document.createElement('li');
                     listItem.className = 'list-group-item';
                     listItem.textContent = selectedMenuName;
 
-                    // Add a remove button
+
                     const removeButton = document.createElement('button');
                     removeButton.className = 'btn btn-danger btn-sm float-right buttoncss';
                     removeButton.textContent = 'Remove';
                     removeButton.onclick = function() {
-                        // Remove the menu from the array
+
                         selectedMenus = selectedMenus.filter(id => id !== selectedMenuId);
-                        // Remove the list item
+
                         selectedMenusList.removeChild(listItem);
-                        // Update the hidden input
+
                         updateSelectedMenuIds();
                     };
 
                     listItem.appendChild(removeButton);
                     selectedMenusList.appendChild(listItem);
 
-                    // Update the hidden input
+
                     updateSelectedMenuIds();
                 }
             }
         }
 
-        // Add event listener for the "Add" button
+
         if (addMenuButton) {
             addMenuButton.addEventListener('click', addMenu);
         }
 
-        // Pre-populate selected menus if editing
+
         const initialSelectedMenus = JSON.parse('{!! json_encode($restaurant->menu) !!}');
         if (selectedMenusList && menuSelect) {
             initialSelectedMenus.forEach(menuId => {
@@ -408,7 +403,7 @@
                 listItem.textContent = menuName;
 
                 const removeButton = document.createElement('button');
-                removeButton.className = 'btn btn-danger btn-sm float-right';
+                removeButton.className = 'btn btn-danger btn-sm float-right movespace ';
                 removeButton.textContent = 'Remove';
                 removeButton.onclick = function() {
                     selectedMenusList.removeChild(listItem);
@@ -420,13 +415,13 @@
                 selectedMenusList.appendChild(listItem);
             });
 
-            // Initialize the selectedMenus array with the pre-populated IDs
+
             selectedMenus = initialSelectedMenus;
             updateSelectedMenuIds();
         }
     });
 
-    // Function to remove an image preview
+
     function removeImage(element) {
         if (element && element.parentElement) {
             element.parentElement.remove();
