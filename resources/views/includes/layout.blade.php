@@ -138,7 +138,7 @@
 
 
 
-                                            <li class="menu-item-has-children -has-mega-menu">
+                                            <!-- <li class="menu-item-has-children -has-mega-menu">
                                                 <a data-barba href="#">
                                                     <span class="mr-10">{{ translate('categories') }}</span>
                                                     <i class="icon icon-chevron-sm-down"></i>
@@ -560,16 +560,16 @@
                                                         </ul>
                                                     </li>
                                                 </ul>
-                                            </li>
+                                            </li> -->
 
-                                            <li>
+                                            <!-- <li>
                                                 <a href="{{locale_route('user-dashboard')}}">{{translate('profile')}}</a>
+                                            </li> -->
+                                            <li>
+                                                <a href="{{locale_route('restaurant-list')}}">{{translate('restaurants')}}</a>
                                             </li>
                                             <li>
                                                 <a href="{{locale_route('about')}}">{{translate('about_us')}}</a>
-                                            </li>
-                                            <li>
-                                                <a href="{{locale_route('restaurant-list')}}">{{translate('restaurants')}}</a>
                                             </li>
                                             <li>
                                                 <a href="{{locale_route('support.page')}}">{{translate('support')}}</a>
@@ -733,10 +733,10 @@
                             <h5 class="text-20 fw-500 mb-30">{{translate('other')}}</h5>
                             <div class="d-flex y-gap-10 flex-column">
                                 <a href="{{locale_route('home')}}">{{translate('home')}}</a>
-                                <a href="#">{{translate('categories')}}</a>
+                                <!-- <a href="#">{{translate('categories')}}</a> -->
                                 <a href="{{locale_route('login')}}">{{translate('log_in')}}</a>
                                 <a href="{{locale_route('signup')}}">{{ translate('register')}} </a>
-                                <a href="{{locale_route('user-dashboard')}}">{{translate('profile')}}</a>
+                                <!-- <a href="{{locale_route('user-dashboard')}}">{{translate('profile')}}</a> -->
                                 <a href="{{locale_route('restaurant-list')}}">{{translate('restaurants')}}</a>
                             </div>
                         </div>
