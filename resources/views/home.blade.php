@@ -123,55 +123,61 @@
 
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-              <a href="{{locale_route('restaurant-detail')}}" class="hotelsCard -type-1 ">
-                <div class="hotelsCard__image">
+            @foreach($restaurants as $restaurant)
+              <div class="col-xl-3 col-lg-3 col-sm-6">
 
-                  <div class="cardImage ratio ratio-1:1">
-                    <div class="cardImage__content">
+                <a href="{{ route('restaurant.detail', ['id' => $restaurant->id]) }}" class="hotelsCard -type-1 ">
+                  <div class="hotelsCard__image">
 
-                      <img class="rounded-4 col-12" src="{{asset('assets/img/hotels/1.png')}}" alt="image">
+                    <div class="cardImage ratio ratio-1:1">
+                      <div class="cardImage__content">
 
+                        <img class="rounded-4 col-12" src="{{ asset('' . $restaurant->logo) }}" alt="{{ $restaurant->name }} logo">
+
+
+                      </div>
+
+                      <div class="cardImage__wishlist">
+                        <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+                          <i class="icon-heart text-12"></i>
+                        </button>
+                      </div>
+
+                      @if($restaurant->discount > 0)
+                        <div class="cardImage__leftBadge">
+                          <div class="py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase bg-dark-1 text-white">
+                            {{ $restaurant->discount }}% {{ translate('discount') }}
+                          </div>
+                        </div>
+                      @endif
 
                     </div>
 
-                    <div class="cardImage__wishlist">
-                      <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
-                        <i class="icon-heart text-12"></i>
-                      </button>
-                    </div>
+                  </div>
 
+                  <div class="hotelsCard__content mt-10">
+                    <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
+                      <span>{{$restaurant->name}}</span>
+                    </h4>
 
-                    <div class="cardImage__leftBadge">
-                      <div class="py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase bg-dark-1 text-white">
-                        Breakfast included
+                    <p class="text-light-1 lh-14 text-14 mt-5">{{$restaurant->address}}</p>
+
+                    <!-- <div class="d-flex items-center mt-20">
+                      <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
+                      <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
+                      <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
+                    </div> -->
+
+                    <div class="mt-5">
+                      <div class="fw-500 d-flex justify-content-between">
+                        {{translate('starting_from')}} <span class="text-green-2">¥{{number_format($restaurant->price_range)}}</span>
                       </div>
                     </div>
-
                   </div>
+                </a>
 
-                </div>
-
-                <div class="hotelsCard__content mt-10">
-                  <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
-                    <span>The Montcalm At Brewery London City</span>
-                  </h4>
-
-                  <p class="text-light-1 lh-14 text-14 mt-5">Westminster Borough, London</p>
-
-                  <div class="d-flex items-center mt-20">
-                    <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
-                    <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
-                    <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
-                  </div>
-
-                  <div class="mt-5">
-                    <div class="fw-500 d-flex justify-content-between">
-                      Starting from <span class="text-green-2">US$72</span>
-                    </div>
-                  </div>
-                </div>
-              </a>
-
+              </div>
+            @endforeach
             </div>
         </div>
       </div>
@@ -193,11 +199,11 @@
         <div class="tabs__pane -tab-item-1 is-tab-el-active">
           <div class="row y-gap-30">
 
-
-            @foreach($restaurants as $restaurant)
+            
+            @foreach($restaurants->take(4) as $restaurant)
               <div class="col-xl-3 col-lg-3 col-sm-6">
 
-                <a href="{{locale_route('restaurant-detail')}}" class="hotelsCard -type-1 ">
+                <a href="{{ route('restaurant.detail', ['id' => $restaurant->id]) }}" class="hotelsCard -type-1 ">
                   <div class="hotelsCard__image">
 
                     <div class="cardImage ratio ratio-1:1">

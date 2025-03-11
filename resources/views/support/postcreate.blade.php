@@ -35,8 +35,8 @@
 
             <div class="col-12">
                 <div class="form-input">
-                    <textarea name="description" required>{{ old('description', isset($question) ? $question->description : '') }}</textarea>
-                    <label class="lh-1 text-16 text-light-1">{{translate('description')}}</label>
+                    <textarea name="description" placeholder="{{translate('description')}}" class="pt-15">{{ old('description', isset($question) ? $question->description : '') }}</textarea>
+                    <!-- <label class="lh-1 text-16 text-light-1">{{translate('description')}}</label> -->
                 </div>
             </div>
         </div>

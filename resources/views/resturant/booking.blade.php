@@ -3,7 +3,7 @@
 @section('content')
 <div class="row y-gap-20 justify-between items-end pb-60 lg:pb-40 md:pb-32">
     <div class="col-auto">
-        <h1 class="text-30 lh-14 fw-600">{{translate('User All Booking')}}</h1>
+        <h1 class="text-30 lh-14 fw-600">{{translate('all_booking')}}</h1>
     </div>
 
     <div class="col-auto">
@@ -27,15 +27,15 @@
                 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Restaurant Name</th>
-            <th>Address</th>
+            <th>{{translate('name')}}</th>
+            <th>{{translate('address')}}</th>
             <!-- <th>City</th> -->
-            <th>Phone</th>
-            <th>Price Range</th>
+            <th>{{translate('phone')}}</th>
+            <th>{{translate('price')}}</th>
             <!-- <th>Web Url</th> -->
-            <th>Booking Date</th>
+            <th>{{translate('note')}}</th>
             <th>Note</th>
-            <th>View</th>
+            <th>{{translate('view')}}</th>
         </tr>
     </thead>
     <tbody>

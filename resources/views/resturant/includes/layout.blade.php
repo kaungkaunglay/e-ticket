@@ -46,7 +46,7 @@
     <header data-add-bg="" class="header -dashboard bg-white js-header" data-x="header" data-x-toggle="is-menu-opened">
         <div data-anim="fade" class="header__container px-30 sm:px-20">
             <div class="-left-side">
-                <a href="index.html" class="header-logo" data-x="header-logo" data-x-toggle="is-logo-dark">
+                <a href="{{route('admin.dashboard')}}" class="header-logo" data-x="header-logo" data-x-toggle="is-logo-dark">
                     <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon" />
                     <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon" />
                 </a>

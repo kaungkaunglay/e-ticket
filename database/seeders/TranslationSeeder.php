@@ -190,6 +190,20 @@ class TranslationSeeder extends Seeder
             ['key' => 'booking', 'en' => 'Booking', 'jp' => '予約'],
             ['key' => 'starting_from', 'en' => 'Starting from', 'jp' => '開始価格'],
             ['key' => 'login_with_line', 'en' => 'Login with LINE', 'jp' => 'LINEでログイン'],
+            ['key' => 'restaurant_type', 'en' => 'Restaurant Type', 'jp' => 'レストランの種類'],
+            ['key' => 'menu', 'en' => 'Menu', 'jp' => 'メニュー'],
+            ['key' => 'select_a_menu', 'en' => 'Select a Menu', 'jp' => 'メニューを選択'],
+            ['key' => 'select_a_week', 'en' => 'Select a Week', 'jp' => '週を選択'],
+            ['key' => 'google_map', 'en' => 'Google Map', 'jp' => 'Googleマップ'],
+            ['key' => 'discount', 'en' => 'Discount', 'jp' => '割引'],
+            ['key' => 'promotion_code', 'en' => 'Promotion Code', 'jp' => 'プロモーションコード'],
+            ['key' => 'booking_date', 'en' => 'Booking Date', 'jp' => '予約日'],
+            ['key' => 'all_booking', 'en' => 'All Booking', 'jp' => 'すべての予約'],
+            ['key' => 'view', 'en' => 'View', 'jp' => '表示'],
+            ['key' => 'note', 'en' => 'Note', 'jp' => 'メモ'],
+            ['key' => 'all_menu_list', 'en' => 'All Menu List', 'jp' => 'すべてのメニューリスト'],
+            ['key' => 'menu_create', 'en' => 'Create Menu', 'jp' => 'メニュー作成'],
+
         ];
 
         foreach ($translations as $data) {

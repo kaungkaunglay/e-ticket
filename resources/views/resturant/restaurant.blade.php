@@ -70,7 +70,7 @@
         <div class="row x-gap-20 y-gap-20">
             <!-- Category -->
         <div class="col-12">
-                <label class="lh-1 text-16 text-light-1 mb-10">Restaurant Type</label>
+                <label class="lh-1 text-16 text-light-1 mb-10">{{translate('restaurant_type')}}</label>
                 <div class="form-input">
                     <select name="category_id" class="form-control">
                         <option value="">{{translate('select_category')}}</option>
@@ -85,11 +85,11 @@
 
 
             <div class="col-12">
-                <label class="lh-1 text-16 text-light-1 mb-10">Menu</label>
+                <label class="lh-1 text-16 text-light-1 mb-10">{{translate('menu')}}</label>
                 <div class="form-input" style="gap: 10px; align-items: center; justify-content: space-between;">
 
                     <select id="menu-select" class="form-control">
-                        <option value="">Select a menu</option>
+                        <option value="">{{translate('select_a_menu')}}</option>
                         @foreach($menus as $menu)
                         <option value="{{ $menu->id }}">{{ $menu->menu }}</option>
                         @endforeach
@@ -232,15 +232,15 @@
 
 
                 <div class="col-12">
-                    <label class="lh-1 text-16 text-light-1 mb-10">{{ translate('closed_day') }}</label>
-                    <div class="form-input">
+                    <label class="lh-1 text-16 text-light-1 mb-10">{{ translate('closed_days') }}</label>
+                    <div class="form-input" style="gap: 10px; align-items: center; justify-content: space-between;">
                         <select id="week-select" class="form-control" >
-                            <option value="">Select a week</option>
+                            <option value="">{{translate('select_a_week')}}</option>
                             @foreach($weeks as $week)
                             <option value="{{ $week->id }}">{{ $week->day }}</option>
                             @endforeach
                         </select>
-                        <button type="button" id="add-week" class="bg-red button h-50 px-24 -dark-1 bg-blue-1 text-white mt-10">Add Week</button>
+                        <button type="button" id="add-week" class="bg-red button h-50 px-24 -dark-1 bg-blue-1 text-white">{{translate('add')}}</button>
                     </div>
                     <div id="selected-weeks" class="mt-20">
                         <ul id="selected-weeks-list" class="list-group"></ul>
@@ -257,13 +257,13 @@
                     </div>
                 </div>
                 <div class="col-12">
-                    <label class="lh-1 text-16 text-light-1 mb-10">{{translate('Discount')}}</label>
+                    <label class="lh-1 text-16 text-light-1 mb-10">{{translate('discount')}}</label>
                     <div class="form-input">
                         <input type="text" name="discount" value="{{ old('discount', $restaurant->discount ?? 0) }}">
                     </div>
                 </div>
                 <!-- Additional Features -->
-                <div class="col-12">
+                <div class="col-12 mb-20">
                     <div class="form-check">
                         <input type="checkbox" name="wifi_availability" value="1" {{ old('wifi_availability', $restaurant->wifi_availability ?? false) ? 'checked' : '' }}> {{translate('wifi_available')}}
                     </div>
