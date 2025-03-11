@@ -439,7 +439,7 @@
 
                     <div class="text-14 lh-15 mt-20">
                       <div class="fw-500">{{translate('about_restaurant')}}</div>
-                      <div class="text-light-1">{{$restaurant->description}}</div>
+                      <div class="text-light-1">{{ mb_strimwidth($restaurant->description, 0, 80, '...') }}</div>
                     </div>
 
                     <div class="text-14 text-green-2 lh-15 mt-10">
