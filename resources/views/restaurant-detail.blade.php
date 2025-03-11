@@ -37,7 +37,7 @@
           <div class="col-auto">
             <h1 class="text-30 sm:text-25 fw-600">{{ $restaurant->name }}</h1>
           </div>
-<!-- 
+          <!-- 
           <div class="col-auto">
             <i class="icon-star text-10 text-yellow-1"></i>
 
@@ -75,8 +75,9 @@
           </div>
 
           <div class="col-auto">
-            <a href="#" class="button h-50 px-24 -dark-1 bg-blue-1 text-white">
-              {{translate('booking')}}
+            <a href="{{ route('booking.detail', ['id' => $restaurant->id]) }}"
+              class="button h-50 px-24 -dark-1 bg-blue-1 text-white">
+              Booking
               <div class="icon-arrow-top-right ml-15"></div>
             </a>
           </div>
@@ -225,8 +226,8 @@
 
               <div class="col-lg-3 col-6">
                 <div class="text-center">
-                <i class="icon-city text-24 text-blue-1"></i>
-                <div class="text-15 lh-1 mt-10">{{translate('address')}} - {{$restaurant->address}}</div>
+                  <i class="icon-city text-24 text-blue-1"></i>
+                  <div class="text-15 lh-1 mt-10">{{translate('address')}} - {{$restaurant->address}}</div>
                 </div>
               </div>
             </div>
@@ -281,9 +282,9 @@
         </div>
       </div>
 
-            <div class="col-xl-4">
-                <div class="ml-50 lg:ml-0">
-                    <!-- <div class="px-30 py-30 border-light rounded-4 shadow-4">
+      <div class="col-xl-4">
+        <div class="ml-50 lg:ml-0">
+          <!-- <div class="px-30 py-30 border-light rounded-4 shadow-4">
                         <div class="d-flex items-center justify-between">
                             <div class="">
                                 <span class="text-20 fw-500">US$72</span>
