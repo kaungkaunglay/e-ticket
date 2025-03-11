@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             SettingsSeeder::class,
             TranslationSeeder::class,
+            WeekSeeder::Class,
             
         ]);
     }

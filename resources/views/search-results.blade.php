@@ -4,227 +4,48 @@
 @endsection
 @section('contents')
 <section class="pt-40 pb-40 bg-light-2">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="text-center">
-          <h1 class="text-30 fw-600">
+    <form action="{{ route('restaurantall.search') }}" method="GET">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="text-center">
+                        <h1 class="text-30 fw-600">
+                            @if($query)
+                                Search Results for "{{ $query }}"
+                            @else
+                                {{ translate('restaurant_near') }}
+                            @endif
+                        </h1>
+                    </div>
 
-            @if($checkIn)
-            Search Results for "{{ $query }}" on {{ \Carbon\Carbon::parse($checkIn)->format('F j, Y g:i A') }}
-            @else
-            {{ translate('restaurant_near') }}
-            @endif
-          </h1>
+                    <div class="mainSearch -col-3-big bg-white px-10 py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 mt-30">
+                        <div class="button-grid items-center d-flex flex-wrap">
+                            <!-- Search Input Field -->
+                            <div class="searchMenu-loc pl-20 lg:py-20 lg:px-0 js-form-dd js-liverSearch" style="flex-grow: 1;">
+                                <div data-x-dd-click="searchMenu-loc">
+                                    <h4 class="text-15 fw-500 ls-2 lh-16">{{translate('location')}}</h4>
+                                    <div class="text-15 text-light-1 ls-2 lh-16">
+                                        <input autocomplete="off" type="search" placeholder="Enter City" class="js-search js-dd-focus" name="city" value="{{ $query }}" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Search Button -->
+                            <div class="button-item ml-auto">
+                                <button class="mainSearch__submit button -dark-1 py-15 px-40 rounded-4 bg-blue-1 text-white">
+                                    <i class="icon-search text-20 mr-10"></i>
+                                    {{translate('search')}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="mainSearch -col-3-big bg-white px-10 py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 mt-30">
-          <div class="button-grid items-center">
-
-            <div class="searchMenu-loc pl-20 lg:py-20 lg:px-0 js-form-dd js-liverSearch">
-
-              <div data-x-dd-click="searchMenu-loc">
-                <h4 class="text-15 fw-500 ls-2 lh-16">{{translate('location')}}</h4>
-
-                <div class="text-15 text-light-1 ls-2 lh-16">
-                  <input autocomplete="off" type="search" placeholder="London" class="js-search js-dd-focus" value="{{ $query }}" />
-                </div>
-              </div>
-
-
-              <div class="searchMenu-loc__field shadow-2 js-popup-window" data-x-dd="searchMenu-loc" data-x-dd-toggle="-is-active">
-                <div class="bg-white px-30 py-30 sm:px-0 sm:py-15 rounded-4" style="display: none;">
-                  <div class="y-gap-5 js-results " style="display: none;">
-
-                    <div style="display: none;">
-                      <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
-                        <div class="d-flex">
-                          <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
-                          <div class="ml-10">
-                            <div class="text-15 lh-12 fw-500 js-search-option-target">London</div>
-                            <div class="text-14 lh-12 text-light-1 mt-5">Greater London, United Kingdom</div>
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-
-                    <div style="display: none;">
-                      <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
-                        <div class="d-flex">
-                          <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
-                          <div class="ml-10">
-                            <div class="text-15 lh-12 fw-500 js-search-option-target">New York</div>
-                            <div class="text-14 lh-12 text-light-1 mt-5">New York State, United States</div>
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-
-                    <div style="display: none;">
-                      <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
-                        <div class="d-flex">
-                          <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
-                          <div class="ml-10">
-                            <div class="text-15 lh-12 fw-500 js-search-option-target">Paris</div>
-                            <div class="text-14 lh-12 text-light-1 mt-5">France</div>
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-
-                    <div style="display: none;">
-                      <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
-                        <div class="d-flex">
-                          <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
-                          <div class="ml-10">
-                            <div class="text-15 lh-12 fw-500 js-search-option-target">Madrid</div>
-                            <div class="text-14 lh-12 text-light-1 mt-5">Spain</div>
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-
-                    <div style="display: none;">
-                      <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
-                        <div class="d-flex">
-                          <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
-                          <div class="ml-10">
-                            <div class="text-15 lh-12 fw-500 js-search-option-target">Santorini</div>
-                            <div class="text-14 lh-12 text-light-1 mt-5">Greece</div>
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="searchMenu-date px-30 lg:py-20 lg:px-0 js-form-dd js-calendar js-calendar-el">
-
-              <div data-x-dd-click="searchMenu-date">
-
-
-                <div class="capitalize text-15 text-light-1 ls-2 lh-16">
-
-                </div>
-              </div>
-
-
-              <div class="searchMenu-date__field shadow-2" data-x-dd="searchMenu-date" data-x-dd-toggle="-is-active">
-                <div class="bg-white px-30 py-30 rounded-4">
-                  <div class="elCalendar js-calendar-el-calendar"></div>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="searchMenu-guests px-30 lg:py-20 lg:px-0 js-form-dd js-form-counters">
-
-              <div data-x-dd-click="searchMenu-guests">
-                <!-- <h4 class="text-15 fw-500 ls-2 lh-16">{{translate('guest')}}</h4>
-
-                <div class="text-15 text-light-1 ls-2 lh-16">
-                  <span class="js-count-adult">2</span> adults
-                  -
-                  <span class="js-count-child">1</span> childeren
-                  -
-                  <span class="js-count-room">1</span> room
-                </div> -->
-              </div>
-
-
-              <div class="searchMenu-guests__field shadow-2" data-x-dd="searchMenu-guests" data-x-dd-toggle="-is-active">
-                <div class="bg-white px-30 py-30 rounded-4">
-                  <div class="row y-gap-10 justify-between items-center">
-                    <div class="col-auto">
-                      <div class="text-15 fw-500">Adults</div>
-                    </div>
-
-                    <div class="col-auto">
-                      <div class="d-flex items-center js-counter" data-value-change=".js-count-adult">
-                        <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-down">
-                          <i class="icon-minus text-12"></i>
-                        </button>
-
-                        <div class="flex-center size-20 ml-15 mr-15">
-                          <div class="text-15 js-count">2</div>
-                        </div>
-
-                        <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-up">
-                          <i class="icon-plus text-12"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="border-top-light mt-24 mb-24"></div>
-
-                  <div class="row y-gap-10 justify-between items-center">
-                    <div class="col-auto">
-                      <div class="text-15 lh-12 fw-500">Children</div>
-                      <div class="text-14 lh-12 text-light-1 mt-5">Ages 0 - 17</div>
-                    </div>
-
-                    <div class="col-auto">
-                      <div class="d-flex items-center js-counter" data-value-change=".js-count-child">
-                        <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-down">
-                          <i class="icon-minus text-12"></i>
-                        </button>
-
-                        <div class="flex-center size-20 ml-15 mr-15">
-                          <div class="text-15 js-count">1</div>
-                        </div>
-
-                        <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-up">
-                          <i class="icon-plus text-12"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="border-top-light mt-24 mb-24"></div>
-
-                  <div class="row y-gap-10 justify-between items-center">
-                    <div class="col-auto">
-                      <div class="text-15 fw-500">Rooms</div>
-                    </div>
-
-                    <div class="col-auto">
-                      <div class="d-flex items-center js-counter" data-value-change=".js-count-room">
-                        <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-down">
-                          <i class="icon-minus text-12"></i>
-                        </button>
-
-                        <div class="flex-center size-20 ml-15 mr-15">
-                          <div class="text-15 js-count">1</div>
-                        </div>
-
-                        <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-up">
-                          <i class="icon-plus text-12"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="button-item">
-              <button class="mainSearch__submit button -dark-1 py-15 px-40 col-12 rounded-4 bg-blue-1 text-white">
-                <i class="icon-search text-20 mr-10"></i>
-                {{translate('search')}}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    </form>
 </section>
+
+
 
 <section class="layout-pt-md layout-pb-lg">
   <div class="container">
@@ -292,9 +113,10 @@
         });
     });
 </script>
-          <div class="sidebar__item">
+
+ <div class="sidebar__item">
             <h5 class="text-18 fw-500 mb-10">{{translate('style')}}</h5>
-            <form id="filter-form">
+            <form id="filter-form" method="GET" action="{{ route('restaurant.searchcheckbox.search') }}">
     <div class="sidebar-checkbox">
         @php
             $priceRanges = [
@@ -302,16 +124,23 @@
                 ['label' => 'mid_range', 'min' => 200, 'max' => 300],
                 ['label' => 'luxury', 'min' => 300, 'max' => 400],
                 ['label' => 'family_friendly', 'min' => 400, 'max' => 500],
-                ['label' => 'business', 'min' => 500, 'max' => 600],
+                ['label' => 'business', 'min' => 500, 'max' => 8000],
             ];
+            $selectedFilters = request()->input('filter_price', []);
         @endphp
 
         @foreach ($priceRanges as $range)
+            @php
+                $value = $range['min'] . '-' . $range['max'];
+                $isChecked = in_array($value, $selectedFilters);
+            @endphp
+
             <div class="row y-gap-10 items-center justify-between">
                 <div class="col-auto">
                     <div class="d-flex items-center">
                         <div class="form-checkbox">
-                            <input type="checkbox" name="filter_price[]" value="{{ $range['min'] }}-{{ $range['max'] }}">
+                            <input type="checkbox" name="filter_price[]" value="{{ $value }}" 
+                                {{ $isChecked ? 'checked' : '' }}>
                             <div class="form-checkbox__mark">
                                 <div class="form-checkbox__icon icon-check"></div>
                             </div>
@@ -328,48 +157,13 @@
 </form>
 
 
-
-<div id="loader" style="display: none; text-align: center; margin-top: 10px;">
-    <span>Loading...</span>
-</div>
-
-
-<div id="search-results"></div>
-
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const checkboxes = document.querySelectorAll('input[name="filter_price[]"]');
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('filter-form');
 
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener("change", function () {
-            let selectedFilters = [];
-            checkboxes.forEach(box => {
-                if (box.checked) {
-                    selectedFilters.push(box.value);
-                }
-            });
-
-            
-            fetchResults(selectedFilters);
-        });
+    form.addEventListener('change', function () {
+        form.submit(); 
     });
-
-    function fetchResults(filters) {
-    
-        let url = new URL("{{ locale_route('restaurant.searchcheckbox.search') }}", window.location.origin);
-        url.searchParams.set('filter_price', filters.join(','));
-        url.searchParams.set('city', '{{ request()->input("city") }}'); 
-        url.searchParams.set('min_price', '{{ request()->input("min_price") }}');
-        url.searchParams.set('max_price', '{{ request()->input("max_price") }}');
-        url.searchParams.set('check_in', '{{ request()->input("check_in") }}');  
-
-    
-        fetch(url)
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById("search-results").innerHTML = html;
-            });
-    }
 });
 </script>
 
@@ -379,6 +173,8 @@ document.addEventListener("DOMContentLoaded", function () {
         </aside>
       </div>
 
+
+      
       <div class="col-xl-9 col-lg-8">
         <div class="row y-gap-10 items-center justify-between">
           <div class="col-auto">
@@ -458,27 +254,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
                   <div class="row x-gap-10 y-gap-10 pt-20">
 
-                    @if($restaurant->wifi_availability)
-                    <div class="col-auto">
-                      <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">{{translate('wifi')}}</div>
-                    </div>
-                    @endif
-                    @if($restaurant->parking_availability)
+                  @if(!is_null($restaurant->wifi_availability) && $restaurant->wifi_availability)
+                      <div class="col-auto">
+                          <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">{{ translate('wifi') }}</div>
+                      </div>
+                  @endif
 
-                    <div class="col-auto">
-                      <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">{{translate('parking')}}</div>
-                    </div>
-                    @endif
-                    @if($restaurant->outdoor_seating)
+                  @if(!is_null($restaurant->parking_availability) && $restaurant->parking_availability)
+                      <div class="col-auto">
+                          <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">{{ translate('parking') }}</div>
+                      </div>
+                  @endif
 
-                    <div class="col-auto">
-                      <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">{{translate('outdoor_seat')}}</div>
-                    </div>
-                    @endif
-
-                    <div class="col-auto">
-                      <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">{{$restaurant->available}}</div>
-                    </div>
+                  @if(!is_null($restaurant->outdoor_seating) && $restaurant->outdoor_seating)
+                      <div class="col-auto">
+                          <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">{{ translate('outdoor_seat') }}</div>
+                      </div>
+                  @endif
+ 
                   </div>
                 </div>
                 <div class="col-md-auto text-right md:text-left">
@@ -515,91 +308,54 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         <div class="border-top-light mt-30 pt-30">
-          <div class="row x-gap-10 y-gap-20 justify-between md:justify-center">
-            <div class="col-auto md:order-1">
-              <button class="button -blue-1 size-40 rounded-full border-light">
-                <i class="icon-chevron-left text-12"></i>
-              </button>
-            </div>
-
-            <div class="col-md-auto md:order-3">
-              <div class="row x-gap-20 y-gap-20 items-center md:d-none">
-
-                <div class="col-auto">
-
-                  <div class="size-40 flex-center rounded-full">1</div>
-
-                </div>
-
-                <div class="col-auto">
-
-                  <div class="size-40 flex-center rounded-full bg-dark-1 text-white">2</div>
-
-                </div>
-
-                <div class="col-auto">
-
-                  <div class="size-40 flex-center rounded-full">3</div>
-
-                </div>
-
-                <div class="col-auto">
-
-                  <div class="size-40 flex-center rounded-full bg-light-2">4</div>
-
-                </div>
-
-                <div class="col-auto">
-
-                  <div class="size-40 flex-center rounded-full">5</div>
-
-                </div>
-
-                <div class="col-auto">
-
-                  <div class="size-40 flex-center rounded-full">...</div>
-
-                </div>
-
-                <div class="col-auto">
-
-                  <div class="size-40 flex-center rounded-full">20</div>
-
-                </div>
-
-              </div>
-
-              <div class="row x-gap-10 y-gap-20 justify-center items-center d-none md:d-flex">
-
-                <div class="col-auto">
-
-                  <div class="size-40 flex-center rounded-full">1</div>
-
-                </div>
-
-                <div class="col-auto">
-
-                  <div class="size-40 flex-center rounded-full bg-dark-1 text-white">2</div>
-
-                </div>
-
-                <div class="col-auto">
-
-                  <div class="size-40 flex-center rounded-full">3</div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-            <div class="col-auto md:order-2">
-              <button class="button -blue-1 size-40 rounded-full border-light">
-                <i class="icon-chevron-right text-12"></i>
-              </button>
-            </div>
-          </div>
+    <div class="row x-gap-10 y-gap-20 justify-between md:justify-center">
+        
+        <div class="col-auto md:order-1">
+            @if ($restaurants->onFirstPage())
+                <button class="button -blue-1 size-40 rounded-full border-light" disabled>
+                    <i class="icon-chevron-left text-12"></i>
+                </button>
+            @else
+                <a href="{{ $restaurants->previousPageUrl() }}">
+                    <button class="button -blue-1 size-40 rounded-full border-light">
+                        <i class="icon-chevron-left text-12"></i>
+                    </button>
+                </a>
+            @endif
         </div>
+
+     
+        <div class="col-md-auto md:order-3">
+            <div class="row x-gap-20 y-gap-20 items-center md:d-none">
+                @foreach ($restaurants->links()->elements[0] as $page => $url)
+                    <div class="col-auto">
+                        <a href="{{ $url }}">
+                            <div class="size-40 flex-center rounded-full {{ $restaurants->currentPage() == $page ? 'bg-dark-1 text-white' : '' }}">
+                                {{ $page }}
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
+  
+        <div class="col-auto md:order-2">
+            @if ($restaurants->hasMorePages())
+                <a href="{{ $restaurants->nextPageUrl() }}">
+                    <button class="button -blue-1 size-40 rounded-full border-light">
+                        <i class="icon-chevron-right text-12"></i>
+                    </button>
+                </a>
+            @else
+                <button class="button -blue-1 size-40 rounded-full border-light" disabled>
+                    <i class="icon-chevron-right text-12"></i>
+                </button>
+            @endif
+        </div>
+    </div>
+</div>
+
       </div>
     </div>
   </div>

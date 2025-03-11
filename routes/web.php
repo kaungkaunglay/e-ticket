@@ -40,13 +40,16 @@ Route::get('/booking/thank-you', [BookingController::class, 'thankYou'])->name('
 Route::get('/restaurant-lists', [HomeController::class, 'search'])->name('restaurant.search');
 Route::get('/search-price', [HomeController::class, 'pricesearch'])->name('restaurant.price.search');
 Route::get('/search-checkbox', [HomeController::class, 'searchcheckbox'])->name('restaurant.searchcheckbox.search');
-
+Route::get('/restaurant-alllists', [HomeController::class, 'allsearch'])->name('restaurantall.search');
 
 Route::get('/search-price', [HomeController::class, 'pricesearch'])->name('restaurant.price.search');
-
 Route::get('/get-cities', [HomeController::class, 'getCities'])->name('cities.get');
-
 Route::get('/restaurant-list', [ResturantController::class, 'all'])->name('restaurant-list');
+
+
+Route::post('/notify-new-update', [HomeController::class, 'notifynewupdate'])->name('notifynewupdate.post');
+Route::post('/supportcontect', [HomeController::class, 'supportcontect'])->name('supportcontect.post');
+
 
 // Route::get('/login', function () {
 //     return view('login');
@@ -75,6 +78,8 @@ Route::get('/about-us', function () {
 })->name('about');
 
 Route::get('/support', [SupportController::class, 'supportPage'])->name('support.page');
+Route::get('/contents', [SupportController::class, 'contents'])->name('contents.page');
+
 
 Route::get('/terms', function () {
     return view('terms');

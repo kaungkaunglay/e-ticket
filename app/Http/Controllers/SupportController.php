@@ -7,7 +7,7 @@ use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Models\PromotionCode;
 use App\Models\User;
-
+use App\Models\Content;
 class SupportController extends Controller
 {
     /**
@@ -18,6 +18,29 @@ class SupportController extends Controller
         $questions = Question::with('category')->latest()->paginate(10);
         return view('support.support', compact('questions'));
     }
+
+    public function contents(Request $request)
+    {
+        // Validate the incoming data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'phone' => 'nullable|string',
+            'content_message' => 'required|string',
+        ]);
+    
+        // Store the content message in the database
+        $content = Content::create($validatedData);
+    
+        // Return a JSON response
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Your message has been successfully submitted.',
+            'data' => $content,
+        ], 201);  // 201 status code for created resource
+    }
+    
+
 
     public function supportPage()
     {
