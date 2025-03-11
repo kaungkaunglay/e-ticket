@@ -184,6 +184,13 @@ class TranslationSeeder extends Seeder
             ['key' => 'taxes_not_included', 'en' => 'In this price, taxes are not included.', 'jp' => 'この価格には税金が含まれていません。'],
             ['key' => 'show_on_map', 'en' => 'Show on Map', 'jp' => '地図で表示'],
             ['key' => 'about_restaurant', 'en' => 'About Restaurant', 'jp' => 'レストランについて'],
+            ['key' => 'overview', 'en' => 'Overview', 'jp' => '概要'],
+            ['key' => 'property_highlights', 'en' => 'Property Highlights', 'jp' => '施設の特徴'],
+            ['key' => 'front_desk', 'en' => 'Front Desk', 'jp' => 'フロントデスク'],
+            ['key' => 'see_all', 'en' => 'See All', 'jp' => 'すべて表示'],
+            ['key' => 'photos', 'en' => 'Photos', 'jp' => '写真'],
+            ['key' => 'location', 'en' => 'Location', 'jp' => 'ロケーション'],
+            ['key' => 'booking', 'en' => 'Booking', 'jp' => '予約'],
         ];
 
         foreach ($translations as $data) {
