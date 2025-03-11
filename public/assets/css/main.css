@@ -831,6 +831,16 @@ button:focus {
   color: white !important;
 }
 
+.button.-line-color{
+  border-color: #00C300;
+}
+
+.button.-line-color:hover {
+  background-color: #00C300;
+  border-color: transparent;
+  color: white !important;
+}
+
 .button.-green-2:hover {
   border-color: var(--color-green-2);
   background-color: var(--color-green-2) !important;
@@ -3808,6 +3818,10 @@ h1, h2, h3, h4, h5, h6 {
 .cardImage .cardImage-slider .swiper-wrapper {
   position: relative;
   z-index: 0;
+}
+
+.swiper-wrapper{
+  height: auto !important;
 }
 
 
@@ -9591,6 +9605,10 @@ div[data-slider] > input[type=range]::-ms-tooltip {
   color: var(--color-green-2);
 }
 
+.text-line-green {
+  color: #00C300;
+}
+
 .text-yellow-1 {
   color: var(--color-yellow-1);
 }
@@ -10970,8 +10988,7 @@ div[data-slider] > input[type=range]::-ms-tooltip {
   border: 1px solid var(--color-border);
   border-radius: 4px;
   padding: 0 15px;
-  padding-top: 25px;
-  min-height: 70px;
+  min-height: 50px;
   transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
@@ -12081,4 +12098,11 @@ table.table-5 td {
 
 .pagination ul li{
   padding:10px;
+}
+
+.login-icons{
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
 }

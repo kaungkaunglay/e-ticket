@@ -56,8 +56,8 @@
                             <div class="col-12 input-group">
 
                                 <div class="form-input ">
-                                    <input type="text" name="first_name" id="first_name" required>
-                                    <label class="lh-1 text-14 text-light-1">{{translate('first_name')}}</label>
+                                    <input type="text" name="first_name" id="first_name" placeholder="{{translate('first_name')}}" required>
+                                    <!-- <label class="lh-1 text-14 text-light-1">{{translate('first_name')}}</label> -->
                                 </div>
 
                                 <span class="invalid-feedback"></span>
@@ -67,8 +67,8 @@
                             <div class="col-12 input-group">
 
                                 <div class="form-input ">
-                                    <input type="text" id="last_name" name="last_name" required>
-                                    <label class="lh-1 text-14 text-light-1">{{translate('last_name')}}</label>
+                                    <input type="text" id="last_name" name="last_name" placeholder="{{translate('last_name')}}" required>
+                                    <!-- <label class="lh-1 text-14 text-light-1">{{translate('last_name')}}</label> -->
                                 </div>
 
                                 <span class="invalid-feedback"></span>
@@ -78,8 +78,8 @@
                             <div class="col-12 input-group">
 
                                 <div class="form-input ">
-                                    <input type="text" name="email" id="email" required>
-                                    <label class="lh-1 text-14 text-light-1">{{translate('email')}}</label>
+                                    <input type="text" name="email" id="email" placeholder="{{translate('email')}}" required>
+                                    <!-- <label class="lh-1 text-14 text-light-1">{{translate('email')}}</label> -->
                                 </div>
 
                                 <span class="invalid-feedback"></span>
@@ -88,40 +88,18 @@
                             <div class="col-12 input-group">
 
                                 <div class="form-input ">
-                                    <input type="text" name="phone" id="phone" required>
-                                    <label class="lh-1 text-14 text-light-1">Phone</label>
+                                    <input type="text" name="phone" id="phone" placeholder="{{translate('phone')}}" required>
+                                    <!-- <label class="lh-1 text-14 text-light-1">{{translate('phone')}}</label> -->
                                 </div>
 
                                 <span class="invalid-feedback"></span>
 
                             </div>
-
-                            <div class="col-12 input-group">
-
-                            <div class="form-input ">
-                                <input type="text" name="postal_code" id="postal_code" required>
-                                <label class="lh-1 text-14 text-light-1">Postal Code</label>
-                            </div>
-
-                            <span class="invalid-feedback"></span>
-
-                            </div>
-                             
-                     <div class="col-12 input-group">
-                        <div class="form-input">
-                            <textarea name="address" id="address" required></textarea>
-                            <label class="lh-1 text-14 text-light-1">Address</label>
-                        </div>
-                        <span class="invalid-feedback"></span>
-                    </div>
-
-                                                        
-
                             <div class="col-12 input-group">
 
                                 <div class="form-input ">
-                                    <input type="password" name="password" id="password" required>
-                                    <label class="lh-1 text-14 text-light-1">{{translate('password')}}</label>
+                                    <input type="password" name="password" placeholder="{{translate('password')}}" id="password" required>
+                                    <!-- <label class="lh-1 text-14 text-light-1">{{translate('password')}}</label> -->
                                 </div>
 
                                 <span class="invalid-feedback"></span>
@@ -130,13 +108,35 @@
 
                             <div class="col-12 input-group">
                                 <div class="form-input ">
-                                    <input type="password" name="password_confirmation" required>
-                                    <label class="lh-1 text-14 text-light-1">{{translate('confirm_password')}}</label>
+                                    <input type="password" name="password_confirmation" placeholder="{{translate('confirm_password')}}" required>
+                                    <!-- <label class="lh-1 text-14 text-light-1">{{translate('confirm_password')}}</label> -->
                                 </div>
                                 <span class="invalid-feedback"></span>
                             </div>
 
-                            {{-- <div class="col-12">
+                            <div class="col-12 input-group">
+
+                                <div class="form-input ">
+                                    <input type="text" name="postal_code" id="postal_code" placeholder="{{translate('zip_code')}}" required>
+                                    <!-- <label class="lh-1 text-14 text-light-1">{{translate('zip_code')}}</label> -->
+                                </div>
+
+                                <span class="invalid-feedback"></span>
+
+                            </div>
+
+                            <div class="col-12 input-group">
+                                <div class="form-input">
+                                    <textarea name="address" id="address" placeholder="{{translate('address')}}" class="pt-15" required></textarea>
+                                    <!-- <label class="lh-1 text-14 text-light-1">{{translate('address')}}</label> -->
+                                </div>
+                                <span class="invalid-feedback"></span>
+                            </div>
+
+
+
+
+                            <!-- <div class="col-12">
 
                                     <div class="d-flex ">
                                         <div class="form-checkbox mt-5">
@@ -151,7 +151,7 @@
 
                                     </div>
 
-                            </div> --}}
+                            </div> -->
 
                             <div class="col-12">
                                 <div class="text-center" id="message"></div>
@@ -159,8 +159,9 @@
 
                             <div class="col-12">
 
-                                <button type="submit" class="button text-center py-20 -dark-1 bg-blue-1 text-white">
-                                    {{translate('register')}} <div class="icon-arrow-top-right ml-15"></div>
+                                <button type="submit" class="button text-center py-15 -dark-1 bg-blue-1 text-white">
+                                    {{translate('register')}}
+                                    <div class="icon-arrow-top-right ml-15"></div>
                                 </button>
 
                             </div>
@@ -169,7 +170,7 @@
                         </div>
                     </form>
 
-                    <div class="row y-gap-20 pt-30">
+                    <!-- <div class="row y-gap-20 pt-30">
                         <div class="col-12">
                             <div class="text-center">{{translate('or_sign_in_with')}}</div>
 
@@ -192,7 +193,7 @@
                         <div class="col-12">
                             <div class="text-center px-30">{{translate('agree_terms')}}</div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
