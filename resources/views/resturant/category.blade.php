@@ -24,8 +24,8 @@
                         <div class="row x-gap-20 y-gap-20">
                             <div class="col-12">
                                 <div class="form-input">
-                                    <input type="text" name="name" value="{{ old('name', isset($category) ? $category->name : '') }}">
-                                    <label class="lh-1 text-16 text-light-1">{{translate('category_content')}}</label>
+                                    <input type="text" name="name" placeholder="{{translate('category_content')}}" value="{{ old('name', isset($category) ? $category->name : '') }}">
+                                    <!-- <label class="lh-1 text-16 text-light-1">{{translate('category_content')}}</label> -->
                                 </div>
                                 @error('name')
                                     <span class="text-red-500">{{ $message }}</span>

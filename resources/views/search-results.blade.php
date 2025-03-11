@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col-12">
         <div class="text-center">
-          <h1 class="text-30 fw-600">Search Results for "{{ $query }}"</h1>
+          <h1 class="text-30 fw-600">"{{ $query }}"の検索結果 </h1>
         </div>
 
         <div class="mainSearch -col-3-big bg-white px-10 py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 mt-30">
@@ -1162,9 +1162,9 @@
 
               </div>
 
-              <div class="text-center mt-30 md:mt-10">
+              <!-- <div class="text-center mt-30 md:mt-10">
                 <div class="text-14 text-light-1">1 – 20 of 300+ properties found</div>
-              </div>
+              </div> -->
             </div>
 
             <div class="col-auto md:order-2">

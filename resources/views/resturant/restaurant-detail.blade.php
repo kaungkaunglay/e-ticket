@@ -2736,7 +2736,7 @@
           <div class="col-auto">
             <div class="single-field -w-410 d-flex x-gap-10 y-gap-20">
               <div>
-                <input class="bg-white h-60" type="text" placeholder="Your Email">
+                <input class="bg-white h-60" type="text" placeholder="{{translate('email')}}">
               </div>
 
               <div>
