@@ -28,8 +28,7 @@
                         <div class="row x-gap-20 y-gap-20">
                             <div class="col-12">
                                 <div class="form-input">
-                                    <input type="text" name="title" value="{{ old('title', isset($category) ? $category->title : '') }}" required>
-                                    <label class="lh-1 text-16 text-light-1">{{translate('name')}} </label>
+                                    <input type="text" name="title" placeholder="{{translate('name')}}" value="{{ old('title', isset($category) ? $category->title : '') }}" required>
                                 </div>
                                 @error('title')
                                     <span class="text-red-500">{{ $message }}</span>

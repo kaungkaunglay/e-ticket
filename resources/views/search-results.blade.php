@@ -52,14 +52,33 @@
     <div class="row y-gap-30">
       <div class="col-xl-3 col-lg-4 lg:d-none">
         <aside class="sidebar y-gap-40">
- <div class="sidebar__item pb-30">
-    <h5 class="text-18 fw-500 mb-10">{{ translate('price') }}</h5>
-    <div class="row x-gap-10 y-gap-30">
-        <div class="col-12">
-            <div class="js-price-rangeSlider">
-                <div class="text-14 fw-500"></div>
+          <!-- <div class="sidebar__item -no-border">
+            <div class="flex-center ratio ratio-15:9 js-lazy" data-bg="{{asset('assets/img/general/map.png')}}">
+              <button class="button py-15 px-24 -blue-1 bg-white text-dark-1 absolute" data-x-click="mapFilter">
+                <i class="icon-destination text-22 mr-10"></i>
+                {{translate('show_on_map')}}
+              </button>
+            </div>
+          </div>
 
-                <div class="d-flex justify-between mb-20">
+          <div class="sidebar__item -no-border">
+            <h5 class="text-18 fw-500 mb-10">{{translate('search')}}</h5>
+            <div class="single-field relative d-flex items-center py-10">
+              <input class="pl-50 border-light text-dark-1 h-50 rounded-8" type="email" placeholder="e.g. Best Western">
+              <button class="absolute d-flex items-center h-full">
+                <i class="icon-search text-20 px-15 text-dark-1"></i>
+              </button>
+            </div>
+          </div> -->
+
+          <div class="sidebar__item pb-30">
+            <h5 class="text-18 fw-500 mb-10">{{translate('price')}}</h5>
+            <div class="row x-gap-10 y-gap-30">
+              <div class="col-12">
+                <div class="js-price-rangeSlider">
+                  <div class="text-14 fw-500"></div>
+
+                  <div class="d-flex justify-between mb-20">
                     <div class="text-15 text-dark-1">
                         <span class="js-lower" id="lower-value">¥{{ number_format( $minPrice ?? 0 ) }}</span>
                         -

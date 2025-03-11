@@ -35,11 +35,11 @@
 </style>
 @endsection
 @section('contents')
-<section class="layout-pt-lg layout-pb-lg bg-blue-2">
+<section class="pt-50 pb-50 bg-blue-2" style="height: 100vh;">
     <div class="container">
         <div class="row justify-center">
             <div class="col-xl-6 col-lg-7 col-md-9">
-                <div class="px-50 py-50 sm:px-20 sm:py-20 bg-white shadow-4 rounded-4">
+                <div class="px-50 py-50 sm:px-20 sm:py-20 bg-white shadow-4 rounded-4" >
                     <form id="login_form" action="{{locale_route('login.store') }}" method="POST">
                         @csrf
                         <div class="row y-gap-20">
@@ -52,8 +52,8 @@
                             <div class="col-12 input-group">
 
                                 <div class="form-input ">
-                                    <input type="text" name="email" id="email" required>
-                                    <label class="lh-1 text-14 text-light-1">{{translate('email')}}</label>
+                                    <input type="text" name="email" id="email" placeholder="{{translate('email')}}" required>
+                                    <!-- <label class="lh-1 text-14 text-light-1">{{translate('email')}}</label> -->
                                 </div>
 
                                 @error('email')
@@ -64,8 +64,8 @@
                             <div class="col-12 input-group">
 
                                 <div class="form-input ">
-                                    <input type="password" name="password" id="password" required>
-                                    <label class="lh-1 text-14 text-light-1">{{translate('password')}}</label>
+                                    <input type="password" name="password" id="password" placeholder="{{translate('password')}}" required>
+                                    <!-- <label class="lh-1 text-14 text-light-1">{{translate('password')}}</label> -->
                                 </div>
 
                                 @error('password')
@@ -102,20 +102,28 @@
                         <div class="col-12">
                             <div class="text-center">{{translate('or_sign_in_with')}}</div>
 
-                            <button class="button col-12 -outline-blue-1 text-blue-1 py-15 rounded-8 mt-10">
-                                <i class="icon-apple text-15 mr-10"></i>
-                                Facebook
+                            <button class="button col-12 -line-color text-line-green py-5 rounded-8 mt-10">
+                                <img src="{{ asset('assets/img/icons/line.svg') }}" alt="line" class="mr-10">
+                                {{translate('login_with_line')}}
                             </button>
+                            <div class="login-icons mt-10">
+                                <!-- <button class="button col-12 -outline-red-1 text-red-1 py-15 rounded-8 mt-15">
+                                    <i class="icon-apple text-15 mr-10"></i>
+                                    Google
+                                </button>
 
-                            <button class="button col-12 -outline-red-1 text-red-1 py-15 rounded-8 mt-15">
-                                <i class="icon-apple text-15 mr-10"></i>
-                                Google
-                            </button>
-
-                            <button class="button col-12 -outline-dark-2 text-dark-2 py-15 rounded-8 mt-15">
-                                <i class="icon-apple text-15 mr-10"></i>
-                                Apple
-                            </button>
+                                <button class="button col-12 -outline-dark-2 text-dark-2 py-15 rounded-8 mt-15">
+                                    <i class="icon-apple text-15 mr-10"></i>
+                                    Apple
+                                </button> -->
+                                <a href="#">
+                                    <img src="{{ asset('assets/img/icons/facebook.svg') }}" alt="">
+                                </a>
+                                <a href="#">
+                                    <img src="{{ asset('assets/img/icons/google.svg') }}" alt="">
+                                </a>
+                            </div>
+                            
                         </div>
 
                         <div class="col-12">

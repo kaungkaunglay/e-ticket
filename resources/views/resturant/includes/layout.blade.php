@@ -46,7 +46,7 @@
     <header data-add-bg="" class="header -dashboard bg-white js-header" data-x="header" data-x-toggle="is-menu-opened">
         <div data-anim="fade" class="header__container px-30 sm:px-20">
             <div class="-left-side">
-                <a href="index.html" class="header-logo" data-x="header-logo" data-x-toggle="is-logo-dark">
+                <a href="{{route('admin.dashboard')}}" class="header-logo" data-x="header-logo" data-x-toggle="is-logo-dark">
                     <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon" />
                     <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon" />
                 </a>
@@ -84,7 +84,7 @@
                                             </a>
                                         </li>
 
-                                        <li class="menu-item-has-children -has-mega-menu">
+                                        <!-- <li class="menu-item-has-children -has-mega-menu">
                                             <a data-barba href="#">
                                                 <span class="mr-10">{{translate('categories')}}</span>
                                                 <i class="icon icon-chevron-sm-down"></i>
@@ -122,7 +122,7 @@
                                                 </div>
                                             </div>
 
-                                        </li>
+                                        </li> -->
 
                                         <li class="">
                                             <a href="{{ route('about') }}">
@@ -135,7 +135,7 @@
                                         </li>
 
                                         <li>
-                                            <a href="{{route('support.index')}}">{{translate('support')}}</a>
+                                            <a href="{{route('support.page')}}">{{translate('support')}}</a>
                                         </li>
                                     </ul>
                                 </div>
