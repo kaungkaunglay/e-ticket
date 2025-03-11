@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             SettingsSeeder::class,
-            TranslationSeeder::class
+            TranslationSeeder::class,
+            
         ]);
     }
 }

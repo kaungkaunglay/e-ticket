@@ -37,7 +37,12 @@ Route::get('/booking/detail/{id}', [BookingController::class, 'show'])->name('bo
 Route::post('/booking/save', [BookingController::class, 'booksave'])->name('booking.save');
 Route::get('/booking/thank-you', [BookingController::class, 'thankYou'])->name('booking.thankyou');
 
-Route::get('/search', [HomeController::class, 'search'])->name('restaurant.search');
+Route::get('/restaurant-lists', [HomeController::class, 'search'])->name('restaurant.search');
+Route::get('/search-price', [HomeController::class, 'pricesearch'])->name('restaurant.price.search');
+Route::get('/search-checkbox', [HomeController::class, 'searchcheckbox'])->name('restaurant.searchcheckbox.search');
+
+
+Route::get('/search-price', [HomeController::class, 'pricesearch'])->name('restaurant.price.search');
 
 Route::get('/get-cities', [HomeController::class, 'getCities'])->name('cities.get');
 

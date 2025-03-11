@@ -23,7 +23,7 @@
                 <a href="#" class="button -md -dark-1 bg-red h-50 text-white mt-30">{{translate('discover_more')}}</a>
               </div>
             </div>
-            <form action="{{ route('restaurant.search') }}" method="GET">
+            <form action="{{ locale_route('restaurant.search') }}" method="GET">
               <div class="mainSearch bg-white rounded-4 shadow-1 overflow-hidden rounded-22">
                 <div class="button-grid">
 
@@ -40,7 +40,6 @@
                       <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('check_in') }}</h4>
                       <input type="text" id="date-range" class="capitalize text-15 text-light-1 ls-2 lh-16" placeholder="日付と時間を選択">
                       <input type="hidden" name="check_in" id="check_in">
-                      <input type="hidden" name="check_out" id="check_out">
                     </div>
                   </div>
 
@@ -274,15 +273,13 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    flatpickr("#date-range", {
-      mode: "range",
+    flatpickr("#date-picker", {
       enableTime: true,
       dateFormat: "Y-m-d H:i",
       time_24hr: true,
       onClose: function(selectedDates) {
-        if (selectedDates.length === 2) {
+        if (selectedDates.length === 1) {
           document.getElementById("check_in").value = flatpickr.formatDate(selectedDates[0], "Y-m-d H:i");
-          document.getElementById("check_out").value = flatpickr.formatDate(selectedDates[1], "Y-m-d H:i");
         }
       }
     });
