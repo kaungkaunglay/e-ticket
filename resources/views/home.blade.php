@@ -145,7 +145,7 @@
                   <a href="{{ route('restaurant.detail', ['id' => $restaurant->id]) }}" class="hotelsCard -type-1">
                     <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
                     <span>{{ auth()->id() }}</span><br>
-                    <span>{{$restaurant->id}}</span><br>
+                    <span>{{$restaurant->id}}</span><br> 
                    <span>{{ $restaurant->name }}</span>
                     </h4>
                   </a>
