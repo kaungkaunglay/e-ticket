@@ -30,26 +30,53 @@ class BookingController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function favourite()
-    {   
-        // use App\Models\User;
-        // use App\Models\Restaurant;
-        // use App\Models\Favorite;
-    }
+    public function favourite(Request $request)
+    {
+        if (!Auth::check()) {
+            return response()->json([
+                'message' => 'ログインが必要です。' 
+            ], 401);
+        }
 
+        $request->validate([
+            'restaurants_id' => 'required|exists:restaurants,id',
+        ]);
+
+        
+        $existingFavorite = Favorite::where('user_id', Auth::id())
+            ->where('restaurants_id', $request->restaurants_id)
+            ->first();
+
+        if ($existingFavorite) {
+            return response()->json([
+                'message' => 'このレストランはすでにお気に入りに追加されています。' 
+            ], 400);
+        }
+
+        // If not, create a new favorite
+        $favorite = Favorite::firstOrCreate([
+            'user_id' => Auth::id(),
+            'restaurants_id' => $request->restaurants_id,
+        ]);
+
+        return response()->json([
+            'message' => 'レストランがお気に入りに追加されました。', 
+            'favorite' => $favorite
+        ], 201);
+    }
     /**
      * Display the specified resource.
      */
     public function show($id)
     {
-       
+
         if (!Auth::check()) {
             return redirect()->route('login')->with('error', 'You must be logged in to book a restaurant.');
         }
-    
+
         $restaurant = Restaurant::where('status', 1)->findOrFail($id);
         $user = Auth::user();
-    
+
         return view('booking-detail', compact('restaurant', 'user'));
     }
 
