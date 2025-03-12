@@ -77,7 +77,7 @@
         @foreach($discountedRestaurants as $restaurant)
         <div class="swiper-slide">
 
-          <a href="#" class="citiesCard -type-2 ">
+          <a href="{{ route('restaurant.detail', ['id' => $restaurant->id]) }}"  class="citiesCard -type-2 ">
             <div class="citiesCard__image rounded-4 ratio ratio-1:1">
               <img class="img-ratio rounded-4 js-lazy" data-src="{{ asset($restaurant->logo) }}" src="{{ asset($restaurant->logo) }}" alt="image">
             </div>

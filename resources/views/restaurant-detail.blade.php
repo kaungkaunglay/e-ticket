@@ -70,7 +70,7 @@
           <div class="col-auto">
             <div class="text-14">
               From
-              <span class="text-22 text-dark-1 fw-500">¥{{$restaurant->price_range}}</span>
+              <span class="text-22 text-dark-1 fw-500">¥{{ number_format($restaurant->price_range) }}</span>
             </div>
           </div>
 

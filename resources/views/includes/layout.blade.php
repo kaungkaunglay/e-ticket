@@ -96,477 +96,11 @@
 
                                     <div class="menu js-navList">
                                         <ul class="menu__nav text-dark-1 -is-active">
-
-                                            <!-- <li class="menu-item-has-children">
-                    <a data-barba href="#">
-                      <span class="mr-10">Home</span>
-                      <i class="icon icon-chevron-sm-down"></i>
-                    </a>
-
-
-                    <ul class="subnav">
-                      <li class="subnav__backBtn js-nav-list-back">
-                        <a href="#"><i class="icon icon-chevron-sm-down"></i> Home</a>
-                      </li>
-
-                      <li><a href="index.html">Home 1</a></li>
-
-                      <li><a href="home-2.html">Home 2</a></li>
-
-                      <li><a href="home-3.html">Home 3</a></li>
-
-                      <li><a href="home-4.html">Home 4</a></li>
-
-                      <li><a href="home-5.html">Home 5</a></li>
-
-                      <li><a href="home-6.html">Home 6</a></li>
-
-                      <li><a href="home-7.html">Home 7</a></li>
-
-                      <li><a href="home-8.html">Home 8</a></li>
-
-                      <li><a href="home-9.html">Home 9</a></li>
-
-                      <li><a href="home-10.html">Home 10</a></li>
-
-                    </ul>
-
-                  </li> -->
                                             <li>
                                                 <a href="{{locale_route('home')}} ">{{translate('home')}}</a>
                                             </li>
-
-
-
-                                            <!-- <li class="menu-item-has-children -has-mega-menu">
-                                                <a data-barba href="#">
-                                                    <span class="mr-10">{{ translate('categories') }}</span>
-                                                    <i class="icon icon-chevron-sm-down"></i>
-                                                </a>
-
-                                                <div class="mega" style="width: 300px;">
-                                                    <div class="tabs -underline-2 js-tabs">
-                                                        <div class="tabs__controls row x-gap-40 y-gap-10 lg:x-gap-20 pb-30 js-tabs-controls">
-
-                                                            <div class="col-auto">
-                                                                <button class="tabs__button text-light-1 fw-500 js-tabs-button is-tab-el-active" data-tab-target=".-tab-item-1">Sub-Category</button>
-                                                            </div>
-
-                                                        </div>
-
-                                                        <div class="tabs__content js-tabs-content">
-                                                            <div class="tabs__pane -tab-item-1 is-tab-el-active">
-                                                                <div class="mega__content">
-                                                                    <div class="mega__grid">
-
-                                                                        <div class="mega__item">
-                                                                            <div class="text-15 fw-500">Hotel List</div>
-                                                                            <div class="y-gap-5 text-15 pt-5">
-
-                                                                                <div><a href="hotel-list-1.html">Hotel List v1</a></div>
-
-                                                                                <div><a href="hotel-list-2.html">Hotel List v2</a></div>
-
-                                                                                <div><a href="hotel-half-map.html">Hotel List v3</a></div>
-
-                                                                                <div><a href="hotel-grid-1.html">Hotel List v4</a></div>
-
-                                                                                <div><a href="hotel-grid-2.html">Hotel List v5</a></div>
-
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="tabs__pane -tab-item-2">
-                                                                <div class="mega__content">
-                                                                    <div class="mega__grid">
-
-                                                                        <div class="mega__item">
-                                                                            <div class="text-15 fw-500">Tour List</div>
-                                                                            <div class="y-gap-5 text-15 pt-5">
-
-                                                                                <div><a href="tour-list-1.html">Tour List v1</a></div>
-
-                                                                                <div><a href="tour-grid-1.html">Tour List v2</a></div>
-
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="mega__item">
-                                                                            <div class="text-15 fw-500">Tour Pages</div>
-                                                                            <div class="y-gap-5 text-15 pt-5">
-
-                                                                                <div><a href="tour-map.html">Tour Map</a></div>
-
-                                                                                <div><a href="tour-single.html">Tour Single</a></div>
-
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-
-                                                                    <div class="mega__image d-flex relative">
-                                                                        <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
-
-                                                                        <div class="absolute w-full h-full px-30 py-24">
-                                                                            <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
-                                                                            <button class="button h-50 px-30 -blue-1 text-dark-1 bg-white mt-20">Experinces</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="tabs__pane -tab-item-3">
-                                                                <div class="mega__content">
-                                                                    <div class="mega__grid">
-
-                                                                        <div class="mega__item">
-                                                                            <div class="text-15 fw-500">Activity List</div>
-                                                                            <div class="y-gap-5 text-15 pt-5">
-
-                                                                                <div><a href="activity-list-1.html">Activity List v1</a></div>
-
-                                                                                <div><a href="activity-grid-1.html">Activity List v2</a></div>
-
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="mega__item">
-                                                                            <div class="text-15 fw-500">Activity Pages</div>
-                                                                            <div class="y-gap-5 text-15 pt-5">
-
-                                                                                <div><a href="activity-map.html">Activity Map</a></div>
-
-                                                                                <div><a href="activity-single.html">Activity Single</a></div>
-
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-
-                                                                    <div class="mega__image d-flex relative">
-                                                                        <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
-
-                                                                        <div class="absolute w-full h-full px-30 py-24">
-                                                                            <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
-                                                                            <button class="button h-50 px-30 -blue-1 text-dark-1 bg-white mt-20">Experinces</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="tabs__pane -tab-item-4">
-                                                                <div class="mega__content">
-                                                                    <div class="mega__grid">
-
-                                                                        <div class="mega__item">
-                                                                            <div class="text-15 fw-500">Rental List</div>
-                                                                            <div class="y-gap-5 text-15 pt-5">
-
-                                                                                <div><a href="rental-list-1.html">Rental List v1</a></div>
-
-                                                                                <div><a href="rental-grid-1.html">Rental List v2</a></div>
-
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="mega__item">
-                                                                            <div class="text-15 fw-500">Rental Pages</div>
-                                                                            <div class="y-gap-5 text-15 pt-5">
-
-                                                                                <div><a href="rental-map.html">Rental Map</a></div>
-
-                                                                                <div><a href="rental-single.html">Rental Single</a></div>
-
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-
-                                                                    <div class="mega__image d-flex relative">
-                                                                        <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
-
-                                                                        <div class="absolute w-full h-full px-30 py-24">
-                                                                            <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
-                                                                            <button class="button h-50 px-30 -blue-1 text-dark-1 bg-white mt-20">Experinces</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="tabs__pane -tab-item-5">
-                                                                <div class="mega__content">
-                                                                    <div class="mega__grid">
-
-                                                                        <div class="mega__item">
-                                                                            <div class="text-15 fw-500">Car List</div>
-                                                                            <div class="y-gap-5 text-15 pt-5">
-
-                                                                                <div><a href="car-list-1.html">Car List v1</a></div>
-
-                                                                                <div><a href="car-grid-1.html">Car List v2</a></div>
-
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="mega__item">
-                                                                            <div class="text-15 fw-500">Car Pages</div>
-                                                                            <div class="y-gap-5 text-15 pt-5">
-
-                                                                                <div><a href="car-map.html">Car Map</a></div>
-
-                                                                                <div><a href="car-single.html">Car Single</a></div>
-
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-
-                                                                    <div class="mega__image d-flex relative">
-                                                                        <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
-
-                                                                        <div class="absolute w-full h-full px-30 py-24">
-                                                                            <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
-                                                                            <button class="button h-50 px-30 -blue-1 text-dark-1 bg-white mt-20">Experinces</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="tabs__pane -tab-item-6">
-                                                                <div class="mega__content">
-                                                                    <div class="mega__grid">
-
-                                                                        <div class="mega__item">
-                                                                            <div class="text-15 fw-500">Cruise List</div>
-                                                                            <div class="y-gap-5 text-15 pt-5">
-
-                                                                                <div><a href="cruise-list-1.html">Cruise List v1</a></div>
-
-                                                                                <div><a href="cruise-grid-1.html">Cruise List v2</a></div>
-
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="mega__item">
-                                                                            <div class="text-15 fw-500">Cruise Pages</div>
-                                                                            <div class="y-gap-5 text-15 pt-5">
-
-                                                                                <div><a href="cruise-map.html">Cruise Map</a></div>
-
-                                                                                <div><a href="cruise-single.html">Cruise Single</a></div>
-
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-
-                                                                    <div class="mega__image d-flex relative">
-                                                                        <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
-
-                                                                        <div class="absolute w-full h-full px-30 py-24">
-                                                                            <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
-                                                                            <button class="button h-50 px-30 -blue-1 text-dark-1 bg-white mt-20">Experinces</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="tabs__pane -tab-item-7">
-                                                                <div class="mega__content">
-                                                                    <div class="mega__grid">
-
-                                                                        <div class="mega__item">
-                                                                            <div class="text-15 fw-500">Flight List</div>
-                                                                            <div class="y-gap-5 text-15 pt-5">
-
-                                                                                <div><a href="flights-list.html">Flight list v1</a></div>
-
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-
-                                                                    <div class="mega__image d-flex relative">
-                                                                        <img src="{{asset('assets/img/backgrounds/7.png')}}" alt="image" class="rounded-4">
-
-                                                                        <div class="absolute w-full h-full px-30 py-24">
-                                                                            <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
-                                                                            <button class="button h-50 px-30 -blue-1 text-dark-1 bg-white mt-20">Experinces</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <ul class="subnav mega-mobile">
-                                                    <li class="subnav__backBtn js-nav-list-back">
-                                                        <a href="#"><i class="icon icon-chevron-sm-down"></i> Category</a>
-                                                    </li>
-
-                                                    <li class="menu-item-has-children">
-                                                        <a data-barba href="#">
-                                                            <span class="mr-10">Hotel</span>
-                                                            <i class="icon icon-chevron-sm-down"></i>
-                                                        </a>
-
-                                                        <ul class="subnav">
-                                                            <li class="subnav__backBtn js-nav-list-back">
-                                                                <a href="#"><i class="icon icon-chevron-sm-down"></i> Hotel</a>
-                                                            </li>
-
-
-                                                            <li><a href="hotel-list-1.html">Hotel List v1</a></li>
-
-                                                            <li><a href="hotel-list-2.html">Hotel List v2</a></li>
-
-                                                            <li><a href="hotel-single-1.html">Hotel Single v1</a></li>
-
-                                                            <li><a href="hotel-single-2.html">Hotel Single v2</a></li>
-
-                                                            <li><a href="booking-pages.html">Booking Page</a></li>
-
-                                                        </ul>
-                                                    </li>
-
-                                                    <li class="menu-item-has-children">
-                                                        <a data-barba href="#">
-                                                            <span class="mr-10">Tour</span>
-                                                            <i class="icon icon-chevron-sm-down"></i>
-                                                        </a>
-
-                                                        <ul class="subnav">
-                                                            <li class="subnav__backBtn js-nav-list-back">
-                                                                <a href="#"><i class="icon icon-chevron-sm-down"></i> Tour</a>
-                                                            </li>
-
-                                                            <li><a href="tour-list-1.html">Tour List v1</a></li>
-
-                                                            <li><a href="tour-grid-1.html">Tour List v2</a></li>
-
-                                                            <li><a href="tour-map.html">Tour Map</a></li>
-
-                                                            <li><a href="tour-single.html">Tour Single</a></li>
-
-                                                        </ul>
-                                                    </li>
-
-                                                    <li class="menu-item-has-children">
-                                                        <a data-barba href="#">
-                                                            <span class="mr-10">Activity</span>
-                                                            <i class="icon icon-chevron-sm-down"></i>
-                                                        </a>
-
-                                                        <ul class="subnav">
-                                                            <li class="subnav__backBtn js-nav-list-back">
-                                                                <a href="#"><i class="icon icon-chevron-sm-down"></i> Activity</a>
-                                                            </li>
-
-                                                            <li><a href="activity-list-1.html">Activity List v1</a></li>
-
-                                                            <li><a href="activity-grid-1.html">Activity List v2</a></li>
-
-                                                            <li><a href="activity-map.html">Activity Map</a></li>
-
-                                                            <li><a href="activity-single.html">Activity Single</a></li>
-
-                                                        </ul>
-                                                    </li>
-
-                                                    <li class="menu-item-has-children">
-                                                        <a data-barba href="#">
-                                                            <span class="mr-10">Rental</span>
-                                                            <i class="icon icon-chevron-sm-down"></i>
-                                                        </a>
-
-                                                        <ul class="subnav">
-                                                            <li class="subnav__backBtn js-nav-list-back">
-                                                                <a href="#"><i class="icon icon-chevron-sm-down"></i> Rental</a>
-                                                            </li>
-
-                                                            <li><a href="rental-list-1.html">Rental List v1</a></li>
-
-                                                            <li><a href="rental-grid-1.html">Rental List v2</a></li>
-
-                                                            <li><a href="rental-map.html">Rental Map</a></li>
-
-                                                            <li><a href="rental-single.html">Rental Single</a></li>
-
-                                                        </ul>
-                                                    </li>
-
-                                                    <li class="menu-item-has-children">
-                                                        <a data-barba href="#">
-                                                            <span class="mr-10">Car</span>
-                                                            <i class="icon icon-chevron-sm-down"></i>
-                                                        </a>
-
-                                                        <ul class="subnav">
-                                                            <li class="subnav__backBtn js-nav-list-back">
-                                                                <a href="#"><i class="icon icon-chevron-sm-down"></i> Car</a>
-                                                            </li>
-
-                                                            <li><a href="car-list-1.html">Car List v1</a></li>
-
-                                                            <li><a href="car-grid-1.html">Car List v2</a></li>
-
-                                                            <li><a href="car-map.html">Car Map</a></li>
-
-                                                            <li><a href="car-single.html">Car Single</a></li>
-
-                                                        </ul>
-                                                    </li>
-
-                                                    <li class="menu-item-has-children">
-                                                        <a data-barba href="#">
-                                                            <span class="mr-10">Cruise</span>
-                                                            <i class="icon icon-chevron-sm-down"></i>
-                                                        </a>
-
-                                                        <ul class="subnav">
-                                                            <li class="subnav__backBtn js-nav-list-back">
-                                                                <a href="#"><i class="icon icon-chevron-sm-down"></i> Cruise</a>
-                                                            </li>
-
-                                                            <li><a href="cruise-list-1.html">Cruise List v1</a></li>
-
-                                                            <li><a href="cruise-grid-1.html">Cruise List v2</a></li>
-
-                                                            <li><a href="cruise-map.html">Cruise Map</a></li>
-
-                                                            <li><a href="cruise-single.html">Cruise Single</a></li>
-
-                                                        </ul>
-                                                    </li>
-
-                                                    <li class="menu-item-has-children">
-                                                        <a data-barba href="#">
-                                                            <span class="mr-10">Flights</span>
-                                                            <i class="icon icon-chevron-sm-down"></i>
-                                                        </a>
-
-                                                        <ul class="subnav">
-                                                            <li class="subnav__backBtn js-nav-list-back">
-                                                                <a href="#"><i class="icon icon-chevron-sm-down"></i> Flights</a>
-                                                            </li>
-
-                                                            <li><a href="flights-list.html">Flights List v1</a></li>
-
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li> -->
-
-                                            <!-- <li>
-                                                <a href="{{locale_route('user-dashboard')}}">{{translate('profile')}}</a>
-                                            </li> -->
                                             <li>
-                                                <a href="{{locale_route('restaurant-list')}}">{{translate('restaurants')}}</a>
+                                                <a href="{{locale_route('restaurant.search')}}">{{translate('restaurants')}}</a>
                                             </li>
                                             <li>
                                                 <a href="{{locale_route('about')}}">{{translate('about_us')}}</a>
@@ -608,62 +142,62 @@
 
 
                             <div class="d-flex items-center ml-20 is-menu-opened-hide md:d-none">
-    @auth
-        @php
-            $user = auth()->user();
-            $role = $user->roles()->first()->id ?? null;
-            $dashboardRoute = '/home'; // Default route
+                                @auth
+                                @php
+                                $user = auth()->user();
+                                $role = $user->roles()->first()->id ?? null;
+                                $dashboardRoute = '/home'; // Default route
 
-            if ($role == 1) {
-                $dashboardRoute = route('admin.dashboard');
-                $logoutRoute = route('admin.logout');
-            } elseif ($role == 2) {
-                $dashboardRoute = route('vendor.dashboard');
-                $logoutRoute = route('vendor.logout');
-            } elseif ($role == 3) {
-                $dashboardRoute = route('user.dashboard');
-                $logoutRoute = route('logout');
-            }
-        @endphp
+                                if ($role == 1) {
+                                $dashboardRoute = route('admin.dashboard');
+                                $logoutRoute = route('admin.logout');
+                                } elseif ($role == 2) {
+                                $dashboardRoute = route('vendor.dashboard');
+                                $logoutRoute = route('vendor.logout');
+                                } elseif ($role == 3) {
+                                $dashboardRoute = route('user.dashboard');
+                                $logoutRoute = route('logout');
+                                }
+                                @endphp
 
-        <div class="dropdown" style="position: relative; display: inline-block;">
-            <a href="#" class="button -outline-red px-30 fw-400 text-14 h-50 text-red ml-20" style="display: flex; align-items: center;">
-                {{ auth()->user()->first_name }}
-                <i class="icon-chevron-down ml-10" style="font-size: 12px;"></i>
-            </a>
-            <div class="dropdown-content" style="display: none; position: absolute; right: 0; background-color: #fff; min-width: 160px; box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1); border-radius: 8px; z-index: 1000; padding: 8px 0;">
-                <a href="{{ $dashboardRoute }}" style="display: block; padding: 8px 16px; color: #333; text-decoration: none; font-size: 14px; transition: background-color 0.2s;">
-                    {{ translate('Dashboard') }}
-                </a>
-                <form action="{{ $logoutRoute }}" method="POST" style="margin: 0;">
-                    @csrf
-                    @method($role == 1 || $role == 2 ? 'POST' : 'GET')
-                    <button type="submit" style="display: block; width: 100%; text-align: left; padding: 8px 16px; background: none; border: none; color: #333; font-size: 14px; cursor: pointer; transition: background-color 0.2s;">
-                        {{ translate('Logout') }}
-                    </button>
-                </form>
-            </div>
-        </div>
-    @else
-        <a href="{{ locale_route('login') }}" class="button -outline-red px-30 fw-400 text-14 h-50 text-red ml-20">
-            {{ translate('sign_in') }}
-        </a>
-        <div class="dropdown" style="position: relative; display: inline-block;">
-            <button class="button -outline-red px-30 fw-400 text-14 h-50 text-red ml-20" style="display: flex; align-items: center;">
-                {{ translate('Register') }}
-                <i class="icon-chevron-down ml-10" style="font-size: 12px;"></i>
-            </button>
-            <div class="dropdown-content" style="display: none; position: absolute; right: 0; background-color: #fff; min-width: 160px; box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1); border-radius: 8px; z-index: 1000; padding: 8px 0;">
+                                <div class="dropdown" style="position: relative; display: inline-block;">
+                                    <a href="#" class="button -outline-red px-30 fw-400 text-14 h-50 text-red ml-20" style="display: flex; align-items: center;">
+                                        {{ auth()->user()->first_name }}
+                                        <i class="icon-chevron-down ml-10" style="font-size: 12px;"></i>
+                                    </a>
+                                    <div class="dropdown-content" style="display: none; position: absolute; right: 0; background-color: #fff; min-width: 160px; box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1); border-radius: 8px; z-index: 1000; padding: 8px 0;">
+                                        <a href="{{ $dashboardRoute }}" style="display: block; padding: 8px 16px; color: #333; text-decoration: none; font-size: 14px; transition: background-color 0.2s;">
+                                            {{ translate('Dashboard') }}
+                                        </a>
+                                        <form action="{{ $logoutRoute }}" method="POST" style="margin: 0;">
+                                            @csrf
+                                            @method($role == 1 || $role == 2 ? 'POST' : 'GET')
+                                            <button type="submit" style="display: block; width: 100%; text-align: left; padding: 8px 16px; background: none; border: none; color: #333; font-size: 14px; cursor: pointer; transition: background-color 0.2s;">
+                                                {{ translate('Logout') }}
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                                @else
+                                <a href="{{ locale_route('login') }}" class="button -outline-red px-30 fw-400 text-14 h-50 text-red ml-20">
+                                    {{ translate('sign_in') }}
+                                </a>
+                                <div class="dropdown" style="position: relative; display: inline-block;">
+                                    <a href="{{ locale_route('signup') }}" class="button -outline-red px-30 fw-400 text-14 h-50 text-red ml-20" style="display: flex; align-items: center;">
+                                        {{ translate('Register') }}
+                                        <i class="icon-chevron-down ml-10" style="font-size: 12px;"></i>
+                                    </a>
+                                    <!-- <div class="dropdown-content" style="display: none; position: absolute; right: 0; background-color: #fff; min-width: 160px; box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1); border-radius: 8px; z-index: 1000; padding: 8px 0;">
                 <a href="{{ locale_route('signup') }}" style="display: block; padding: 8px 16px; color: #333; text-decoration: none; font-size: 14px; transition: background-color 0.2s;">
                     {{ translate('User Register') }}
                 </a>
                 <a href="{{ locale_route('vendor.register') }}" style="display: block; padding: 8px 16px; color: #333; text-decoration: none; font-size: 14px; transition: background-color 0.2s;">
                     {{ translate('Shop Register') }}
                 </a>
-            </div>
-        </div>
-    @endauth
-</div>
+            </div> -->
+                                </div>
+                                @endauth
+                            </div>
 
 
                             <div class="d-none xl:d-flex x-gap-20 items-center pl-30" data-x="header-mobile-icons" data-x-toggle="text-white">
@@ -2075,7 +1609,7 @@
 
 <script>
     // Add hover functionality to show/hide dropdown
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         const dropdowns = document.querySelectorAll('.dropdown');
         dropdowns.forEach(dropdown => {
             dropdown.addEventListener('mouseenter', () => {
