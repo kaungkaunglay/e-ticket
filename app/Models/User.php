@@ -28,6 +28,8 @@ class User extends Authenticatable
         'address',
         'postal_code',
         'phone',
+        'google_id',
+        'line_id',
         
     ];
 

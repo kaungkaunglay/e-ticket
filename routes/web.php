@@ -17,6 +17,8 @@ use App\Http\Controllers\VendorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\Auth\GoogleController;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +38,14 @@ Route::get('/restaurant/{id}', [HomeController::class, 'detail'])->name('restaur
 Route::get('/booking/detail/{id}', [BookingController::class, 'show'])->name('booking.detail');
 Route::post('/booking/save', [BookingController::class, 'booksave'])->name('booking.save');
 Route::get('/booking/thank-you', [BookingController::class, 'thankYou'])->name('booking.thankyou');
+
+
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+
+Route::get('auth/line', [LoginController::class, 'redirectToLine'])->name('auth.line');
+Route::get('auth/line/callback', [LoginController::class, 'handleLineCallback']);
 
 
 Route::get('/booking/favourite', [BookingController::class, 'favourite'])->name('booking.favourite');

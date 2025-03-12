@@ -6,6 +6,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use SocialiteProviders\Manager\SocialiteWasCalled;
+
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -23,11 +25,14 @@ class EventServiceProvider extends ServiceProvider
     /**
      * Register any events for your application.
      */
-    public function boot(): void
+    public function boot()
     {
-        //
-    }
+        parent::boot();
 
+        Event::listen(SocialiteWasCalled::class, function (SocialiteWasCalled $event) {
+            $event->extendSocialite('line', \SocialiteProviders\Line\LineExtendSocialite::class);
+        });
+    }
     /**
      * Determine if events and listeners should be automatically discovered.
      */
