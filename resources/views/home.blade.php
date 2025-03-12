@@ -159,7 +159,7 @@
 
           <div class="row justify-center pt-40">
             <div class="col-auto">
-              <a href="{{ locale_route('restaurant.search') }}" class="button px-40 h-50 -outline-red text-red">
+              <a href="{{locale_route('restaurant.search')}}" class="button px-40 h-50 -outline-red text-red">
                 {{ translate('load_more') }}
               </a>
             </div>
@@ -245,7 +245,7 @@
 
           <div class="row justify-center pt-40">
             <div class="col-auto">
-              <a href="{{ locale_route('restaurant-list') }}" class="button px-40 h-50 -outline-red text-red">
+              <a href="{{locale_route('restaurant.search')}}" class="button px-40 h-50 -outline-red text-red">
                 {{ translate('load_more') }}
               </a>
             </div>
