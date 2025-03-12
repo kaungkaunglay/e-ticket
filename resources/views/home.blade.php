@@ -122,7 +122,7 @@
 
             @foreach($restaurants as $restaurant)
             <div class="col-xl-3 col-lg-3 col-sm-6">
-              <a href="{{ route('restaurant.detail', ['id' => $restaurant->id]) }}" class="hotelsCard -type-1">
+              <a href="#" class="hotelsCard -type-1">
                 <div class="hotelsCard__image">
                   <div class="cardImage ratio ratio-1:1">
                     <div class="cardImage__content">
@@ -144,7 +144,9 @@
 
                   <a href="{{ route('restaurant.detail', ['id' => $restaurant->id]) }}" class="hotelsCard -type-1">
                     <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
-                      <span>{{ $restaurant->name }}</span>
+                    <span>{{ auth()->id() }}</span><br>
+                    <span>{{$restaurant->id}}</span><br>
+                   <span>{{ $restaurant->name }}</span>
                     </h4>
                   </a>
 
