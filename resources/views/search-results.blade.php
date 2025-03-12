@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 <div class="col-md">
                   <h3 class="text-18 lh-16 fw-500">
-                    {{$restaurant->name}}<br class="lg:d-none"> {{$restaurant->category_id}}, {{$restaurant->city}}
+                    {{$restaurant->name}}<br class="lg:d-none"> {{$restaurant->category->name}}, {{$restaurant->city}}
                   </h3>
 
                   <div class="row x-gap-10 y-gap-10 items-center pt-10">

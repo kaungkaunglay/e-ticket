@@ -77,7 +77,7 @@
         @foreach($discountedRestaurants as $restaurant)
         <div class="swiper-slide">
 
-          <a href="{{ route('restaurant.detail', ['id' => $restaurant->id]) }}"  class="citiesCard -type-2 ">
+          <a href="{{ route('restaurant.detail', ['id' => $restaurant->id]) }}" class="citiesCard -type-2 ">
             <div class="citiesCard__image rounded-4 ratio ratio-1:1">
               <img class="img-ratio rounded-4 js-lazy" data-src="{{ asset($restaurant->logo) }}" src="{{ asset($restaurant->logo) }}" alt="image">
             </div>
@@ -120,39 +120,39 @@
           <div class="row y-gap-30">
 
 
-          @foreach($restaurants as $restaurant)
-<div class="col-xl-3 col-lg-3 col-sm-6">
-    <a href="#" class="hotelsCard -type-1">
-        <div class="hotelsCard__image">
-            <div class="cardImage ratio ratio-1:1">
-                <div class="cardImage__content">
-                    <img class="rounded-4 col-12" src="{{ asset('' . $restaurant->logo) }}" alt="{{ $restaurant->name }} logo">
-                </div>
+            @foreach($restaurants as $restaurant)
+            <div class="col-xl-3 col-lg-3 col-sm-6">
+              <a href="{{ route('restaurant.detail', ['id' => $restaurant->id]) }}" class="hotelsCard -type-1">
+                <div class="hotelsCard__image">
+                  <div class="cardImage ratio ratio-1:1">
+                    <div class="cardImage__content">
+                      <img class="rounded-4 col-12" src="{{ asset('' . $restaurant->logo) }}" alt="{{ $restaurant->name }} logo">
+                    </div>
 
-                <div class="cardImage__wishlist">
-                    <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 favourite-btn" data-id="{{ $restaurant->id }}">
+                    <div class="cardImage__wishlist">
+                      <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 favourite-btn" data-id="{{ $restaurant->id }}">
                         <i class="icon-heart text-12"></i>
-                    </button>
+                      </button>
+                    </div>
+                  </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="hotelsCard__content mt-10">
-            <a href="{{ route('restaurant.detail', ['id' => $restaurant->id]) }}" class="hotelsCard -type-1">
-                <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
-                    <span>{{ $restaurant->name }}</span>
-                </h4>
-            </a>
-            <p class="text-light-1 lh-14 text-14 mt-5">Available: {{ $restaurant->available }} Rooms</p>
-            <div class="mt-5">
-                <div class="fw-500 d-flex justify-content-between">
-                    Starting from <span class="text-green-2">¥{{ number_format($restaurant->price_range) }}</span>
+                <div class="hotelsCard__content mt-10">
+                  <a href="{{ route('restaurant.detail', ['id' => $restaurant->id]) }}" class="hotelsCard -type-1">
+                    <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
+                      <span>{{ $restaurant->name }}</span>
+                    </h4>
+                  </a>
+                  <p class="text-light-1 lh-14 text-14 mt-5">Available: {{ $restaurant->available }} Rooms</p>
+                  <div class="mt-5">
+                    <div class="fw-500 d-flex justify-content-between">
+                      Starting from <span class="text-green-2">¥{{ number_format($restaurant->price_range) }}</span>
+                    </div>
+                  </div>
                 </div>
+              </a>
             </div>
-        </div>
-    </a>
-</div>
-@endforeach
+            @endforeach
 
           </div>
 
@@ -184,61 +184,61 @@
         <div class="tabs__pane -tab-item-1 is-tab-el-active">
           <div class="row y-gap-30">
 
-            
+
             @foreach($restaurants->take(4) as $restaurant)
-              <div class="col-xl-3 col-lg-3 col-sm-6">
+            <div class="col-xl-3 col-lg-3 col-sm-6">
 
-                <a href="{{ route('restaurant.detail', ['id' => $restaurant->id]) }}" class="hotelsCard -type-1 ">
-                  <div class="hotelsCard__image">
+              <a href="{{ route('restaurant.detail', ['id' => $restaurant->id]) }}" class="hotelsCard -type-1 ">
+                <div class="hotelsCard__image">
 
-                    <div class="cardImage ratio ratio-1:1">
-                      <div class="cardImage__content">
+                  <div class="cardImage ratio ratio-1:1">
+                    <div class="cardImage__content">
 
-                        <img class="rounded-4 col-12" src="{{ asset('' . $restaurant->logo) }}" alt="{{ $restaurant->name }} logo">
+                      <img class="rounded-4 col-12" src="{{ asset('' . $restaurant->logo) }}" alt="{{ $restaurant->name }} logo">
 
-
-                      </div>
-
-                      <div class="cardImage__wishlist">
-                        <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
-                          <i class="icon-heart text-12"></i>
-                        </button>
-                      </div>
-
-                      @if($restaurant->discount > 0)
-                        <div class="cardImage__leftBadge">
-                          <div class="py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase bg-dark-1 text-white">
-                            {{ $restaurant->discount }}% {{ translate('discount') }}
-                          </div>
-                        </div>
-                      @endif
 
                     </div>
 
+                    <div class="cardImage__wishlist">
+                      <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+                        <i class="icon-heart text-12"></i>
+                      </button>
+                    </div>
+
+                    @if($restaurant->discount > 0)
+                    <div class="cardImage__leftBadge">
+                      <div class="py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase bg-dark-1 text-white">
+                        {{ $restaurant->discount }}% {{ translate('discount') }}
+                      </div>
+                    </div>
+                    @endif
+
                   </div>
 
-                  <div class="hotelsCard__content mt-10">
-                    <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
-                      <span>{{$restaurant->name}}</span>
-                    </h4>
+                </div>
 
-                    <p class="text-light-1 lh-14 text-14 mt-5">{{$restaurant->address}}</p>
+                <div class="hotelsCard__content mt-10">
+                  <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
+                    <span>{{$restaurant->name}}</span>
+                  </h4>
 
-                    <!-- <div class="d-flex items-center mt-20">
+                  <p class="text-light-1 lh-14 text-14 mt-5">{{$restaurant->address}}</p>
+
+                  <!-- <div class="d-flex items-center mt-20">
                       <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                       <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
                       <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                     </div> -->
 
-                    <div class="mt-5">
-                      <div class="fw-500 d-flex justify-content-between">
-                        {{translate('starting_from')}} <span class="text-green-2">¥{{number_format($restaurant->price_range)}}</span>
-                      </div>
+                  <div class="mt-5">
+                    <div class="fw-500 d-flex justify-content-between">
+                      {{translate('starting_from')}} <span class="text-green-2">¥{{number_format($restaurant->price_range)}}</span>
                     </div>
                   </div>
-                </a>
+                </div>
+              </a>
 
-              </div>
+            </div>
             @endforeach
           </div>
 
@@ -279,32 +279,31 @@
     });
   });
 
-  $(document).ready(function () {
-    $('.favourite-btn').click(function (e) {
-        e.preventDefault();
+  $(document).ready(function() {
+    $('.favourite-btn').click(function(e) {
+      e.preventDefault();
 
-        let restaurantId = $(this).data('id');
-        let token = '{{ csrf_token() }}';
+      let restaurantId = $(this).data('id');
+      let token = '{{ csrf_token() }}';
 
-        $.ajax({
-            url: "{{ route('booking.favourite') }}",
-            type: "GET",
-            data: {
-                _token: token,
-                restaurants_id: restaurantId
-            },
-            success: function (response) {
-                toastr.success(response.message);
-            },
-            error: function (xhr) {
-                if (xhr.status === 422) {
-                    toastr.error("Invalid request. Please try again.");
-                } else {
-                    toastr.error("'最初にログインする必要があります。");
-                }
-            }
-        });
+      $.ajax({
+        url: "{{ route('booking.favourite') }}",
+        type: "GET",
+        data: {
+          _token: token,
+          restaurants_id: restaurantId
+        },
+        success: function(response) {
+          toastr.success(response.message);
+        },
+        error: function(xhr) {
+          if (xhr.status === 422) {
+            toastr.error("Invalid request. Please try again.");
+          } else {
+            toastr.error("'最初にログインする必要があります。");
+          }
+        }
+      });
     });
-});
-
+  });
 </script>
