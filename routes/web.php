@@ -132,7 +132,6 @@ Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/user-dashboard', [UserController::class, 'show'])->name('user.dashboard');
     Route::PUT('/user/profileupdate', [UserController::class, 'profileupdate'])->name('user.profileupdate');
     Route::get('/user_booking', [UserController::class, 'userbooking'])->name('userbooking.dashboard');
-   
 });
 
 Route::middleware('guest')->group(function () {
@@ -174,7 +173,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('owner/createsupport/{id?}', [SupportController::class, 'postcreate'])->name('createsupport.create');
     Route::post('owner/storeOrUpdate/{id?}', [SupportController::class, 'storeOrUpdate'])->name('createsupport.storeOrUpdate');
     Route::delete('owner/question/{id}', [SupportController::class, 'questiondestroy'])->name('question.destroy');
-    
+
 
 
     Route::get('owner/supportcategory', [SupportController::class, 'category'])->name('support.category');
@@ -183,7 +182,7 @@ Route::middleware(['admin'])->group(function () {
     Route::put('owner/updatecategory/{id}', [SupportController::class, 'update'])->name('support.updatecategory');
     Route::get('owner/support-category/{id}/edit', [SupportController::class, 'edit'])->name('support-category.edit');
     Route::delete('owner/support-category/{id}', [SupportController::class, 'destroy'])->name('support-category.destroy');
-    
+
     Route::get('owner/admin_booking', [UserController::class, 'adminbooking'])->name('adminbooking.dashboard');
 
 
@@ -192,9 +191,9 @@ Route::middleware(['admin'])->group(function () {
     Route::post('menu/store-or-update/{id?}', [MenuController::class, 'storeOrUpdate'])->name('menu.storeOrUpdate');
 
 
-    
+
     //promotion
-     Route::post('/admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
+    Route::post('/admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
 });
 
 

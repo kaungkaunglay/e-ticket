@@ -15,45 +15,46 @@
                 <div class="col-xl-10">
                     <div class="text-18 fw-500 mb-10">メニュー内容</div>
                     <form method="POST" action="{{ route('menu.storeOrUpdate', $menu->id ?? null) }}" enctype="multipart/form-data">
-                    @csrf
+                        @csrf
 
-                    <div class="row x-gap-20 y-gap-20">
-                
-                        <div class="col-12">
-                            <div class="form-input">
-                                <input type="text" name="menu" placeholder="メニュー名を入力" value="{{ old('menu', $menu->menu ?? '') }}" required>
-                            </div>
-                            @error('menu')
+                        <div class="row x-gap-20 y-gap-20">
+
+                            <div class="col-12">
+                                <div class="form-input">
+                                    <input type="text" name="menu" placeholder="メニュー名を入力" value="{{ old('menu', $menu->menu ?? '') }}" required>
+                                </div>
+                                @error('menu')
                                 <span class="text-red-500">{{ $message }}</span>
-                            @enderror
+                                @enderror
+                            </div>
+
+
+                            <div class="col-12">
+                                <label for="image">メニュー画像</label>
+                                <div class="form-input">
+
+                                    <input type="file" name="image" id="image" accept="image/*">
+                                </div>
+                                @error('image')
+                                <span class="text-red-500">{{ $message }}</span>
+                                @enderror
+
+
+                                @if (isset($menu) && $menu->image)
+                                <div class="mt-10">
+                                    <img src="{{ asset($menu->image) }}" alt="Menu Image" style="max-width: 200px;">
+                                </div>
+                                @endif
+                            </div>
                         </div>
 
-      
-        <div class="col-12">
-        <label for="image">メニュー画像</label>
-            <div class="form-input">
-               
-                <input type="file" name="image" id="image" accept="image/*">
-            </div>
-            @error('image')
-                <span class="text-red-500">{{ $message }}</span>
-            @enderror
-
-          
-            @if (isset($menu) && $menu->image)
-                <div class="mt-10">
-                    <img src="{{ asset('storage/' . $menu->image) }}" alt="Menu Image" style="max-width: 200px;">
-                </div>
-            @endif
-        </div>
-    </div>
-
-    <div class="d-inline-block pt-30">
-        <button type="submit" class="button h-50 px-24 -dark-1 bg-blue-1 text-white">
-            {{ isset($menu) ? '更新' : '保存' }} <div class="icon-arrow-top-right ml-15"></div>
-        </button>
-    </div>
-</form>
+                        <div class="d-inline-block pt-30">
+                            <button type="submit" class="button h-50 px-24 -dark-1 bg-blue-1 text-white">
+                                {{ isset($menu) ? '更新' : '保存' }}
+                                <div class="icon-arrow-top-right ml-15"></div>
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

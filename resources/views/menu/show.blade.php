@@ -40,7 +40,7 @@
                                     <td>{{ $menu->id }}</td>
                                     <td>{{ $menu->menu }}</td>
                                       <td>  @if ($menu->image)
-                                            <img src="{{ asset('storage/' . $menu->image) }}" alt="Menu Image" style="max-width: 200px;">
+                                            <img src="{{ asset($menu->image) }}" alt="Menu Image" style="max-width: 200px;">
                                         @else
                                             <p>No image available</p>
                                         @endif</td>

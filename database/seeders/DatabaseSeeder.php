@@ -25,8 +25,10 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             SettingsSeeder::class,
             TranslationSeeder::class,
-            WeekSeeder::Class,
-            
+            WeekSeeder::class,
+            CategorySeeder::class,
+            MenuSeeder::class,
+            RestaurantSeeder::class,
         ]);
     }
 }

@@ -19,13 +19,14 @@ class HomeController extends Controller
      */
     public function home()
     {
+        
         $discountedRestaurants = Restaurant::where('status', 1)
             ->whereNotNull('discount')
             ->where('discount', '>', 0)
             ->paginate(10);
 
         // dd($discountedRestaurants);
-        $restaurants = Restaurant::where('status', 1)->paginate(10);
+        $restaurants = Restaurant::where('status', 1)->paginate(8);
 
         return view('home', compact('restaurants', 'discountedRestaurants'));
     }

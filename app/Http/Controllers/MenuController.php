@@ -20,35 +20,41 @@ class MenuController extends Controller
     }
 
     public function storeOrUpdate(Request $request, $id = null)
-{
-    $request->validate([
-        'menu' => 'required|string|max:255',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validate image
-    ]);
-
-    // Handle image upload
-    $imagePath = null;
-    if ($request->hasFile('image')) {
-        $imagePath = $request->file('image')->store('menus', 'public'); // Save image to storage
-    }
-
-    if ($id) {
-        // Update existing menu
-        $menu = Menu::findOrFail($id);
-        $menu->update([
-            'menu' => $request->menu,
-            'image' => $imagePath ?? $menu->image, // Keep existing image if no new image is uploaded
+    {
+        $request->validate([
+            'menu' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        return redirect()->route('menu.index')->with('success', 'Menu updated successfully!');
-    } else {
-        // Create new menu
-        Menu::create([
-            'menu' => $request->menu,
-            'image' => $imagePath, // Save image path
-        ]);
-        return redirect()->route('menu.index')->with('success', 'Menu created successfully!');
+    
+        $imagePath = null;
+    
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName(); // Unique name
+            $destinationPath = public_path('assets/category'); // Destination path
+    
+            $image->move($destinationPath, $imageName); // Move file to public/assets/category
+            $imagePath = 'assets/category/' . $imageName; // Save relative path in DB
+        }
+    
+        if ($id) {
+            // Update existing menu
+            $menu = Menu::findOrFail($id);
+            $menu->update([
+                'menu' => $request->menu,
+                'image' => $imagePath ?? $menu->image, // Keep old image if none uploaded
+            ]);
+            return redirect()->route('menu.index')->with('success', 'Menu updated successfully!');
+        } else {
+            // Create new menu
+            Menu::create([
+                'menu' => $request->menu,
+                'image' => $imagePath, // Save new image path
+            ]);
+            return redirect()->route('menu.index')->with('success', 'Menu created successfully!');
+        }
     }
-}
+    
 
 
 
