@@ -257,7 +257,14 @@
                         <img src="{{asset('/assets/img/dashboard/sidebar/booking.svg')}}" alt="image" class="mr-15" />
                         {{translate('menu')}}
                     </a>
-                </div>
+                   </div>
+
+                   <div class="sidebar__item">
+                    <a href="{{ route('adminbooking.userlist')}}" class="sidebar__button d-flex items-center text-15 lh-1 fw-500">
+                        <img src="{{asset('/assets/img/dashboard/sidebar/booking.svg')}}" alt="image" class="mr-15" />
+                        {{translate('user_list')}}
+                    </a>
+                   </div>
                 
                     <div class="accordion -db-sidebar js-accordion">
                         <div class="accordion__item">

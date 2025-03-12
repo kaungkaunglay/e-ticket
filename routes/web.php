@@ -49,6 +49,7 @@ Route::get('auth/line/callback', [LoginController::class, 'handleLineCallback'])
 
 
 Route::get('/booking/favourite', [BookingController::class, 'favourite'])->name('booking.favourite');
+Route::get('/favorites/remove', [BookingController::class, 'remove'])->name('favorites.remove');
 
 Route::get('/restaurant-lists', [HomeController::class, 'search'])->name('restaurant.search');
 Route::get('/search-price', [HomeController::class, 'pricesearch'])->name('restaurant.price.search');
@@ -195,11 +196,15 @@ Route::middleware(['admin'])->group(function () {
 
     Route::get('owner/admin_booking', [UserController::class, 'adminbooking'])->name('adminbooking.dashboard');
 
+    Route::get('owner/userlist', [UserController::class, 'userlist'])->name('adminbooking.userlist');
+
 
     Route::get('/menu', [MenuController::class, 'index'])->name('menu.index');
     Route::get('menu/manage/{id?}', [MenuController::class, 'manage'])->name('menu.manage');
     Route::post('menu/store-or-update/{id?}', [MenuController::class, 'storeOrUpdate'])->name('menu.storeOrUpdate');
+  
 
+    
 
 
     //promotion
