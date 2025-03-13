@@ -65,51 +65,70 @@
         <textarea id="content_message" name="content_message" class="form-control" rows="4" placeholder="メッセージを入力してください" required
                   style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ddd; border-radius: 5px; transition: border-color 0.3s ease; resize: vertical;"></textarea>
     </div>
-
+    <div class="g-recaptcha" data-sitekey="6Lc-3_IqAAAAAI3J9HDpRgR6fyy-Y9IXwNAcYdhM"></div>
+ 
     <button type="submit" id="submit-button" class="btn btn-primary"
-            style="width: 100%; padding: 12px; font-size: 16px; font-weight: 500; color: #fff; background-color: #007bff; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;">
-        送信
-    </button>
+    style="width: 100%; padding: 12px; font-size: 16px; font-weight: 500; color: #fff; background-color: #007bff; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;">
+    送信
+</button>
 </form>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#content-form').submit(function (event) {
-            event.preventDefault(); 
-          var formData = {
-                name: $('#name').val(),
-                email: $('#email').val(),
-                phone: $('#phone').val(),
-                content_message: $('#content_message').val(),
-                _token: '{{ csrf_token() }}' 
-            };
+<script src="https://www.google.com/recaptcha/api.js?hl=ja" async defer></script>
 
-         
-            $.ajax({
-                url: '{{ route('contents.page') }}', 
-                type: 'GET', 
-                data: formData,
-                success: function (response) {
-                    if (response.status === 'success') {
-                        Swal.fire({
-                            icon: 'success',
-                            title: '送信成功',
-                            text: 'メッセージが正常に送信されました。',
-                            confirmButtonText: 'OK'
-                        });
-                    }
-                },
-                error: function () {
+<script>
+   $(document).ready(function () {
+    $('#content-form').submit(function (event) {
+        event.preventDefault();
+
+     
+        var recaptchaResponse = grecaptcha.getResponse();
+
+        if (!recaptchaResponse) {
+            Swal.fire({
+                icon: 'error',
+                title: '認証エラー',
+                text: 'reCAPTCHAを完了してください。',
+                confirmButtonText: 'OK'
+            });
+            return;
+        }
+
+        var formData = {
+            name: $('#name').val(),
+            email: $('#email').val(),
+            phone: $('#phone').val(),
+            content_message: $('#content_message').val(),
+            _token: '{{ csrf_token() }}',
+            'g-recaptcha-response': recaptchaResponse 
+        };
+
+        $.ajax({
+            url: '{{ route('contents.page') }}',
+            type: 'GET', 
+            data: formData,
+            success: function (response) {
+                if (response.status === 'success') {
                     Swal.fire({
-                        icon: 'error',
-                        title: '送信エラー',
-                        text: 'メッセージの送信中にエラーが発生しました。もう一度お試しください。',
+                        icon: 'success',
+                        title: '送信成功',
+                        text: 'メッセージが正常に送信されました。',
                         confirmButtonText: 'OK'
                     });
+                    grecaptcha.reset(); 
                 }
-            });
+            },
+            error: function () {
+                Swal.fire({
+                    icon: 'error',
+                    title: '送信エラー',
+                    text: 'メッセージの送信中にエラーが発生しました。もう一度お試しください。',
+                    confirmButtonText: 'OK'
+                });
+            }
         });
     });
+});
+
 </script>
 @endsection
