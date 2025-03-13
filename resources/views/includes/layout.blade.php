@@ -249,16 +249,14 @@
                             <h5 class="text-20 fw-500 mb-30">{{translate('company')}}</h5>
                             <div class="d-flex y-gap-10 flex-column">
                                 <a href="{{locale_route('about')}}">{{translate('about_us')}}</a>
-                                <a href="#">{{translate('subscribe')}}</a>
                             </div>
                         </div>
 
                         <div class="col-xl-2 col-lg-4 col-sm-6">
                             <h5 class="text-20 fw-500 mb-30">{{translate('support')}}</h5>
                             <div class="d-flex y-gap-10 flex-column">
-                                <a href="#">{{translate('faqs')}}</a>
+                                <a href="{{locale_route('support.page')}}">{{translate('faqs')}}</a>
                                 <a href="{{locale_route('terms')}}">{{translate('terms_conditions')}}</a>
-                                <a href="#">{{translate('privacy_policy')}}</a>
                                 <a href="{{locale_route('support.page')}}">{{translate('contact')}}</a>
                             </div>
                         </div>

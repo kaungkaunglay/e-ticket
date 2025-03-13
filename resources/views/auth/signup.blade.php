@@ -48,8 +48,8 @@
                         @csrf
                         <div class="row y-gap-20">
                             <div class="col-12">
-                                <h1 class="text-22 fw-500">{{translate('sign_in_or_create_account')}}</h1>
-                                <p class="mt-10">{{translate('already_have_account')}}<a href="{{ route('login') }}" class="text-blue-1">{{translate('log_in')}}</a>
+                                <h1 class="text-22 fw-500 text-center">{{translate('register')}}</h1>
+                                <p class="mt-10 text-center">{{translate('already_have_account')}}<a href="{{ route('login') }}" class="text-blue-1">{{translate('log_in')}}</a>
                                 </p>
                             </div>
 
@@ -159,9 +159,9 @@
 
                             <div class="col-12">
 
-                                <button type="submit" class="button text-center py-15 -dark-1 bg-blue-1 text-white">
+                                <button type="submit" class="button text-center py-15 -dark-1 bg-red text-white">
                                     {{translate('register')}}
-                                    <div class="icon-arrow-top-right ml-15"></div>
+                                    <!-- <div class="icon-arrow-top-right ml-15"></div> -->
                                 </button>
 
                             </div>

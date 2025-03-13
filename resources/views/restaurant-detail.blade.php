@@ -151,8 +151,8 @@
             <div class="row y-gap-20 pt-30">
               <div class="col-lg-3 col-6">
                 <div class="text-center">
-                  <i class="icon-city text-24 text-blue-1"></i>
-                  <div class="text-15 lh-1 mt-10">{{$restaurant->city}}</div>
+                  <i class="icon-kitchen text-24 text-blue-1"></i>
+                  <div class="text-15 lh-1 mt-10">{{$restaurant->category->name}}</div>
                 </div>
               </div>
 
