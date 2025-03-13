@@ -233,52 +233,28 @@
             </div>
           </div>
 
-          <!-- <div class="col-12">
-                        <h3 class="text-22 fw-500 pt-40 border-top-light">Most Popular Facilities</h3>
-                        <div class="row y-gap-10 pt-20">
-                            <div class="col-md-5">
-                                <div class="d-flex x-gap-15 y-gap-15 items-center">
-                                    <i class="icon-no-smoke"></i>
-                                    <div class="text-15">Non-smoking rooms</div>
-                                </div>
-                            </div>
+          <div class="col-12">
+            <h3 class="text-22 fw-500 pt-40 border-top-light">メニュー</h3>
 
-                            <div class="col-md-5">
-                                <div class="d-flex x-gap-15 y-gap-15 items-center">
-                                    <i class="icon-wifi"></i>
-                                    <div class="text-15">Free WiFi</div>
-                                </div>
-                            </div>
+            @if($menus->isEmpty())
+            <p class="text-center text-muted mt-3">メニューが見つかりません。</p>
+            @else
+            <div class="row g-3 mt-3">
+              @foreach($menus as $menu)
+              <div class="col-md-4 col-sm-6">
+                <div class="card border-0 shadow-sm">
+                  <img src="{{ asset($menu->image) }}" class="card-img-top rounded-top" alt="{{ $menu->name }}">
+                  <div class="card-body text-center">
+                    <h5 class="fw-bold text-dark">{{ $menu->menu }}</h5>
+                  </div>
+                </div>
+              </div>
+              @endforeach
+            </div>
+            @endif
+          </div>
 
-                            <div class="col-md-5">
-                                <div class="d-flex x-gap-15 y-gap-15 items-center">
-                                    <i class="icon-parking"></i>
-                                    <div class="text-15">Parking</div>
-                                </div>
-                            </div>
 
-                            <div class="col-md-5">
-                                <div class="d-flex x-gap-15 y-gap-15 items-center">
-                                    <i class="icon-kitchen"></i>
-                                    <div class="text-15">Kitchen</div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-5">
-                                <div class="d-flex x-gap-15 y-gap-15 items-center">
-                                    <i class="icon-living-room"></i>
-                                    <div class="text-15">Living Area</div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-5">
-                                <div class="d-flex x-gap-15 y-gap-15 items-center">
-                                    <i class="icon-shield"></i>
-                                    <div class="text-15">Safety &amp; security</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
         </div>
       </div>
 

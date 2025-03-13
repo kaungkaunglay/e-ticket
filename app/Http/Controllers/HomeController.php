@@ -10,6 +10,7 @@ use App\Models\Message;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SubscriptionConfirmation;
+use App\Models\Menu;
 
 
 class HomeController extends Controller
@@ -34,7 +35,10 @@ class HomeController extends Controller
     public function detail($id)
     {
         $restaurant = Restaurant::where('status', 1)->findOrFail($id);
-        return view('restaurant-detail', compact('restaurant'));
+        $menuIds = json_decode($restaurant->menu, true);
+        $menus = Menu::whereIn('id', $menuIds)->get();
+        // dd($menus);
+        return view('restaurant-detail', compact('restaurant', 'menus'));
     }
 
     public function search(Request $request)
