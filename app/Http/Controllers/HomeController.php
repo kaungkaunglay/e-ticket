@@ -50,29 +50,30 @@ class HomeController extends Controller
                 return $q->where('city', 'LIKE', "%{$query}%");
             })
             ->paginate(10);
-
+      
         return view('search-results', compact('restaurants', 'query', 'checkIn'));
     }
 
 
     public function pricesearch(Request $request)
-    {
+{
+    $query = $request->input('city');
+    $checkIn = $request->input('check_in');
+    $minPrice = (float) $request->input('min_price', 0); // Ensure it's a float
+    $maxPrice = (float) $request->input('max_price', 100000); // Default large max value
 
-        $query = $request->input('city');
-        $checkIn = $request->input('check_in');
-        $minPrice = $request->input('min_price');
-        $maxPrice = $request->input('max_price');
-        $restaurants = Restaurant::where('status', 1)
-            ->when($query, function ($q) use ($query) {
-                return $q->where('city', 'LIKE', "%{$query}%");
-            })
-            ->when($minPrice && $maxPrice, function ($q) use ($minPrice, $maxPrice) {
-                return $q->whereBetween('price_range', [$minPrice, $maxPrice]);
-            })
-            ->paginate(10);
-        
-        return view('search-results', compact('restaurants', 'query', 'checkIn', 'minPrice', 'maxPrice'));
-    }
+    $restaurants = Restaurant::where('status', 1)
+        ->when($query, function ($q) use ($query) {
+            return $q->where('city', 'LIKE', "%{$query}%");
+        })
+        ->when($minPrice || $maxPrice, function ($q) use ($minPrice, $maxPrice) {
+            return $q->whereBetween('price_range', [$minPrice, $maxPrice]);
+        })
+        ->paginate(10);
+    // dd($restaurants);
+    return view('search-results', compact('restaurants', 'query', 'checkIn', 'minPrice', 'maxPrice'));
+}
+
 
     public function searchcheckbox(Request $request)
     {
