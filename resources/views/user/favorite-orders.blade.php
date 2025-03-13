@@ -1,6 +1,20 @@
+<style>
+     .dataTables_length{
+        display: none;
+    }
+    .dataTables_filter{
+        display: none;
+    } 
+    .dataTables_info{
+        display: none;
+    }
+    .dataTables_paginate {
+        display: none;
+    } 
+    </style>
 <div class="tabs__pane -tab-item-4">
     <div class="col-xl-12">
-        <div class="card shadow-lg p-4 mt-3">
+        <div class="card shadow-lg p-4 mt-3" style="overflow: auto;">
             <h4 class="text-center mb-3">お気に入りのレストラン</h4>
             <p id="noFavoritesMessage" class="text-center text-muted mt-3" style="display: none;">
     お気に入りのレストランは見つかりませんでした。

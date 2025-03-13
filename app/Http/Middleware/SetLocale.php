@@ -18,7 +18,7 @@ class SetLocale
         if (!$subdomain && $request->segment(1)) {
             $subdomain = $request->segment(1);
         }
-        $locale = $this->getLocale($subdomain) ?? 'en';
+        $locale = $this->getLocale($subdomain) ?? 'jp';
         App::setLocale($locale);
         Session::put('locale', $locale);
 

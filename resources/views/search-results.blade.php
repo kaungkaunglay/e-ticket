@@ -237,10 +237,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
 
                     <div class="cardImage__wishlist">
-                      <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+                      <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 favourite-btn" data-id="{{ $restaurant->id }}">
                         <i class="icon-heart text-12"></i>
                       </button>
                     </div>
+
 
                   </div>
 
@@ -380,6 +381,55 @@ document.addEventListener('DOMContentLoaded', function () {
   </div>
 </section>
 
+
 @include('includes.subscribe')
 
 @endsection
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    flatpickr("#date-picker", {
+      enableTime: true,
+      dateFormat: "Y-m-d H:i",
+      time_24hr: true,
+      onClose: function(selectedDates) {
+        if (selectedDates.length === 1) {
+          document.getElementById("check_in").value = flatpickr.formatDate(selectedDates[0], "Y-m-d H:i");
+        }
+      }
+    });
+  });
+
+  $(document).ready(function() {
+    $('.favourite-btn').click(function(e) {
+      e.preventDefault();
+
+      let restaurantId = $(this).data('id');
+      let token = '{{ csrf_token() }}';
+
+      $.ajax({
+        url: "{{ route('booking.favourite') }}",
+        type: "GET",
+        data: {
+          _token: token,
+          restaurants_id: restaurantId
+        },
+        success: function(response) {
+          toastr.success(response.message);
+        },
+        error: function(xhr) {
+          if (xhr.status === 422) {
+            toastr.error("Invalid request. Please try again.");
+          } else {
+            toastr.error("'最初にログインする必要があります。");
+          }
+        }
+      });
+    });
+  });
+</script>
