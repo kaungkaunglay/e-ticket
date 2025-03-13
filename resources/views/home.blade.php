@@ -199,11 +199,11 @@
 
                     </div>
 
-                    <div class="cardImage__wishlist">
-                      <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+                      <div class="cardImage__wishlist">
+                      <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 favourite-btn" data-id="{{ $restaurant->id }}">
                         <i class="icon-heart text-12"></i>
-                      </button>
-                    </div>
+                    </button>
+                      </div>
 
                     @if($restaurant->discount > 0)
                     <div class="cardImage__leftBadge">

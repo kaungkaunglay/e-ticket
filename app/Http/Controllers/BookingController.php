@@ -53,7 +53,7 @@ class BookingController extends Controller
             ], 400);
         }
 
-        // If not, create a new favorite
+       
         $favorite = Favorite::firstOrCreate([
             'user_id' => Auth::id(),
             'restaurants_id' => $request->restaurants_id,
@@ -107,10 +107,28 @@ class BookingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function remove(Request $request)
+{
+    $validated = $request->validate([
+        'restaurants_id' => 'required|exists:restaurants,id',
+    ]);
+
+    $user_id = Auth::id(); // Get the authenticated user's ID
+
+    // Find the favorite record
+    $favorite = Favorite::where('user_id', $user_id)
+                        ->where('restaurants_id', $validated['restaurants_id'])
+                        ->first();
+
+    if (!$favorite) {
+        return response()->json(['message' => 'Favorite not found.'], 404);
     }
+
+    // Delete the favorite
+    $favorite->delete();
+
+    return response()->json(['message' => 'Favorite removed successfully.']);
+}
 
     /**
      * Update the specified resource in storage.

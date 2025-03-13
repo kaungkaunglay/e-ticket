@@ -8,6 +8,7 @@ use Exception;
 use App\Models\User;
 use App\Models\Booking;
 use App\Models\Restaurant;
+use App\Models\Favorite;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -20,6 +21,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+
 
 class UserController extends Controller
 {
@@ -34,12 +36,17 @@ class UserController extends Controller
         public function show()
         {
             $user = Auth::user();
+            $favorites = Favorite::select('favorites.*', 'restaurants.*') 
+                ->where('favorites.user_id', $user->id)
+                ->join('restaurants', 'favorites.restaurants_id', '=', 'restaurants.id')
+                ->get();
 
+                // dd($favorites);
             $bookings = Booking::select('bookings.*', 'restaurants.name as restaurant_name', 'restaurants.address as restaurant_address') 
                         ->where('bookings.user_id', $user->id)
                         ->join('restaurants', 'bookings.restaurant_id', '=', 'restaurants.id') 
                         ->get();
-            return view('user.dashboard', compact('user', 'bookings'));
+            return view('user.dashboard', compact('user', 'bookings','favorites'));
         }
 
         public function adminbooking()
@@ -135,13 +142,14 @@ public function userpassword(Request $request) {
 }
 
     
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+    
+public function userlist()
+{
+    $users = User::whereHas('roles', function ($query) {
+        $query->where('role_id', 3);
+    })->paginate(10); 
+    return view('resturant.userlist', compact('users'));
+}
 
     /**
      * Store a newly created resource in storage.

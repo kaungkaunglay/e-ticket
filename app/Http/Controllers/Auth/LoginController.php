@@ -12,9 +12,34 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\DB;
+
+use Illuminate\Support\Facades\Http; 
+
 
 class LoginController extends Controller
 {
+
+        
+    public function redirectToLine()
+    {
+        $clientId = env('LINE_CLIENT_ID');
+        $redirectUri = env('LINE_REDIRECT_URI'); 
+        $state = csrf_token(); 
+    
+        $lineLoginUrl = "https://access.line.me/oauth2/v2.1/authorize?" . http_build_query([
+            "response_type" => "code",
+            "client_id" => $clientId,
+            "redirect_uri" => $redirectUri, 
+            "state" => $state,
+            "scope" => "profile openid email",
+        ]);
+    
+        return redirect($lineLoginUrl);
+    }
+    
+
     // login view
     public function index()
     {
@@ -70,6 +95,51 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
         return redirect()->route('home')->with('success', '正常にログアウトしました。');
     }
+   
+
+
+
+
+    public function handleLineCallback(Request $request)
+    {
+        $code = $request->get('code');
+        $clientId = env('LINE_CLIENT_ID');
+        $clientSecret = env('LINE_CLIENT_SECRET');
+        $redirectUri = env('LINE_REDIRECT_URI');
+    
+     
+        $response = Http::asForm()->post('https://api.line.me/oauth2/v2.1/token', [
+            'grant_type' => 'authorization_code',
+            'code' => $code,
+            'redirect_uri' => $redirectUri,
+            'client_id' => $clientId,
+            'client_secret' => $clientSecret,
+        ]);
+    
+        $tokenData = $response->json();
+    
+        if (!isset($tokenData['access_token'])) {
+            return redirect('/login')->with('error', 'Failed to authenticate with LINE.');
+        }
+    
+       
+        $userResponse = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $tokenData['access_token'],
+        ])->get('https://api.line.me/v2/profile');
+    
+        $userData = $userResponse->json();
+    
+       
+        $user = User::updateOrCreate(
+            ['line_id' => $userData['userId']],
+            ['name' => $userData['displayName'], 'avatar' => $userData['pictureUrl']]
+        );
+    
+        Auth::login($user);
+    
+        return redirect('/dashboard');
+    }
+    
 
 
     public function destroy()

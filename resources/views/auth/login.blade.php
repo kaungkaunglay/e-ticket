@@ -100,17 +100,22 @@
                         <div class="col-12">
                             <div class="text-center">{{translate('or_sign_in_with')}}</div>
 
-                            <button class="button col-12 -line-color text-line-green py-5 rounded-8 mt-10">
+                            <!-- <button class="button col-12 -line-color text-line-green py-5 rounded-8 mt-10">
                                 <img src="{{ asset('assets/img/icons/line.svg') }}" alt="line" class="mr-10">
                                 {{translate('login_with_line')}}
-                            </button>
+                            </button> -->
+                            <a href="{{ route('auth.line') }}" class="button col-12 -line-color text-line-green py-5 rounded-8 mt-10">
+                                <img src="{{ asset('assets/img/icons/line.svg') }}" alt="line" class="mr-10">
+                                {{ translate('login_with_line') }}
+                            </a>
+
                             <div class="login-icons mt-10">
 
                                 <a href="#">
                                     <img src="{{ asset('assets/img/icons/facebook.svg') }}" alt="">
                                 </a>
-                                <a href="#">
-                                    <img src="{{ asset('assets/img/icons/google.svg') }}" alt="">
+                                <a href="{{ route('google.login') }}">
+                                    <img src="{{ asset('assets/img/icons/google.svg') }}" alt="Google Login">
                                 </a>
                             </div>
 
