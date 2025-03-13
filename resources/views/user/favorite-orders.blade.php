@@ -1,25 +1,25 @@
 <div class="tabs__pane -tab-item-4">
     <div class="col-xl-12">
         <div class="card shadow-lg p-4 mt-3">
-            <h4 class="text-center mb-3">Favorite Restaurants</h4>
+            <h4 class="text-center mb-3">お気に入りのレストラン</h4>
             @if($favorites->isEmpty())
-            <p class="text-center text-muted">No favorite restaurants found.</p>
+            <p class="text-center text-muted">お気に入りのレストランは見つかりませんでした。</p>
             @else
             <div class="table-responsive">
                 <table id="favoritesTable" class="table table-hover table-striped table-bordered">
                     <thead class="thead-dark text-center">
                         <tr>
                             <th style="display: none;">ID</th>
-                            <th>Name</th>
-                            <th>Cover Image</th>
-                            <th>Address</th>
-                            <th>City</th>
-                            <th>ZIP Code</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                            <th>Website</th>
-                            <th>Operating Hours</th>
-                            <th>Remove</th>
+                            <th>名前</th>
+                            <th>カバー画像</th>
+                            <th>住所</th>
+                            <th>都市</th>
+                            <th>郵便番号</th>
+                            <th>電話番号</th>
+                            <th>メールアドレス</th>
+                            <th>ウェブサイト</th>
+                            <th>営業時間</th>
+                            <th>削除</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,7 +28,7 @@
                             <td class="text-center" style="display: none;"><strong>{{ $favorite->id }}</strong></td>
                             <td><strong>{{ $favorite->name }}</strong></td>
                             <td class="text-center">
-                                <img src="{{ json_decode($favorite->cover_image)[0] ?? '' }}" alt="Cover Image" class="img-thumbnail" width="80" />
+                                <img src="{{ json_decode($favorite->cover_image)[0] ?? '' }}" alt="カバー画像" class="img-thumbnail" width="80" />
                             </td>
                             <td>{{ $favorite->address }}</td>
                             <td>{{ $favorite->city }}</td>
@@ -37,16 +37,16 @@
                             <td>{{ $favorite->email }}</td>
                             <td class="text-center">
                                 <a href="{{ $favorite->website_url }}" target="_blank" class="btn btn-sm btn-primary">
-                                    Visit
+                                    訪問する
                                 </a>
                             </td>
                             <td class="text-center">{{ $favorite->operating_hours }}</td>
                             <td class="text-center">
-                                <button class="btn btn-danger btn-sm remove-favorite" data-restaurant-id="{{ $favorite->id }}">
-                                    Remove
-                                </button>
-                            </td>
-                        </tr>
+                                <button class="btn bg-red btn-sm remove-favorite text-white" data-restaurant-id="{{ $favorite->id }}">
+                                    削除
+                                </button>  
+                            </td>  
+                        </tr> 
                         @endforeach
                     </tbody>
                 </table>
