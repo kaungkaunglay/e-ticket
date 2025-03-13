@@ -195,9 +195,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
       
       <div class="col-xl-9 col-lg-8">
-        <div class="row y-gap-10 items-center justify-between">
+        <!-- <div class="row y-gap-10 items-center justify-between">
           <div class="col-auto">
-            <!-- <div class="text-18"><span class="fw-500">3,269 properties</span> in Europe</div> -->
+            <div class="text-18"><span class="fw-500">3,269 properties</span> in Europe</div>
           </div>
 
           <div class="col-auto">
@@ -217,9 +217,9 @@ document.addEventListener('DOMContentLoaded', function () {
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
-        <div class="mt-30"></div>
+        <!-- <div class="mt-30"></div> -->
 
         <div class="row y-gap-30">
 

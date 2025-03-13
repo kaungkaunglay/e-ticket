@@ -19,9 +19,9 @@
             <div class="text-center">
               <h1 data-anim-child="slide-up delay-2" class="text-30 lg:text-40 md:text-30 text-white">{{translate('reserve_table')}}</h1>
 
-              <div data-anim-child="slide-up delay-4" class="d-inline-block">
+              <!-- <div data-anim-child="slide-up delay-4" class="d-inline-block">
                 <a href="#" class="button -md -dark-1 bg-red h-50 text-white mt-30">{{translate('discover_more')}}</a>
-              </div>
+              </div> -->
             </div>
             <form action="{{ locale_route('restaurant.search') }}" method="GET">
               <div class="mainSearch bg-white rounded-4 shadow-1 overflow-hidden rounded-22">
@@ -120,7 +120,7 @@
           <div class="row y-gap-30">
 
 
-            @foreach($restaurants as $restaurant)
+            @foreach($restaurants->take(4) as $restaurant)
             <div class="col-xl-3 col-lg-3 col-sm-6">
               <a href="{{ route('restaurant.detail', ['id' => $restaurant->id]) }}" class="hotelsCard -type-1">
                 <div class="hotelsCard__image">
@@ -185,7 +185,7 @@
           <div class="row y-gap-30">
 
 
-            @foreach($restaurants->take(4) as $restaurant)
+            @foreach($restaurants as $restaurant)
             <div class="col-xl-3 col-lg-3 col-sm-6">
 
               <a href="{{ route('restaurant.detail', ['id' => $restaurant->id]) }}" class="hotelsCard -type-1 ">
@@ -200,9 +200,9 @@
                     </div>
 
                       <div class="cardImage__wishlist">
-                      <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 favourite-btn" data-id="{{ $restaurant->id }}">
-                        <i class="icon-heart text-12"></i>
-                    </button>
+                        <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 favourite-btn" data-id="{{ $restaurant->id }}">
+                          <i class="icon-heart text-12"></i>
+                        </button>
                       </div>
 
                     @if($restaurant->discount > 0)
