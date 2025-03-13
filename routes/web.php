@@ -77,15 +77,15 @@ Route::post('/supportcontect', [HomeController::class, 'supportcontect'])->name(
 // Route::get('/search-result', function () {
 //     return view('search-result');
 // })->name('search-result');
-Route::get('/restaurant-detail', function () {
-    return view('restaurant-detail');
-})->name('restaurant-detail');
-Route::get('/booking', function () {
-    return view('booking');
-})->name('booking');
-Route::get('/user-dashboard', function () {
-    return view('user-dashboard');
-})->name('user-dashboard');
+// Route::get('/restaurant-detail', function () {
+//     return view('restaurant-detail');
+// })->name('restaurant-detail');
+// Route::get('/booking', function () {
+//     return view('booking');
+// })->name('booking');
+// Route::get('/user-dashboard', function () {
+//     return view('user-dashboard');
+// })->name('user-dashboard');
 
 Route::get('/about-us', function () {
     return view('about');
@@ -103,14 +103,14 @@ Route::get('/404', function () {
     return view('404');
 })->name('404');
 
-Route::get('/db-vendor-dashboard', function () {
-    return view('db-vendor-dashboard');
-})->name('db-vendor-dashboard');
+// Route::get('/db-vendor-dashboard', function () {
+//     return view('db-vendor-dashboard');
+// })->name('db-vendor-dashboard');
 
 //resturant
-Route::get('/resturant/user-dashboard', function () {
-    return view('resturant.user-dashboard');
-})->name('resturant-user-dashboard');
+// Route::get('/resturant/user-dashboard', function () {
+//     return view('resturant.user-dashboard');
+// })->name('resturant-user-dashboard');
 
 
 
