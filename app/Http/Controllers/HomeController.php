@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\City;
+use App\Models\User;
+use App\Models\Booking;
 use App\Models\Restaurant;
 use App\Models\Message;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +22,7 @@ class HomeController extends Controller
      */
     public function home()
     {
-        
+
         $discountedRestaurants = Restaurant::where('status', 1)
             ->whereNotNull('discount')
             ->where('discount', '>', 0)
@@ -50,29 +52,37 @@ class HomeController extends Controller
                 return $q->where('city', 'LIKE', "%{$query}%");
             })
             ->paginate(10);
-      
+
         return view('search-results', compact('restaurants', 'query', 'checkIn'));
     }
 
 
     public function pricesearch(Request $request)
-{
-    $query = $request->input('city');
-    $checkIn = $request->input('check_in');
-    $minPrice = (float) $request->input('min_price', 0); // Ensure it's a float
-    $maxPrice = (float) $request->input('max_price', 100000); // Default large max value
+    {
+        $query = $request->input('city');
+        $checkIn = $request->input('check_in');
+        $minPrice = (float) $request->input('min_price', 0);
+        $maxPrice = (float) $request->input('max_price', 100000);
+        if ($maxPrice == 10000.00) {
+            $restaurants = Restaurant::where('status', 1)
+                ->when($query, function ($q) use ($query) {
+                    return $q->where('city', 'LIKE', "%{$query}%");
+                })
+                ->paginate(10);
+        } else {
+            $restaurants = Restaurant::where('status', 1)
+                ->when($query, function ($q) use ($query) {
+                    return $q->where('city', 'LIKE', "%{$query}%");
+                })
+                ->when($minPrice || $maxPrice, function ($q) use ($minPrice, $maxPrice) {
+                    return $q->whereBetween('price_range', [$minPrice, $maxPrice]);
+                })
+                ->paginate(10);
+        }
 
-    $restaurants = Restaurant::where('status', 1)
-        ->when($query, function ($q) use ($query) {
-            return $q->where('city', 'LIKE', "%{$query}%");
-        })
-        ->when($minPrice || $maxPrice, function ($q) use ($minPrice, $maxPrice) {
-            return $q->whereBetween('price_range', [$minPrice, $maxPrice]);
-        })
-        ->paginate(10);
-    // dd($restaurants);
-    return view('search-results', compact('restaurants', 'query', 'checkIn', 'minPrice', 'maxPrice'));
-}
+        return view('search-results', compact('restaurants', 'query', 'checkIn', 'minPrice', 'maxPrice'));
+    }
+
 
 
     public function searchcheckbox(Request $request)
@@ -92,23 +102,58 @@ class HomeController extends Controller
                 });
             })
             ->paginate(10);
-    
-      
-    
+
+
+
         return view('search-results', compact('restaurants', 'query', 'checkIn', 'minPrice', 'maxPrice'));
     }
-    
+
     public function allsearch(Request $request)
     {
-        $query = $request->input('city'); 
+        $query = $request->input('city');
         $restaurants = Restaurant::where('status', 1)
             ->when($query, function ($q) use ($query) {
                 return $q->where('city', 'LIKE', "%{$query}%");
             })
             ->paginate(10);
-    //   dd( $restaurants);
+        //   dd( $restaurants);
         return view('search-results', compact('restaurants', 'query'));
     }
+
+
+    public function report()
+    {
+        $restaurants = Restaurant::select('restaurants.id', 'restaurants.name', DB::raw('COUNT(bookings.id) as order_count'))
+            ->leftJoin('bookings', 'restaurants.id', '=', 'bookings.restaurant_id')
+            ->groupBy('restaurants.id', 'restaurants.name')
+            ->orderBy('order_count', 'DESC')
+            ->get();
+
+
+        return response()->json($restaurants);
+    }
+
+
+
+    public function reportuser()
+    {
+
+        $users = User::select('users.id', 'users.first_name', DB::raw('COUNT(bookings.id) as order_count'))
+            ->leftJoin('bookings', 'users.id', '=', 'bookings.user_id')
+            ->groupBy('users.id', 'users.first_name')
+            ->orderBy('order_count', 'DESC')
+            ->get();
+
+
+        $usersWithOrders = $users->filter(function ($user) {
+            return $user->order_count > 0;
+        });
+
+
+        return response()->json($usersWithOrders);
+    }
+
+
 
 
     public function getCities()
@@ -120,26 +165,26 @@ class HomeController extends Controller
 
     public function notifynewupdate(Request $request)
     {
-        
+
         $validated = $request->validate([
             'email' => 'required|email|unique:messages,email',
         ]);
-    
-       
+
+
         $message = Message::create([
             'email' => $validated['email'],
         ]);
-    
-        
+
+
         Mail::to($message->email)->send(new SubscriptionConfirmation($message));
-    
+
         return response()->json([
             'status' => 'success',
             'message' => 'Thank you for subscribing! A confirmation email has been sent.',
         ]);
     }
 
-   
+
 
     public function booking() {}
 

@@ -194,9 +194,9 @@
               </div>
               @endif
 
-              <div class="col-auto">
+              <!-- <div class="col-auto">
                 <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">{{$restaurant->available}}</div>
-              </div>
+              </div> -->
             </div>
           </div>
 

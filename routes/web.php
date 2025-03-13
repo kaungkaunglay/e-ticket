@@ -35,6 +35,11 @@ use Laravel\Socialite\Facades\Socialite;
 Route::get('/', [HomeController::class, 'Home'])->name('home');
 Route::get('/restaurant/{id}', [HomeController::class, 'detail'])->name('restaurant.detail');
 
+
+Route::get('/report', [HomeController::class, 'report'])->name('restaurant.report');
+
+Route::get('/reportuser', [HomeController::class, 'reportuser'])->name('restaurant.reportuser');
+
 Route::get('/booking/detail/{id}', [BookingController::class, 'show'])->name('booking.detail');
 Route::post('/booking/save', [BookingController::class, 'booksave'])->name('booking.save');
 Route::get('/booking/thank-you', [BookingController::class, 'thankYou'])->name('booking.thankyou');
