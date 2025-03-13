@@ -95,13 +95,13 @@ border: 2px solid #afa9a9 !important;
 <div class="tabs__pane -tab-item-3">
     <div class="col-xl-9">
         <div class="profile-info">
-            <h2 class="mb-3">Change Password</h2>
+            <h2 class="mb-3">パスワードを変更</h2>
             <form id="password-change-form">
                 @csrf
                 <input type="hidden" name="id" value="{{ $user->id }}">
                 
                 <div class="form-group">
-                    <label for="old_password">Old Password</label>
+                    <label for="old_password">古いパスワード</label>
                     <input type="password" 
                            name="old_password" 
                            id="old_password" 
@@ -113,7 +113,7 @@ border: 2px solid #afa9a9 !important;
                 </div>
 
                 <div class="form-group">
-                    <label for="new_password">New Password</label>
+                    <label for="new_password">新しいパスワード</label>
                     <input type="password" 
                            name="new_password" 
                            id="new_password" 
@@ -125,7 +125,7 @@ border: 2px solid #afa9a9 !important;
                 </div>
 
                 <div class="form-group">
-                    <label for="new_password_confirmation">Confirm New Password</label>
+                    <label for="new_password_confirmation">新しいパスワードを確認</label>
                     <input type="password" 
                            name="new_password_confirmation" 
                            id="new_password_confirmation" 
@@ -138,7 +138,7 @@ border: 2px solid #afa9a9 !important;
 
                 <div class="profile-actions">
                     <button type="submit" class="button">
-                        Change Password
+                        パスワードを変更
                         <div class="icon-arrow-top-right ml-15"></div>
                     </button>
                 </div>
