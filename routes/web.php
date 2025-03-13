@@ -74,9 +74,9 @@ Route::post('/supportcontect', [HomeController::class, 'supportcontect'])->name(
 // Route::get('/restaurant-list', function () {
 //     return view('restaurant-list');
 // })->name('restaurant-list');
-Route::get('/search-result', function () {
-    return view('search-result');
-})->name('search-result');
+// Route::get('/search-result', function () {
+//     return view('search-result');
+// })->name('search-result');
 Route::get('/restaurant-detail', function () {
     return view('restaurant-detail');
 })->name('restaurant-detail');
