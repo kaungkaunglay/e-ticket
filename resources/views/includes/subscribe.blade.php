@@ -30,7 +30,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script>
+<!-- <script>
     $(document).ready(function() {
         $('form').submit(function(event) {
             event.preventDefault(); // Prevent the form from submitting normally
@@ -65,5 +65,5 @@
             });
         });
     });
-</script>
+</script> -->
 

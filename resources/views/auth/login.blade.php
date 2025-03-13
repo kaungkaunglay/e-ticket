@@ -53,7 +53,7 @@
 
                                 <div class="form-input ">
                                     <input type="text" name="email" id="email" placeholder="{{translate('email')}}" required>
-                                    <!-- <label class="lh-1 text-14 text-light-1">{{translate('email')}}</label> -->
+                                   
                                 </div>
 
                                 @error('email')
@@ -65,7 +65,7 @@
 
                                 <div class="form-input ">
                                     <input type="password" name="password" id="password" placeholder="{{translate('password')}}" required>
-                                    <!-- <label class="lh-1 text-14 text-light-1">{{translate('password')}}</label> -->
+                                  
                                 </div>
 
                                 @error('password')
@@ -102,25 +102,22 @@
                         <div class="col-12">
                             <div class="text-center">{{translate('or_sign_in_with')}}</div>
 
-                            <button class="button col-12 -line-color text-line-green py-5 rounded-8 mt-10">
+                            <!-- <button class="button col-12 -line-color text-line-green py-5 rounded-8 mt-10">
                                 <img src="{{ asset('assets/img/icons/line.svg') }}" alt="line" class="mr-10">
                                 {{translate('login_with_line')}}
-                            </button>
-                            <div class="login-icons mt-10">
-                                <!-- <button class="button col-12 -outline-red-1 text-red-1 py-15 rounded-8 mt-15">
-                                    <i class="icon-apple text-15 mr-10"></i>
-                                    Google
-                                </button>
+                            </button> -->
+                            <a href="{{ route('auth.line') }}" class="button col-12 -line-color text-line-green py-5 rounded-8 mt-10">
+                                <img src="{{ asset('assets/img/icons/line.svg') }}" alt="line" class="mr-10">
+                                {{ translate('login_with_line') }}
+                            </a>
 
-                                <button class="button col-12 -outline-dark-2 text-dark-2 py-15 rounded-8 mt-15">
-                                    <i class="icon-apple text-15 mr-10"></i>
-                                    Apple
-                                </button> -->
+                            <div class="login-icons mt-10">
+                                
                                 <a href="#">
                                     <img src="{{ asset('assets/img/icons/facebook.svg') }}" alt="">
                                 </a>
-                                <a href="#">
-                                    <img src="{{ asset('assets/img/icons/google.svg') }}" alt="">
+                                <a href="{{ route('google.login') }}">
+                                    <img src="{{ asset('assets/img/icons/google.svg') }}" alt="Google Login">
                                 </a>
                             </div>
                             
@@ -135,100 +132,8 @@
         </div>
     </div>
 </section>
-
-<!-- <section class="layout-pt-md layout-pb-md bg-dark-2">
-              <div class="container">
-                <div class="row y-gap-30 justify-between items-center">
-                  <div class="col-auto">
-                    <div class="row y-gap-20  flex-wrap items-center">
-                      <div class="col-auto">
-                        <div class="icon-newsletter text-60 sm:text-40 text-white"></div>
-                      </div>
-
-                      <div class="col-auto">
-                        <h4 class="text-26 text-white fw-600">Your Travel Journey Starts Here</h4>
-                        <div class="text-white">Sign up and we'll send the best deals to you</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-auto">
-                    <div class="single-field -w-410 d-flex x-gap-10 y-gap-20">
-                      <div>
-                        <input class="bg-white h-60" type="text" placeholder="Your Email">
-                      </div>
-
-                      <div>
-                        <button class="button -md h-60 bg-blue-1 text-white">Subscribe</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section> -->
 @endsection
 
 @section('script')
-<!-- <script>
-        $(document).ready(function() {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
 
-            $("#login_form").submit(function(e) {
-                e.preventDefault();
-                var formData = new FormData(this);
-                var form = $(this);
-
-                $.ajax({
-                    url: "{{locale_route('login') }}",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    beforeSend: function() {
-                        const button = form.find('button[type="submit"]');
-                        button.prop('disabled', true);
-                        button.find('div.icon-arrow-top-right').addClass('loading');
-                    },
-                    success: function(response) {
-                                            if (response.status) {
-                                                window.location.href = response.redirect;
-                                            } else {
-
-                                                $('#message').html(response.message ?? '');
-
-                                                var errors = response.errors ?? '';
-
-                                                var fields = [
-                                                    'email',
-                                                    'password'
-                                                ];
-
-                                                fields.forEach(function(field) {
-                                                    const inputGroup = $(`#${field}`).closest(
-                                                        '.input-group');
-                                                    const errorSpan = inputGroup.find(
-                                                        'span.invalid-feedback');
-
-                                                    if (errors[field]) {
-                                                        errorSpan.addClass('d-block').html(errors[field]);
-                                                    } else {
-                                                        errorSpan.removeClass('d-block').html('');
-                                                    }
-                                                });
-                                            }
-                    },
-                    complete: function() {
-                        const button = form.find('button[type="submit"]');
-                        button.find('button[type="submit"]').prop('disabled', false);
-                        button.find('div.icon-arrow-top-right').removeClass('loading');
-                    }
-                });
-            });
-        });
-    </script> -->
 @endsection

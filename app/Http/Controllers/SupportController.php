@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Models\PromotionCode;
 use App\Models\User;
 use App\Models\Content;
+use Illuminate\Support\Facades\Http;
+
+
 class SupportController extends Controller
 {
     /**
@@ -20,27 +23,42 @@ class SupportController extends Controller
     }
 
     public function contents(Request $request)
-    {
-        // Validate the incoming data
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email',
-            'phone' => 'nullable|string',
-            'content_message' => 'required|string',
-        ]);
-    
-        // Store the content message in the database
-        $content = Content::create($validatedData);
-    
-        // Return a JSON response
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Your message has been successfully submitted.',
-            'data' => $content,
-        ], 201);  // 201 status code for created resource
-    }
-    
+{
 
+    $validatedData = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email',
+        'phone' => 'nullable|string',
+        'content_message' => 'required|string',
+        'g-recaptcha-response' => 'required'
+    ]);
+
+   
+    $recaptchaSecret = env('GOOGLE_RECAPTCHA_SECRET');
+    $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+        'secret' => $recaptchaSecret,
+        'response' => $request->input('g-recaptcha-response')
+    ]);
+
+    $responseData = $response->json();
+
+    if (!$responseData['success']) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'reCAPTCHA verification failed. Please try again.'
+        ], 422);
+    }
+
+    
+    $content = Content::create($validatedData);
+
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Your message has been successfully submitted.',
+        'data' => $content,
+    ], 201);
+}
+    
 
     public function supportPage()
     {

@@ -59,6 +59,9 @@
                     <button class="tabs__button text-18 lg:text-16 text-light-1 fw-500 pb-5 lg:pb-0 js-tabs-button" data-tab-target=".-tab-item-2">Booking History</button>
                 </div>
                 <div class="col-auto">
+                    <button class="tabs__button text-18 lg:text-16 text-light-1 fw-500 pb-5 lg:pb-0 js-tabs-button" data-tab-target=".-tab-item-4">Favorite Orders</button>
+                </div>
+                <div class="col-auto">
                     <button class="tabs__button text-18 lg:text-16 text-light-1 fw-500 pb-5 lg:pb-0 js-tabs-button" data-tab-target=".-tab-item-3">Change Password</button>
                 </div>
             </div>
@@ -67,6 +70,7 @@
                 @include('user.personal-info', ['user' => $user]) 
                 @include('user.location-info', ['bookings' => $bookings]) 
                 @include('user.change-password', ['user' => $user]) 
+                @include('user.favorite-orders', ['favorites' => $favorites]) 
             </div>
         </div>
     </div>

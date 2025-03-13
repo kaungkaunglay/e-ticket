@@ -30,26 +30,53 @@ class BookingController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function favourite()
-    {   
-        // use App\Models\User;
-        // use App\Models\Restaurant;
-        // use App\Models\Favorite;
-    }
+    public function favourite(Request $request)
+    {
+        if (!Auth::check()) {
+            return response()->json([
+                'message' => 'ログインが必要です。' 
+            ], 401);
+        }
 
+        $request->validate([
+            'restaurants_id' => 'required|exists:restaurants,id',
+        ]);
+
+        
+        $existingFavorite = Favorite::where('user_id', Auth::id())
+            ->where('restaurants_id', $request->restaurants_id)
+            ->first();
+
+        if ($existingFavorite) {
+            return response()->json([
+                'message' => 'このレストランはすでにお気に入りに追加されています。' 
+            ], 400);
+        }
+
+       
+        $favorite = Favorite::firstOrCreate([
+            'user_id' => Auth::id(),
+            'restaurants_id' => $request->restaurants_id,
+        ]);
+
+        return response()->json([
+            'message' => 'レストランがお気に入りに追加されました。', 
+            'favorite' => $favorite
+        ], 201);
+    }
     /**
      * Display the specified resource.
      */
     public function show($id)
     {
-       
+
         if (!Auth::check()) {
             return redirect()->route('login')->with('error', 'You must be logged in to book a restaurant.');
         }
-    
+
         $restaurant = Restaurant::where('status', 1)->findOrFail($id);
         $user = Auth::user();
-    
+
         return view('booking-detail', compact('restaurant', 'user'));
     }
 
@@ -80,10 +107,28 @@ class BookingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function remove(Request $request)
+{
+    $validated = $request->validate([
+        'restaurants_id' => 'required|exists:restaurants,id',
+    ]);
+
+    $user_id = Auth::id(); // Get the authenticated user's ID
+
+    // Find the favorite record
+    $favorite = Favorite::where('user_id', $user_id)
+                        ->where('restaurants_id', $validated['restaurants_id'])
+                        ->first();
+
+    if (!$favorite) {
+        return response()->json(['message' => 'Favorite not found.'], 404);
     }
+
+    // Delete the favorite
+    $favorite->delete();
+
+    return response()->json(['message' => 'Favorite removed successfully.']);
+}
 
     /**
      * Update the specified resource in storage.
