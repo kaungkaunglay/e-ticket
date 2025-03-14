@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
 
                     <div class="col-auto">
-                      <a href="www.google.com" class="d-block text-14 text-blue-1 underline">{{translate('show_on_map')}}</a>
+                      <a href="{{$restaurant->google_map}}" class="d-block text-14 text-blue-1 underline">{{translate('show_on_map')}}</a>
                     </div>
                   </div>
 

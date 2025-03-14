@@ -145,9 +145,9 @@
                   </a>
                   <p class="text-light-1 lh-14 text-14 mt-5">Available: {{ $restaurant->available }} Rooms</p>
                   <div class="mt-5">
-                    <div class="fw-500 d-flex justify-content-between">
-                      Starting from <span class="text-green-2">¥{{ number_format($restaurant->price_range) }}</span>
-                    </div>
+                  <div class="fw-500 d-flex justify-content-between">
+                  <span>から</span> <span class="text-green-2">¥{{ number_format($restaurant->price_range) }}</span>
+              </div>
                   </div>
                 </div>
               </a>
