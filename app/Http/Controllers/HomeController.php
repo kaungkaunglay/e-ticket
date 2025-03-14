@@ -180,7 +180,7 @@ class HomeController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Thank you for subscribing! A confirmation email has been sent.',
+            'message' => 'ご登録ありがとうございます！確認メールを送信しました',
         ]);
     }
 
