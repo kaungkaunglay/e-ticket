@@ -60,11 +60,19 @@
 
             }
         }
+
         .menu__nav li.active a {
-    color: #ff0000; 
-    font-weight: bold; 
-    /* text-decoration: underline;  */
-}
+            color: #ff0000;
+            font-weight: bold;
+            /* text-decoration: underline;  */
+        }
+
+        @media (max-width: 767px) {
+            .header .header-logo img {
+                max-width: 120px;
+                margin-left: 42px !important;
+            }
+        }
     </style>
 </head>
 
@@ -138,7 +146,7 @@
                     </div>
                     <div class="col-auto">
                         <a href="{{locale_route('home')}}" class="header-logo mr-20" data-x="header-logo" data-x-toggle="is-logo-dark">
-                            <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon">
+                            <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon" style="width: 246px;">
                             <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon">
                         </a>
                     </div>
