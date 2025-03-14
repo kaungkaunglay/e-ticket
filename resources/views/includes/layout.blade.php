@@ -60,6 +60,11 @@
 
             }
         }
+        .menu__nav li.active a {
+    color: #ff0000; 
+    font-weight: bold; 
+    /* text-decoration: underline;  */
+}
     </style>
 </head>
 
@@ -96,40 +101,31 @@
 
                     <div class="col-auto">
                         <div class="d-flex items-center">
-                            <!-- <a href="index.html" class="header-logo mr-20" data-x="header-logo" data-x-toggle="is-logo-dark">
-            <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon">
-            <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon">
-          </a> -->
-
-
                             <div class="header-menu " data-x="mobile-menu" data-x-toggle="is-menu-active">
                                 <div class="mobile-overlay"></div>
 
                                 <div class="header-menu__content">
                                     <div class="mobile-bg js-mobile-bg"></div>
-
                                     <div class="menu js-navList">
                                         <ul class="menu__nav text-dark-1 -is-active">
-                                            <li>
-                                                <a href="{{locale_route('home')}} ">{{translate('home')}}</a>
+                                            <li class="{{ request()->routeIs('home') ? 'active' : '' }}">
+                                                <a href="{{ locale_route('home') }}">{{ translate('home') }}</a>
                                             </li>
-                                            <li>
-                                                <a href="{{locale_route('restaurant.search')}}">{{translate('restaurants')}}</a>
+                                            <li class="{{ request()->routeIs('restaurant.search') ? 'active' : '' }}">
+                                                <a href="{{ locale_route('restaurant.search') }}">{{ translate('restaurants') }}</a>
                                             </li>
-                                            <li>
-                                                <a href="{{locale_route('about')}}">{{translate('about_us')}}</a>
+                                            <li class="{{ request()->routeIs('about') ? 'active' : '' }}">
+                                                <a href="{{ locale_route('about') }}">{{ translate('about_us') }}</a>
                                             </li>
-                                            <li>
-                                                <a href="{{locale_route('support.page')}}">{{translate('support')}}</a>
+                                            <li class="{{ request()->routeIs('support.page') ? 'active' : '' }}">
+                                                <a href="{{ locale_route('support.page') }}">{{ translate('support') }}</a>
                                             </li>
-                                            <li class="mobile-only">
-                                                <a href="{{locale_route('login')}}">{{translate('login')}}</a>
+                                            <li class="mobile-only {{ request()->routeIs('login') ? 'active' : '' }}">
+                                                <a href="{{ locale_route('login') }}">{{ translate('login') }}</a>
                                             </li>
-                                            <li class="mobile-only">
-                                                <a href="{{locale_route('signup')}}">{{translate('signup')}}</a>
+                                            <li class="mobile-only {{ request()->routeIs('signup') ? 'active' : '' }}">
+                                                <a href="{{ locale_route('signup') }}">{{ translate('signup') }}</a>
                                             </li>
-
-
                                         </ul>
                                     </div>
 
@@ -304,7 +300,7 @@
                             <div class="row x-gap-30 y-gap-10">
                                 <div class="col-auto">
                                     <div class="d-flex items-center">
-                                      著作権 2025 年 by Andfun Yangon Co.,LTD
+                                        著作権 2025 年 by Andfun Yangon Co.,LTD
                                     </div>
                                 </div>
 
@@ -321,7 +317,7 @@
                         <div class="col-auto">
                             <div class="row y-gap-10 items-center">
                                 <div class="col-auto">
-                                <a href="{{locale_route('terms')}}">利用規約</a>
+                                    <a href="{{locale_route('terms')}}">利用規約</a>
                                 </div>
                             </div>
                         </div>
