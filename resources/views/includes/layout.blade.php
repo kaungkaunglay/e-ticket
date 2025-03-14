@@ -261,7 +261,7 @@
                             </div>
 
                             <div class="mt-35">
-                                <div class="text-14 mt-30">Need live support?</div>
+                                <div class="text-14 mt-30">ライブサポートが必要ですか？</div>
                                 <a href="#" class="text-14 fw-500 text-blue-1 mt-5">{{translate('email')}} : {{config('email')}}</a>
                             </div>
                         </div>
@@ -304,7 +304,7 @@
                             <div class="row x-gap-30 y-gap-10">
                                 <div class="col-auto">
                                     <div class="d-flex items-center">
-                                        Copy-right 2025 by Andfun Yangon Co.,LTD
+                                      著作権 2025 年 by Andfun Yangon Co.,LTD
                                     </div>
                                 </div>
 
@@ -321,7 +321,7 @@
                         <div class="col-auto">
                             <div class="row y-gap-10 items-center">
                                 <div class="col-auto">
-                                    <a href="{{locale_route('terms')}}">Terms& Conditions</a>
+                                <a href="{{locale_route('terms')}}">利用規約</a>
                                 </div>
                             </div>
                         </div>

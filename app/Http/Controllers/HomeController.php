@@ -51,7 +51,7 @@ class HomeController extends Controller
             ->when($query, function ($q) use ($query) {
                 return $q->where('city', 'LIKE', "%{$query}%");
             })
-            ->paginate(10);
+            ->paginate(9);
 
         return view('search-results', compact('restaurants', 'query', 'checkIn'));
     }
@@ -77,7 +77,7 @@ class HomeController extends Controller
                 ->when($minPrice || $maxPrice, function ($q) use ($minPrice, $maxPrice) {
                     return $q->whereBetween('price_range', [$minPrice, $maxPrice]);
                 })
-                ->paginate(10);
+                ->paginate(9);
         }
 
         return view('search-results', compact('restaurants', 'query', 'checkIn', 'minPrice', 'maxPrice'));
@@ -101,7 +101,7 @@ class HomeController extends Controller
                     }
                 });
             })
-            ->paginate(10);
+            ->paginate(9);
 
 
 

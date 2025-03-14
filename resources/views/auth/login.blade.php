@@ -77,11 +77,11 @@
 
 
                             <div class="col-12">
-                                <div class="text-center" id="message">
+                                <!-- <div class="text-center" id="message">
                                     @if ($errors->any())
                                     <span class="invalid-feedback">{{ $errors->first() }}</span>
                                     @endif
-                                </div>
+                                </div> -->
                             </div>
 
 

@@ -51,65 +51,80 @@ class RegisterController extends Controller
 
     // for ajax
     public function store(Request $request)
-{
-    $request->validate([
-        'first_name' => 'required|min:3|max:50',
-        'last_name' => 'required|min:3|max:50',
-        'email' => 'required|email|unique:users',
-        'password' => 'required|min:8|confirmed',
+    {
+       
+        $request->validate([
+            'first_name' => 'nullable|min:3|max:50',
+            'last_name' => 'required|min:3|max:50',
+            'email' => 'required|email|unique:users',
+            'phone' => 'required|string|max:20',
+            'password' => 'required|min:8|confirmed',
+            'postal_code' => 'required|string|max:10',
+            'address' => 'required|string|max:255',
+        ], [
+            'last_name.required' => '姓を入力してください。', 
+            'email.required' => 'メールアドレスを入力してください。', 
+            'email.email' => '有効なメールアドレスを入力してください。', 
+            'email.unique' => 'このメールアドレスは既に使用されています。', 
+            'phone.required' => '電話番号を入力してください。', 
+            'password.required' => 'パスワードを入力してください。',
+            'password.min' => 'パスワードは8文字以上で入力してください。', 
+            'password.confirmed' => 'パスワードが一致しません。', 
+            'postal_code.required' => '郵便番号を入力してください。',
+            'address.required' => '住所を入力してください。',
+        ]);
+    
         
-    ]);
-
-    $confirmationToken = Str::random(60);
-
-
-    $vendor = User::create([
-        'first_name' => $request->first_name,
-        'last_name' => $request->last_name,
-        'email' => $request->email,
-        'phone' => $request->phone,
-        'password' => Hash::make($request->password),
-        'role' => 'user',
-        'email_verified_at' => null,
-        'confirmation_token' => $confirmationToken,
-        'postal_code' => $request->postal_code,  
-        'address' => $request->address,          
-    ]);
-
-  
-    DB::table('user_roles')->insert([
-        'user_id' => $vendor->id,
-        'role_id' => 3,
-    ]);
-
-    $year = date('Y');
-    $month = date('m');
-    $day = date('d');
-    $latestCode = PromotionCode::whereYear('created_at', $year)
-        ->whereMonth('created_at', $month)
-        ->whereDay('created_at', $day)
-        ->latest('id')
-        ->value('code');
-
-    $incremental = $latestCode ? (int)substr($latestCode, -3) + 1 : 1;
-    $promoCode = sprintf("%s%s%s%03d", $year, $month, $day, $incremental);
-    $expirationDate = Carbon::now()->addMonths(2);
-
-    PromotionCode::create([
-        'user_id' => $vendor->id,
-        'code' => $promoCode,
-        'expires_at' => $expirationDate,
-    ]);
-
-    try {
-        Mail::to($vendor->email)->send(new VendorConfirmationMail($vendor, $promoCode, $confirmationToken));
-    } catch (\Exception $e) {
-        \Log::error('Email sending failed: ' . $e->getMessage());
-        return redirect()->back()->with('error', 'Failed to send confirmation email. Please try again.');
+        $confirmationToken = Str::random(60);
+    
+        $vendor = User::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => Hash::make($request->password),
+            'role' => 'user',
+            'email_verified_at' => null,
+            'confirmation_token' => $confirmationToken,
+            'postal_code' => $request->postal_code,
+            'address' => $request->address,
+        ]);
+    
+        DB::table('user_roles')->insert([
+            'user_id' => $vendor->id,
+            'role_id' => 3,
+        ]);
+    
+        
+        $year = date('Y');
+        $month = date('m');
+        $day = date('d');
+        $latestCode = PromotionCode::whereYear('created_at', $year)
+            ->whereMonth('created_at', $month)
+            ->whereDay('created_at', $day)
+            ->latest('id')
+            ->value('code');
+    
+        $incremental = $latestCode ? (int)substr($latestCode, -3) + 1 : 1;
+        $promoCode = sprintf("%s%s%s%03d", $year, $month, $day, $incremental);
+        $expirationDate = Carbon::now()->addMonths(2);
+    
+        PromotionCode::create([
+            'user_id' => $vendor->id,
+            'code' => $promoCode,
+            'expires_at' => $expirationDate,
+        ]);
+    
+       
+        try {
+            Mail::to($vendor->email)->send(new VendorConfirmationMail($vendor, $promoCode, $confirmationToken));
+        } catch (\Exception $e) {
+            \Log::error('Email sending failed: ' . $e->getMessage());
+            return redirect()->back()->with('error', '確認メールの送信に失敗しました。もう一度お試しください。'); 
+        }
+    
+        return redirect()->route('login')->with('success', '登録が完了しました！確認メールを送信しました。'); 
     }
-
-    return redirect()->route('login')->with('success', 'Registration successful! Please check your email for confirmation.');
-}
 
 
     public function confirmEmail($token)
