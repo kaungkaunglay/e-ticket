@@ -36,7 +36,11 @@ class TranslationSeeder extends Seeder
             ['key' => 'or_sign_in_with', 'en' => 'or sign in with', 'jp' => 'または次の方法でサインインします '], 
             ['key' => 'creating_an_account', 'en' => ' By creating an account, you agree to our Terms of Service and Privacy Statement.', 'jp' => 'アカウントを作成すると、サービス利用規約とプライバシーに関する声明に同意したことになります。 '],
             ['key' => 'how_can_help_you', 'en' => 'How Can I Help You?', 'jp' => 'どんな御用でしょうか？'], 
+           
+            ['key' => 'signup', 'en' => 'Sign Up', 'jp' => 'サインアップ'],
+            ['key' => 'user_list', 'en' => 'User list', 'jp' => 'ユーザーリスト'],
 
+            
             ['key' => 'home', 'en' => 'Home', 'jp' => 'ホーム'],
             ['key' => 'categories', 'en' => 'Categories', 'jp' => 'カテゴリー'],
             ['key' => 'profile', 'en' => 'Profile', 'jp' => 'プロフィール'],

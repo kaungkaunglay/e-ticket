@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" data-x="html" data-x-toggle="html-overflow-hidden">
+
 <head>
-  
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="{{ asset('assets/img/general/home.png') }}">
@@ -45,30 +46,44 @@
         .dropdown-content a:hover {
             background-color: #f1f1f1;
         }
+
+        @media screen and (min-width: 768px) {
+            .mobile-only {
+                display: none !important;
+
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            .mobile-only {
+                display: block !important;
+
+            }
+        }
     </style>
 </head>
 
 <body>
-<div class="preloader js-preloader">
-    <div class="preloader__wrap">
-        <div class="preloader__icon">
-            <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_1_41)">
-                   
-                    <image href="{{ asset('assets/img/general/home.png') }}" x="0" y="0" width="100" height="100" />
-                </g>
+    <div class="preloader js-preloader">
+        <div class="preloader__wrap">
+            <div class="preloader__icon">
+                <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_1_41)">
 
-                <defs>
-                    <clipPath id="clip0_1_41">
-                        <rect width="100" height="100" fill="white" />
-                    </clipPath>
-                </defs>
-            </svg>
+                        <image href="{{ asset('assets/img/general/home.png') }}" x="0" y="0" width="100" height="100" />
+                    </g>
+
+                    <defs>
+                        <clipPath id="clip0_1_41">
+                            <rect width="100" height="100" fill="white" />
+                        </clipPath>
+                    </defs>
+                </svg>
+            </div>
         </div>
-    </div>
 
-    <div class="preloader__title">r-buzz</div>
-</div>
+        <div class="preloader__title">r-buzz</div>
+    </div>
 
 
     <main>
@@ -107,6 +122,13 @@
                                             <li>
                                                 <a href="{{locale_route('support.page')}}">{{translate('support')}}</a>
                                             </li>
+                                            <li class="mobile-only">
+                                                <a href="{{locale_route('login')}}">{{translate('login')}}</a>
+                                            </li>
+                                            <li class="mobile-only">
+                                                <a href="{{locale_route('signup')}}">{{translate('signup')}}</a>
+                                            </li>
+
 
                                         </ul>
                                     </div>
