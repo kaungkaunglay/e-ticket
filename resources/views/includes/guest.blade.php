@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
     @yield('style')
 
-    <title>GoTrip</title>
+    <title>r-buzz</title>
 </head>
 
 <body>
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <div class="preloader__title">GoTrip</div>
+        <div class="preloader__title">r-buzz</div>
     </div>
 
     <main>

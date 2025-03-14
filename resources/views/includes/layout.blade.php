@@ -4,7 +4,8 @@
   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="https://s6.imgcdn.dev/Yho9sh.png">
+    <link rel="icon" type="image/png" href="{{ asset('assets/img/general/home.png') }}">
+
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
@@ -14,7 +15,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
     @yield('style')
 
-    <title>GoTrip</title>
+    <title>r-buzz</title>
     <style>
         .dropdown {
             position: relative;
@@ -66,7 +67,7 @@
         </div>
     </div>
 
-    <div class="preloader__title">GoTrip</div>
+    <div class="preloader__title">r-buzz</div>
 </div>
 
 
@@ -1598,7 +1599,7 @@
 </body>
 
 
-<!-- Mirrored from creativelayers.net/themes/gotrip-html/home-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2025 09:17:58 GMT -->
+<!-- Mirrored from creativelayers.net/themes/r-buzz-html/home-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2025 09:17:58 GMT -->
 
 </html>
 

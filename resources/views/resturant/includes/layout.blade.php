@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Mirrored from creativelayers.net/themes/gotrip-html/db-vendor-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2025 09:19:36 GMT -->
+<!-- Mirrored from creativelayers.net/themes/r-buzz-html/db-vendor-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2025 09:19:36 GMT -->
 
 <head>
     <!-- Required meta tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="{{ asset('assets/img/general/home.png') }}">
 
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/" />
@@ -16,7 +17,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/vendors.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
 
-    <title>GoTrip</title>
+    <title>r-buzz</title>
 </head>
 
 <body data-barba="wrapper">
@@ -567,7 +568,7 @@
                         <div class="col-auto">
                             <div class="row y-gap-20 items-center">
                                 <div class="col-auto">
-                                    <div class="text-14 lh-14 mr-30">© 2022 GoTrip LLC All rights reserved.</div>
+                                    <div class="text-14 lh-14 mr-30">© 2022 r-buzz LLC All rights reserved.</div>
                                 </div>
 
                                 <div class="col-auto">
