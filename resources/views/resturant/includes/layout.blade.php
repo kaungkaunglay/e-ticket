@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        <div class="preloader__title">GoTrip</div>
+        <div class="preloader__title">r-buzz</div>
     </div>
 
     <div class="header-margin"></div>

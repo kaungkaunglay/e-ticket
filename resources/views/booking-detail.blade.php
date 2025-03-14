@@ -104,7 +104,7 @@ textarea.form-control {
             <div class="col-auto">
                 <div class="row x-gap-10 y-gap-5 items-center text-14 text-light-1">
                     <div class="col-auto">
-                        <div class="" style="color: white;">Home > Booking Detail</div>
+                        <div class="" style="color: white;">ホーム > 予約詳細</div>
                     </div>
                 </div>
             </div>
@@ -113,42 +113,41 @@ textarea.form-control {
 </section>
 
 <div class="container mt-5">
-    <h2 class="text-30 fw-600">Booking Details</h2>
+    <h2 class="text-30 fw-600">予約詳細</h2>
 
     <div class="card p-4">
-        <h3>Please Confirm Restaurant Information</h3>
-        <p><strong>Name:</strong> {{ $restaurant->name }}</p>
-        <p><strong>Address:</strong> {{ $restaurant->address }}</p>
-        <p><strong>Price Range:</strong> ¥{{ number_format($restaurant->price_range) }}</p>
+        <h3>レストラン情報をご確認ください</h3>
+        <p><strong>名前:</strong> {{ $restaurant->name }}</p>
+        <p><strong>住所:</strong> {{ $restaurant->address }}</p>
+        <p><strong>価格帯:</strong> ¥{{ number_format($restaurant->price_range) }}</p>
 
-        <p><strong>Description:</strong> {{ $restaurant->description }}</p>
+        <p><strong>説明:</strong> {{ $restaurant->description }}</p>
 
-        <h3 class="mt-3">User Information</h3>
+        <h3 class="mt-3">ユーザー情報</h3>
         @if($user)
-            <p><strong>Name:</strong> {{ $user->first_name }}</p>
-            <p><strong>Email:</strong> {{ $user->email }}</p>
+            <p><strong>名前:</strong> {{ $user->first_name }}</p>
+            <p><strong>メール:</strong> {{ $user->email }}</p>
 
-         
             <form action="{{ route('booking.save') }}" method="POST">
                 @csrf
                 <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
 
-                                <div class="mb-3">
-                    <label for="select_date" class="form-label">Select Date and Time</label>
+                <div class="mb-3">
+                    <label for="select_date" class="form-label">日付と時間を選択</label>
                     <input type="datetime-local" class="form-control" name="select_date" 
                         value="{{ date('Y-m-d\TH:i') }}" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="note" class="form-label">Note (Optional)</label>
+                    <label for="note" class="form-label">備考 (任意)</label>
                     <textarea class="form-control" name="note" rows="3"></textarea>
                 </div>
 
-                <button type="submit" class="button -md -dark-1 bg-red h-50 text-white mt-30">Book Now</button>
+                <button type="submit" class="button -md -dark-1 bg-red h-50 text-white mt-30">予約する</button>
             </form>
 
         @else
-            <p>Please <a href="{{ route('login') }}">login</a> to proceed with booking.</p>
+            <p>予約を進めるには、<a href="{{ route('login') }}">ログイン</a>してください。</p>
         @endif
     </div>
 </div>

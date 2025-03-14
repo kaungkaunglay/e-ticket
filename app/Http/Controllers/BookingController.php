@@ -8,6 +8,8 @@ use App\Models\Booking;
 use App\Models\User;
 use App\Models\Favorite;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\BookingConfirmation;
 
 class BookingController extends Controller
 {
@@ -80,23 +82,26 @@ class BookingController extends Controller
         return view('booking-detail', compact('restaurant', 'user'));
     }
 
-    public function booksave(Request $request)
-    {
-        $request->validate([
-            'restaurant_id' => 'required|exists:restaurants,id',
-            'select_date' => 'required|date',
-            'note' => 'nullable|string',
-        ]);
+    public function booksave(Request $request) 
+{
+    $request->validate([
+        'restaurant_id' => 'required|exists:restaurants,id',
+        'select_date' => 'required|date',
+        'note' => 'nullable|string',
+    ]);
 
-        $booking = Booking::create([
-            'restaurant_id' => $request->restaurant_id,
-            'user_id' => Auth::id(),
-            'select_date' => $request->select_date,
-            'note' => $request->note,
-        ]);
+    $booking = Booking::create([
+        'restaurant_id' => $request->restaurant_id,
+        'user_id' => Auth::id(),
+        'select_date' => $request->select_date,
+        'note' => $request->note,
+    ]);
 
-        return redirect()->route('booking.thankyou')->with('success', 'Your booking was successful!');
-    }
+ 
+    Mail::to(Auth::user()->email)->send(new BookingConfirmation($booking, Auth::user()));
+
+    return redirect()->route('booking.thankyou')->with('success', 'Your booking was successful! A confirmation email has been sent.');
+}
 
 
     public function thankYou()

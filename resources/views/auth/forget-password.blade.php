@@ -44,9 +44,8 @@
                             @csrf
                             <div class="row y-gap-20">
                                 <div class="col-12">
-                                    <h1 class="text-22 fw-500">{{translate('forget_password')}}</h1>
-                                    <p class="mt-10">{{translate('do_you_remember_it')}} <a href="{{ route('login') }}"
-                                            class="text-blue-1">{{translate('log_in')}}</a></p>
+                                    <h1 class="text-22 fw-500 text-center">{{translate('forget_password')}}</h1>
+                                    
                                 </div>
 
                                 <div class="col-12 input-group">
@@ -66,9 +65,12 @@
 
                                 <div class="col-12">
 
-                                    <button type="submit" class="button py-20 -dark-1 bg-blue-1 text-white">
-                                    {{translate('confirm')}} <div class="icon-arrow-top-right ml-15"></div>
+                                    <button type="submit" class="button py-20 -dark-1 bg-red text-white">
+                                    {{translate('confirm')}} 
+                                    <!-- <div class="icon-arrow-top-right ml-15"></div> -->
                                     </button>
+                                    <p class="mt-10 text-center">{{translate('do_you_remember_it')}} <a href="{{ route('login') }}"
+                                            class="text-blue-1">{{translate('log_in')}}</a></p>
 
                                 </div>
                             </div>

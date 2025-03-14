@@ -39,21 +39,21 @@
     <div class="container">
         <div class="row justify-center">
             <div class="col-xl-6 col-lg-7 col-md-9">
-                <div class="px-50 py-50 sm:px-20 sm:py-20 bg-white shadow-4 rounded-4" >
+                <div class="px-50 py-50 sm:px-20 sm:py-20 bg-white shadow-4 rounded-4" style="border-radius: 20px;">
                     <form id="login_form" action="{{locale_route('login.store') }}" method="POST">
                         @csrf
                         <div class="row y-gap-20">
                             <div class="col-12">
-                                <h1 class="text-22 fw-500">{{translate('welcome_back')}}</h1>
-                                <p class="mt-10">{{translate('dont_have_account')}} <a href="{{locale_route('signup') }}"
-                                        class="text-blue-1">{{translate('register')}}</a></p>
+                                <h1 class="text-22 fw-500 text-center">{{translate('login')}}</h1>
+                                <p class="text-center">{{translate('welcome')}}</p>
+
                             </div>
 
                             <div class="col-12 input-group">
 
                                 <div class="form-input ">
                                     <input type="text" name="email" id="email" placeholder="{{translate('email')}}" required>
-                                   
+
                                 </div>
 
                                 @error('email')
@@ -65,7 +65,7 @@
 
                                 <div class="form-input ">
                                     <input type="password" name="password" id="password" placeholder="{{translate('password')}}" required>
-                                  
+
                                 </div>
 
                                 @error('password')
@@ -74,10 +74,7 @@
 
                             </div>
 
-                            <div class="col-12">
-                                <a href="{{locale_route('forget_password') }}"
-                                    class="text-14 fw-500 text-blue-1 underline">{{translate('forgot_password')}}</a>
-                            </div>
+
 
                             <div class="col-12">
                                 <div class="text-center" id="message">
@@ -90,8 +87,9 @@
 
                             <div class="col-12">
 
-                                <button type="submit" class="button py-20 -dark-1 bg-blue-1 text-white">
-                                {{translate('log_in')}} <div class="icon-arrow-top-right ml-15"></div>
+                                <button type="submit" class="button py-20 -dark-1 bg-red text-white">
+                                    {{translate('log_in')}}
+                                    <!-- <div class="icon-arrow-top-right ml-15"></div> -->
                                 </button>
 
                             </div>
@@ -112,7 +110,7 @@
                             </a>
 
                             <div class="login-icons mt-10">
-                                
+
                                 <a href="#">
                                     <img src="{{ asset('assets/img/icons/facebook.svg') }}" alt="">
                                 </a>
@@ -120,7 +118,13 @@
                                     <img src="{{ asset('assets/img/icons/google.svg') }}" alt="Google Login">
                                 </a>
                             </div>
-                            
+
+                        </div>
+                        <p class="mt-10 text-center">{{translate('dont_have_account')}} <a href="{{locale_route('signup') }}"
+                                class="text-blue-1">{{translate('register')}}</a></p>
+                        <div class="col-12 text-center">
+                            <a href="{{locale_route('forget_password') }}"
+                                class="text-14 fw-500 text-blue-1 underline">{{translate('forgot_password')}}</a>
                         </div>
 
                         <div class="col-12">

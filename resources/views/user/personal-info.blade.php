@@ -105,84 +105,84 @@
 </style>
 </head>
 <body>
-    <div class="container mt-4">
-        <div class="tabs__pane -tab-item-1 is-tab-el-active">
-            <div class="profile-info">
-                <div class="card p-4 shadow-sm">
-                    <h2 class="mb-3">User Profile</h2>
+<div class="container mt-4">
+    <div class="tabs__pane -tab-item-1 is-tab-el-active">
+        <div class="profile-info">
+            <div class="card p-4 shadow-sm">
+                <h2 class="mb-3">ユーザープロファイル</h2>
 
-                    <!-- Profile Display Mode -->
-                    <div id="profile-view">
-                        <div class="profile-field">
-                            <strong>First Name:</strong> 
-                            <span id="first-name-text">{{ $user->first_name }}</span>
-                        </div>
-                        <div class="profile-field">
-                            <strong>Last Name:</strong> 
-                            <span id="last-name-text">{{ $user->last_name }}</span>
-                        </div>
-                        <div class="profile-field">
-                            <strong>Email:</strong> 
-                            <span id="email-text">{{ $user->email }}</span>
-                        </div>
-                        <div class="profile-field">
-                            <strong>Phone:</strong> 
-                            <span id="phone-text">{{ $user->phone }}</span>
-                        </div>
-                        <div class="profile-field">
-                            <strong>Address:</strong> 
-                            <span id="address-text">{{ $user->address }}</span>
-                        </div>
-                        <div class="profile-field">
-                            <strong>Postal Code:</strong> 
-                            <span id="postal-code-text">{{ $user->postal_code }}</span>
-                        </div>
-                        <button id="edit-btn" class="btn btn-primary">Edit Profile</button>
+                <!-- Profile Display Mode -->
+                <div id="profile-view">
+                    <div class="profile-field">
+                        <strong>名:</strong> 
+                        <span id="first-name-text">{{ $user->first_name }}</span>
+                    </div>
+                    <div class="profile-field">
+                        <strong>姓:</strong> 
+                        <span id="last-name-text">{{ $user->last_name }}</span>
+                    </div>
+                    <div class="profile-field">
+                        <strong>メール:</strong> 
+                        <span id="email-text">{{ $user->email }}</span>
+                    </div>
+                    <div class="profile-field">
+                        <strong>電話:</strong> 
+                        <span id="phone-text">{{ $user->phone }}</span>
+                    </div>
+                    <div class="profile-field">
+                        <strong>住所:</strong> 
+                        <span id="address-text">{{ $user->address }}</span>
+                    </div>
+                    <div class="profile-field">
+                        <strong>郵便番号:</strong> 
+                        <span id="postal-code-text">{{ $user->postal_code }}</span>
+                    </div>
+                    <button id="edit-btn" class="btn btn-primary">プロフィールを編集</button>
+                </div>
+
+                <!-- Profile Edit Mode -->
+                <form id="profile-form" class="d-none">
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $user->id }}">
+                    
+                    <div class="form-group">
+                        <label>名:</label>
+                        <input type="text" id="first-name" name="first_name" 
+                               class="form-control" value="{{ $user->first_name }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>姓:</label>
+                        <input type="text" id="last-name" name="last_name" 
+                               class="form-control" value="{{ $user->last_name }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>メール:</label>
+                        <input type="email" id="email" name="email" 
+                               class="form-control" value="{{ $user->email }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>電話:</label>
+                        <input type="text" id="phone" name="phone" 
+                               class="form-control" value="{{ $user->phone }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>住所:</label>
+                        <input type="text" id="address" name="address" 
+                               class="form-control" value="{{ $user->address }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>郵便番号:</label>
+                        <input type="text" id="postal-code" name="postal_code" 
+                               class="form-control" value="{{ $user->postal_code }}" required>
                     </div>
 
-                    <!-- Profile Edit Mode -->
-                    <form id="profile-form" class="d-none">
-                        @csrf
-                        <input type="hidden" name="id" value="{{ $user->id }}">
-                        
-                        <div class="form-group">
-                            <label>First Name:</label>
-                            <input type="text" id="first-name" name="first_name" 
-                                   class="form-control" value="{{ $user->first_name }}" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Last Name:</label>
-                            <input type="text" id="last-name" name="last_name" 
-                                   class="form-control" value="{{ $user->last_name }}" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Email:</label>
-                            <input type="email" id="email" name="email" 
-                                   class="form-control" value="{{ $user->email }}" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Phone:</label>
-                            <input type="text" id="phone" name="phone" 
-                                   class="form-control" value="{{ $user->phone }}" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Address:</label>
-                            <input type="text" id="address" name="address" 
-                                   class="form-control" value="{{ $user->address }}" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Postal Code:</label>
-                            <input type="text" id="postal-code" name="postal_code" 
-                                   class="form-control" value="{{ $user->postal_code }}" required>
-                        </div>
-
-                        <button type="submit" class="btn btn-success">Save Changes</button>
-                        <button type="button" id="cancel-btn" class="btn btn-secondary">Cancel</button>
-                    </form>
-                </div>
+                    <button type="submit" class="btn btn-success">変更を保存</button>
+                    <button type="button" id="cancel-btn" class="btn btn-secondary">キャンセル</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.min.js"></script>
 

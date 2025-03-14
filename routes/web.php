@@ -35,6 +35,11 @@ use Laravel\Socialite\Facades\Socialite;
 Route::get('/', [HomeController::class, 'Home'])->name('home');
 Route::get('/restaurant/{id}', [HomeController::class, 'detail'])->name('restaurant.detail');
 
+
+Route::get('/report', [HomeController::class, 'report'])->name('restaurant.report');
+
+Route::get('/reportuser', [HomeController::class, 'reportuser'])->name('restaurant.reportuser');
+
 Route::get('/booking/detail/{id}', [BookingController::class, 'show'])->name('booking.detail');
 Route::post('/booking/save', [BookingController::class, 'booksave'])->name('booking.save');
 Route::get('/booking/thank-you', [BookingController::class, 'thankYou'])->name('booking.thankyou');
@@ -74,18 +79,18 @@ Route::post('/supportcontect', [HomeController::class, 'supportcontect'])->name(
 // Route::get('/restaurant-list', function () {
 //     return view('restaurant-list');
 // })->name('restaurant-list');
-Route::get('/search-result', function () {
-    return view('search-result');
-})->name('search-result');
-Route::get('/restaurant-detail', function () {
-    return view('restaurant-detail');
-})->name('restaurant-detail');
-Route::get('/booking', function () {
-    return view('booking');
-})->name('booking');
-Route::get('/user-dashboard', function () {
-    return view('user-dashboard');
-})->name('user-dashboard');
+// Route::get('/search-result', function () {
+//     return view('search-result');
+// })->name('search-result');
+// Route::get('/restaurant-detail', function () {
+//     return view('restaurant-detail');
+// })->name('restaurant-detail');
+// Route::get('/booking', function () {
+//     return view('booking');
+// })->name('booking');
+// Route::get('/user-dashboard', function () {
+//     return view('user-dashboard');
+// })->name('user-dashboard');
 
 Route::get('/about-us', function () {
     return view('about');
@@ -103,14 +108,14 @@ Route::get('/404', function () {
     return view('404');
 })->name('404');
 
-Route::get('/db-vendor-dashboard', function () {
-    return view('db-vendor-dashboard');
-})->name('db-vendor-dashboard');
+// Route::get('/db-vendor-dashboard', function () {
+//     return view('db-vendor-dashboard');
+// })->name('db-vendor-dashboard');
 
 //resturant
-Route::get('/resturant/user-dashboard', function () {
-    return view('resturant.user-dashboard');
-})->name('resturant-user-dashboard');
+// Route::get('/resturant/user-dashboard', function () {
+//     return view('resturant.user-dashboard');
+// })->name('resturant-user-dashboard');
 
 
 

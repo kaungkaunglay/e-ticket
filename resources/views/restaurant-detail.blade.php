@@ -91,11 +91,11 @@
         <img src="{{ asset($firstImage) }}" alt="Restaurant Image" class="rounded-4" />
         @endif @endif
 
-        <div class="absolute px-20 py-20 col-12 d-flex justify-end">
-          <button class="button -blue-1 size-40 rounded-full flex-center bg-white text-dark-1">
-            <i class="icon-heart text-16"></i>
-          </button>
-        </div>
+        <div class="cardImage__wishlist">
+                      <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 favourite-btn" data-id="{{ $restaurant->id }}">
+                        <i class="icon-heart text-12"></i>
+                      </button>
+                    </div>
       </div>
 
       <div class="galleryGrid__item">
@@ -151,8 +151,8 @@
             <div class="row y-gap-20 pt-30">
               <div class="col-lg-3 col-6">
                 <div class="text-center">
-                  <i class="icon-city text-24 text-blue-1"></i>
-                  <div class="text-15 lh-1 mt-10">{{$restaurant->city}}</div>
+                  <i class="icon-kitchen text-24 text-blue-1"></i>
+                  <div class="text-15 lh-1 mt-10">{{$restaurant->category->name}}</div>
                 </div>
               </div>
 
@@ -194,9 +194,9 @@
               </div>
               @endif
 
-              <div class="col-auto">
+              <!-- <div class="col-auto">
                 <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">{{$restaurant->available}}</div>
-              </div>
+              </div> -->
             </div>
           </div>
 
@@ -233,189 +233,34 @@
             </div>
           </div>
 
-          <!-- <div class="col-12">
-                        <h3 class="text-22 fw-500 pt-40 border-top-light">Most Popular Facilities</h3>
-                        <div class="row y-gap-10 pt-20">
-                            <div class="col-md-5">
-                                <div class="d-flex x-gap-15 y-gap-15 items-center">
-                                    <i class="icon-no-smoke"></i>
-                                    <div class="text-15">Non-smoking rooms</div>
-                                </div>
-                            </div>
+          <div class="col-12">
+            <h3 class="text-22 fw-500 pt-40 border-top-light">メニュー</h3>
 
-                            <div class="col-md-5">
-                                <div class="d-flex x-gap-15 y-gap-15 items-center">
-                                    <i class="icon-wifi"></i>
-                                    <div class="text-15">Free WiFi</div>
-                                </div>
-                            </div>
+            @if($menus->isEmpty())
+            <p class="text-center text-muted mt-3">メニューが見つかりません。</p>
+            @else
+            <div class="row g-3 mt-3">
+              @foreach($menus as $menu)
+              <div class="col-md-4 col-sm-6">
+                <div class="card border-0 shadow-sm">
+                  <img src="{{ asset($menu->image) }}" class="card-img-top rounded-top" alt="{{ $menu->name }}">
+                  <div class="card-body text-center">
+                    <h5 class="fw-bold text-dark">{{ $menu->menu }}</h5>
+                  </div>
+                </div>
+              </div>
+              @endforeach
+            </div>
+            @endif
+          </div>
 
-                            <div class="col-md-5">
-                                <div class="d-flex x-gap-15 y-gap-15 items-center">
-                                    <i class="icon-parking"></i>
-                                    <div class="text-15">Parking</div>
-                                </div>
-                            </div>
 
-                            <div class="col-md-5">
-                                <div class="d-flex x-gap-15 y-gap-15 items-center">
-                                    <i class="icon-kitchen"></i>
-                                    <div class="text-15">Kitchen</div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-5">
-                                <div class="d-flex x-gap-15 y-gap-15 items-center">
-                                    <i class="icon-living-room"></i>
-                                    <div class="text-15">Living Area</div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-5">
-                                <div class="d-flex x-gap-15 y-gap-15 items-center">
-                                    <i class="icon-shield"></i>
-                                    <div class="text-15">Safety &amp; security</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
         </div>
       </div>
 
       <div class="col-xl-4">
         <div class="ml-50 lg:ml-0">
-          <!-- <div class="px-30 py-30 border-light rounded-4 shadow-4">
-                        <div class="d-flex items-center justify-between">
-                            <div class="">
-                                <span class="text-20 fw-500">US$72</span>
-                                <span class="text-14 text-light-1 ml-5">nights</span>
-                            </div>
-
-                            <div class="d-flex items-center">
-                                <div class="text-14 text-right mr-10">
-                                    <div class="lh-15 fw-500">Exceptional</div>
-                                    <div class="lh-15 text-light-1">3,014 reviews</div>
-                                </div>
-
-                                <div class="size-40 flex-center bg-blue-1 rounded-4">
-                                    <div class="text-14 fw-600 text-white">4.8</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row y-gap-20 pt-30">
-                            <div class="col-12">
-                                <div class="searchMenu-date px-20 py-10 border-light rounded-4 -right js-form-dd js-calendar js-calendar-el">
-                                    <div data-x-dd-click="searchMenu-date">
-                                        <h4 class="text-15 fw-500 ls-2 lh-16">Check in - Check out</h4>
-
-                                        <div class="capitalize text-15 text-light-1 ls-2 lh-16">
-                                            <span class="js-first-date">Wed 2 Mar</span>
-                                            -
-                                            <span class="js-last-date">Fri 11 Apr</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="searchMenu-date__field shadow-2" data-x-dd="searchMenu-date" data-x-dd-toggle="-is-active">
-                                        <div class="bg-white px-30 py-30 rounded-4">
-                                            <div class="elCalendar js-calendar-el-calendar"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <div class="searchMenu-guests px-20 py-10 border-light rounded-4 js-form-dd js-form-counters">
-                                    <div data-x-dd-click="searchMenu-guests">
-                                        <h4 class="text-15 fw-500 ls-2 lh-16">Guest</h4>
-
-                                        <div class="text-15 text-light-1 ls-2 lh-16"><span class="js-count-adult">2</span> adults - <span class="js-count-child">1</span> childeren - <span class="js-count-room">1</span> room</div>
-                                    </div>
-
-                                    <div class="searchMenu-guests__field shadow-2" data-x-dd="searchMenu-guests" data-x-dd-toggle="-is-active">
-                                        <div class="bg-white px-30 py-30 rounded-4">
-                                            <div class="row y-gap-10 justify-between items-center">
-                                                <div class="col-auto">
-                                                    <div class="text-15 fw-500">Adults</div>
-                                                </div>
-
-                                                <div class="col-auto">
-                                                    <div class="d-flex items-center js-counter" data-value-change=".js-count-adult">
-                                                        <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-down">
-                                                            <i class="icon-minus text-12"></i>
-                                                        </button>
-
-                                                        <div class="flex-center size-20 ml-15 mr-15">
-                                                            <div class="text-15 js-count">2</div>
-                                                        </div>
-
-                                                        <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-up">
-                                                            <i class="icon-plus text-12"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="border-top-light mt-24 mb-24"></div>
-
-                                            <div class="row y-gap-10 justify-between items-center">
-                                                <div class="col-auto">
-                                                    <div class="text-15 lh-12 fw-500">Children</div>
-                                                    <div class="text-14 lh-12 text-light-1 mt-5">Ages 0 - 17</div>
-                                                </div>
-
-                                                <div class="col-auto">
-                                                    <div class="d-flex items-center js-counter" data-value-change=".js-count-child">
-                                                        <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-down">
-                                                            <i class="icon-minus text-12"></i>
-                                                        </button>
-
-                                                        <div class="flex-center size-20 ml-15 mr-15">
-                                                            <div class="text-15 js-count">1</div>
-                                                        </div>
-
-                                                        <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-up">
-                                                            <i class="icon-plus text-12"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="border-top-light mt-24 mb-24"></div>
-
-                                            <div class="row y-gap-10 justify-between items-center">
-                                                <div class="col-auto">
-                                                    <div class="text-15 fw-500">Rooms</div>
-                                                </div>
-
-                                                <div class="col-auto">
-                                                    <div class="d-flex items-center js-counter" data-value-change=".js-count-room">
-                                                        <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-down">
-                                                            <i class="icon-minus text-12"></i>
-                                                        </button>
-
-                                                        <div class="flex-center size-20 ml-15 mr-15">
-                                                            <div class="text-15 js-count">1</div>
-                                                        </div>
-
-                                                        <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-up">
-                                                            <i class="icon-plus text-12"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <button class="button -dark-1 px-35 h-60 col-12 bg-blue-1 text-white">
-                                    Check availability
-                                </button>
-                            </div>
-                        </div>
-                    </div> -->
+        
 
           <div class="px-30 py-30 border-light rounded-4 mt-30">
             <div class="flex-center ratio ratio-15:9 mb-15 js-lazy" data-bg="img/general/map.png')}}">
@@ -436,19 +281,6 @@
 
             <div class="border-top-light mt-15 mb-15"></div>
 
-            <!-- <div class="text-15 fw-500">Popular landmarks</div>
-
-                        <div class="d-flex justify-between pt-10">
-                            <div class="text-14">Royal Pump Room Museum</div>
-                            <div class="text-14 text-light-1">0.1 km</div>
-                        </div>
-
-                        <div class="d-flex justify-between pt-5">
-                            <div class="text-14">Harrogate Turkish Baths</div>
-                            <div class="text-14 text-light-1">0.1 km</div>
-                        </div>
-
-                        <a href="#" class="d-block text-14 fw-500 underline text-blue-1 mt-10">Show More</a> -->
           </div>
         </div>
       </div>
@@ -459,5 +291,51 @@
 <section class="mt-40">
   @include('includes.subscribe')
 </section>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    flatpickr("#date-picker", {
+      enableTime: true,
+      dateFormat: "Y-m-d H:i",
+      time_24hr: true,
+      onClose: function(selectedDates) {
+        if (selectedDates.length === 1) {
+          document.getElementById("check_in").value = flatpickr.formatDate(selectedDates[0], "Y-m-d H:i");
+        }
+      }
+    });
+  });
 
+  $(document).ready(function() {
+    $('.favourite-btn').click(function(e) {
+      e.preventDefault();
+
+      let restaurantId = $(this).data('id');
+      let token = '{{ csrf_token() }}';
+
+      $.ajax({
+        url: "{{ route('booking.favourite') }}",
+        type: "GET",
+        data: {
+          _token: token,
+          restaurants_id: restaurantId
+        },
+        success: function(response) {
+          toastr.success(response.message);
+        },
+        error: function(xhr) {
+          if (xhr.status === 422) {
+            toastr.error("Invalid request. Please try again.");
+          } else {
+            toastr.error("'最初にログインする必要があります。");
+          }
+        }
+      });
+    });
+  });
+</script>
 @endsection
