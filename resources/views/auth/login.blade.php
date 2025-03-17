@@ -35,7 +35,7 @@
 </style>
 @endsection
 @section('contents')
-<section class="pt-50 pb-50 bg-blue-2"> 
+<section class="pt-50 pb-50 bg-blue-2">
     <div class="container">
         <div class="row justify-center">
             <div class="col-xl-6 col-lg-7 col-md-9">
@@ -51,7 +51,7 @@
                             <!-- Email Input -->
                             <div class="col-12 input-group">
                                 <div class="form-input">
-                                    <input type="text" name="email" id="email" placeholder="{{ translate('email') }}" required>
+                                    <input type="text" name="email" id="email" placeholder="{{ translate('email') }}" value="{{ old('email') }}" required>
                                 </div>
                                 @error('email')
                                 <span class="invalid-feedback">{{ $message }}</span>

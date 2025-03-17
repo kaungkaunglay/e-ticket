@@ -36,6 +36,8 @@
         }
 
     }
+
+    
 </style>
 @endsection
 @section('contents')
@@ -52,11 +54,12 @@
                                 <p class="mt-10 text-center">{{ translate('already_have_account') }}<a href="{{ route('login') }}" class="text-blue-1">{{ translate('log_in') }}</a></p>
                             </div>
 
-                            <!-- First Name (No Validation Error) -->
+                         
                             <div class="col-12 input-group">
                                 <div class="form-input">
-                                    <input type="text" name="first_name" id="first_name" placeholder="{{ translate('first_name') }}">
+                                    <input type="text" name="first_name" id="first_name" placeholder="{{ translate('first_name') }}" required>
                                 </div>
+                                <span class="invalid-feedback">{{ $errors->first('first_name') }}</span>
                             </div>
 
                             <!-- Last Name -->
@@ -78,7 +81,7 @@
                             <!-- Phone -->
                             <div class="col-12 input-group">
                                 <div class="form-input">
-                                    <input type="text" name="phone" id="phone" placeholder="{{ translate('phone') }}" required>
+                                    <input type="number" name="phone" id="phone" placeholder="{{ translate('phone') }}" required>
                                 </div>
                                 <span class="invalid-feedback">{{ $errors->first('phone') }}</span>
                             </div>

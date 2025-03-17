@@ -260,20 +260,26 @@
 @include('includes.subscribe')
 
 @endsection
+<!-- Flatpickr CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    flatpickr("#date-picker", {
+    // ✅ Fix: Use correct ID from input field
+    flatpickr("#date-range", {
       enableTime: true,
       dateFormat: "Y-m-d H:i",
       time_24hr: true,
-      onClose: function(selectedDates) {
+      onClose: function(selectedDates, dateStr, instance) {
         if (selectedDates.length === 1) {
-          document.getElementById("check_in").value = flatpickr.formatDate(selectedDates[0], "Y-m-d H:i");
+          // ✅ Fix: Use `dateStr` to get formatted date instead of flatpickr.formatDate()
+          document.getElementById("check_in").value = dateStr;
         }
       }
     });
@@ -300,7 +306,7 @@
           if (xhr.status === 422) {
             toastr.error("Invalid request. Please try again.");
           } else {
-            toastr.error("'最初にログインする必要があります。");
+            toastr.error("最初にログインする必要があります。");
           }
         }
       });

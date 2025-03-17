@@ -73,6 +73,10 @@
                 margin-left: 42px !important;
             }
         }
+        input[type="search"]::-webkit-search-cancel-button {
+    display: none;
+}
+
     </style>
 </head>
 

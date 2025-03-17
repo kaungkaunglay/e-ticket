@@ -58,55 +58,64 @@ class HomeController extends Controller
 
 
     public function pricesearch(Request $request)
-    {
-        $query = $request->input('city');
-        $checkIn = $request->input('check_in');
-        $minPrice = (float) $request->input('min_price', 0);
-        $maxPrice = (float) $request->input('max_price', 100000);
-        if ($maxPrice == 10000.00) {
-            $restaurants = Restaurant::where('status', 1)
-                ->when($query, function ($q) use ($query) {
-                    return $q->where('city', 'LIKE', "%{$query}%");
-                })
-                ->paginate(10);
-        } else {
-            $restaurants = Restaurant::where('status', 1)
-                ->when($query, function ($q) use ($query) {
-                    return $q->where('city', 'LIKE', "%{$query}%");
-                })
-                ->when($minPrice || $maxPrice, function ($q) use ($minPrice, $maxPrice) {
-                    return $q->whereBetween('price_range', [$minPrice, $maxPrice]);
-                })
-                ->paginate(9);
-        }
+{
+    $query = $request->input('city');
+    $checkIn = $request->input('check_in');
+    $minPrice = intval($request->input('min_price', 0)); 
+    $maxPrice = intval($request->input('max_price', 10000));
+    $filterPrice = $request->input('filter_price', []);
 
-        return view('search-results', compact('restaurants', 'query', 'checkIn', 'minPrice', 'maxPrice'));
-    }
+    $restaurants = Restaurant::where('status', 1)
+        ->when(!empty($query), function ($q) use ($query) {
+            $q->where('city', 'LIKE', "%$query%");
+        })
+        ->when(!empty($filterPrice), function ($q) use ($filterPrice) {
+            $q->where(function ($query) use ($filterPrice) {
+                foreach ($filterPrice as $range) {
+                    list($min, $max) = explode('-', $range);
+                    $query->orWhereBetween('price_range', [(int)$min, (int)$max]);
+                }
+            });
+        })
+        ->when($minPrice !== null && $maxPrice !== null, function ($q) use ($minPrice, $maxPrice) {
+            $q->whereBetween('price_range', [$minPrice, $maxPrice]);
+        })
+        ->paginate(9);
+        // dd( $restaurants);
+
+
+    return view('search-results', compact('restaurants', 'query', 'checkIn', 'minPrice', 'maxPrice'));
+}
+
 
 
 
     public function searchcheckbox(Request $request)
-    {
-        $query = $request->input('city');
-        $checkIn = $request->input('check_in');
-        $minPrice = $request->input('min_price');
-        $maxPrice = $request->input('max_price');
-        $filterPrice = $request->input('filter_price', []);
-        $restaurants = Restaurant::where('status', 1)
-            ->when(!empty($filterPrice), function ($q) use ($filterPrice) {
-                $q->where(function ($query) use ($filterPrice) {
-                    foreach ($filterPrice as $range) {
-                        list($min, $max) = explode('-', $range);
-                        $query->orWhereBetween('price_range', [(int)$min, (int)$max]);
-                    }
-                });
-            })
-            ->paginate(9);
+{
+    $query = $request->input('city');
+    
+    $checkIn = $request->input('check_in');
+    $minPrice = $request->input('min_price');
+    $maxPrice = $request->input('max_price');
+    $filterPrice = $request->input('filter_price', []);
 
+    $restaurants = Restaurant::where('status', 1)
+        ->when(!empty($query), function ($q) use ($query) {
+            $q->where('city', 'LIKE', "%$query%");
+        })
+        ->when(!empty($filterPrice), function ($q) use ($filterPrice) {
+            $q->where(function ($query) use ($filterPrice) {
+                foreach ($filterPrice as $range) {
+                    list($min, $max) = explode('-', $range);
+                    $query->orWhereBetween('price_range', [(int)$min, (int)$max]);
+                }
+            });
+        })
+        ->paginate(9);
+        // dd($restaurants);
+    return view('search-results', compact('restaurants', 'query', 'checkIn', 'minPrice', 'maxPrice'));
+}
 
-
-        return view('search-results', compact('restaurants', 'query', 'checkIn', 'minPrice', 'maxPrice'));
-    }
 
     public function allsearch(Request $request)
     {
