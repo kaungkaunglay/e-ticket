@@ -44,48 +44,46 @@
                         @csrf
                         <div class="row y-gap-20">
                             <div class="col-12">
-                                <h1 class="text-22 fw-500 text-center">{{ translate('login') }}</h1>
-                                <p class="text-center">{{ translate('welcome') }}</p>
+                                <h1 class="text-22 fw-500 text-center">ログイン</h1>
+                                <p class="text-center">ようこそ</p>
                             </div>
 
-                            <!-- Email Input -->
                             <div class="col-12 input-group">
                                 <div class="form-input">
-                                    <input type="text" name="email" id="email" placeholder="{{ translate('email') }}" value="{{ old('email') }}" required>
+                                    <input type="text" name="email" id="email" placeholder="メールアドレス" value="{{ old('email') }}" required>
                                 </div>
                                 @error('email')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
 
-                            <!-- Password Input -->
+                           
                             <div class="col-12 input-group">
                                 <div class="form-input">
-                                    <input type="password" name="password" id="password" placeholder="{{ translate('password') }}" required>
+                                    <input type="password" name="password" id="password" placeholder="パスワード" required>
                                 </div>
                                 @error('password')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
 
-                            <!-- Submit Button -->
                             <div class="col-12">
                                 <button type="submit" class="button py-20 -dark-1 bg-red text-white">
-                                    {{ translate('log_in') }}
+                                    ログイン
                                 </button>
                             </div>
                         </div>
                     </form>
 
-                    <!-- Social Login Section -->
+                
                     <div class="row y-gap-20 pt-30">
                         <div class="col-12">
-                            <div class="text-center">{{ translate('or_sign_in_with') }}</div>
+                            <div class="text-center">または、以下の方法でログイン</div>
 
-                            <!-- LINE Login Button -->
+                           
                             <a href="{{ route('auth.line') }}" class="button col-12 -line-color text-line-green py-5 rounded-8 mt-10">
                                 <img src="{{ asset('assets/img/icons/line.svg') }}" alt="line" class="mr-10">
-                                {{ translate('login_with_line') }}
+                                LINEでログイン
                             </a>
 
                             <!-- Social Icons -->
@@ -99,15 +97,15 @@
                             </div>
                         </div>
 
-                        <!-- Registration and Forgot Password Links -->
-                        <p class="mt-10 text-center">{{ translate('dont_have_account') }} <a href="{{ locale_route('signup') }}" class="text-blue-1">{{ translate('register') }}</a></p>
+                      
+                        <p class="mt-10 text-center">アカウントをお持ちでないですか？ <a href="{{ locale_route('signup') }}" class="text-blue-1">登録</a></p>
                         <div class="col-12 text-center">
-                            <a href="{{ locale_route('forget_password') }}" class="text-14 fw-500 text-blue-1 underline">{{ translate('forgot_password') }}</a>
+                            <a href="{{ locale_route('forget_password') }}" class="text-14 fw-500 text-blue-1 underline">パスワードを忘れた場合</a>
                         </div>
 
-                        <!-- Terms and Conditions -->
+                        
                         <div class="col-12">
-                            <div class="text-center px-30">{{ translate('agree_terms') }}</div>
+                            <div class="text-center px-30">アカウントを作成することで、利用規約およびプライバシーポリシーに同意したことになります。</div>
                         </div>
                     </div>
                 </div>

@@ -90,10 +90,9 @@ class HomeController extends Controller
 
 
 
-    public function searchcheckbox(Request $request)
+public function searchcheckbox(Request $request)
 {
     $query = $request->input('city');
-    
     $checkIn = $request->input('check_in');
     $minPrice = $request->input('min_price');
     $maxPrice = $request->input('max_price');
@@ -106,15 +105,21 @@ class HomeController extends Controller
         ->when(!empty($filterPrice), function ($q) use ($filterPrice) {
             $q->where(function ($query) use ($filterPrice) {
                 foreach ($filterPrice as $range) {
-                    list($min, $max) = explode('-', $range);
-                    $query->orWhereBetween('price_range', [(int)$min, (int)$max]);
+                   
+                    if (strpos($range, '-') !== false) {
+                        list($min, $max) = explode('-', $range);
+                        if (is_numeric($min) && is_numeric($max)) {
+                            $query->orWhereBetween('price_range', [(int)$min, (int)$max]);
+                        }
+                    }
                 }
             });
         })
         ->paginate(9);
-        // dd($restaurants);
+    
     return view('search-results', compact('restaurants', 'query', 'checkIn', 'minPrice', 'maxPrice'));
 }
+
 
 
     public function allsearch(Request $request)
