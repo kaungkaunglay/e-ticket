@@ -119,9 +119,10 @@
                                             <li class="{{ request()->routeIs('home') ? 'active' : '' }}">
                                                 <a href="{{ locale_route('home') }}">{{ translate('home') }}</a>
                                             </li>
-                                            <li class="{{ request()->routeIs('restaurant.search') ? 'active' : '' }}">
+                                            <li class="{{ request()->is('restaurant/search', 'search-price', 'search-checkbox', 'restaurant-lists') ? 'active' : '' }}">
                                                 <a href="{{ locale_route('restaurant.search') }}">{{ translate('restaurants') }}</a>
                                             </li>
+
                                             <li class="{{ request()->routeIs('about') ? 'active' : '' }}">
                                                 <a href="{{ locale_route('about') }}">{{ translate('about_us') }}</a>
                                             </li>
