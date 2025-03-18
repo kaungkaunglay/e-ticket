@@ -39,6 +39,7 @@ return new class extends Migration
             $table->text('google_map')->nullable();
             $table->string('status'); 
             $table->string('available')->nullable();
+            $table->string('smoking')->nullable();
             $table->string('user_id')->nullable();
             $table->timestamps();
         });

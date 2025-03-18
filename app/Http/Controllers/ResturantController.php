@@ -126,6 +126,7 @@ class ResturantController extends Controller
             'discount' => $request->discount,
             'user_id' => $userId,
             'google_map' => $request->google_map,
+            'smoking' => $request->smoking,
             'menu' => $request->menu,
         ]);
 

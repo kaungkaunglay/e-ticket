@@ -36,6 +36,8 @@
         }
 
     }
+
+    
 </style>
 @endsection
 @section('contents')
@@ -44,156 +46,86 @@
         <div class="row justify-center">
             <div class="col-xl-6 col-lg-7 col-md-9">
                 <div class="px-50 py-50 sm:px-20 sm:py-20 bg-white shadow-4 rounded-4">
-                    <form action="{{ locale_route('register') }}" method="POST">
+                    <form action="{{ locale_route('register') }}" method="POST" id="registrationForm">
                         @csrf
                         <div class="row y-gap-20">
                             <div class="col-12">
-                                <h1 class="text-22 fw-500 text-center">{{translate('register')}}</h1>
-                                <p class="mt-10 text-center">{{translate('already_have_account')}}<a href="{{ route('login') }}" class="text-blue-1">{{translate('log_in')}}</a>
-                                </p>
+                                <h1 class="text-22 fw-500 text-center">登録</h1>
+                                <p class="mt-10 text-center">すでにアカウントをお持ちですか？<a href="{{ route('login') }}" class="text-blue-1">ログイン</a></p>
                             </div>
 
-                            <div class="col-12 input-group">
-
-                                <div class="form-input ">
-                                    <input type="text" name="first_name" id="first_name" placeholder="{{translate('first_name')}}" required>
-                                    <!-- <label class="lh-1 text-14 text-light-1">{{translate('first_name')}}</label> -->
-                                </div>
-
-                                <span class="invalid-feedback"></span>
-
-                            </div>
-
-                            <div class="col-12 input-group">
-
-                                <div class="form-input ">
-                                    <input type="text" id="last_name" name="last_name" placeholder="{{translate('last_name')}}" required>
-                                    <!-- <label class="lh-1 text-14 text-light-1">{{translate('last_name')}}</label> -->
-                                </div>
-
-                                <span class="invalid-feedback"></span>
-
-                            </div>
-
-                            <div class="col-12 input-group">
-
-                                <div class="form-input ">
-                                    <input type="text" name="email" id="email" placeholder="{{translate('email')}}" required>
-                                    <!-- <label class="lh-1 text-14 text-light-1">{{translate('email')}}</label> -->
-                                </div>
-
-                                <span class="invalid-feedback"></span>
-
-                            </div>
-                            <div class="col-12 input-group">
-
-                                <div class="form-input ">
-                                    <input type="text" name="phone" id="phone" placeholder="{{translate('phone')}}" required>
-                                    <!-- <label class="lh-1 text-14 text-light-1">{{translate('phone')}}</label> -->
-                                </div>
-
-                                <span class="invalid-feedback"></span>
-
-                            </div>
-                            <div class="col-12 input-group">
-
-                                <div class="form-input ">
-                                    <input type="password" name="password" placeholder="{{translate('password')}}" id="password" required>
-                                    <!-- <label class="lh-1 text-14 text-light-1">{{translate('password')}}</label> -->
-                                </div>
-
-                                <span class="invalid-feedback"></span>
-
-                            </div>
-
-                            <div class="col-12 input-group">
-                                <div class="form-input ">
-                                    <input type="password" name="password_confirmation" placeholder="{{translate('confirm_password')}}" required>
-                                    <!-- <label class="lh-1 text-14 text-light-1">{{translate('confirm_password')}}</label> -->
-                                </div>
-                                <span class="invalid-feedback"></span>
-                            </div>
-
-                            <div class="col-12 input-group">
-
-                                <div class="form-input ">
-                                    <input type="text" name="postal_code" id="postal_code" placeholder="{{translate('zip_code')}}" required>
-                                    <!-- <label class="lh-1 text-14 text-light-1">{{translate('zip_code')}}</label> -->
-                                </div>
-
-                                <span class="invalid-feedback"></span>
-
-                            </div>
-
+                            <!-- First Name -->
                             <div class="col-12 input-group">
                                 <div class="form-input">
-                                    <textarea name="address" id="address" placeholder="{{translate('address')}}" class="pt-15" required></textarea>
-                                    <!-- <label class="lh-1 text-14 text-light-1">{{translate('address')}}</label> -->
+                                    <input type="text" name="first_name" id="first_name" placeholder="名" required>
                                 </div>
-                                <span class="invalid-feedback"></span>
+                                <span class="invalid-feedback">{{ $errors->first('first_name') }}</span>
                             </div>
 
-
-
-
-                            <!-- <div class="col-12">
-
-                                    <div class="d-flex ">
-                                        <div class="form-checkbox mt-5">
-                                            <input type="checkbox" name="name">
-                                            <div class="form-checkbox__mark">
-                                                <div class="form-checkbox__icon icon-check"></div>
-                                            </div>
-                                        </div>
-
-                                        <div class="text-15 lh-15 text-light-1 ml-10">Email me exclusive Agoda promotions. I
-                                            can opt out later as stated in the Privacy Policy.</div>
-
-                                    </div>
-
-                            </div> -->
-
-                            <div class="col-12">
-                                <div class="text-center" id="message"></div>
+                            <!-- Last Name -->
+                            <div class="col-12 input-group">
+                                <div class="form-input">
+                                    <input type="text" id="last_name" name="last_name" placeholder="姓" required>
+                                </div>
+                                <span class="invalid-feedback">{{ $errors->first('last_name') }}</span>
                             </div>
 
-                            <div class="col-12">
+                            <!-- Email -->
+                            <div class="col-12 input-group">
+                                <div class="form-input">
+                                    <input type="text" name="email" id="email" placeholder="メールアドレス" required>
+                                </div>
+                                <span class="invalid-feedback">{{ $errors->first('email') }}</span>
+                            </div>
 
+                            <!-- Phone -->
+                            <div class="col-12 input-group">
+                                <div class="form-input">
+                                    <input type="number" name="phone" id="phone" placeholder="電話番号" required>
+                                </div>
+                                <span class="invalid-feedback">{{ $errors->first('phone') }}</span>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="col-12 input-group">
+                                <div class="form-input">
+                                    <input type="password" name="password" placeholder="パスワード" id="password" required>
+                                </div>
+                                <span class="invalid-feedback">{{ $errors->first('password') }}</span>
+                            </div>
+
+                            <!-- Confirm Password -->
+                            <div class="col-12 input-group">
+                                <div class="form-input">
+                                    <input type="password" name="password_confirmation" placeholder="パスワード確認" required>
+                                </div>
+                                <span class="invalid-feedback">{{ $errors->first('password_confirmation') }}</span>
+                            </div>
+
+                            <!-- Postal Code -->
+                            <div class="col-12 input-group">
+                                <div class="form-input">
+                                    <input type="text" name="postal_code" id="postal_code" placeholder="郵便番号" required>
+                                </div>
+                                <span class="invalid-feedback">{{ $errors->first('postal_code') }}</span>
+                            </div>
+
+                            <!-- Address -->
+                            <div class="col-12 input-group">
+                                <div class="form-input">
+                                    <textarea name="address" id="address" placeholder="住所" class="pt-15" required></textarea>
+                                </div>
+                                <span class="invalid-feedback">{{ $errors->first('address') }}</span>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="col-12">
                                 <button type="submit" class="button text-center py-15 -dark-1 bg-red text-white">
-                                    {{translate('register')}}
-                                    <!-- <div class="icon-arrow-top-right ml-15"></div> -->
+                                    登録
                                 </button>
-
                             </div>
-
-
                         </div>
                     </form>
-
-                    <!-- <div class="row y-gap-20 pt-30">
-                        <div class="col-12">
-                            <div class="text-center">{{translate('or_sign_in_with')}}</div>
-
-                            <button class="button col-12 -outline-blue-1 text-blue-1 py-15 rounded-8 mt-10">
-                                <i class="icon-apple text-15 mr-10"></i>
-                                Facebook
-                            </button>
-
-                            <button class="button col-12 -outline-red-1 text-red-1 py-15 rounded-8 mt-15">
-                                <i class="icon-apple text-15 mr-10"></i>
-                                Google
-                            </button>
-
-                            <button class="button col-12 -outline-dark-2 text-dark-2 py-15 rounded-8 mt-15">
-                                <i class="icon-apple text-15 mr-10"></i>
-                                Apple
-                            </button>
-                        </div>
-
-                        <div class="col-12">
-                            <div class="text-center px-30">{{translate('agree_terms')}}</div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>

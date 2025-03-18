@@ -16,7 +16,7 @@ class SetLocale
         $parts = explode('.', $host);
         $subdomain = count($parts) >= 3 ? $parts[0] : null;
         if (!$subdomain && $request->segment(1)) {
-            $subdomain = $request->segment(1);
+        $subdomain = $request->segment(1);
         }
         $locale = $this->getLocale($subdomain) ?? 'jp';
         App::setLocale($locale);

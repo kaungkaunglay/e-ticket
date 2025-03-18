@@ -18,10 +18,22 @@ if (!function_exists('translate')) {
     }
 }
 
+// if (!function_exists('locale_route')) { 
+//     function locale_route($name, $parameters = [], $absolute = true)
+//     {
+//         $parameters = array_merge(['locale' => App::getLocale()], $parameters);
+//         return Route::has($name) ? route($name, $parameters, $absolute) : '#'; 
+//     }
+// }
+
+
 if (!function_exists('locale_route')) { 
     function locale_route($name, $parameters = [], $absolute = true)
     {
-        $parameters = array_merge(['locale' => App::getLocale()], $parameters);
+
+        unset($parameters['locale']);
+
         return Route::has($name) ? route($name, $parameters, $absolute) : '#'; 
     }
 }
+

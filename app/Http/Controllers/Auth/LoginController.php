@@ -52,36 +52,41 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
-
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:8'
+        ], [
+            'password.min' => 'パスワードは8文字以上である必要があります。' 
         ]);
+    
         $user = User::where('email', $request->email)->first();
         if (!$user) {
             throw ValidationException::withMessages([
                 'email' => 'これらの認証情報は、当社の記録と一致しません。',
             ]);
         }
+        
         $roleId = $user->roles()->first()->id ?? null;
         if ($roleId != 2 && is_null($user->email_confirmed_at)) {
             throw ValidationException::withMessages([
                 'email' => 'ログインする前に、メールアドレスを確認してください。',
             ]);
         }
+        
         if (!Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {
             throw ValidationException::withMessages([
                 'email' => __('auth.failed'),
             ]);
         }
+        
         $request->session()->regenerate();
+        
         if ($roleId == 2) {
             return redirect()->intended('/vendor/dashboard');
         } elseif ($roleId == 3) {
             return redirect()->intended('/user-dashboard');
         }
-
-
+    
         return redirect()->intended('/home');
     }
 

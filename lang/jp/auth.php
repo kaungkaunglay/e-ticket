@@ -12,9 +12,9 @@ return [
     | these language lines according to your application's requirements.
     |
     */
+    'failed' => '入力された認証情報が当社の記録と一致しません。',
+    'password' => '入力されたパスワードが正しくありません。',
+    'throttle' => '試行回数が多すぎます。:seconds 秒後に再試行してください。',
 
-    'failed' => 'These credentials do not match our records.',
-    'password' => 'The provided password is incorrect.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
 ];

@@ -44,7 +44,7 @@ class ForgotPasswordMail extends Mailable
             view: 'email.forget-password-mail',
             with: [
                 'user' => $this->user,
-                'url' => env('APP_URL').'/password/reset/'.$this->token
+                'url' => route('show_reset_form',['token' => $this->token])
             ]
         );
     }

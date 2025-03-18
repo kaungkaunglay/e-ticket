@@ -2,7 +2,7 @@
 <html lang="en" data-x="html" data-x-toggle="html-overflow-hidden">
 
 
-<!-- Mirrored from creativelayers.net/themes/gotrip-html/404.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2025 09:19:23 GMT -->
+<!-- Mirrored from creativelayers.net/themes/r-buzz-html/404.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2025 09:19:23 GMT -->
 <head>
   <!-- Required meta tags -->
   <meta charset="UTF-8">
@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="{{ asset('assets/css/vendors.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
 
-  <title>GoTrip</title>
+  <title>r-buzz</title>
 </head>
 
 <body>
@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <div class="preloader__title">GoTrip</div>
+    <div class="preloader__title">r-buzz</div>
   </div>
 
   <main>
@@ -806,7 +806,7 @@
 
               <div class="mt-35">
                 <div class="text-14 mt-30">Need live support?</div>
-                <a href="#" class="text-18 fw-500 text-blue-1 mt-5">hi@gotrip.com</a>
+                <a href="#" class="text-18 fw-500 text-blue-1 mt-5">hi@r-buzz.com</a>
               </div>
             </div>
 
@@ -874,7 +874,7 @@
               <div class="row x-gap-30 y-gap-10">
                 <div class="col-auto">
                   <div class="d-flex items-center">
-                    © 2022 GoTrip LLC All rights reserved.
+                    © 2022 r-buzz LLC All rights reserved.
                   </div>
                 </div>
 
@@ -2324,5 +2324,5 @@
 </body>
 
 
-<!-- Mirrored from creativelayers.net/themes/gotrip-html/404.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2025 09:19:24 GMT -->
+<!-- Mirrored from creativelayers.net/themes/r-buzz-html/404.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2025 09:19:24 GMT -->
 </html>

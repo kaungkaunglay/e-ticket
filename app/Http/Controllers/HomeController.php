@@ -30,12 +30,19 @@ class HomeController extends Controller
 
         // dd($discountedRestaurants);
         $restaurants = Restaurant::where('status', 1)->paginate(8);
-
-        return view('home', compact('restaurants', 'discountedRestaurants'));
+        $menus = Menu::all(); 
+        $category = Category::all(); 
+        $priceRange = Restaurant::whereNotNull('price_range')
+        ->distinct()
+        ->pluck('price_range')
+        ->unique()
+        ->sort();
+         
+        return view('home', compact('restaurants', 'discountedRestaurants', 'menus', 'priceRange','category'));
     }
 
     public function detail($id)
-    {
+    {  
         $restaurant = Restaurant::where('status', 1)->findOrFail($id);
         $menuIds = json_decode($restaurant->menu, true);
         $menus = Menu::whereIn('id', $menuIds)->get();
@@ -45,68 +52,98 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
+    
         $query = $request->input('city');
         $checkIn = $request->input('check_in');
+        $priceRange = $request->input('price_range');
+        $category = $request->input('category'); 
+        $smoking = $request->input('smoking');
         $restaurants = Restaurant::where('status', 1)
             ->when($query, function ($q) use ($query) {
-                return $q->where('city', 'LIKE', "%{$query}%");
+                return $q->where('city', $query); 
             })
-            ->paginate(10);
-
-        return view('search-results', compact('restaurants', 'query', 'checkIn'));
+            ->when($priceRange, function ($q) use ($priceRange) {
+                return $q->where('price_range', '<=', $priceRange);
+            })
+            ->when($category, function ($q) use ($category) {
+                return $q->where('category_id', $category); 
+            })
+            ->when(isset($smoking), function ($q) use ($smoking) {
+                return $q->where('smoking', $smoking);
+            })
+            ->paginate(9);
+        return view('search-results', compact('restaurants', 'query', 'checkIn', 'priceRange', 'category', 'smoking'));
     }
+    
+    
 
 
     public function pricesearch(Request $request)
-    {
-        $query = $request->input('city');
-        $checkIn = $request->input('check_in');
-        $minPrice = (float) $request->input('min_price', 0);
-        $maxPrice = (float) $request->input('max_price', 100000);
-        if ($maxPrice == 10000.00) {
-            $restaurants = Restaurant::where('status', 1)
-                ->when($query, function ($q) use ($query) {
-                    return $q->where('city', 'LIKE', "%{$query}%");
-                })
-                ->paginate(10);
-        } else {
-            $restaurants = Restaurant::where('status', 1)
-                ->when($query, function ($q) use ($query) {
-                    return $q->where('city', 'LIKE', "%{$query}%");
-                })
-                ->when($minPrice || $maxPrice, function ($q) use ($minPrice, $maxPrice) {
-                    return $q->whereBetween('price_range', [$minPrice, $maxPrice]);
-                })
-                ->paginate(10);
-        }
+{
+    $query = $request->input('city');
+    $checkIn = $request->input('check_in');
+    $minPrice = intval($request->input('min_price', 0)); 
+    $maxPrice = intval($request->input('max_price', 10000));
+    $filterPrice = $request->input('filter_price', []);
 
-        return view('search-results', compact('restaurants', 'query', 'checkIn', 'minPrice', 'maxPrice'));
-    }
+    $restaurants = Restaurant::where('status', 1)
+        ->when(!empty($query), function ($q) use ($query) {
+            $q->where('city', 'LIKE', "%$query%");
+        })
+        ->when(!empty($filterPrice), function ($q) use ($filterPrice) {
+            $q->where(function ($query) use ($filterPrice) {
+                foreach ($filterPrice as $range) {
+                    list($min, $max) = explode('-', $range);
+                    $query->orWhereBetween('price_range', [(int)$min, (int)$max]);
+                }
+            });
+        })
+        ->when($minPrice !== null && $maxPrice !== null, function ($q) use ($minPrice, $maxPrice) {
+            $q->whereBetween('price_range', [$minPrice, $maxPrice]);
+        })
+        ->paginate(9);
+        // dd( $restaurants);
+
+
+    return view('search-results', compact('restaurants', 'query', 'checkIn', 'minPrice', 'maxPrice'));
+}
 
 
 
-    public function searchcheckbox(Request $request)
-    {
-        $query = $request->input('city');
-        $checkIn = $request->input('check_in');
-        $minPrice = $request->input('min_price');
-        $maxPrice = $request->input('max_price');
-        $filterPrice = $request->input('filter_price', []);
-        $restaurants = Restaurant::where('status', 1)
-            ->when(!empty($filterPrice), function ($q) use ($filterPrice) {
-                $q->where(function ($query) use ($filterPrice) {
-                    foreach ($filterPrice as $range) {
+
+public function searchcheckbox(Request $request)
+{   
+
+   
+    $query = $request->input('city');
+    $checkIn = $request->input('check_in');
+    $minPrice = $request->input('min_price');
+    $maxPrice = $request->input('max_price');
+    $filterPrice = $request->input('filter_price', []);
+
+    $restaurants = Restaurant::where('status', 1)
+        ->when(!empty($query), function ($q) use ($query) {
+            $q->where('city', 'LIKE', "%$query%");
+        })
+        ->when(!empty($filterPrice), function ($q) use ($filterPrice) {
+            $q->where(function ($query) use ($filterPrice) {
+                foreach ($filterPrice as $range) {
+                   
+                    if (strpos($range, '-') !== false) {
                         list($min, $max) = explode('-', $range);
-                        $query->orWhereBetween('price_range', [(int)$min, (int)$max]);
+                        if (is_numeric($min) && is_numeric($max)) {
+                            $query->orWhereBetween('price_range', [(int)$min, (int)$max]);
+                        }
                     }
-                });
-            })
-            ->paginate(10);
+                }
+            });
+        })
+        ->paginate(9);
+    
+    return view('search-results', compact('restaurants', 'query', 'checkIn', 'minPrice', 'maxPrice'));
+}
 
 
-
-        return view('search-results', compact('restaurants', 'query', 'checkIn', 'minPrice', 'maxPrice'));
-    }
 
     public function allsearch(Request $request)
     {
@@ -180,7 +217,7 @@ class HomeController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Thank you for subscribing! A confirmation email has been sent.',
+            'message' => 'ご登録ありがとうございます！確認メールを送信しました',
         ]);
     }
 

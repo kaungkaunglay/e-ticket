@@ -29,12 +29,14 @@ class RestaurantSeeder extends Seeder
             "https://images.unsplash.com/photo-1550547660-d9450f859349?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80", 
         ];
 
-        for ($i = 1; $i <= 10; $i++) {
-           
+        // City options
+        $cities = ['Yangon', 'Mandalay', 'Bago', 'Pyay'];
+
+        for ($i = 1; $i <= 30; $i++) { // Generate 30 posts
+            
             $closedDays = array_rand(array_flip(range(1, 7)), rand(1, 3));
             $closedDays = is_array($closedDays) ? $closedDays : [$closedDays]; 
 
-        
             $menuItems = array_rand(array_flip(range(1, 10)), rand(1, 3));
             $menuItems = is_array($menuItems) ? $menuItems : [$menuItems];
 
@@ -46,7 +48,7 @@ class RestaurantSeeder extends Seeder
                 'description' => 'This is a sample description for Restaurant ' . $i,
                 'multi_images' => json_encode($cdnImages), 
                 'address' => '123 Sample Street',
-                'city' => 'Sample City',
+                'city' => $cities[array_rand($cities)], // Random city
                 'zip_code' => '12345',
                 'latitude' => rand(100000, 999999) / 10000,
                 'longitude' => rand(100000, 999999) / 10000,
@@ -59,6 +61,7 @@ class RestaurantSeeder extends Seeder
                 'wifi_availability' => rand(0, 1),
                 'parking_availability' => rand(0, 1),
                 'outdoor_seating' => rand(0, 1),
+                'smoking' => rand(0, 1), // New field for smoking
                 'social_links' => json_encode([
                     'facebook' => 'https://facebook.com/restaurant' . $i,
                     'instagram' => 'https://instagram.com/restaurant' . $i,
