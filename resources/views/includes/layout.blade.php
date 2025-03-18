@@ -73,10 +73,13 @@
                 margin-left: 42px !important;
             }
         }
+<<<<<<< HEAD
         input[type="search"]::-webkit-search-cancel-button {
     display: none;
 }
 
+=======
+>>>>>>> 6979794471321799384edb8050e0413a6112de25
     </style>
 </head>
 
@@ -309,7 +312,15 @@
                 <div class="col-auto">
                     <div class="row y-gap-10 items-center">
                         <div class="col-auto">
+<<<<<<< HEAD
                             <a href="{{locale_route('terms')}}">利用規約</a>
+=======
+                            <div class="row y-gap-10 items-center">
+                                <div class="col-auto">
+                                    <a href="{{locale_route('terms')}}">利用規約</a>
+                                </div>
+                            </div>
+>>>>>>> 6979794471321799384edb8050e0413a6112de25
                         </div>
                     </div>
                 </div>
