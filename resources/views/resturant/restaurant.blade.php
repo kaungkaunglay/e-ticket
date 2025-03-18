@@ -276,7 +276,12 @@
                 <div class="form-check col-md-3 text-center">
                     <input type="checkbox" name="outdoor_seating" value="1" {{ old('outdoor_seating', $restaurant->outdoor_seating ?? false) ? 'checked' : '' }}> {{translate('outdoor_seating')}}
                 </div>
+                <div class="form-check col-md-3 text-center">
+                    <input type="checkbox" name="smoking" value="1" {{ old('outdoor_seating', $restaurant->outdoor_seating ?? false) ? 'checked' : '' }}> {{translate('smoking')}}
+                </div>
+
             </div>
+            
 
             <!-- Available -->
             <div class="col-12">

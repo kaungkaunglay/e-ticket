@@ -40,6 +40,7 @@ class Restaurant extends Model
         'discount',
         'menu',
         'google_map',
+        'smoking'
     ];
 
     public function category()

@@ -24,41 +24,68 @@
               </div> -->
             </div>
             <form action="{{ locale_route('restaurant.search') }}" method="GET">
-              <div class="mainSearch bg-white rounded-4 shadow-1 overflow-hidden rounded-22">
-                <div class="button-grid">
-
-                  <div class="searchMenu-loc py-15 px-30 sm:py-15 sm:px-20 js-form-dd">
+              <div class="mainSearch -col-5 bg-white px-10 py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 mt-30">
+                <div class="button-grid items-center d-flex flex-wrap gap-10">
+                  <!-- Location Input 1 -->
+                  <div class="searchMenu-loc flex-grow-1">
                     <div data-x-dd-click="searchMenu-loc">
                       <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4>
-                      <input name="city" type="search" placeholder="{{ translate('where_are_you_going') }}" class="js-search" required>
+                      <div class="text-15 text-light-1 ls-2 lh-16">
+                        <input type="search" placeholder="location" class="js-search js-dd-focus w-100" name="city" />
+                      </div>
                     </div>
                   </div>
 
-
-                  <div class="searchMenu-date py-15 px-30 sm:py-15 sm:px-20 js-form-dd">
-                    <div data-x-dd-click="searchMenu-date">
-                      <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('check_in') }}</h4>
-                      <input type="text" id="date-range" class="capitalize text-15 text-light-1 ls-2 lh-16" placeholder="日付と時間を選択">
-                      <input type="hidden" name="check_in" id="check_in">
+                 <div class="searchMenu-loc flex-grow-1">
+                    <div data-x-dd-click="searchMenu-loc">
+                      <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('checkin_date') }}</h4>
+                      <div class="text-15 text-light-1 ls-2 lh-16">
+                        <input autocomplete="off" type="text" placeholder="Check-in"
+                          class="js-search js-dd-focus w-100" id="check_in" name="check_in" />
+                      </div>
+                    </div>
+                  </div>
+                  
+                 <div class="searchMenu-loc flex-grow-1">
+                    <div data-x-dd-click="searchMenu-loc">
+                      <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('price_with_dropdown') }}</h4>
+                      <div class="text-15 text-light-1 ls-2 lh-16">
+                        <input autocomplete="off" type="search" placeholder="price range" class="js-search js-dd-focus w-100" name="price_range" />
+                      </div>
                     </div>
                   </div>
 
+                 
+                  <div class="searchMenu-loc flex-grow-1">
+                    <div data-x-dd-click="searchMenu-loc">
+                      <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('Category') }}</h4>
+                      <div class="text-15 text-light-1 ls-2 lh-16">
+                        <input autocomplete="off" type="search" placeholder="category" class="js-search js-dd-focus w-100" name="category" />
+                      </div>
+                    </div>
+                  </div>
 
+                  <!-- Guest Input -->
+                  <div class="searchMenu-guests flex-grow-1">
+                    <div data-x-dd-click="searchMenu-guests">
+                      <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('smoking') }}</h4>
+                      <div class="text-15 text-light-1 ls-2 lh-16">
+                        <input autocomplete="off" type="number" placeholder="smoking" class="js-search js-dd-focus w-100" name="smoking" />
+                      </div>
+                    </div>
+                  </div>
 
-                  <div class="button-item h-full">
-                    <button type="submit" class="button -dark-1 py-15 px-40 h-full col-12 rounded-0 bg-red text-white">
-                      <i class="icon-search text-20 mr-10"></i> {{ translate('search') }}
+                  <!-- Search Button -->
+                  <div class="button-item flex-grow-1">
+                    <button class="mainSearch__submit button -dark-1 py-15 px-40 col-12 rounded-4 bg-blue-1 text-white">
+                      <i class="icon-search text-20 mr-10"></i>
+                      {{ translate('search') }}
                     </button>
                   </div>
                 </div>
               </div>
             </form>
-
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <section class="layout-pt-lg home">
@@ -145,9 +172,9 @@
                   </a>
                   <p class="text-light-1 lh-14 text-14 mt-5">Available: {{ $restaurant->available }} Rooms</p>
                   <div class="mt-5">
-                  <div class="fw-500 d-flex justify-content-between">
-                  <span>から</span> <span class="text-green-2">¥{{ number_format($restaurant->price_range) }}</span>
-              </div>
+                    <div class="fw-500 d-flex justify-content-between">
+                      <span>から</span> <span class="text-green-2">¥{{ number_format($restaurant->price_range) }}</span>
+                    </div>
                   </div>
                 </div>
               </a>
@@ -199,11 +226,11 @@
 
                     </div>
 
-                      <div class="cardImage__wishlist">
-                        <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 favourite-btn" data-id="{{ $restaurant->id }}">
-                          <i class="icon-heart text-12"></i>
-                        </button>
-                      </div>
+                    <div class="cardImage__wishlist">
+                      <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 favourite-btn" data-id="{{ $restaurant->id }}">
+                        <i class="icon-heart text-12"></i>
+                      </button>
+                    </div>
 
                     @if($restaurant->discount > 0)
                     <div class="cardImage__leftBadge">
@@ -271,16 +298,14 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    // ✅ Fix: Use correct ID from input field
-    flatpickr("#date-range", {
+    flatpickr("#check_in", {
       enableTime: true,
       dateFormat: "Y-m-d H:i",
       time_24hr: true,
-      onClose: function(selectedDates, dateStr, instance) {
-        if (selectedDates.length === 1) {
-          // ✅ Fix: Use `dateStr` to get formatted date instead of flatpickr.formatDate()
-          document.getElementById("check_in").value = dateStr;
-        }
+      minDate: "today",
+      defaultDate: new Date(),
+      onClose: function(selectedDates, dateStr) {
+        document.getElementById("check_in").value = dateStr;
       }
     });
   });

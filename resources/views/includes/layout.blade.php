@@ -209,13 +209,14 @@
                                 </div>
                                 @else
                                 <a href="{{ locale_route('login') }}" class="button -outline-red px-30 fw-400 text-14 h-50 text-red ml-20">
-                                    {{ translate('sign_in') }}
-                                </a>
-                                <div class="dropdown" style="position: relative; display: inline-block;">
-                                    <a href="{{ locale_route('signup') }}" class="button -outline-red px-30 fw-400 text-14 h-50 text-red ml-20" style="display: flex; align-items: center;">
-                                        {{ translate('Register') }}
-                                        <i class="icon-chevron-down ml-10" style="font-size: 12px;"></i>
-                                    </a>
+                            {{ translate('ログイン') }} 
+                    </a>
+                    <div class="dropdown" style="position: relative; display: inline-block;">
+                        <a href="{{ locale_route('signup') }}" class="button -outline-red px-30 fw-400 text-14 h-50 text-red ml-20" style="display: flex; align-items: center;">
+                            {{ translate('登録') }} <!-- Register -->
+                            <i class="icon-chevron-down ml-10" style="font-size: 12px;"></i>
+                        </a>
+                    </div>
                                     <!-- <div class="dropdown-content" style="display: none; position: absolute; right: 0; background-color: #fff; min-width: 160px; box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1); border-radius: 8px; z-index: 1000; padding: 8px 0;">
                 <a href="{{ locale_route('signup') }}" style="display: block; padding: 8px 16px; color: #333; text-decoration: none; font-size: 14px; transition: background-color 0.2s;">
                     {{ translate('User Register') }}

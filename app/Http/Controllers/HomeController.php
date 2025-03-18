@@ -46,15 +46,33 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('city');
+       
         $checkIn = $request->input('check_in');
+        $priceRange = $request->input('price_range');
+        $menu = $request->input('menu');
+        $smoking = $request->input('smoking');
+    
         $restaurants = Restaurant::where('status', 1)
             ->when($query, function ($q) use ($query) {
-                return $q->where('city', 'LIKE', "%{$query}%");
+                return $q->where('city', $query); 
+            })
+            ->when($priceRange, function ($q) use ($priceRange) {
+                return $q->where('price_range', '<=', $priceRange);
+            })
+            ->when($menu, function ($q) use ($menu) {
+                return $q->whereJsonContains('menu', $menu);
+            })
+            ->when(isset($smoking), function ($q) use ($smoking) {
+                return $q->where('smoking', $smoking);
             })
             ->paginate(9);
-
-        return view('search-results', compact('restaurants', 'query', 'checkIn'));
+    
+    // dd($restaurants);
+    
+        return view('search-results', compact('restaurants', 'query', 'checkIn', 'priceRange', 'menu', 'smoking'));
     }
+    
+    
 
 
     public function pricesearch(Request $request)
@@ -91,7 +109,9 @@ class HomeController extends Controller
 
 
 public function searchcheckbox(Request $request)
-{
+{   
+
+   
     $query = $request->input('city');
     $checkIn = $request->input('check_in');
     $minPrice = $request->input('min_price');

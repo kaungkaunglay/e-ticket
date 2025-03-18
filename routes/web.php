@@ -62,7 +62,7 @@ Route::get('/restaurant-alllists', [HomeController::class, 'allsearch'])->name('
 
 Route::get('/search-price', [HomeController::class, 'pricesearch'])->name('restaurant.price.search');
 Route::get('/get-cities', [HomeController::class, 'getCities'])->name('cities.get');
-// Route::get('/restaurant-list', [ResturantController::class, 'all'])->name('restaurant-list');
+Route::get('/restaurant-list-data', [ResturantController::class, 'all'])->name('restaurant-list');
 
 
 Route::post('/notify-new-update', [HomeController::class, 'notifynewupdate'])->name('notifynewupdate.post');
