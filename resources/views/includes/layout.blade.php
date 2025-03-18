@@ -119,28 +119,27 @@
                                 <div class="header-menu__content">
                                     <div class="mobile-bg js-mobile-bg"></div>
                                     <div class="menu js-navList">
-                                        <ul class="menu__nav text-dark-1 -is-active">
-                                            <li class="{{ request()->routeIs('home') ? 'active' : '' }}">
-                                                <a href="{{ locale_route('home') }}">{{ translate('home') }}</a>
-                                            </li>
-                                            <li class="{{ request()->is('restaurant/search', 'search-price', 'search-checkbox', 'restaurant-lists') ? 'active' : '' }}">
-                                                <a href="{{ locale_route('restaurant.search') }}">{{ translate('restaurants') }}</a>
-                                            </li>
-
-                                            <li class="{{ request()->routeIs('about') ? 'active' : '' }}">
-                                                <a href="{{ locale_route('about') }}">{{ translate('about_us') }}</a>
-                                            </li>
-                                            <li class="{{ request()->routeIs('support.page') ? 'active' : '' }}">
-                                                <a href="{{ locale_route('support.page') }}">{{ translate('support') }}</a>
-                                            </li>
-                                            <li class="mobile-only {{ request()->routeIs('login') ? 'active' : '' }}">
-                                                <a href="{{ locale_route('login') }}">{{ translate('login') }}</a>
-                                            </li>
-                                            <li class="mobile-only {{ request()->routeIs('signup') ? 'active' : '' }}">
-                                                <a href="{{ locale_route('signup') }}">{{ translate('signup') }}</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <ul class="menu__nav text-dark-1 -is-active">
+                                        <li class="{{ request()->routeIs('home') ? 'active' : '' }}">
+                                            <a href="{{ locale_route('home') }}">ホーム</a>
+                                        </li>
+                                        <li class="{{ request()->is('restaurant/search', 'search-price', 'search-checkbox', 'restaurant-lists') ? 'active' : '' }}">
+                                            <a href="{{ locale_route('restaurant.search') }}">レストラン</a>
+                                        </li>
+                                        <li class="{{ request()->routeIs('about') ? 'active' : '' }}">
+                                            <a href="{{ locale_route('about') }}">私たちについて</a>
+                                        </li>
+                                        <li class="{{ request()->routeIs('support.page') ? 'active' : '' }}">
+                                            <a href="{{ locale_route('support.page') }}">サポート</a>
+                                        </li>
+                                        <li class="mobile-only {{ request()->routeIs('login') ? 'active' : '' }}">
+                                            <a href="{{ locale_route('login') }}">ログイン</a>
+                                        </li>
+                                        <li class="mobile-only {{ request()->routeIs('signup') ? 'active' : '' }}">
+                                            <a href="{{ locale_route('signup') }}">登録</a>
+                                        </li>
+                                    </ul>
+                                </div>
 
                                     <div class="mobile-footer px-20 py-20 border-top-light js-mobile-footer">
                                     </div>
@@ -244,100 +243,79 @@
         @yield('contents')
 
         <footer class="footer -type-1">
-            <div class="container">
-                <div class="pt-60 pb-60">
-                    <div class="row y-gap-40 justify-between xl:justify-start">
-                        <div class="col-xl-2 col-lg-4 col-sm-6 d-flex flex-column">
-
-
-
-                            <a href="index.html" class="header-logo mr-20" data-x="header-logo" data-x-toggle="is-logo-dark">
-                                <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon">
-                            </a>
-
-
-                            <p class="text-14 mt-30 fw-500 text-dark-1">{{translate('reserve_table')}}</p>
-
-
-
-                        </div>
-                        <div class="col-xl-2 col-lg-4 col-sm-6">
-                            <h5 class="text-20 fw-500 mb-30">{{translate('contact_us')}}</h5>
-
-                            <div class="mt-30">
-                                <div class="text-14 mt-30">{{translate('toll_free_customer_care')}}</div>
-                                <a href="#" class="text-14 fw-500 text-blue-1 mt-5">{{translate('phone')}} : 098888888</a>
-                            </div>
-
-                            <div class="mt-35">
-                                <div class="text-14 mt-30">ライブサポートが必要ですか？</div>
-                                <a href="#" class="text-14 fw-500 text-blue-1 mt-5">{{translate('email')}} : {{config('email')}}</a>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-2 col-lg-4 col-sm-6">
-                            <h5 class="text-20 fw-500 mb-30">{{translate('company')}}</h5>
-                            <div class="d-flex y-gap-10 flex-column">
-                                <a href="{{locale_route('about')}}">{{translate('about_us')}}</a>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-2 col-lg-4 col-sm-6">
-                            <h5 class="text-20 fw-500 mb-30">{{translate('support')}}</h5>
-                            <div class="d-flex y-gap-10 flex-column">
-                                <a href="{{locale_route('support.page')}}">{{translate('faqs')}}</a>
-                                <a href="{{locale_route('terms')}}">{{translate('terms_conditions')}}</a>
-                                <a href="{{locale_route('support.page')}}">{{translate('contact')}}</a>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-2 col-lg-4 col-sm-6">
-                            <h5 class="text-20 fw-500 mb-30">{{translate('other')}}</h5>
-                            <div class="d-flex y-gap-10 flex-column">
-                                <a href="{{locale_route('home')}}">{{translate('home')}}</a>
-                                <!-- <a href="#">{{translate('categories')}}</a> -->
-                                <a href="{{locale_route('login')}}">{{translate('log_in')}}</a>
-                                <a href="{{locale_route('signup')}}">{{ translate('register')}} </a>
-                                <!-- <a href="{{locale_route('user-dashboard')}}">{{translate('profile')}}</a> -->
-                                <a href="{{locale_route('restaurant-list')}}">{{translate('restaurants')}}</a>
-                            </div>
-                        </div>
-
-
+    <div class="container">
+        <div class="pt-60 pb-60">
+            <div class="row y-gap-40 justify-between xl:justify-start">
+                <div class="col-xl-2 col-lg-4 col-sm-6 d-flex flex-column">
+                    <a href="index.html" class="header-logo mr-20" data-x="header-logo" data-x-toggle="is-logo-dark">
+                        <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon">
+                    </a>
+                    <p class="text-14 mt-30 fw-500 text-dark-1">テーブルを予約する</p>
+                </div>
+                
+                <div class="col-xl-2 col-lg-4 col-sm-6">
+                    <h5 class="text-20 fw-500 mb-30">お問い合わせ</h5>
+                    <div class="mt-30">
+                        <div class="text-14 mt-30">フリーダイヤルカスタマーケア</div>
+                        <a href="#" class="text-14 fw-500 text-blue-1 mt-5">電話 : 098888888</a>
+                    </div>
+                    <div class="mt-35">
+                        <div class="text-14 mt-30">ライブサポートが必要ですか？</div>
+                        <a href="#" class="text-14 fw-500 text-blue-1 mt-5">メール : {{config('email')}}</a>
                     </div>
                 </div>
 
-                <div class="py-20 border-top-light">
-                    <div class="row justify-between items-center y-gap-10">
-                        <div class="col-auto">
-                            <div class="row x-gap-30 y-gap-10">
-                                <div class="col-auto">
-                                    <div class="d-flex items-center">
-                                        著作権 2025 年 by Andfun Yangon Co.,LTD
-                                    </div>
-                                </div>
+                <div class="col-xl-2 col-lg-4 col-sm-6">
+                    <h5 class="text-20 fw-500 mb-30">会社情報</h5>
+                    <div class="d-flex y-gap-10 flex-column">
+                        <a href="{{locale_route('about')}}">私たちについて</a>
+                    </div>
+                </div>
 
-                                <!-- <div class="col-auto">
-                                    <div class="d-flex x-gap-15">
-                                        <a href="#">Privacy</a>
-                                        <a href="#">Terms</a>
-                                        <a href="#">Site Map</a>
-                                    </div>
-                                </div> -->
+                <div class="col-xl-2 col-lg-4 col-sm-6">
+                    <h5 class="text-20 fw-500 mb-30">サポート</h5>
+                    <div class="d-flex y-gap-10 flex-column">
+                        <a href="{{locale_route('support.page')}}">よくある質問</a>
+                        <a href="{{locale_route('terms')}}">利用規約</a>
+                        <a href="{{locale_route('support.page')}}">お問い合わせ</a>
+                    </div>
+                </div>
+
+                <div class="col-xl-2 col-lg-4 col-sm-6">
+                    <h5 class="text-20 fw-500 mb-30">その他</h5>
+                    <div class="d-flex y-gap-10 flex-column">
+                        <a href="{{locale_route('home')}}">ホーム</a>
+                        <a href="{{locale_route('login')}}">ログイン</a>
+                        <a href="{{locale_route('signup')}}">登録</a>
+                        <a href="{{locale_route('restaurant-list')}}">レストラン</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="py-20 border-top-light">
+            <div class="row justify-between items-center y-gap-10">
+                <div class="col-auto">
+                    <div class="row x-gap-30 y-gap-10">
+                        <div class="col-auto">
+                            <div class="d-flex items-center">
+                                著作権 2025 年 by Andfun Yangon Co.,LTD
                             </div>
                         </div>
+                    </div>
+                </div>
 
+                <div class="col-auto">
+                    <div class="row y-gap-10 items-center">
                         <div class="col-auto">
-                            <div class="row y-gap-10 items-center">
-                                <div class="col-auto">
-                                    <a href="{{locale_route('terms')}}">利用規約</a>
-                                </div>
-                            </div>
+                            <a href="{{locale_route('terms')}}">利用規約</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </footer>
+        </div>
+    </div>
+</footer>
 
     </main>
 
