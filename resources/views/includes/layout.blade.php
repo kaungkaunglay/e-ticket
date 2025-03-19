@@ -288,7 +288,7 @@
                         <a href="{{locale_route('home')}}">ホーム</a>
                         <a href="{{locale_route('login')}}">ログイン</a>
                         <a href="{{locale_route('signup')}}">登録</a>
-                        <a href="{{locale_route('restaurant-list')}}">レストラン</a>
+                        <a href="{{locale_route('restaurant.search')}}">レストラン</a>
                     </div>
                 </div>
             </div>

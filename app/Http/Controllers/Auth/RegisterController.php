@@ -62,7 +62,7 @@ class RegisterController extends Controller
             'postal_code' => 'required|string|max:10',
             'address' => 'required|string|max:255',
         ], [
-            'first_name' => '姓を入力してください。', 
+            'first_name' => 'もう一度名前を追加してください。', 
             'last_name.required' => '姓を入力してください。', 
             'email.required' => 'メールアドレスを入力してください。', 
             'email.email' => '有効なメールアドレスを入力してください。', 

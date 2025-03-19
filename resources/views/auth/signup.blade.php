@@ -9,6 +9,11 @@
         color: red;
     }
 
+    .text-red-500 {
+        color: red;
+
+    }
+
     .loading {
         animation: bounce 1s ease-in-out 0.5s infinite;
     }
@@ -36,8 +41,6 @@
         }
 
     }
-
-    
 </style>
 @endsection
 @section('contents')
@@ -54,71 +57,88 @@
                                 <p class="mt-10 text-center">すでにアカウントをお持ちですか？<a href="{{ route('login') }}" class="text-blue-1">ログイン</a></p>
                             </div>
 
-                            <!-- First Name -->
+
                             <div class="col-12 input-group">
                                 <div class="form-input">
-                                    <input type="text" name="first_name" id="first_name" placeholder="名" required>
+                                    <input type="text" name="first_name" id="first_name" placeholder="名" value="{{ old('first_name') }}" required maxlength="20">
                                 </div>
-                                <span class="invalid-feedback">{{ $errors->first('first_name') }}</span>
+                                @error('first_name')
+                                <span class="invalid-feedback text-red-500">{{ $message }}</span>
+                                @enderror
                             </div>
 
-                            <!-- Last Name -->
+
                             <div class="col-12 input-group">
                                 <div class="form-input">
-                                    <input type="text" id="last_name" name="last_name" placeholder="姓" required>
+                                    <input type="text" id="last_name" name="last_name" placeholder="姓" value="{{ old('last_name') }}" required maxlength="30">
                                 </div>
-                                <span class="invalid-feedback">{{ $errors->first('last_name') }}</span>
+                                @error('last_name')
+                                <span class="invalid-feedback text-red-500">{{ $message }}</span>
+                                @enderror
                             </div>
 
-                            <!-- Email -->
+
                             <div class="col-12 input-group">
                                 <div class="form-input">
-                                    <input type="text" name="email" id="email" placeholder="メールアドレス" required>
+                                    <input type="email" name="email" id="email" placeholder="メールアドレス" value="{{ old('email') }}" required maxlength="50">
                                 </div>
-                                <span class="invalid-feedback">{{ $errors->first('email') }}</span>
+                                @error('email')
+                                <span class="invalid-feedback text-red-500">{{ $message }}</span>
+                                @enderror
                             </div>
 
-                            <!-- Phone -->
+
                             <div class="col-12 input-group">
                                 <div class="form-input">
-                                    <input type="number" name="phone" id="phone" placeholder="電話番号" required>
+                                    <input type="number" name="phone" id="phone" placeholder="電話番号" value="{{ old('phone') }}" maxlength="10" required>
                                 </div>
-                                <span class="invalid-feedback">{{ $errors->first('phone') }}</span>
+                                @error('phone')
+                                <span class="invalid-feedback text-red-500">{{ $message }}</span>
+                                @enderror
                             </div>
 
-                            <!-- Password -->
+
                             <div class="col-12 input-group">
                                 <div class="form-input">
-                                    <input type="password" name="password" placeholder="パスワード" id="password" required>
+                                    <input type="password" name="password" placeholder="パスワード" id="password" maxlength="20" required>
                                 </div>
-                                <span class="invalid-feedback">{{ $errors->first('password') }}</span>
+                                @error('password')
+                                <span class="invalid-feedback text-red-500">{{ $message }}</span>
+                                @enderror
                             </div>
 
-                            <!-- Confirm Password -->
+
                             <div class="col-12 input-group">
                                 <div class="form-input">
-                                    <input type="password" name="password_confirmation" placeholder="パスワード確認" required>
+                                    <input type="password" name="password_confirmation" placeholder="パスワード確認" maxlength="20" required>
                                 </div>
-                                <span class="invalid-feedback">{{ $errors->first('password_confirmation') }}</span>
+                                @error('password_confirmation')
+                                <span class="invalid-feedback text-red-500">{{ $message }}</span>
+                                @enderror
                             </div>
 
-                            <!-- Postal Code -->
+
                             <div class="col-12 input-group">
                                 <div class="form-input">
-                                    <input type="text" name="postal_code" id="postal_code" placeholder="郵便番号" required>
+                                    <input type="text" name="postal_code" id="postal_code" placeholder="郵便番号" value="{{ old('postal_code') }}" required maxlength="6">
                                 </div>
-                                <span class="invalid-feedback">{{ $errors->first('postal_code') }}</span>
+                                @error('postal_code')
+                                <span class="invalid-feedback text-red-500">{{ $message }}</span>
+                                @enderror
                             </div>
 
-                            <!-- Address -->
+
                             <div class="col-12 input-group">
                                 <div class="form-input">
-                                    <textarea name="address" id="address" placeholder="住所" class="pt-15" required></textarea>
+                                    <textarea name="address" id="address" placeholder="住所" class="pt-15" required maxlength="100">{{ old('address') }}</textarea>
+                                    <!-- <p id="addressCount" class="text-sm text-gray-500">0/100</p> -->
                                 </div>
-                                <span class="invalid-feedback">{{ $errors->first('address') }}</span>
+                                @error('address')
+                                <span class="invalid-feedback text-red-500">{{ $message }}</span>
+                                @enderror
                             </div>
 
-                            <!-- Submit Button -->
+                           
                             <div class="col-12">
                                 <button type="submit" class="button text-center py-15 -dark-1 bg-red text-white">
                                     登録
@@ -126,6 +146,9 @@
                             </div>
                         </div>
                     </form>
+
+
+
                 </div>
             </div>
         </div>

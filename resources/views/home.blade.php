@@ -43,7 +43,7 @@
 
       <form action="{{ locale_route('restaurant.search') }}" method="GET">
    <div class="mainSearch -col-5 bg-white px-10 py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 mt-30">
-      <div class="button-grid" style="display: flex; align-items: flex-end; gap: 10px; flex-wrap: nowrap;">
+      <div class="button-grid" style="display: flex; align-items: flex-end; gap: 10px; flex-wrap: wrap;">
          <!-- Location Input -->
          <div class="searchMenu-loc flex-grow-1">
             <div data-x-dd-click="searchMenu-loc">
