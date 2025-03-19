@@ -130,9 +130,7 @@
                                             </a>
                                         </li>
 
-                                        <li>
-                                            <a href="{{route('restaurant-list')}}">{{translate('restaurants')}}</a>
-                                        </li>
+                                        
 
                                         <li>
                                             <a href="{{route('support.page')}}">{{translate('support')}}</a>
