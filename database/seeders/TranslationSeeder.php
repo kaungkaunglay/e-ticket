@@ -208,6 +208,26 @@ class TranslationSeeder extends Seeder
             ['key' => 'all_menu_list', 'en' => 'All Menu List', 'jp' => 'すべてのメニューリスト'],
             ['key' => 'menu_create', 'en' => 'Create Menu', 'jp' => 'メニュー作成'],
 
+            ['key' => 'checkin_date', 'en' => 'Check in date', 'jp' => 'チェックイン日'],
+            ['key' => 'price_with_dropdown', 'en' => 'Price From', 'jp' => '価格（最小）'],
+            ['key' => 'price_with_to', 'en' => 'Price To', 'jp' => '価格（最大）'],
+            ['key' => 'smoking', 'en' => 'Smoking', 'jp' => '喫煙'],
+            ['key' => 'Select Price Range', 'en' => 'Select Price Range', 'jp' => '価格範囲を選択'],
+           
+            ['key' => 'Select Category', 'en' => 'Select Category', 'jp' => 'カテゴリを選択'],
+
+
+            ['key' => 'Select Smoking Preference', 'en' => 'Select Smoking Preference', 'jp' => '喫煙の希望を選択'],
+            ['key' => 'Allowed', 'en' => 'Allowed', 'jp' => '許可'],
+            ['key' => 'Not Allowed', 'en' => 'Not Allowed', 'jp' => '禁止'],
+
+            
+            
+
+            
+
+            
+
         ];
 
         foreach ($translations as $data) {

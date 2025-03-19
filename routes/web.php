@@ -56,6 +56,9 @@ Route::get('/booking/favourite', [BookingController::class, 'favourite'])->name(
 Route::get('/favorites/remove', [BookingController::class, 'remove'])->name('favorites.remove');
 
 Route::get('/restaurant-lists', [HomeController::class, 'search'])->name('restaurant.search');
+// Route::get('/restaurant-lists', [HomeController::class, 'searchresult'])->name('restaurant.search.post');
+
+
 Route::get('/search-price', [HomeController::class, 'pricesearch'])->name('restaurant.price.search');
 Route::get('/search-checkbox', [HomeController::class, 'searchcheckbox'])->name('restaurant.searchcheckbox.search');
 Route::get('/restaurant-alllists', [HomeController::class, 'allsearch'])->name('restaurantall.search');

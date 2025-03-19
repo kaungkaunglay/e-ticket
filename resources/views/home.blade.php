@@ -2,6 +2,28 @@
 @section('style')
 @endsection
 @section('contents')
+<style>
+   .searchMenu-loc, .searchMenu-guests {
+      text-align: center; 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+   }
+
+   .searchMenu-loc h4, .searchMenu-guests h4 {
+      text-align: center; 
+      width: 100%;
+   }
+
+   .searchMenu-loc input, .searchMenu-guests select {
+      text-align: center; 
+   }
+
+   .searchMenu-loc select, .searchMenu-guests select {
+      text-align-last: center;
+   }
+</style>
+
 <section data-anim-wrap class="masthead -type-4">
    <div data-anim-child="slide-up" class="masthead-slider overflow-x-hidden js-masthead-slider-4">
    <div class="masthead__image">
@@ -17,76 +39,101 @@
             <a href="#" class="button -md -dark-1 bg-red h-50 text-white mt-30">{{translate('discover_more')}}</a>
             </div> -->
       </div>
+     
+
       <form action="{{ locale_route('restaurant.search') }}" method="GET">
-         <div class="mainSearch -col-5 bg-white px-10 py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 mt-30">
-            <div class="button-grid items-center d-flex flex-wrap gap-10">
-               <!-- Location Input 1 -->
-               <div class="searchMenu-loc flex-grow-1">
-                  <div data-x-dd-click="searchMenu-loc">
-                     <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4>
-                     <div class="text-15 text-light-1 ls-2 lh-16">
-                        <input type="search" placeholder="location" class="js-search js-dd-focus w-100" name="city" />
-                     </div>
-                  </div>
-               </div>
-               <div class="searchMenu-loc flex-grow-1">
-                  <div data-x-dd-click="searchMenu-loc">
-                     <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('checkin_date') }}</h4>
-                     <div class="text-15 text-light-1 ls-2 lh-16">
-                        <input autocomplete="off" type="text" placeholder="Check-in"
-                           class="js-search js-dd-focus w-100" id="check_in" name="check_in" />
-                     </div>
-                  </div>
-               </div>
-               <div class="searchMenu-loc flex-grow-1">
-                  <div data-x-dd-click="searchMenu-loc">
-                     <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('price_with_dropdown') }}</h4>
-                     <div class="text-15 text-light-1 ls-2 lh-16">
-                        <select name="price_range" class="js-search js-dd-focus w-100">
-                           <option value="">{{ translate('Select Price Range') }}</option>
-                           @foreach($priceRange as $price)
-                           <option value="{{ $price }}">{{ number_format($price) }}</option>
-                           @endforeach
-                        </select>
-                     </div>
-                  </div>
-               </div>
-               <div class="searchMenu-loc flex-grow-1">
-                  <div data-x-dd-click="searchMenu-loc">
-                     <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('Category') }}</h4>
-                     <div class="text-15 text-light-1 ls-2 lh-16">
-                        <select class="js-search js-dd-focus w-100" name="category">
-                           <option value="">{{ translate('Select Category') }}</option>
-                           @foreach ($category as $cat)
-                           <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                           @endforeach
-                        </select>
-                     </div>
-                  </div>
-               </div>
-               <!-- Guest Input -->
-               <div class="searchMenu-guests flex-grow-1">
-                  <div data-x-dd-click="searchMenu-guests">
-                     <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('Smoking') }}</h4>
-                     <div class="text-15 text-light-1 ls-2 lh-16">
-                        <select class="js-search js-dd-focus w-100" name="smoking">
-                           <option value="">{{ translate('Select Smoking Preference') }}</option>
-                           <option value="1">{{ translate('Allowed') }}</option>
-                           <option value="0">{{ translate('Not Allowed') }}</option>
-                        </select>
-                     </div>
-                  </div>
-               </div>
-               <!-- Search Button -->
-               <div class="button-item flex-grow-1">
-                  <button class="mainSearch__submit button -dark-1 py-15 px-40 col-12 rounded-4 bg-blue-1 text-white">
-                  <i class="icon-search text-20 mr-10"></i>
-                  {{ translate('search') }}
-                  </button>
+   <div class="mainSearch -col-5 bg-white px-10 py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 mt-30">
+      <div class="button-grid" style="display: flex; align-items: flex-end; gap: 10px; flex-wrap: nowrap;">
+         <!-- Location Input -->
+         <div class="searchMenu-loc flex-grow-1">
+            <div data-x-dd-click="searchMenu-loc">
+               <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4>
+               <div class="text-15 text-light-1 ls-2 lh-16">
+                  <input type="search" placeholder="Location" class="js-search js-dd-focus w-100" name="city" />
                </div>
             </div>
          </div>
-      </form>
+
+         <!-- Check-in Date Input -->
+         <div class="searchMenu-loc flex-grow-1">
+            <div data-x-dd-click="searchMenu-loc">
+               <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('checkin_date') }}</h4>
+               <div class="text-15 text-light-1 ls-2 lh-16">
+                  <input autocomplete="off" type="text" placeholder="Check-in" class="js-search js-dd-focus w-100" id="check_in" name="check_in" />
+               </div>
+            </div>
+         </div>
+
+         <!-- Price From Dropdown -->
+         <div class="searchMenu-loc flex-grow-1">
+            <div data-x-dd-click="searchMenu-loc">
+               <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('price_with_dropdown') }}</h4>
+               <div class="text-15 text-light-1 ls-2 lh-16">
+                  <select name="price_from" class="js-search js-dd-focus w-100">
+                     <option value="">{{ translate('Select Price Range') }}</option>
+                     @foreach($priceRange as $price)
+                     <option value="{{ $price }}">{{ number_format($price) }}</option>
+                     @endforeach
+                  </select>
+               </div>
+            </div>
+         </div>
+
+         <!-- Price To Dropdown -->
+         <div class="searchMenu-loc flex-grow-1">
+            <div data-x-dd-click="searchMenu-loc">
+               <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('price_with_to') }}</h4>
+               <div class="text-15 text-light-1 ls-2 lh-16">
+                  <select name="price_to" class="js-search js-dd-focus w-100">
+                     <option value="">{{ translate('Select Price Range') }}</option>
+                     @foreach($priceRange as $price)
+                     <option value="{{ $price }}">{{ number_format($price) }}</option>
+                     @endforeach
+                  </select>
+               </div>
+            </div>
+         </div>
+
+         <!-- Category Dropdown -->
+         <div class="searchMenu-loc flex-grow-1">
+            <div data-x-dd-click="searchMenu-loc">
+               <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('Category') }}</h4>
+               <div class="text-15 text-light-1 ls-2 lh-16">
+                  <select class="js-search js-dd-focus w-100" name="category">
+                     <option value="">{{ translate('Select Category') }}</option>
+                     @foreach ($category as $cat)
+                     <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                     @endforeach
+                  </select>
+               </div>
+            </div>
+         </div>
+
+         <!-- Smoking Preference Dropdown -->
+         <div class="searchMenu-guests flex-grow-1">
+            <div data-x-dd-click="searchMenu-guests">
+               <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('smoking') }}</h4>
+               <div class="text-15 text-light-1 ls-2 lh-16">
+                  <select class="js-search js-dd-focus w-100" name="smoking">
+                     <option value="">{{ translate('Select Smoking Preference') }}</option>
+                     <option value="1">{{ translate('Allowed') }}</option>
+                     <option value="0">{{ translate('Not Allowed') }}</option>
+                  </select>
+               </div>
+            </div>
+         </div>
+
+         <!-- Search Button -->
+         <div class="button-item flex-grow-1">
+            <button class="mainSearch__submit button -dark-1 py-15 px-40 col-12 rounded-4 bg-blue-1 text-white">
+               <i class="icon-search text-20 mr-10"></i>
+               {{ translate('search') }}
+            </button>
+         </div>
+      </div>
+   </div>
+</form>
+
    </div>
 </section>
 <section class="layout-pt-lg home">

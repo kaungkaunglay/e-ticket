@@ -73,13 +73,10 @@
                 margin-left: 42px !important;
             }
         }
-<<<<<<< HEAD
         input[type="search"]::-webkit-search-cancel-button {
     display: none;
 }
 
-=======
->>>>>>> 6979794471321799384edb8050e0413a6112de25
     </style>
 </head>
 

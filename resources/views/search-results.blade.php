@@ -10,11 +10,11 @@
     
 </style>
 <section class="pt-40 pb-40 bg-light-2">
-<form action="{{ route('restaurant.search') }}" method="GET">
+<form action="{{ locale_route('restaurant.search') }}" method="GET">
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-12">
-                <div class="text-center">
+                <div class="text-center mb-3">
                     <h1 class="text-30 fw-600">
                         @if($query)
                             Search Results for "{{ $query }}"
@@ -24,86 +24,87 @@
                     </h1>
                 </div>
 
-                <div class="mainSearch -col-5 bg-white px-10 py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 mt-30">
-                    <div class="button-grid items-center d-flex flex-wrap gap-10">
-                       
-                        <div class="searchMenu-loc flex-grow-1">
-                            <div data-x-dd-click="searchMenu-loc">
-                                <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4>
-                                <div class="text-15 text-light-1 ls-2 lh-16">
-                                    <input type="search" placeholder="location" class="js-search js-dd-focus w-100" name="city" value="{{ $query }}" />
-                                </div>
-                            </div>
-                        </div>
-
-                        
-                        <div class="searchMenu-loc flex-grow-1">
-                            <div data-x-dd-click="searchMenu-loc">
-                                <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('checkin_date') }}</h4>
-                                <div class="text-15 text-light-1 ls-2 lh-16">
-                                    <input autocomplete="off" type="text" placeholder="Check-in" class="js-search js-dd-focus w-100" id="check_in" name="check_in" value="{{ $query }}" />
-                                </div>
-                            </div>
-                        </div>
-
-                      
-                        <div class="searchMenu-loc flex-grow-1">
-                            <div data-x-dd-click="searchMenu-loc">
-                                <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('price_with_dropdown') }}</h4>
-                                <div class="text-15 text-light-1 ls-2 lh-16">
-                                    <select name="price_range" class="js-search js-dd-focus w-100">
-                                        <option value="{{ $query }}">{{ translate('Select Price Range') }}</option>
-                                        @if(is_array($priceRange) || $priceRange instanceof \Traversable)
-                                            @foreach($priceRange as $price)
-                                                <option value="{{ $price }}">{{ number_format($price) }}</option>
-                                            @endforeach
-                                        @else
-                                            <option value="">{{ translate('No price range available') }}</option>
-                                        @endif
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                       
-                        <select class="js-search js-dd-focus w-100" name="category">
-                        <option value="{{ $query }}">{{ translate('Select Category') }}</option>
-                        @if($category && (is_array($category) || $category instanceof \Traversable))
-                            @foreach ($category as $cat)
-                                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                            @endforeach
-                        @else
-                            <option value="">{{ translate('No categories available') }}</option>
-                        @endif
-                    </select>
-
-                        <!-- Smoking Preference Dropdown -->
-                        <div class="searchMenu-guests flex-grow-1">
-                            <div data-x-dd-click="searchMenu-guests">
-                                <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('Smoking') }}</h4>
-                                <div class="text-15 text-light-1 ls-2 lh-16">
-                                    <select class="js-search js-dd-focus w-100" name="smoking">
-                                        <option value="{{ $query }}">{{ translate('Select Smoking Preference') }}</option>
-                                        <option value="1">{{ translate('Allowed') }}</option>
-                                        <option value="0">{{ translate('Not Allowed') }}</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Search Button -->
-                        <div class="button-item flex-grow-1">
-                            <button class="mainSearch__submit button -dark-1 py-15 px-40 col-12 rounded-4 bg-blue-1 text-white">
-                                <i class="icon-search text-20 mr-10"></i>
-                                {{ translate('search') }}
-                            </button>
-                        </div>
+                <div class="mainSearch bg-white px-4 py-3 rounded-4 d-flex flex-wrap align-items-center gap-3">
+                    <!-- Location Input -->
+                    <div class="flex-grow-1">
+                        <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4>
+                        <input type="text" class="form-control" placeholder="Location" name="city" value="{{ $query }}" />
                     </div>
-                </div>
+
+                    <!-- Check-in Date -->
+                    <div class="flex-grow-1">
+                        <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('checkin_date') }}</h4>
+                        <input type="text" class="form-control" placeholder="Check-in" id="check_in" name="check_in" value="{{ $checkIn }}" autocomplete="off" />
+                    </div>
+
+                    <!-- Price Range: From -->
+                    <div class="flex-grow-1">
+                        <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('price_with_dropdown') }}</h4>
+                        <select class="form-control" name="price_from">
+                            <option value="">{{ translate('Select Price Range') }}</option>
+                            @if(is_array($priceRangedata) || $priceRangedata instanceof \Traversable)
+                                @foreach($priceRangedata as $price)
+                                    <option value="{{ $price }}" {{ $priceFrom == $price ? 'selected' : '' }}>{{ number_format($price) }}</option>
+                                @endforeach
+                            @else
+                                <option value="">{{ translate('No price range available') }}</option>
+                            @endif
+                        </select>
+                    </div>
+
+                    <!-- Price Range: To -->
+                    <div class="flex-grow-1">
+                        <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('price_with_to') }}</h4>
+                        <select class="form-control" name="price_to">
+                            <option value="">{{ translate('Select Price Range') }}</option>
+                            @if(is_array($priceRangedata) || $priceRangedata instanceof \Traversable)
+                                @foreach($priceRangedata as $price)
+                                    <option value="{{ $price }}" {{ $priceTo == $price ? 'selected' : '' }}>{{ number_format($price) }}</option>
+                                @endforeach
+                            @else
+                                <option value="">{{ translate('No price range available') }}</option>
+                            @endif
+                        </select>
+                    </div>
+
+                    <!-- Category Dropdown -->
+                    <div class="flex-grow-1">
+                        <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('Select Category') }}</h4>
+                        <select class="form-control" name="category">
+                            <option value="">{{ translate('Select Category') }}</option>
+                            @if(isset($categorydata) && is_iterable($categorydata))
+                                @foreach ($categorydata as $cat)
+                                    <option value="{{ $cat->id }}" {{ $category == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
+                                @endforeach
+                            @else
+                                <option value="">{{ translate('No categories available') }}</option>
+                            @endif
+                        </select>
+                    </div>
+
+                    <!-- Smoking Preference Dropdown -->
+                    <div class="flex-grow-1">
+                        <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('Smoking') }}</h4>
+                        <select class="form-control" name="smoking">
+                            <option value="">{{ translate('Select Smoking Preference') }}</option>
+                            <option value="1" {{ $smoking == '1' ? 'selected' : '' }}>{{ translate('Allowed') }}</option>
+                            <option value="0" {{ $smoking == '0' ? 'selected' : '' }}>{{ translate('Not Allowed') }}</option>
+                        </select>
+                    </div>
+
+                    <!-- Search Button -->
+                    <div>
+                        <button class="mainSearch__submit button -dark-1 py-15 px-40 col-12 rounded-4 bg-blue-1 text-white">
+                            <i class="icon-search text-20 mr-10"></i>
+                            {{ translate('search') }}
+                        </button>
+                    </div>
+                </div> 
             </div>
         </div>
     </div>
 </form>
+
 
 </section>
 
@@ -324,56 +325,6 @@
         </div>
     </div>
 </section>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const priceSlider = document.getElementById('price-range-slider');
-        const minPriceInput = document.getElementById('min-price');
-        const maxPriceInput = document.getElementById('max-price');
-        const lowerValue = document.getElementById('lower-value');
-        const upperValue = document.getElementById('upper-value');
-        const searchForm = document.getElementById('search-form');
-
-        noUiSlider.create(priceSlider, {
-            start: [{
-                {
-                    $minPrice ?? 0
-                }
-            }, {
-                {
-                    $maxPrice ?? 10000
-                }
-            }],
-            connect: true,
-            range: {
-                'min': 0,
-                'max': 10000
-            },
-            step: 1
-        });
-
-        priceSlider.noUiSlider.on('change', function(values) {
-            let minVal = parseInt(values[0]);
-            let maxVal = parseInt(values[1]);
-
-            lowerValue.innerHTML = minVal;
-            upperValue.innerHTML = maxVal;
-            minPriceInput.value = minVal;
-            maxPriceInput.value = maxVal;
-
-            searchForm.submit();
-        });
-    });
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('filter-form');
-
-        form.addEventListener('change', function() {
-            form.submit();
-        });
-    });
-</script>
-
 @include('includes.subscribe')
 
 @endsection
@@ -384,18 +335,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        flatpickr("#date-picker", {
-            enableTime: true,
-            dateFormat: "Y-m-d H:i",
-            time_24hr: true,
-            onClose: function(selectedDates) {
-                if (selectedDates.length === 1) {
-                    document.getElementById("check_in").value = flatpickr.formatDate(selectedDates[0], "Y-m-d H:i");
-                }
-            }
-        });
-    });
+   document.addEventListener("DOMContentLoaded", function() {
+     flatpickr("#check_in", {
+       enableTime: true,
+       dateFormat: "Y-m-d H:i",
+       time_24hr: true,
+       minDate: "today",
+       defaultDate: new Date(),
+       onClose: function(selectedDates, dateStr) {
+         document.getElementById("check_in").value = dateStr;
+       }
+     });
+   });
 
     $(document).ready(function() {
         $('.favourite-btn').click(function(e) {
