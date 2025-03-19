@@ -309,19 +309,7 @@
                 <div class="col-auto">
                     <div class="row y-gap-10 items-center">
                         <div class="col-auto">
-<<<<<<< HEAD
                             <a href="{{locale_route('terms')}}">利用規約</a>
-=======
-<<<<<<< HEAD
-                            <a href="{{locale_route('terms')}}">利用規約</a>
-=======
-                            <div class="row y-gap-10 items-center">
-                                <div class="col-auto">
-                                    <a href="{{locale_route('terms')}}">利用規約</a>
-                                </div>
-                            </div>
->>>>>>> 6979794471321799384edb8050e0413a6112de25
->>>>>>> 51712d754ba9dd5c9c7c4675a4dc85866f7758be
                         </div>
                     </div>
                 </div>
