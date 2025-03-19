@@ -278,25 +278,23 @@
   });
 </script>
 <?php
-// Convert closed days to a JSON-encoded array
-$closedDays = json_encode(array_map('intval', explode(',', $restaurant->closed_days))); 
-// Example: If $restaurant->closed_days = "0,6", it becomes [0,6]
+  $closedDays = json_encode(array_map('intval', explode(',', $restaurant->closed_days))); 
 ?>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var closedDays = <?php echo $closedDays; ?>; // Get closed days from PHP (array of numbers)
+        var closedDays = <?php echo $closedDays; ?>; 
         var calendarEl = document.getElementById('calendar');
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
-            locale: 'ja', // Set the language to Japanese
+            locale: 'ja', 
             dayCellDidMount: function (info) {
-                var day = info.date.getDay(); // Get day of the week (0 = Sunday, 6 = Saturday)
+                var day = info.date.getDay(); 
                 
-                if (closedDays.includes(day)) { // Check if the day is in the closed days array
-                    info.el.style.backgroundColor = '#ffcccc'; // Light red background
-                    info.el.style.color = 'red'; // Red text
+                if (closedDays.includes(day)) { 
+                    info.el.style.backgroundColor = '#ffcccc';
+                    info.el.style.color = 'red'; 
                 }
             }
         });
