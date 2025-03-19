@@ -30,8 +30,31 @@ class HomeController extends Controller
 
         // dd($discountedRestaurants);
         $restaurants = Restaurant::where('status', 1)->paginate(8);
+        $menus = Menu::all();
+        $category = Category::all();
+        $priceRange = Restaurant::whereNotNull('price_range')
+            ->distinct()
+            ->pluck('price_range')
+            ->unique()
+            ->sort();
 
-        return view('home', compact('restaurants', 'discountedRestaurants'));
+        return view('home', compact('restaurants', 'discountedRestaurants', 'menus', 'priceRange', 'category'));
+    }
+
+
+    public function searchresult()
+    {
+
+        $restaurants = Restaurant::where('status', 1)->paginate(8);
+        $menus = Menu::all();
+        $category = Category::all();
+        $priceRange = Restaurant::whereNotNull('price_range')
+            ->distinct()
+            ->pluck('price_range')
+            ->unique()
+            ->sort();
+
+        return view('search-results', compact('restaurants', 'menus', 'priceRange', 'category'));
     }
 
     public function detail($id)
@@ -43,8 +66,16 @@ class HomeController extends Controller
         return view('restaurant-detail', compact('restaurant', 'menus'));
     }
 
+
     public function search(Request $request)
     {
+
+        $priceRangedata = Restaurant::whereNotNull('price_range')
+            ->distinct()
+            ->pluck('price_range')
+            ->unique()
+            ->sort();
+        $categorydata = Category::all();
         $query = $request->input('city');
        
         $checkIn = $request->input('check_in');
@@ -61,7 +92,7 @@ class HomeController extends Controller
             })
             ->when($menu, function ($q) use ($menu) {
                 return $q->whereJsonContains('menu', $menu);
-            })
+                })
             ->when(isset($smoking), function ($q) use ($smoking) {
                 return $q->where('smoking', $smoking);
             })
@@ -73,6 +104,10 @@ class HomeController extends Controller
     }
     
     
+
+
+
+
 
 
     public function pricesearch(Request $request)
