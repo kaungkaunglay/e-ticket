@@ -139,7 +139,7 @@ Route::get('/password/sent/{email}', [ForgetPasswordController::class, 'showSent
 Route::get('/password/reset/{token}', [ForgetPasswordController::class, 'showResetForm'])->name('show_reset_form');
 Route::post('/password/reset', [ForgetPasswordController::class, 'reset'])->name('reset_password');
 Route::get('/password/success', [ForgetPasswordController::class, 'success'])->name('reset_success');
-Route::PUT('/user/password', [UserController::class, 'userpassword'])->name('user.password');
+Route::put('/user/password', [UserController::class, 'userpassword'])->name('user.password');
 Route::get('/promotion/show', [SupportController::class, 'promoshow'])->name('promo.show');
 Route::POST('/promotion/search', [SupportController::class, 'search'])->name('promo.search');
 Route::post('/promotion/update', [SupportController::class, 'updatePromo'])->name('update.promo');

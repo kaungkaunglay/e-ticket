@@ -119,26 +119,49 @@ class UserController extends Controller
 
 
 public function userpassword(Request $request) {
-    $request->validate([
+    // Custom validation messages
+    $messages = [
+        'old_password.required' => 'The old password field is required.',
+        'new_password.required' => 'The new password field is required.',
+        'new_password.min' => 'The new password must be at least 8 characters.',
+        'new_password.confirmed' => 'The new password and confirmation password do not match.',
+    ];
+
+    // Validate the request
+    $validator = Validator::make($request->all(), [
         'id' => 'required|exists:users,id',  
         'old_password' => 'required|string', 
         'new_password' => 'required|string|min:8|confirmed', 
-    ]);
+    ], $messages);
+
+    // If validation fails, return JSON response with errors
+    if ($validator->fails()) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Validation failed',
+            'errors' => $validator->errors(),
+        ], 422);
+    }
+
+    // Find the user
     $user = User::find($request->id);
-    if (!\Hash::check($request->old_password, $user->password)) {
+
+    // Check if the old password is correct
+    if (!Hash::check($request->old_password, $user->password)) {
         return response()->json([
             'status' => 'error',
             'message' => 'The provided old password is incorrect.'
         ], 400);
     }
-    $user->password = \Hash::make($request->new_password);
+
+    // Update the password
+    $user->password = Hash::make($request->new_password);
     $user->save(); 
 
     return response()->json([
         'status' => 'success',
         'message' => 'Password updated successfully!'
     ], 200); 
-
 }
 
     
