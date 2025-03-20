@@ -33,7 +33,7 @@
             <th>{{translate('phone')}}</th>
             <th>{{translate('price')}}</th>
             <!-- <th>Web Url</th> -->
-            <th>{{translate('note')}}</th>
+            <th>{{translate('booking_date')}}</th>
             <th>Note</th>
             <th>{{translate('view')}}</th>
         </tr>

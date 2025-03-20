@@ -15,6 +15,12 @@
             <div class="">></div>
           </div>
           <div class="col-auto">
+            <div class="">{{$restaurant->category->name}}</div>
+          </div>
+          <div class="col-auto">
+            <div class="">></div>
+          </div>
+          <div class="col-auto">
             <div class="">{{ $restaurant->name }}</div>
           </div>
           <div class="col-auto">
