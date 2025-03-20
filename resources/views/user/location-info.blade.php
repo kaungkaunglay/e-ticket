@@ -1,14 +1,3 @@
-<style>
-    th {
-        /* border: 2px solid black; 
-            padding: 8px; 
-            text-align: left;  */
-    }
-
-    tr {
-        /* background-color: #f2f2f2;  */
-    }
-</style>
 <div class="tabs__pane -tab-item-2">
     <div class="col-xl-12">
         <h3 class="text-20 fw-600">予約履歴</h3>

@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SubscriptionConfirmation;
 use App\Models\Menu;
-
+use Carbon\Carbon;
+use DateTime;
 
 class HomeController extends Controller
 {
@@ -69,7 +70,6 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
-
         $priceRangedata = Restaurant::whereNotNull('price_range')
             ->distinct()
             ->pluck('price_range')
@@ -82,11 +82,15 @@ class HomeController extends Controller
         $priceTo = (float) $request->input('price_to');
         $category = $request->input('category');
         $smoking = $request->input('smoking');
+        $date = new DateTime($checkIn);
+        $dayOfWeek = $date->format('l');
+        $dayId = DB::table('weeks')
+            ->where('day_eg', $dayOfWeek)
+            ->value('id');
         $restaurants = Restaurant::where('status', 1)
             ->when($query, function ($q) use ($query) {
                 return $q->where('city', $query);
             })
-
             ->when($priceFrom && $priceTo, function ($q) use ($priceFrom, $priceTo) {
                 if ($priceFrom == $priceTo) {
                     return $q->whereRaw('CAST(price_range AS DECIMAL(10,2)) = ?', [$priceFrom]);
@@ -100,13 +104,17 @@ class HomeController extends Controller
             ->when(isset($smoking), function ($q) use ($smoking) {
                 return $q->where('smoking', $smoking);
             })
+            ->where(function ($q) use ($dayId) {
+                $q->whereNull('closed_days')
+                    ->orWhereJsonDoesntContain('closed_days', $dayId);
+            })
             ->paginate(9);
-
 
         return view('search-results', compact(
             'restaurants',
             'query',
             'checkIn',
+            'dayOfWeek',
             'priceFrom',
             'priceTo',
             'category',
