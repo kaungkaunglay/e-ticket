@@ -68,6 +68,7 @@ class HomeController extends Controller
     }
 
 
+
     public function search(Request $request)
     {
         $priceRangedata = Restaurant::whereNotNull('price_range')

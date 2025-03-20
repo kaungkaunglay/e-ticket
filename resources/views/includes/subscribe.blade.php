@@ -6,7 +6,7 @@
         </div>
 
         <div class="container">
-            <div data-anim-child="slide-up delay-2" class="row items-center justify-center text-center bg-sub">
+            <div  class="row items-center justify-center text-center bg-sub">
                 <div class="col-auto">
                     <i class="icon-newsletter text-60 sm:text-40 text-white"></i>
 

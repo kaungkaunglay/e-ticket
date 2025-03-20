@@ -3,149 +3,140 @@
 @endsection
 @section('contents')
 <style>
-   .searchMenu-loc, .searchMenu-guests {
-      text-align: center; 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+   .searchMenu-loc,
+   .searchMenu-guests {
+   text-align: center;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
    }
-
-   .searchMenu-loc h4, .searchMenu-guests h4 {
-      text-align: center; 
-      width: 100%;
+   .searchMenu-loc h4,
+   .searchMenu-guests h4 {
+   text-align: center;
+   width: 100%;
    }
-
-   .searchMenu-loc input, .searchMenu-guests select {
-      text-align: center; 
+   .searchMenu-loc input,
+   .searchMenu-guests select {
+   text-align: center;
    }
-
-   .searchMenu-loc select, .searchMenu-guests select {
-      text-align-last: center;
+   .searchMenu-loc select,
+   .searchMenu-guests select {
+   text-align-last: center;
    }
 </style>
-
 <section data-anim-wrap class="masthead -type-4">
-   <div data-anim-child="slide-up" class="masthead-slider overflow-x-hidden js-masthead-slider-4">
+   <div   class="masthead-slider overflow-x-hidden js-masthead-slider-4">
    <div class="masthead__image">
-      <img src="{{asset('assets/img/masthead/4/bg.jpg')}}" alt="image">
+      <img src="{{asset('assets/img/masthead/4/216409.jpg')}}" alt="image" style="object-fit: contain;">
    </div>
    <div class="container">
-   <div class="row justify-center">
+   <div class="row justify-center" style="width: 107%;">
    <div class="col-xl-9">
    <div class="masthead__content">
       <div class="text-center">
-         <h1 data-anim-child="slide-up delay-2" class="text-30 lg:text-40 md:text-30 text-white">{{translate('reserve_table')}}</h1>
+         <h1  class="text-30 lg:text-40 md:text-30 text-white">{{translate('reserve_table')}}</h1>
          <!-- <div data-anim-child="slide-up delay-4" class="d-inline-block">
             <a href="#" class="button -md -dark-1 bg-red h-50 text-white mt-30">{{translate('discover_more')}}</a>
             </div> -->
       </div>
-     
-
       <form action="{{ locale_route('restaurant.search') }}" method="GET">
-   <div class="mainSearch -col-5 bg-white px-10 py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 mt-30">
-      <div class="button-grid" style="display: flex; align-items: flex-end; gap: 10px; flex-wrap: wrap;">
-         <!-- Location Input -->
-         <div class="searchMenu-loc flex-grow-1">
-            <div data-x-dd-click="searchMenu-loc">
-               <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4>
-               <div class="text-15 text-light-1 ls-2 lh-16">
-                  <input type="search" placeholder="Location" class="js-search js-dd-focus w-100" name="city" />
+         <div class="mainSearch -col-5 bg-white px-10 py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 mt-30">
+            <div class="button-grid" style="display: flex; align-items: flex-end; gap: 10px; flex-wrap: wrap;">
+               <!-- Location Input -->
+               <div class="searchMenu-loc flex-grow-1">
+                  <div data-x-dd-click="searchMenu-loc">
+                     <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4>
+                     <div class="text-15 text-light-1 ls-2 lh-16">
+                        <input type="search" placeholder="Location" class="js-search js-dd-focus w-100" name="city" />
+                     </div>
+                  </div>
+               </div>
+               <!-- Check-in Date Input -->
+               <div class="searchMenu-loc flex-grow-1">
+                  <div data-x-dd-click="searchMenu-loc">
+                     <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('checkin_date') }}</h4>
+                     <div class="text-15 text-light-1 ls-2 lh-16">
+                        <input autocomplete="off" type="text" placeholder="Check-in" class="js-search js-dd-focus w-100" id="check_in" name="check_in" />
+                     </div>
+                  </div>
+               </div>
+               <!-- Price From Dropdown -->
+               <div class="searchMenu-loc flex-grow-1">
+                  <div data-x-dd-click="searchMenu-loc">
+                     <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('price_with_dropdown') }}</h4>
+                     <div class="text-15 text-light-1 ls-2 lh-16">
+                        <select name="price_from" class="js-search js-dd-focus w-100">
+                           <option value="">{{ translate('Select Price Range') }}</option>
+                           @foreach($priceRange as $price)
+                           <option value="{{ $price }}">{{ number_format($price) }}</option>
+                           @endforeach
+                        </select>
+                     </div>
+                  </div>
+               </div>
+               <!-- Price To Dropdown -->
+               <div class="searchMenu-loc flex-grow-1">
+                  <div data-x-dd-click="searchMenu-loc">
+                     <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('price_with_to') }}</h4>
+                     <div class="text-15 text-light-1 ls-2 lh-16">
+                        <select name="price_to" class="js-search js-dd-focus w-100">
+                           <option value="">{{ translate('Select Price Range') }}</option>
+                           @foreach($priceRange as $price)
+                           <option value="{{ $price }}">{{ number_format($price) }}</option>
+                           @endforeach
+                        </select>
+                     </div>
+                  </div>
+               </div>
+               <!-- Category Dropdown -->
+               <div class="searchMenu-loc flex-grow-1">
+                  <div data-x-dd-click="searchMenu-loc">
+                     <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('Category') }}</h4>
+                     <div class="text-15 text-light-1 ls-2 lh-16">
+                        <select class="js-search js-dd-focus w-100" name="category">
+                           <option value="">{{ translate('Select Category') }}</option>
+                           @foreach ($category as $cat)
+                           <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                           @endforeach
+                        </select>
+                     </div>
+                  </div>
+               </div>
+               <!-- Smoking Preference Dropdown -->
+               <div class="searchMenu-guests flex-grow-1">
+                  <div data-x-dd-click="searchMenu-guests">
+                     <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('smoking') }}</h4>
+                     <div class="text-15 text-light-1 ls-2 lh-16">
+                        <select class="js-search js-dd-focus w-100" name="smoking">
+                           <option value="">{{ translate('Select Smoking Preference') }}</option>
+                           <option value="1">{{ translate('Allowed') }}</option>
+                           <option value="0">{{ translate('Not Allowed') }}</option>
+                        </select>
+                     </div>
+                  </div>
+               </div>
+               <!-- Search Button -->
+               <div class="button-item flex-grow-1">
+                  <button class="mainSearch__submit button -dark-1 py-15 px-40 col-12 rounded-4 bg-blue-1 text-white">
+                  <i class="icon-search text-20 mr-10"></i>
+                  {{ translate('search') }}
+                  </button>
                </div>
             </div>
          </div>
-
-         <!-- Check-in Date Input -->
-         <div class="searchMenu-loc flex-grow-1">
-            <div data-x-dd-click="searchMenu-loc">
-               <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('checkin_date') }}</h4>
-               <div class="text-15 text-light-1 ls-2 lh-16">
-                  <input autocomplete="off" type="text" placeholder="Check-in" class="js-search js-dd-focus w-100" id="check_in" name="check_in" />
-               </div>
-            </div>
-         </div>
-
-         <!-- Price From Dropdown -->
-         <div class="searchMenu-loc flex-grow-1">
-            <div data-x-dd-click="searchMenu-loc">
-               <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('price_with_dropdown') }}</h4>
-               <div class="text-15 text-light-1 ls-2 lh-16">
-                  <select name="price_from" class="js-search js-dd-focus w-100">
-                     <option value="">{{ translate('Select Price Range') }}</option>
-                     @foreach($priceRange as $price)
-                     <option value="{{ $price }}">{{ number_format($price) }}</option>
-                     @endforeach
-                  </select>
-               </div>
-            </div>
-         </div>
-
-         <!-- Price To Dropdown -->
-         <div class="searchMenu-loc flex-grow-1">
-            <div data-x-dd-click="searchMenu-loc">
-               <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('price_with_to') }}</h4>
-               <div class="text-15 text-light-1 ls-2 lh-16">
-                  <select name="price_to" class="js-search js-dd-focus w-100">
-                     <option value="">{{ translate('Select Price Range') }}</option>
-                     @foreach($priceRange as $price)
-                     <option value="{{ $price }}">{{ number_format($price) }}</option>
-                     @endforeach
-                  </select>
-               </div>
-            </div>
-         </div>
-
-         <!-- Category Dropdown -->
-         <div class="searchMenu-loc flex-grow-1">
-            <div data-x-dd-click="searchMenu-loc">
-               <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('Category') }}</h4>
-               <div class="text-15 text-light-1 ls-2 lh-16">
-                  <select class="js-search js-dd-focus w-100" name="category">
-                     <option value="">{{ translate('Select Category') }}</option>
-                     @foreach ($category as $cat)
-                     <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                     @endforeach
-                  </select>
-               </div>
-            </div>
-         </div>
-
-         <!-- Smoking Preference Dropdown -->
-         <div class="searchMenu-guests flex-grow-1">
-            <div data-x-dd-click="searchMenu-guests">
-               <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('smoking') }}</h4>
-               <div class="text-15 text-light-1 ls-2 lh-16">
-                  <select class="js-search js-dd-focus w-100" name="smoking">
-                     <option value="">{{ translate('Select Smoking Preference') }}</option>
-                     <option value="1">{{ translate('Allowed') }}</option>
-                     <option value="0">{{ translate('Not Allowed') }}</option>
-                  </select>
-               </div>
-            </div>
-         </div>
-
-         <!-- Search Button -->
-         <div class="button-item flex-grow-1">
-            <button class="mainSearch__submit button -dark-1 py-15 px-40 col-12 rounded-4 bg-blue-1 text-white">
-               <i class="icon-search text-20 mr-10"></i>
-               {{ translate('search') }}
-            </button>
-         </div>
-      </div>
-   </div>
-</form>
-
+      </form>
    </div>
 </section>
 <section class="layout-pt-lg home">
-   <div data-anim-wrap class="container">
-   <div data-anim-child="slide-up delay-1" class="row y-gap-20 justify-center text-center">
+   <div class="container">
+   <div class="row y-gap-20 justify-center text-center">
       <div class="col-auto">
          <div class="sectionTitle -md">
             <h2 class="sectionTitle__title">{{translate('discount_restaurants')}}</h2>
          </div>
       </div>
    </div>
-   <div data-anim-child="slide-up delay-2" class="relative pt-40 js-section-slider hidden" data-gap="30" data-slider-cols="xl-6 lg-4 md-3 sm-2 base-1">
+   <div class="relative pt-40 js-section-slider hidden" data-gap="30" data-slider-cols="xl-6 lg-4 md-3 sm-2 base-1">
       <div class="swiper-wrapper">
          @foreach($discountedRestaurants as $restaurant)
          <div class="swiper-slide">
@@ -171,14 +162,14 @@
 </section>
 <section class="layout-pt-md layout-pb-lg">
    <div data-anim-wrap class="container">
-      <div data-anim-child="slide-up delay-1" class="row justify-center text-center">
+      <div class="row justify-center text-center">
          <div class="col-auto">
             <div class="sectionTitle -md">
                <h2 class="sectionTitle__title">{{ translate('popular_restaurants') }}</h2>
             </div>
          </div>
       </div>
-      <div data-anim-child="slide-up delay-2" class="tabs -pills-2 pt-40 js-tabs">
+      <div class="tabs -pills-2 pt-40 js-tabs">
          <div class="tabs__content pt-40 js-tabs-content">
             <div class="tabs__pane -tab-item-1 is-tab-el-active">
                <div class="row y-gap-30">
@@ -228,14 +219,14 @@
 </section>
 <section class="layout-pt-md layout-pb-lg">
    <div data-anim-wrap class="container">
-      <div data-anim-child="slide-up delay-1" class="row justify-center text-center">
+      <div class="row justify-center text-center">
          <div class="col-auto">
             <div class="sectionTitle -md">
                <h2 class="sectionTitle__title">{{ translate('restaurant_near_location') }}</h2>
             </div>
          </div>
       </div>
-      <div data-anim-child="slide-up delay-2" class="tabs -pills-2 pt-40 js-tabs">
+      <div class="tabs -pills-2 pt-40 js-tabs">
          <div class="tabs__content pt-40 js-tabs-content">
             <div class="tabs__pane -tab-item-1 is-tab-el-active">
                <div class="row y-gap-30">
@@ -304,43 +295,44 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script>
    document.addEventListener("DOMContentLoaded", function() {
-    flatpickr("#check_in", {
-        enableTime: true,
-        dateFormat: "Y-m-d H:i",
-        time_24hr: true,
-        defaultDate: new Date(),
-        onClose: function(selectedDates, dateStr) {
+      flatpickr("#check_in", {
+         //   enableTime: true,
+         dateFormat: "Y-m-d",
+         //   time_24hr: true,
+         defaultDate: new Date(),
+         onClose: function(selectedDates, dateStr) {
             document.getElementById("check_in").value = dateStr;
-        }
-    });
-});
-
+         }
+      });
+   });
+   
+   
    
    $(document).ready(function() {
-     $('.favourite-btn').click(function(e) {
-       e.preventDefault();
+      $('.favourite-btn').click(function(e) {
+         e.preventDefault();
    
-       let restaurantId = $(this).data('id');
-       let token = '{{ csrf_token() }}';
+         let restaurantId = $(this).data('id');
+         let token = '{{ csrf_token() }}';
    
-       $.ajax({
-         url: "{{ route('booking.favourite') }}",
-         type: "GET",
-         data: {
-           _token: token,
-           restaurants_id: restaurantId
-         },
-         success: function(response) {
-           toastr.success(response.message);
-         },
-         error: function(xhr) {
-           if (xhr.status === 422) {
-             toastr.error("Invalid request. Please try again.");
-           } else {
-             toastr.error("最初にログインする必要があります。");
-           }
-         }
-       });
-     });
+         $.ajax({
+            url: "{{ route('booking.favourite') }}",
+            type: "GET",
+            data: {
+               _token: token,
+               restaurants_id: restaurantId
+            },
+            success: function(response) {
+               toastr.success(response.message);
+            },
+            error: function(xhr) {
+               if (xhr.status === 422) {
+                  toastr.error("Invalid request. Please try again.");
+               } else {
+                  toastr.error("最初にログインする必要があります。");
+               }
+            }
+         });
+      });
    });
 </script>

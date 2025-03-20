@@ -282,7 +282,7 @@
                 <p class="text-center text-muted">データがありません。</p>
                 @else
                 <div class="border-top-light mt-30 pt-30">
-                    <div class="row justify-center align-items-center">
+                    <div class="row justify-center align-items-center ">
 
 
                         <div class="col-auto">
@@ -339,17 +339,17 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script>
    document.addEventListener("DOMContentLoaded", function() {
-     flatpickr("#check_in", {
-       enableTime: true,
-       dateFormat: "Y-m-d H:i",
-       time_24hr: true,
-       minDate: "today",
-       defaultDate: new Date(),
-       onClose: function(selectedDates, dateStr) {
-         document.getElementById("check_in").value = dateStr;
-       }
-     });
-   });
+    flatpickr("#check_in", {
+      //   enableTime: true,
+        dateFormat: "Y-m-d",
+      //   time_24hr: true,
+        defaultDate: new Date(),
+        onClose: function(selectedDates, dateStr) {
+            document.getElementById("check_in").value = dateStr;
+        }
+    });
+});
+
 
     $(document).ready(function() {
         $('.favourite-btn').click(function(e) {
