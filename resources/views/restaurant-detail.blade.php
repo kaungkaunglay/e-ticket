@@ -71,7 +71,7 @@
         <div class="row x-gap-15 y-gap-15 items-center">
           <div class="col-auto">
             <div class="text-14">
-              From
+              このレストランのフードメニューは次の価格から
               <span class="text-22 text-dark-1 fw-500">¥{{ number_format($restaurant->price_range) }}</span>
             </div>
           </div>
@@ -79,7 +79,7 @@
           <div class="col-auto">
             <a href="{{ route('booking.detail', ['id' => $restaurant->id]) }}"
               class="button h-50 px-24 -dark-1 bg-blue-1 text-white">
-              Booking
+              {{translate('booking')}}
               <div class="icon-arrow-top-right ml-15"></div>
             </a>
           </div>
@@ -180,12 +180,16 @@
             <p class="text-dark-1 text-15 mt-20">
               {{$restaurant->description}}
             </p>
-
           </div>
           <div class="col-md">
 
             <div class="row x-gap-10 y-gap-10 pt-20">
 
+              @if($restaurant->smoking)
+              <div class="col-auto">
+                <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">{{translate('smoking')}}</div>
+              </div>
+              @endif
               @if($restaurant->wifi_availability)
               <div class="col-auto">
                 <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">{{translate('wifi')}}</div>
