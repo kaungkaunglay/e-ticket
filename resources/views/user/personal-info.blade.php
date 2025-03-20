@@ -7,10 +7,16 @@
     } */
 
     @media (min-width: 1400px) {
-    .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
-        max-width: 1529px !important;
+
+        .container,
+        .container-lg,
+        .container-md,
+        .container-sm,
+        .container-xl,
+        .container-xxl {
+            max-width: 1529px !important;
+        }
     }
-}
 
     .profile-field {
         margin-bottom: 15px;
@@ -36,7 +42,7 @@
 
     .form-control:focus {
         border-color: #3b82f6;
-        box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         outline: none;
     }
 
@@ -96,7 +102,7 @@
         padding: 20px;
         background: #fff;
         border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     .profile-info {
@@ -104,87 +110,88 @@
     }
 </style>
 </head>
+
 <body>
-<div class="container mt-4">
-    <div class="tabs__pane -tab-item-1 is-tab-el-active">
-        <div class="profile-info">
-            <div class="card p-4 shadow-sm">
-                <h2 class="mb-3">ユーザープロファイル</h2>
+    <div class="container mt-4">
+        <div class="tabs__pane -tab-item-1 is-tab-el-active">
+            <div class="profile-info">
+                <div class="card p-4 shadow-sm">
+                    <h2 class="mb-3">ユーザープロファイル</h2>
 
-                <!-- Profile Display Mode -->
-                <div id="profile-view">
-                    <div class="profile-field">
-                        <strong>名:</strong> 
-                        <span id="first-name-text">{{ $user->first_name }}</span>
+                    <!-- Profile Display Mode -->
+                    <div id="profile-view">
+                        <div class="profile-field">
+                            <strong>名:</strong>
+                            <span id="first-name-text">{{ $user->first_name }}</span>
+                        </div>
+                        <div class="profile-field">
+                            <strong>姓:</strong>
+                            <span id="last-name-text">{{ $user->last_name }}</span>
+                        </div>
+                        <div class="profile-field">
+                            <strong>メール:</strong>
+                            <span id="email-text">{{ $user->email }}</span>
+                        </div>
+                        <div class="profile-field">
+                            <strong>電話:</strong>
+                            <span id="phone-text">{{ $user->phone }}</span>
+                        </div>
+                        <div class="profile-field">
+                            <strong>住所:</strong>
+                            <span id="address-text">{{ $user->address }}</span>
+                        </div>
+                        <div class="profile-field">
+                            <strong>郵便番号:</strong>
+                            <span id="postal-code-text">{{ $user->postal_code }}</span>
+                        </div>
+                        <button id="edit-btn" class="btn btn-primary">プロフィールを編集</button>
                     </div>
-                    <div class="profile-field">
-                        <strong>姓:</strong> 
-                        <span id="last-name-text">{{ $user->last_name }}</span>
-                    </div>
-                    <div class="profile-field">
-                        <strong>メール:</strong> 
-                        <span id="email-text">{{ $user->email }}</span>
-                    </div>
-                    <div class="profile-field">
-                        <strong>電話:</strong> 
-                        <span id="phone-text">{{ $user->phone }}</span>
-                    </div>
-                    <div class="profile-field">
-                        <strong>住所:</strong> 
-                        <span id="address-text">{{ $user->address }}</span>
-                    </div>
-                    <div class="profile-field">
-                        <strong>郵便番号:</strong> 
-                        <span id="postal-code-text">{{ $user->postal_code }}</span>
-                    </div>
-                    <button id="edit-btn" class="btn btn-primary">プロフィールを編集</button>
+
+                    <!-- Profile Edit Mode -->
+                    <form id="profile-form" class="d-none">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $user->id }}">
+
+                        <div class="form-group">
+                            <label>名:</label>
+                            <input type="text" id="first-name" name="first_name"
+                                class="form-control" value="{{ $user->first_name }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>姓:</label>
+                            <input type="text" id="last-name" name="last_name"
+                                class="form-control" value="{{ $user->last_name }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>メール:</label>
+                            <input type="email" id="email" name="email"
+                                class="form-control" value="{{ $user->email }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>電話:</label>
+                            <input type="text" id="phone" name="phone"
+                                class="form-control" value="{{ $user->phone }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>住所:</label>
+                            <input type="text" id="address" name="address"
+                                class="form-control" value="{{ $user->address }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>郵便番号:</label>
+                            <input type="text" id="postal-code" name="postal_code"
+                                class="form-control" value="{{ $user->postal_code }}" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-success">変更を保存</button>
+                        <button type="button" id="cancel-btn" class="btn btn-secondary">キャンセル</button>
+                    </form>
                 </div>
-
-                <!-- Profile Edit Mode -->
-                <form id="profile-form" class="d-none">
-                    @csrf
-                    <input type="hidden" name="id" value="{{ $user->id }}">
-                    
-                    <div class="form-group">
-                        <label>名:</label>
-                        <input type="text" id="first-name" name="first_name" 
-                               class="form-control" value="{{ $user->first_name }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label>姓:</label>
-                        <input type="text" id="last-name" name="last_name" 
-                               class="form-control" value="{{ $user->last_name }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label>メール:</label>
-                        <input type="email" id="email" name="email" 
-                               class="form-control" value="{{ $user->email }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label>電話:</label>
-                        <input type="text" id="phone" name="phone" 
-                               class="form-control" value="{{ $user->phone }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label>住所:</label>
-                        <input type="text" id="address" name="address" 
-                               class="form-control" value="{{ $user->address }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label>郵便番号:</label>
-                        <input type="text" id="postal-code" name="postal_code" 
-                               class="form-control" value="{{ $user->postal_code }}" required>
-                    </div>
-
-                    <button type="submit" class="btn btn-success">変更を保存</button>
-                    <button type="button" id="cancel-btn" class="btn btn-secondary">キャンセル</button>
-                </form>
             </div>
         </div>
     </div>
-</div>
-<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.min.js"></script>
 
     <script>
         const editBtn = document.getElementById("edit-btn");
@@ -203,63 +210,71 @@
         });
 
         profileForm.addEventListener("submit", async function(event) {
-    event.preventDefault();
-    const formData = {
-        id: document.querySelector('input[name="id"]').value,
-        first_name: document.getElementById("first-name").value,
-        last_name: document.getElementById("last-name").value,
-        email: document.getElementById("email").value,
-        phone: document.getElementById("phone").value,
-        address: document.getElementById("address").value,
-        postal_code: document.getElementById("postal-code").value,
-    };
+            event.preventDefault();
+            const formData = {
+                id: document.querySelector('input[name="id"]').value,
+                first_name: document.getElementById("first-name").value,
+                last_name: document.getElementById("last-name").value,
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value,
+                address: document.getElementById("address").value,
+                postal_code: document.getElementById("postal-code").value,
+            };
 
-    try {
-        const response = await fetch("{{ route('user.profileupdate') }}", {
-            method: "PUT", 
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
-            },
-            body: JSON.stringify(formData), 
+            try {
+                const response = await fetch("{{ route('user.profileupdate') }}", {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
+                    },
+                    body: JSON.stringify(formData),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    document.getElementById("first-name-text").innerText = formData.first_name;
+                    document.getElementById("last-name-text").innerText = formData.last_name;
+                    document.getElementById("email-text").innerText = formData.email;
+                    document.getElementById("phone-text").innerText = formData.phone;
+                    document.getElementById("address-text").innerText = formData.address;
+                    document.getElementById("postal-code-text").innerText = formData.postal_code;
+
+                    profileView.classList.remove("d-none");
+                    profileForm.classList.add("d-none");
+
+                    Swal.fire({
+                        title: '成功しました！', // Japanese for "Success!"
+                        text: data.message || "プロフィールが正常に更新されました！", // Japanese message
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                    }).then(() => {
+                        // Change the language to Japanese
+                        document.documentElement.lang = "ja";
+
+                        // Reload the page
+                        location.reload();
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: data.message || "Error updating profile",
+                        icon: 'error',
+                        confirmButtonText: 'Try Again',
+                    });
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                Swal.fire({
+                    title: 'Oops!',
+                    text: "An error occurred while updating the profile.",
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                });
+            }
         });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            document.getElementById("first-name-text").innerText = formData.first_name;
-            document.getElementById("last-name-text").innerText = formData.last_name;
-            document.getElementById("email-text").innerText = formData.email;
-            document.getElementById("phone-text").innerText = formData.phone;
-            document.getElementById("address-text").innerText = formData.address;
-            document.getElementById("postal-code-text").innerText = formData.postal_code;
-            profileView.classList.remove("d-none");
-            profileForm.classList.add("d-none");
-            Swal.fire({
-                title: 'Success!',
-                text: data.message || "Profile updated successfully!",
-                icon: 'success',
-                confirmButtonText: 'OK',
-            });
-        } else {
-            Swal.fire({
-                title: 'Error!',
-                text: data.message || "Error updating profile",
-                icon: 'error',
-                confirmButtonText: 'Try Again',
-            });
-        }
-    } catch (error) {
-        console.error("Error:", error);
-        Swal.fire({
-            title: 'Oops!',
-            text: "An error occurred while updating the profile.",
-            icon: 'error',
-            confirmButtonText: 'OK',
-        });
-    }
-});
-
     </script>
 </body>
+
 </html>
