@@ -238,6 +238,11 @@
                                     </div>
 
                                     <div class="row x-gap-10 y-gap-10 pt-20">
+                                        @if(!is_null($restaurant->smoking) && $restaurant->smoking)
+                                        <div class="col-auto">
+                                            <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">{{ translate('smoking') }}</div>
+                                        </div>
+                                        @endif
                                         @if(!is_null($restaurant->wifi_availability) && $restaurant->wifi_availability)
                                         <div class="col-auto">
                                             <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">{{ translate('wifi') }}</div>
