@@ -245,15 +245,15 @@
                     profileForm.classList.add("d-none");
 
                     Swal.fire({
-                        title: '成功しました！', // Japanese for "Success!"
-                        text: data.message || "プロフィールが正常に更新されました！", // Japanese message
+                        title: '成功しました！', 
+                        text: data.message || "プロフィールが正常に更新されました！",
                         icon: 'success',
                         confirmButtonText: 'OK',
                     }).then(() => {
-                        // Change the language to Japanese
+                       
                         document.documentElement.lang = "ja";
 
-                        // Reload the page
+                       
                         location.reload();
                     });
                 } else {
