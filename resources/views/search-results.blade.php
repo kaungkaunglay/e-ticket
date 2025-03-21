@@ -386,8 +386,7 @@
                     dataType: 'json',
                     success: function(data) {
                         $('#subTown').empty();
-                        $('#subTown').append('<option value="">{{ translate('
-                            select_sub_location ') }}</option>');
+                        $('#subTown').append('<option value="">{{ translate('select_sub_location ') }}</option>');
                         $.each(data, function(key, value) {
                             $('#subTown').append('<option value="' + value.id + '">' + value.name + '</option>');
                         });
@@ -396,8 +395,7 @@
             } else {
                 $('#subTown').prop('disabled', true);
                 $('#subTown').empty();
-                $('#subTown').append('<option value="">{{ translate('
-                    select_sub_location ') }}</option>');
+                $('#subTown').append('<option value="">{{ translate('select_sub_location') }}</option>');
             }
         });
     });
