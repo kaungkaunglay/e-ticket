@@ -36,7 +36,7 @@ class BookingController extends Controller
     {
         if (!Auth::check()) {
             return response()->json([
-                'message' => 'ログインが必要です。' 
+                'message' => 'ログインが必要です。'
             ], 401);
         }
 
@@ -44,25 +44,25 @@ class BookingController extends Controller
             'restaurants_id' => 'required|exists:restaurants,id',
         ]);
 
-        
+
         $existingFavorite = Favorite::where('user_id', Auth::id())
             ->where('restaurants_id', $request->restaurants_id)
             ->first();
 
         if ($existingFavorite) {
             return response()->json([
-                'message' => 'このレストランはすでにお気に入りに追加されています。' 
+                'message' => 'このレストランはすでにお気に入りに追加されています。'
             ], 400);
         }
 
-       
+
         $favorite = Favorite::firstOrCreate([
             'user_id' => Auth::id(),
             'restaurants_id' => $request->restaurants_id,
         ]);
 
         return response()->json([
-            'message' => 'レストランがお気に入りに追加されました。', 
+            'message' => 'レストランがお気に入りに追加されました。',
             'favorite' => $favorite
         ], 201);
     }
@@ -82,25 +82,54 @@ class BookingController extends Controller
         return view('booking-detail', compact('restaurant', 'user'));
     }
 
-    public function booksave(Request $request) 
+    public function booksave(Request $request)
+    {
+        $request->validate([
+            'restaurant_id' => 'required|exists:restaurants,id',
+            'select_date' => 'required|date',
+            'note' => 'nullable|string',
+        ]);
+
+        $booking = Booking::create([
+            'restaurant_id' => $request->restaurant_id,
+            'user_id' => Auth::id(),
+            'select_date' => $request->select_date,
+            'note' => $request->note,
+        ]);
+
+
+        Mail::to(Auth::user()->email)->send(new BookingConfirmation($booking, Auth::user()));
+
+        return redirect()->route('booking.thankyou')->with('success', 'Your booking was successful! A confirmation email has been sent.');
+    }
+
+
+    public function bookCancel(Request $request) 
 {
     $request->validate([
-        'restaurant_id' => 'required|exists:restaurants,id',
-        'select_date' => 'required|date',
-        'note' => 'nullable|string',
+        'id' => 'required|integer|exists:bookings,id',
     ]);
+    $user_id = auth()->id();
 
-    $booking = Booking::create([
-        'restaurant_id' => $request->restaurant_id,
-        'user_id' => Auth::id(),
-        'select_date' => $request->select_date,
-        'note' => $request->note,
-    ]);
+    // Find Booking
+    $booking = Booking::where('id', $request->id)
+        ->where('user_id', $user_id)
+        ->first();
 
- 
-    Mail::to(Auth::user()->email)->send(new BookingConfirmation($booking, Auth::user()));
+    if (!$booking) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Booking not found or unauthorized'
+        ], 404);
+    }
+    $booking->status = 1;
+    $booking->save();
 
-    return redirect()->route('booking.thankyou')->with('success', 'Your booking was successful! A confirmation email has been sent.');
+    return response()->json([
+        'success' => true,
+        'message' => 'Booking has been cancelled successfully',
+        'booking' => $booking
+    ], 200);
 }
 
 
@@ -113,27 +142,27 @@ class BookingController extends Controller
      * Show the form for editing the specified resource.
      */
     public function remove(Request $request)
-{
-    $validated = $request->validate([
-        'restaurants_id' => 'required|exists:restaurants,id',
-    ]);
+    {
+        $validated = $request->validate([
+            'restaurants_id' => 'required|exists:restaurants,id',
+        ]);
 
-    $user_id = Auth::id(); // Get the authenticated user's ID
+        $user_id = Auth::id(); // Get the authenticated user's ID
 
-    // Find the favorite record
-    $favorite = Favorite::where('user_id', $user_id)
-                        ->where('restaurants_id', $validated['restaurants_id'])
-                        ->first();
+        // Find the favorite record
+        $favorite = Favorite::where('user_id', $user_id)
+            ->where('restaurants_id', $validated['restaurants_id'])
+            ->first();
 
-    if (!$favorite) {
-        return response()->json(['message' => 'Favorite not found.'], 404);
+        if (!$favorite) {
+            return response()->json(['message' => 'Favorite not found.'], 404);
+        }
+
+        // Delete the favorite
+        $favorite->delete();
+
+        return response()->json(['message' => 'Favorite removed successfully.']);
     }
-
-    // Delete the favorite
-    $favorite->delete();
-
-    return response()->json(['message' => 'Favorite removed successfully.']);
-}
 
     /**
      * Update the specified resource in storage.

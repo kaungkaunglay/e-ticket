@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bookings', function (Blueprint $table) {
+        Schema::create('sub_towns', function (Blueprint $table) {
             $table->id();
-            $table->text('restaurant_id')->nullable(); 
-            $table->date('select_date')->nullable();
-            $table->text('user_id')->nullable();
-            $table->string('status')->nullable();
-            $table->text('note')->nullable();
+            $table->string('name');
+            $table->foreignId('city_id')->constrained('cities');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bookings');
+        Schema::dropIfExists('sub_towns');
     }
 };

@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Restaurant;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon; // Import Carbon for timestamps
 
 class RestaurantSeeder extends Seeder
 {
@@ -13,71 +13,58 @@ class RestaurantSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('restaurants')->truncate(); 
+        DB::table('restaurants')->truncate(); // Clear existing data
 
-        $restaurants = [
-            [
-                'category_id' => 2,
-                'name' => '新潟現代割烹haswgawa',
-                'logo' => 'https://tblg.k-img.com/restaurant/images/Rvw/267507/150x150_square_bc832a53b9b2ec7d23a67f49c7fc222e.jpg',
-                'multi_images' => json_encode([
-                    'https://tblg.k-img.com/restaurant/images/Rvw/267507/640x640_rect_2952d2a7deaf6f79e703a903b745c6bf.jpg',
-                    'https://tblg.k-img.com/restaurant/images/Rvw/188450/150x150_square_0bada0babdaff22df559076e851061d6.jpg',
-                    'https://tblg.k-img.com/restaurant/images/Rvw/267507/150x150_square_c4342a0c7db0e0080c17536c030a82b2.jpg',
-                    'https://tblg.k-img.com/restaurant/images/Rvw/267507/150x150_square_0b7cd7da3958eb288248412e5688b6e1.jpg'
-                ]),
-                'description' => '古民家を改装した店内は、落ち着いた雰囲気。カウンター席だったので、調理風景がよく見えます。',
-                'address' => 'Japan',
+        // Restaurant-specific CDN images from Unsplash
+        $cdnImages = [
+            "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80", 
+            "https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80", 
+            "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80", 
+            "https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80", 
+            "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80", 
+            "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80", 
+            "https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80", 
+            "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80", 
+            "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80", 
+            "https://images.unsplash.com/photo-1550547660-d9450f859349?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80", 
+        ];
+
+        for ($i = 1; $i <= 10; $i++) {
+           
+            $closedDays = array_rand(array_flip(range(1, 7)), rand(1, 3));
+            $closedDays = is_array($closedDays) ? $closedDays : [$closedDays]; 
+
+        
+            $menuItems = array_rand(array_flip(range(1, 10)), rand(1, 3));
+            $menuItems = is_array($menuItems) ? $menuItems : [$menuItems];
+
+            Restaurant::create([
+                'category_id' => rand(1, 5),
+                'name' => 'Restaurant ' . $i,
+                'logo' => $cdnImages[array_rand($cdnImages)], 
+                'cover_image' => json_encode($cdnImages), 
+                'description' => 'This is a sample description for Restaurant ' . $i,
+                'multi_images' => json_encode($cdnImages), 
+                'address' => '123 Sample Street',
+                'city' => 'Sample City',
                 'zip_code' => '12345',
-                'city' => 'Japan',
-                'phone_number' => '123-456-789',
-                'price_range' => '1000',
-                'email' => 'example@tst.com',
-                'website_url' => 'https://gendaikappo-hasegawa.com/',
+                'latitude' => rand(100000, 999999) / 10000,
+                'longitude' => rand(100000, 999999) / 10000,
+                'phone_number' => '123-456-789' . $i,
+                'email' => 'restaurant' . $i . '@example.com',
+                'website_url' => 'https://restaurant' . $i . '.com',
                 'operating_hours' => '9:00 AM - 10:00 PM',
-                'closed_days' => json_encode([1, 3]),
-                'wifi_availability' => 0,
+                'closed_days' => json_encode($closedDays), 
+                'price_range' => rand(1000, 5000),
+                'wifi_availability' => rand(0, 1),
+                'parking_availability' => rand(0, 1),
+                'outdoor_seating' => rand(0, 1),
                 'social_links' => json_encode([
-                    'facebook' => 'https://facebook.com/restaurant',
-                    'instagram' => 'https://instagram.com/restaurant'
+                    'facebook' => 'https://facebook.com/restaurant' . $i,
+                    'instagram' => 'https://instagram.com/restaurant' . $i,
                 ]),
                 'status' => 1,
-                'available' => 1,
-                'user_id' => 3,
-                'discount' => 0,
-                'menu' => json_encode([8]),
-                'google_map' => 'https://maps.google.com/?q=Sample+Location',
-                'created_at' => Carbon::now(), 
-                'updated_at' => Carbon::now(), 
-            ],
-
-            [
-                'category_id' => 2,
-                'name' => '新潟現代割烹haswgawa',
-                'logo' => 'https://tblg.k-img.com/restaurant/images/Rvw/267507/150x150_square_bc832a53b9b2ec7d23a67f49c7fc222e.jpg',
-                'multi_images' => json_encode([
-                    'https://tblg.k-img.com/restaurant/images/Rvw/267507/640x640_rect_2952d2a7deaf6f79e703a903b745c6bf.jpg',
-                    'https://tblg.k-img.com/restaurant/images/Rvw/188450/150x150_square_0bada0babdaff22df559076e851061d6.jpg',
-                    'https://tblg.k-img.com/restaurant/images/Rvw/267507/150x150_square_c4342a0c7db0e0080c17536c030a82b2.jpg',
-                    'https://tblg.k-img.com/restaurant/images/Rvw/267507/150x150_square_0b7cd7da3958eb288248412e5688b6e1.jpg'
-                ]),
-                'description' => '古民家を改装した店内は、落ち着いた雰囲気。カウンター席だったので、調理風景がよく見えます。',
-                'address' => 'Japan',
-                'zip_code' => '12345',
-                'city' => 'Japan',
-                'phone_number' => '123-456-789',
-                'price_range' => '1000',
-                'email' => 'example@tst.com',
-                'website_url' => 'https://gendaikappo-hasegawa.com/',
-                'operating_hours' => '9:00 AM - 10:00 PM',
-                'closed_days' => json_encode([1, 3]),
-                'wifi_availability' => 0,
-                'social_links' => json_encode([
-                    'facebook' => 'https://facebook.com/restaurant',
-                    'instagram' => 'https://instagram.com/restaurant'
-                ]),
-                'status' => 1,
-                'available' => 1,
+                'available' => rand(0, 1),
                 'user_id' => 3,
                 'discount' => 0,
                 'menu' => json_encode([8]),

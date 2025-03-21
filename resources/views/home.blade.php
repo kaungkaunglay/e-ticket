@@ -43,14 +43,29 @@
          <div class="mainSearch -col-5 bg-white px-10 py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 mt-30">
             <div class="button-grid" style="display: flex; align-items: flex-end; gap: 10px; flex-wrap: wrap;">
                <!-- Location Input -->
-               <div class="searchMenu-loc flex-grow-1">
-                  <div data-x-dd-click="searchMenu-loc">
-                     <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4>
-                     <div class="text-15 text-light-1 ls-2 lh-16">
-                        <input type="search" placeholder="Location" class="js-search js-dd-focus w-100" name="city" />
-                     </div>
-                  </div>
-               </div>
+            <div class="searchMenu-loc flex-grow-1">
+                <div data-x-dd-click="searchMenu-loc">
+                    <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4>
+                    <div class="text-15 text-light-1 ls-2 lh-16">
+                        <select id="city" name="" class="js-search js-dd-focus w-100">
+                            <option value="">{{ translate('select_city') }}</option>
+                            @foreach($cities as $city)
+                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="searchMenu-loc flex-grow-1">
+                <div data-x-dd-click="searchMenu-loc">
+                    <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('sub_location') }}</h4>
+                    <div class="text-15 text-light-1 ls-2 lh-16">
+                        <select id="subTown" name="city" class="js-search js-dd-focus w-100" disabled>
+                            <option value="">{{ translate('select_sub_location') }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
                <!-- Check-in Date Input -->
                <div class="searchMenu-loc flex-grow-1">
                   <div data-x-dd-click="searchMenu-loc">
@@ -61,7 +76,7 @@
                   </div>
                </div>
                <!-- Price From Dropdown -->
-               <div class="searchMenu-loc flex-grow-1">
+               <!-- <div class="searchMenu-loc flex-grow-1">
                   <div data-x-dd-click="searchMenu-loc">
                      <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('price_with_dropdown') }}</h4>
                      <div class="text-15 text-light-1 ls-2 lh-16">
@@ -73,7 +88,7 @@
                         </select>
                      </div>
                   </div>
-               </div>
+               </div> -->
                <!-- Price To Dropdown -->
                <div class="searchMenu-loc flex-grow-1">
                   <div data-x-dd-click="searchMenu-loc">
@@ -160,7 +175,7 @@
       </div>
    </div>
 </section>
-<section class="layout-pt-md layout-pb-lg">
+<section class="layout-pt-md ">
    <div data-anim-wrap class="container">
       <div class="row justify-center text-center">
          <div class="col-auto">
@@ -335,4 +350,30 @@
          });
       });
    });
+
+
+   $(document).ready(function() {
+        $('#city').change(function() {
+            var cityId = $(this).val();
+            if (cityId) {
+                $('#subTown').prop('disabled', false);
+                $.ajax({
+                    url: '/get-sub-towns/' + cityId,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#subTown').empty();
+                        $('#subTown').append('<option value="">{{ translate('Select Sub Location') }}</option>');
+                        $.each(data, function(key, value) {
+                            $('#subTown').append('<option value="' + value.id + '">' + value.name + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#subTown').prop('disabled', true);
+                $('#subTown').empty();
+                $('#subTown').append('<option value="">{{ translate('Select Sub Location') }}</option>');
+            }
+        });
+    });
 </script>
