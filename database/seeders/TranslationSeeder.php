@@ -220,6 +220,16 @@ class TranslationSeeder extends Seeder
             ['key' => 'Select Smoking Preference', 'en' => 'Select Smoking Preference', 'jp' => '喫煙の希望を選択'],
             ['key' => 'Allowed', 'en' => 'Allowed', 'jp' => '許可'],
             ['key' => 'Not Allowed', 'en' => 'Not Allowed', 'jp' => '禁止'],
+            
+            ['key' => 'sub_location', 'en' => 'sub location', 'jp' => 'サブエリア'],
+            ['key' => 'select_city', 'en' => 'select city', 'jp' => '都市を選択'],
+            ['key' => 'select_sub_location', 'en' => 'select sub location', 'jp' => 'サブロケーションを選択']
+            
+
+
+
+
+           
 
             
             

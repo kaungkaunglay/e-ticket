@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\SubscriptionConfirmation;
 use App\Models\Menu;
 use Carbon\Carbon;
+use App\Models\Sub_towns;
 use DateTime;
+
+
+
 
 class HomeController extends Controller
 {
@@ -23,6 +27,7 @@ class HomeController extends Controller
      */
     public function home()
     {
+
 
         $discountedRestaurants = Restaurant::where('status', 1)
             ->whereNotNull('discount')
@@ -38,8 +43,16 @@ class HomeController extends Controller
             ->pluck('price_range')
             ->unique()
             ->sort();
+        $cities = City::all();
+        $subTowns = Sub_towns::all();
 
-        return view('home', compact('restaurants', 'discountedRestaurants', 'menus', 'priceRange', 'category'));
+        return view('home', compact('restaurants', 'discountedRestaurants', 'menus', 'priceRange', 'category', 'cities', 'subTowns'));
+    }
+
+    public function getSubTowns($cityId)
+    {
+        $subTowns = Sub_towns::where('city_id', $cityId)->get();
+        return response()->json($subTowns);
     }
 
 
@@ -77,6 +90,8 @@ class HomeController extends Controller
             ->unique()
             ->sort();
         $categorydata = Category::all();
+        $cities = City::all();
+        $subTowns = Sub_towns::all();
         $query = $request->input('city');
         $checkIn = $request->input('check_in');
         $priceFrom = (float) $request->input('price_from');
@@ -121,7 +136,9 @@ class HomeController extends Controller
             'category',
             'smoking',
             'priceRangedata',
-            'categorydata'
+            'categorydata',
+            'cities',
+            'subTowns',
         ));
     }
 

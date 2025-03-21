@@ -28,8 +28,31 @@
                     <!-- Location Input -->
                     <div class="flex-grow-1">
                         <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4>
-                        <input type="text" class="form-control" placeholder="Location" name="city" value="{{ $query }}" />
+                        <div class="text-15 text-light-1 ls-2 lh-16">
+                        <select id="city" name="" class="js-search js-dd-focus w-100">
+                            <option value="">{{ translate('select_city') }}</option>
+                            @foreach($cities as $city)
+                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
+                </div>
+
+
+                
+                <div class="mainSearch bg-white px-4 py-3 rounded-4 d-flex flex-wrap align-items-center gap-3">
+                    <!-- Location Input -->
+                    <div class="flex-grow-1">
+                        <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4>
+                        <div class="text-15 text-light-1 ls-2 lh-16">
+                        <select id="subTown" name="city" class="js-search js-dd-focus w-100" disabled>
+                            <option value="">{{ translate('select_sub_location') }}</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                    
 
                     <!-- Check-in Date -->
                     <div class="flex-grow-1">
@@ -38,7 +61,7 @@
                     </div>
 
                     <!-- Price Range: From -->
-                    <div class="flex-grow-1">
+                    <!-- <div class="flex-grow-1">
                         <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('price_with_dropdown') }}</h4>
                         <select class="form-control" name="price_from">
                             <option value="">{{ translate('Select Price Range') }}</option>
@@ -50,7 +73,7 @@
                                 <option value="">{{ translate('No price range available') }}</option>
                             @endif
                         </select>
-                    </div>
+                    </div> -->
 
                     <!-- Price Range: To -->
                     <div class="flex-grow-1">
@@ -376,6 +399,32 @@
                     }
                 }
             });
+        });
+    });
+
+    
+   $(document).ready(function() {
+        $('#city').change(function() {
+            var cityId = $(this).val();
+            if (cityId) {
+                $('#subTown').prop('disabled', false);
+                $.ajax({
+                    url: '/get-sub-towns/' + cityId,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#subTown').empty();
+                        $('#subTown').append('<option value="">{{ translate('select_sub_location') }}</option>');
+                        $.each(data, function(key, value) {
+                            $('#subTown').append('<option value="' + value.id + '">' + value.name + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#subTown').prop('disabled', true);
+                $('#subTown').empty();
+                $('#subTown').append('<option value="">{{ translate('select_sub_location') }}</option>');
+            }
         });
     });
 </script>

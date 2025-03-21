@@ -41,6 +41,9 @@ Route::get('/reportuser', [HomeController::class, 'reportuser'])->name('restaura
 
 Route::get('/booking/detail/{id}', [BookingController::class, 'show'])->name('booking.detail');
 Route::post('/booking/save', [BookingController::class, 'booksave'])->name('booking.save');
+
+Route::get('/booking/cancel', [BookingController::class, 'bookcancel'])->name('booking.cancel');
+
 Route::get('/booking/thank-you', [BookingController::class, 'thankYou'])->name('booking.thankyou');
 
 
@@ -70,6 +73,9 @@ Route::get('/restaurant-list-data', [ResturantController::class, 'all'])->name('
 
 Route::post('/notify-new-update', [HomeController::class, 'notifynewupdate'])->name('notifynewupdate.post');
 Route::post('/supportcontect', [HomeController::class, 'supportcontect'])->name('supportcontect.post');
+
+
+Route::get('/get-sub-towns/{cityId}', [HomeController::class, 'getSubTowns'])->name('get.sub.towns');
 
 
 // Route::get('/login', function () {
@@ -209,9 +215,9 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/menu', [MenuController::class, 'index'])->name('menu.index');
     Route::get('menu/manage/{id?}', [MenuController::class, 'manage'])->name('menu.manage');
     Route::post('menu/store-or-update/{id?}', [MenuController::class, 'storeOrUpdate'])->name('menu.storeOrUpdate');
-  
 
-    
+
+
 
 
     //promotion
