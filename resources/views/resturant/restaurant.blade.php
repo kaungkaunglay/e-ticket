@@ -181,7 +181,7 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <label class="lh-1 text-16 text-light-1 mb-10">{{translate('address')}}</label>
+                <label class="lh-1 text-16 text-light-1 mb-10">都道府県</label>
                 <div class="form-input">
                     <input type="text" name="address" value="{{ old('address', $restaurant->address ?? '') }}" required>
 

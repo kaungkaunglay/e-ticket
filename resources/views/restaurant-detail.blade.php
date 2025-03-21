@@ -70,9 +70,8 @@
       <div class="col-auto">
         <div class="row x-gap-15 y-gap-15 items-center">
           <div class="col-auto">
-            <div class="text-14">
-              このレストランのフードメニューは次の価格から
-              <span class="text-22 text-dark-1 fw-500">¥{{ number_format($restaurant->price_range) }}</span>
+            <div class="fw-500 d-flex justify-content-end align-items-center">
+              <span class="text-20"><i class="icon-food text-20 mr-10"></i>~ ¥{{ number_format($restaurant->price_range) }}</span>
             </div>
           </div>
 
@@ -134,24 +133,24 @@
         </div>
       </div>
       <div class="galleryGrid__item relative d-flex">
-        @if($restaurant->multi_images) @php $images = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images) : $restaurant->multi_images; $firstImage = $images[2] ?? null; @endphp @if($firstImage)
+        @if($restaurant->multi_images) @php $images = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images) : $restaurant->multi_images; $firstImage = $images[1] ?? null; @endphp @if($firstImage)
         <img src="{{ asset($firstImage) }}" alt="image" class="rounded-4" />
         @endif @endif
         <div class="galleryGrid__item">
-          @if($restaurant->multi_images) @php $images = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images) : $restaurant->multi_images; $firstImage = $images[3] ?? null; @endphp @if($firstImage)
+          @if($restaurant->multi_images) @php $images = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images) : $restaurant->multi_images; $firstImage = $images[2] ?? null; @endphp @if($firstImage)
           <img src="{{ asset($firstImage) }}" alt="image" class="rounded-4" />
           @endif @endif
         </div>
       </div>
 
       <div class="galleryGrid__item">
-        @if($restaurant->multi_images) @php $images = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images) : $restaurant->multi_images; $firstImage = $images[4] ?? null; @endphp @if($firstImage)
+        @if($restaurant->multi_images) @php $images = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images) : $restaurant->multi_images; $firstImage = $images[2] ?? null; @endphp @if($firstImage)
         <img src="{{ asset($firstImage) }}" alt="image" class="rounded-4" />
         @endif @endif
       </div>
 
       <div class="galleryGrid__item relative d-flex">
-        @if($restaurant->multi_images) @php $images = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images) : $restaurant->multi_images; $firstImage = $images[4] ?? null; @endphp @if($firstImage)
+        @if($restaurant->multi_images) @php $images = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images) : $restaurant->multi_images; $firstImage = $images[3] ?? null; @endphp @if($firstImage)
         <img src="{{ asset($firstImage) }}" alt="image" class="rounded-4" />
         @endif @endif @if($restaurant->multi_images) @php $images = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images) : $restaurant->multi_images; $firstImage = $images[0] ?? null; @endphp
         @if($firstImage)
@@ -209,7 +208,11 @@
               @endif
             </div>
           </div>
-          <div class="col-12">
+          
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
             <h3 class="text-22 fw-500 pt-40 border-top-light">メニュー</h3>
 
             @if($menus->isEmpty())
@@ -217,11 +220,11 @@
             @else
             <div class="row g-3 mt-3">
               @foreach($menus as $menu)
-              <div class="col-md-4 col-sm-6">
+              <div class="col-md-4 col-sm-6 d-flex justify-content-center align-items-center" style="width: 21% !important;">
                 <div class="card border-0 shadow-sm">
                   <img src="{{ asset($menu->image) }}" class="card-img-top rounded-top" alt="{{ $menu->name }}">
                   <div class="card-body text-center">
-                    <h5 class="fw-bold text-dark">{{ $menu->menu }}</h5>
+                    <!-- <h5 class="fw-bold text-dark">{{ $menu->menu }}</h5> -->
                   </div>
                 </div>
               </div>
@@ -229,9 +232,6 @@
             </div>
             @endif
           </div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 <div id="reviews"></div>
@@ -288,29 +288,29 @@
   });
 </script>
 <?php
-  $closedDays = json_encode(array_map('intval', explode(',', $restaurant->closed_days))); 
+$closedDays = json_encode(array_map('intval', explode(',', $restaurant->closed_days)));
 ?>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var closedDays = <?php echo $closedDays; ?>; 
-        var calendarEl = document.getElementById('calendar');
+  document.addEventListener('DOMContentLoaded', function() {
+    var closedDays = <?php echo $closedDays; ?>;
+    var calendarEl = document.getElementById('calendar');
 
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            locale: 'ja', 
-            dayCellDidMount: function (info) {
-                var day = info.date.getDay(); 
-                
-                if (closedDays.includes(day)) { 
-                    info.el.style.backgroundColor = '#ffcccc';
-                    info.el.style.color = 'red'; 
-                }
-            }
-        });
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      locale: 'ja',
+      dayCellDidMount: function(info) {
+        var day = info.date.getDay();
 
-        calendar.render();
+        if (closedDays.includes(day)) {
+          info.el.style.backgroundColor = '#ffcccc';
+          info.el.style.color = 'red';
+        }
+      }
     });
+
+    calendar.render();
+  });
 </script>
 
 

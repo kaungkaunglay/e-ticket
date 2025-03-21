@@ -97,7 +97,8 @@
     </div>
 
     <div class="pt-30">
-        <div class="row justify-between">
+        {{ $restaurants->links('pagination::bootstrap-4') }}
+        <!-- <div class="row justify-between">
             <div class="col-auto">
                 <button class="button -blue-1 size-40 rounded-full border-light">
                     <i class="icon-chevron-left text-12"></i>
@@ -157,7 +158,7 @@
                     <i class="icon-chevron-right text-12"></i>
                 </button>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 @endsection
