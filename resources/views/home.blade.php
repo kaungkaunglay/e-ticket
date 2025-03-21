@@ -23,6 +23,14 @@
    .searchMenu-guests select {
    text-align-last: center;
    }
+
+   .text-clamp {
+      display: -webkit-box;
+      -webkit-line-clamp: 3; /* Adjust this to fit about 50 words */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+   }
 </style>
 <section data-anim-wrap class="masthead -type-4">
    <div   class="masthead-slider overflow-x-hidden js-masthead-slider-4">
@@ -36,16 +44,16 @@
       <div class="text-center">
          <h1  class="text-30 lg:text-40 md:text-30 text-white">{{translate('reserve_table')}}</h1>
          <!-- <div data-anim-child="slide-up delay-4" class="d-inline-block">
-            <a href="#" class="button -md -dark-1 bg-red h-50 text-white mt-30">{{translate('discover_more')}}</a>
+            <a href="#" class="button -md -dark-1 bg-red h-20 text-white mt-30">{{translate('discover_more')}}</a>
             </div> -->
       </div>
       <form action="{{ locale_route('restaurant.search') }}" method="GET">
-         <div class="mainSearch -col-5 bg-white px-10 py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 mt-30">
-            <div class="button-grid" style="display: flex; align-items: flex-end; gap: 10px; flex-wrap: wrap;">
+         <div class="mainSearch -col-5 bg-white px-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 mt-30">
+            <div class="button-grid" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
                <!-- Location Input -->
             <div class="searchMenu-loc flex-grow-1">
                 <div data-x-dd-click="searchMenu-loc">
-                    <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4>
+                    <!-- <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4> -->
                     <div class="text-15 text-light-1 ls-2 lh-16">
                         <select id="city" name="" class="js-search js-dd-focus w-100">
                             <option value="">{{ translate('select_city') }}</option>
@@ -58,7 +66,7 @@
             </div>
             <div class="searchMenu-loc flex-grow-1">
                 <div data-x-dd-click="searchMenu-loc">
-                    <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('sub_location') }}</h4>
+                    <!-- <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('sub_location') }}</h4> -->
                     <div class="text-15 text-light-1 ls-2 lh-16">
                         <select id="subTown" name="city" class="js-search js-dd-focus w-100" disabled>
                             <option value="">{{ translate('select_sub_location') }}</option>
@@ -69,9 +77,9 @@
                <!-- Check-in Date Input -->
                <div class="searchMenu-loc flex-grow-1">
                   <div data-x-dd-click="searchMenu-loc">
-                     <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('checkin_date') }}</h4>
+                     <!-- <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('checkin_date') }}</h4> -->
                      <div class="text-15 text-light-1 ls-2 lh-16">
-                        <input autocomplete="off" type="text" placeholder="Check-in" class="js-search js-dd-focus w-100" id="check_in" name="check_in" />
+                        <input autocomplete="off" type="text" placeholder="{{ translate('checkin_date') }}" class="js-search js-dd-focus w-100" id="check_in" name="check_in" />
                      </div>
                   </div>
                </div>
@@ -92,7 +100,7 @@
                <!-- Price To Dropdown -->
                <div class="searchMenu-loc flex-grow-1">
                   <div data-x-dd-click="searchMenu-loc">
-                     <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('price_with_to') }}</h4>
+                     <!-- <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('price_with_to') }}</h4> -->
                      <div class="text-15 text-light-1 ls-2 lh-16">
                         <select name="price_to" class="js-search js-dd-focus w-100">
                            <option value="">{{ translate('Select Price Range') }}</option>
@@ -106,7 +114,7 @@
                <!-- Category Dropdown -->
                <div class="searchMenu-loc flex-grow-1">
                   <div data-x-dd-click="searchMenu-loc">
-                     <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('Category') }}</h4>
+                     <!-- <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('Category') }}</h4> -->
                      <div class="text-15 text-light-1 ls-2 lh-16">
                         <select class="js-search js-dd-focus w-100" name="category">
                            <option value="">{{ translate('Select Category') }}</option>
@@ -120,7 +128,7 @@
                <!-- Smoking Preference Dropdown -->
                <div class="searchMenu-guests flex-grow-1">
                   <div data-x-dd-click="searchMenu-guests">
-                     <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('smoking') }}</h4>
+                     <!-- <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('smoking') }}</h4> -->
                      <div class="text-15 text-light-1 ls-2 lh-16">
                         <select class="js-search js-dd-focus w-100" name="smoking">
                            <option value="">{{ translate('Select Smoking Preference') }}</option>
@@ -132,7 +140,7 @@
                </div>
                <!-- Search Button -->
                <div class="button-item flex-grow-1">
-                  <button class="mainSearch__submit button -dark-1 py-15 px-40 col-12 rounded-4 bg-blue-1 text-white">
+                  <button class="mainSearch__submit button -dark-1 py-10 px-40 col-12 rounded-4 bg-blue-1 text-white mt-5 mb-5">
                   <i class="icon-search text-20 mr-10"></i>
                   {{ translate('search') }}
                   </button>
@@ -142,12 +150,13 @@
       </form>
    </div>
 </section>
-<section class="layout-pt-lg home">
+@if(!$discountedRestaurants)
+<section class="home">
    <div class="container">
    <div class="row y-gap-20 justify-center text-center">
       <div class="col-auto">
          <div class="sectionTitle -md">
-            <h2 class="sectionTitle__title">{{translate('discount_restaurants')}}</h2>
+            <h2 class="text-25 lh-16 fw-700 pb-20">{{translate('discount_restaurants')}}</h2>
          </div>
       </div>
    </div>
@@ -175,20 +184,21 @@
       </div>
    </div>
 </section>
-<section class="layout-pt-md ">
+@endif
+<section class="pt-20">
    <div data-anim-wrap class="container">
       <div class="row justify-center text-center">
          <div class="col-auto">
             <div class="sectionTitle -md">
-               <h2 class="sectionTitle__title">{{ translate('popular_restaurants') }}</h2>
+               <h2 class="text-25 lh-16 fw-700 pb-20">{{ translate('popular_restaurants') }}</h2>
             </div>
          </div>
       </div>
-      <div class="tabs -pills-2 pt-40 js-tabs">
-         <div class="tabs__content pt-40 js-tabs-content">
+      <div class="tabs -pills-2 js-tabs">
+         <div class="tabs__content js-tabs-content">
             <div class="tabs__pane -tab-item-1 is-tab-el-active">
                <div class="row y-gap-30">
-                  @foreach($restaurants->take(4) as $restaurant)
+                  @foreach($restaurants->take(6) as $restaurant)
                   <div class="col-xl-3 col-lg-3 col-sm-6">
                      <a href="{{ route('restaurant.detail', ['id' => $restaurant->id]) }}" class="hotelsCard -type-1">
                         <div class="hotelsCard__image">
@@ -209,10 +219,10 @@
                      <span>{{ $restaurant->name }}</span>
                      </h4>
                      </a>
-                     <p class="text-light-1 lh-14 text-14 mt-5">Available: {{ $restaurant->available }} Rooms</p>
+                     <p class="text-light-1 lh-14 text-14 mt-5 text-clamp">{{$restaurant->description}}</p>
                      <div class="mt-5">
                      <div class="fw-500 d-flex justify-content-between">
-                     <span>から</span> <span class="text-green-2">¥{{ number_format($restaurant->price_range) }}</span>
+                     <span>{{translate('starting_from')}}</span> <span class="text-green-2">¥{{ number_format($restaurant->price_range) }}</span>
                      </div>
                      </div>
                      </div>
@@ -220,9 +230,9 @@
                   </div>
                   @endforeach
                </div>
-               <div class="row justify-center pt-40">
+               <div class="row justify-center pt-20">
                   <div class="col-auto">
-                     <a href="{{locale_route('restaurant.search')}}" class="button px-40 h-50 -outline-red text-red">
+                     <a href="{{locale_route('restaurant.search')}}" class="button -dark-1 py-10 px-40 col-12 rounded-4 bg-red text-white mt-5 mb-5">
                      {{ translate('load_more') }}
                      </a>
                   </div>
@@ -232,17 +242,17 @@
       </div>
    </div>
 </section>
-<section class="layout-pt-md layout-pb-lg">
+<section class="py-20">
    <div data-anim-wrap class="container">
       <div class="row justify-center text-center">
          <div class="col-auto">
             <div class="sectionTitle -md">
-               <h2 class="sectionTitle__title">{{ translate('restaurant_near_location') }}</h2>
+               <h2 class="text-25 lh-16 fw-700 pb-20">{{ translate('restaurant_near_location') }}</h2>
             </div>
          </div>
       </div>
-      <div class="tabs -pills-2 pt-40 js-tabs">
-         <div class="tabs__content pt-40 js-tabs-content">
+      <div class="tabs -pills-2 js-tabs">
+         <div class="tabs__content js-tabs-content">
             <div class="tabs__pane -tab-item-1 is-tab-el-active">
                <div class="row y-gap-30">
                   @foreach($restaurants as $restaurant)
@@ -271,7 +281,7 @@
                            <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
                               <span>{{$restaurant->name}}</span>
                            </h4>
-                           <p class="text-light-1 lh-14 text-14 mt-5">{{$restaurant->address}}</p>
+                           <p class="text-light-1 lh-14 text-14 mt-5 text-clamp">{{$restaurant->description}}</p>
                            <!-- <div class="d-flex items-center mt-20">
                               <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
                               <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
@@ -287,9 +297,9 @@
                   </div>
                   @endforeach
                </div>
-               <div class="row justify-center pt-40">
+               <div class="row justify-center pt-20">
                   <div class="col-auto">
-                     <a href="{{locale_route('restaurant.search')}}" class="button px-40 h-50 -outline-red text-red">
+                     <a href="{{locale_route('restaurant.search')}}" class="button -dark-1 py-10 px-40 col-12 rounded-4 bg-red text-white mt-5 mb-5">
                      {{ translate('load_more') }}
                      </a>
                   </div>

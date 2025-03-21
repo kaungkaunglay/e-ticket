@@ -7,126 +7,99 @@
     input[type="search"]::-webkit-search-cancel-button {
         display: none;
     }
-    
 </style>
 <section class="pt-40 pb-40 bg-light-2">
-<form action="{{ locale_route('restaurant.search') }}" method="GET">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12">
-                <div class="text-center mb-3">
-                    <h1 class="text-30 fw-600">
-                        @if($query)
+    <form action="{{ locale_route('restaurant.search') }}" method="GET">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="text-center mb-3">
+                        <h1 class="text-30 fw-600">
+                            @if($query)
                             Search Results for "{{ $query }}"
-                        @else
+                            @else
                             {{ translate('restaurant_near') }}
-                        @endif
-                    </h1>
-                </div>
-
-                <div class="mainSearch bg-white px-4 py-3 rounded-4 d-flex flex-wrap align-items-center gap-3">
-                    <!-- Location Input -->
-                    <div class="flex-grow-1">
-                        <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4>
-                        <div class="text-15 text-light-1 ls-2 lh-16">
-                        <select id="city" name="" class="js-search js-dd-focus w-100">
-                            <option value="">{{ translate('select_city') }}</option>
-                            @foreach($cities as $city)
-                                <option value="{{ $city->id }}">{{ $city->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-
-
-                
-                <div class="mainSearch bg-white px-4 py-3 rounded-4 d-flex flex-wrap align-items-center gap-3">
-                    <!-- Location Input -->
-                    <div class="flex-grow-1">
-                        <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4>
-                        <div class="text-15 text-light-1 ls-2 lh-16">
-                        <select id="subTown" name="city" class="js-search js-dd-focus w-100" disabled>
-                            <option value="">{{ translate('select_sub_location') }}</option>
-                        </select>
-                    </div>
-                </div>
-
-
-                    
-
-                    <!-- Check-in Date -->
-                    <div class="flex-grow-1">
-                        <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('checkin_date') }}</h4>
-                        <input type="text" class="form-control" placeholder="Check-in" id="check_in" name="check_in" value="{{ $checkIn }}" autocomplete="off" />
-                    </div>
-
-                    <!-- Price Range: From -->
-                    <!-- <div class="flex-grow-1">
-                        <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('price_with_dropdown') }}</h4>
-                        <select class="form-control" name="price_from">
-                            <option value="">{{ translate('Select Price Range') }}</option>
-                            @if(is_array($priceRangedata) || $priceRangedata instanceof \Traversable)
-                                @foreach($priceRangedata as $price)
-                                    <option value="{{ $price }}" {{ $priceFrom == $price ? 'selected' : '' }}>{{ number_format($price) }}</option>
-                                @endforeach
-                            @else
-                                <option value="">{{ translate('No price range available') }}</option>
                             @endif
-                        </select>
-                    </div> -->
+                        </h1>
+                    </div>
 
-                    <!-- Price Range: To -->
-                    <div class="flex-grow-1">
-                        <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('price_with_to') }}</h4>
-                        <select class="form-control" name="price_to">
-                            <option value="">{{ translate('Select Price Range') }}</option>
-                            @if(is_array($priceRangedata) || $priceRangedata instanceof \Traversable)
-                                @foreach($priceRangedata as $price)
+                    <div class="mainSearch -col-5 bg-white px-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 mt-30">
+
+                        <div class="button-grid" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                            <!-- Location Input -->
+                            <div class="searchMenu-loc flex-grow-1">
+                                <!-- <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4> -->
+                                <div class="text-15 text-light-1 ls-2 lh-16">
+                                    <select id="city" name="" class="js-search js-dd-focus w-100">
+                                        <option value="">{{ translate('select_city') }}</option>
+                                        @foreach($cities as $city)
+                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Location Input -->
+                            <div class="searchMenu-loc flex-grow-1">
+                                <!-- <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4> -->
+                                <div class="text-15 text-light-1 ls-2 lh-16">
+                                    <select id="subTown" name="city" class="js-search js-dd-focus w-100" disabled>
+                                        <option value="">{{ translate('select_sub_location') }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- Price Range: To -->
+                            <div class="searchMenu-loc flex-grow-1">
+                                <!-- <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('price_with_to') }}</h4> -->
+                                <select class="form-control" name="price_to">
+                                    <option value="">{{ translate('Select Price Range') }}</option>
+                                    @if(is_array($priceRangedata) || $priceRangedata instanceof \Traversable)
+                                    @foreach($priceRangedata as $price)
                                     <option value="{{ $price }}" {{ $priceTo == $price ? 'selected' : '' }}>{{ number_format($price) }}</option>
-                                @endforeach
-                            @else
-                                <option value="">{{ translate('No price range available') }}</option>
-                            @endif
-                        </select>
-                    </div>
+                                    @endforeach
+                                    @else
+                                    <option value="">{{ translate('No price range available') }}</option>
+                                    @endif
+                                </select>
+                            </div>
 
-                    <!-- Category Dropdown -->
-                    <div class="flex-grow-1">
-                        <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('Select Category') }}</h4>
-                        <select class="form-control" name="category">
-                            <option value="">{{ translate('Select Category') }}</option>
-                            @if(isset($categorydata) && is_iterable($categorydata))
-                                @foreach ($categorydata as $cat)
+                            <!-- Category Dropdown -->
+                            <div class="searchMenu-loc flex-grow-1">
+                                <!-- <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('Select Category') }}</h4> -->
+                                <select class="form-control" name="category">
+                                    <option value="">{{ translate('Select Category') }}</option>
+                                    @if(isset($categorydata) && is_iterable($categorydata))
+                                    @foreach ($categorydata as $cat)
                                     <option value="{{ $cat->id }}" {{ $category == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
-                                @endforeach
-                            @else
-                                <option value="">{{ translate('No categories available') }}</option>
-                            @endif
-                        </select>
-                    </div>
+                                    @endforeach
+                                    @else
+                                    <option value="">{{ translate('No categories available') }}</option>
+                                    @endif
+                                </select>
+                            </div>
 
-                    <!-- Smoking Preference Dropdown -->
-                    <div class="flex-grow-1">
-                        <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('Smoking') }}</h4>
-                        <select class="form-control" name="smoking">
-                            <option value="">{{ translate('Select Smoking Preference') }}</option>
-                            <option value="1" {{ $smoking == '1' ? 'selected' : '' }}>{{ translate('Allowed') }}</option>
-                            <option value="0" {{ $smoking == '0' ? 'selected' : '' }}>{{ translate('Not Allowed') }}</option>
-                        </select>
-                    </div>
+                            <!-- Smoking Preference Dropdown -->
+                            <div class="searchMenu-loc flex-grow-1">
+                                <!-- <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('Smoking') }}</h4> -->
+                                <select class="form-control" name="smoking">
+                                    <option value="">{{ translate('Select Smoking Preference') }}</option>
+                                    <option value="1" {{ $smoking == '1' ? 'selected' : '' }}>{{ translate('Allowed') }}</option>
+                                    <option value="0" {{ $smoking == '0' ? 'selected' : '' }}>{{ translate('Not Allowed') }}</option>
+                                </select>
+                            </div>
 
-                    <!-- Search Button -->
-                    <div>
-                        <button class="mainSearch__submit button -dark-1 py-15 px-40 col-12 rounded-4 bg-blue-1 text-white">
-                            <i class="icon-search text-20 mr-10"></i>
-                            {{ translate('search') }}
-                        </button>
+                            <!-- Search Button -->
+                            <div class="button-item flex-grow-1">
+                                <button class="mainSearch__submit button -dark-1 py-10 px-40 col-12 rounded-4 bg-blue-1 text-white mt-5 mb-5">
+                                <i class="icon-search text-20 mr-10"></i>
+                                {{ translate('search') }}
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div> 
+                </div>
             </div>
-        </div>
-    </div>
-</form>
+    </form>
 </section>
 
 <section class="layout-pt-md layout-pb-lg">
@@ -302,50 +275,49 @@
 
 
                 @if ($restaurants->isEmpty())
-                <p class="text-center text-muted">データがありません。</p>
+                    <p class="text-center text-muted">データがありません。</p>
                 @else
-                <div class="border-top-light mt-30 pt-30">
-                    <div class="row justify-center align-items-center ">
+                    @if ($restaurants->lastPage() > 1)
+                        <div class="border-top-light mt-30 pt-30">
+                            <div class="row justify-center align-items-center">
+                                <div class="col-auto">
+                                    @if ($restaurants->onFirstPage())
+                                        <button class="button -blue-1 size-40 rounded-full border-light" disabled>
+                                            <i class="icon-chevron-left text-12"></i>
+                                        </button>
+                                    @else
+                                        <a href="{{ $restaurants->previousPageUrl() }}" class="button -blue-1 size-40 rounded-full border-light">
+                                            <i class="icon-chevron-left text-12"></i>
+                                        </a>
+                                    @endif
+                                </div>
 
+                                <div class="col-auto d-flex">
+                                    @for ($page = 1; $page <= $restaurants->lastPage(); $page++)
+                                        <a href="{{ $restaurants->url($page) }}" class="mx-2">
+                                            <div class="size-40 flex-center rounded-full {{ $restaurants->currentPage() == $page ? 'bg-dark-1 text-white' : 'border-light' }}">
+                                                {{ $page }}
+                                            </div>
+                                        </a>
+                                    @endfor
+                                </div>
 
-                        <div class="col-auto">
-                            @if ($restaurants->onFirstPage())
-                            <button class="button -blue-1 size-40 rounded-full border-light" disabled>
-                                <i class="icon-chevron-left text-12"></i>
-                            </button>
-                            @else
-                            <a href="{{ $restaurants->previousPageUrl() }}" class="button -blue-1 size-40 rounded-full border-light">
-                                <i class="icon-chevron-left text-12"></i>
-                            </a>
-                            @endif
+                                <div class="col-auto">
+                                    @if ($restaurants->hasMorePages())
+                                        <a href="{{ $restaurants->nextPageUrl() }}" class="button -blue-1 size-40 rounded-full border-light">
+                                            <i class="icon-chevron-right text-12"></i>
+                                        </a>
+                                    @else
+                                        <button class="button -blue-1 size-40 rounded-full border-light" disabled>
+                                            <i class="icon-chevron-right text-12"></i>
+                                        </button>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
-
-
-                        <div class="col-auto d-flex">
-                            @for ($page = 1; $page <= $restaurants->lastPage(); $page++)
-                                <a href="{{ $restaurants->url($page) }}" class="mx-2">
-                                    <div class="size-40 flex-center rounded-full {{ $restaurants->currentPage() == $page ? 'bg-dark-1 text-white' : 'border-light' }}">
-                                        {{ $page }}
-                                    </div>
-                                </a>
-                                @endfor
-                        </div>
-
-                        <div class="col-auto">
-                            @if ($restaurants->hasMorePages())
-                            <a href="{{ $restaurants->nextPageUrl() }}" class="button -blue-1 size-40 rounded-full border-light">
-                                <i class="icon-chevron-right text-12"></i>
-                            </a>
-                            @else
-                            <button class="button -blue-1 size-40 rounded-full border-light" disabled>
-                                <i class="icon-chevron-right text-12"></i>
-                            </button>
-                            @endif
-                        </div>
-
-                    </div>
-                </div>
+                    @endif
                 @endif
+
 
             </div>
         </div>
@@ -361,17 +333,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script>
-   document.addEventListener("DOMContentLoaded", function() {
-    flatpickr("#check_in", {
-      //   enableTime: true,
-        dateFormat: "Y-m-d",
-      //   time_24hr: true,
-        defaultDate: new Date(),
-        onClose: function(selectedDates, dateStr) {
-            document.getElementById("check_in").value = dateStr;
-        }
+    document.addEventListener("DOMContentLoaded", function() {
+        flatpickr("#check_in", {
+            //   enableTime: true,
+            dateFormat: "Y-m-d",
+            //   time_24hr: true,
+            defaultDate: new Date(),
+            onClose: function(selectedDates, dateStr) {
+                document.getElementById("check_in").value = dateStr;
+            }
+        });
     });
-});
 
 
     $(document).ready(function() {
@@ -402,8 +374,8 @@
         });
     });
 
-    
-   $(document).ready(function() {
+
+    $(document).ready(function() {
         $('#city').change(function() {
             var cityId = $(this).val();
             if (cityId) {
@@ -414,7 +386,8 @@
                     dataType: 'json',
                     success: function(data) {
                         $('#subTown').empty();
-                        $('#subTown').append('<option value="">{{ translate('select_sub_location') }}</option>');
+                        $('#subTown').append('<option value="">{{ translate('
+                            select_sub_location ') }}</option>');
                         $.each(data, function(key, value) {
                             $('#subTown').append('<option value="' + value.id + '">' + value.name + '</option>');
                         });
@@ -423,7 +396,8 @@
             } else {
                 $('#subTown').prop('disabled', true);
                 $('#subTown').empty();
-                $('#subTown').append('<option value="">{{ translate('select_sub_location') }}</option>');
+                $('#subTown').append('<option value="">{{ translate('
+                    select_sub_location ') }}</option>');
             }
         });
     });
