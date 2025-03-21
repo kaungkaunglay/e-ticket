@@ -208,7 +208,11 @@
               @endif
             </div>
           </div>
-          <div class="col-12">
+          
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
             <h3 class="text-22 fw-500 pt-40 border-top-light">メニュー</h3>
 
             @if($menus->isEmpty())
@@ -216,11 +220,11 @@
             @else
             <div class="row g-3 mt-3">
               @foreach($menus as $menu)
-              <div class="col-md-4 col-sm-6">
+              <div class="col-md-4 col-sm-6 d-flex justify-content-center align-items-center" style="width: 21% !important;">
                 <div class="card border-0 shadow-sm">
                   <img src="{{ asset($menu->image) }}" class="card-img-top rounded-top" alt="{{ $menu->name }}">
                   <div class="card-body text-center">
-                    <h5 class="fw-bold text-dark">{{ $menu->menu }}</h5>
+                    <!-- <h5 class="fw-bold text-dark">{{ $menu->menu }}</h5> -->
                   </div>
                 </div>
               </div>
@@ -228,9 +232,6 @@
             </div>
             @endif
           </div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 <div id="reviews"></div>
