@@ -289,6 +289,35 @@
                             </div>
                         </div>
                     </div>
+
+
+                    <!-- <div class="accordion -db-sidebar js-accordion">
+                        <div class="accordion__item">
+                            <div class="accordion__button">
+                                <div class="sidebar__button col-12 d-flex items-center justify-between">
+                                    <div class="d-flex items-center text-15 lh-1 fw-500">
+                                        <img src="{{asset('/assets/img/dashboard/sidebar/hotel.svg')}}" alt="image" class="mr-10" />
+                                        {{translate('citys')}}
+                                    </div>
+                                    <div class="icon-chevron-sm-down text-7"></div>
+                                </div>
+                            </div>
+
+                            <div class="accordion__content">
+                                <ul class="list-disc pt-15 pb-5 pl-40">
+                                    <li>
+                                        <a href="{{ route('support.index') }}" class="text-15">{{translate('Add City ')}}</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{ route('support.category') }}" class="text-15">{{translate('Add Sub City')}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> -->
+
+
                 </div>
                 <div class="sidebar__item">
                     <a href="/logout" class="sidebar__button d-flex items-center text-15 lh-1 fw-500" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

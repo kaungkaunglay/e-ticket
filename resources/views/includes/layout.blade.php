@@ -132,6 +132,9 @@
                                         <li class="{{ request()->routeIs('support.page') ? 'active' : '' }}">
                                             <a href="{{ locale_route('support.page') }}">サポート</a>
                                         </li>
+
+                                      
+
                                         <li class="mobile-only {{ request()->routeIs('login') ? 'active' : '' }}">
                                             <a href="{{ locale_route('login') }}">ログイン</a>
                                         </li>

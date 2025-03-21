@@ -20,7 +20,8 @@ return new class extends Migration
             $table->text('multi_images')->nullable();
             $table->text('description');
             $table->string('address');
-            $table->string('city');
+            $table->string('city')->nullable();
+            $table->text('sub_towns')->nullable();
             $table->string('zip_code');
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
