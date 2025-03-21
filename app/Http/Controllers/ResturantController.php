@@ -251,87 +251,102 @@ class ResturantController extends Controller
 
 
     public function update(Request $request, Restaurant $restaurant)
-    {
-        $request->validate([
-            'category_id' => 'required|exists:categories,id',
-            'name' => 'required|string|max:255',
-            'logo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'multi_images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'description' => 'required|string',
-            'address' => 'required|string',
-            'city' => 'required|string',
-            'zip_code' => 'required|string',
-            'phone_number' => 'required|string',
-            'email' => 'required|email',
-            'website_url' => 'nullable|string',
-            'operating_hours' => 'required|string',
-            'closed_days' => 'nullable|string',
-            'price_range' => 'required|string',
-            'social_links' => 'nullable|json',
-            'status' => 'required|in:0,1',
-            'google_map' => 'nullable|string',
-            'parking_availability' => 'nullable|boolean',
-            'outdoor_seating' => 'nullable|boolean', 
-            'smoking' => 'nullable|boolean', 
-            'available' => 'nullable|string', 
-            'wifi_availability' => 'nullable|boolean', 
-            'menu' => 'required|json',
-            'sub_town' => 'nullable|string',
-        ]);
-        $destinationPath = public_path('assets/restaurants');
-        if (!File::exists($destinationPath)) {
-            File::makeDirectory($destinationPath, 0755, true);
-        }
-    
-        $logoPath = $restaurant->logo;
-        if ($request->hasFile('logo')) {
-            $logo = $request->file('logo');
-            $logoName = time() . '_logo.' . $logo->getClientOriginalExtension();
-            $logo->move($destinationPath, $logoName);
-            $logoPath = 'assets/restaurants/' . $logoName;
-        }
-        $multiImagesPaths = json_decode($restaurant->multi_images, true) ?? [];
-        if ($request->hasFile('multi_images')) {
-            foreach ($request->file('multi_images') as $image) {
-                $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-                $image->move($destinationPath, $imageName);
-                $multiImagesPaths[] = 'assets/restaurants/' . $imageName;
-            }
-        }
-        $city = City::firstOrCreate(['name' => $request->city]);
-        $subTown = $request->sub_town; 
-        if (empty($subTown)) {
-            $subTown = $restaurant->sub_towns;
-        }
-        $restaurant->update([
-            'category_id' => $request->category_id,
-            'name' => $request->name,
-            'logo' => $logoPath,
-            'multi_images' => !empty($multiImagesPaths) ? json_encode($multiImagesPaths) : null,
-            'description' => $request->description,
-            'address' => $request->address,
-            'city' => $request->city,
-            'zip_code' => $request->zip_code,
-            'phone_number' => $request->phone_number,
-            'email' => $request->email,
-            'website_url' => $request->website_url,
-            'operating_hours' => $request->operating_hours,
-            'closed_days' => $request->closed_days,
-            'price_range' => $request->price_range,
-            'social_links' => $request->social_links,
-            'status' => $request->status,
-            'google_map' => $request->google_map,
-            'parking_availability' => $request->parking_availability, 
-            'outdoor_seating' => $request->outdoor_seating, 
-            'smoking' => $request->smoking, 
-            'available' => $request->available, 
-            'wifi_availability' => $request->wifi_availability, 
-            'menu' => $request->menu,
-            'sub_towns' => $subTown, 
-        ]);
-    
-        return redirect()->route('resturant.index')->with('success', 'Restaurant updated successfully!');
+{
+    $request->validate([
+        'category_id' => 'required|exists:categories,id',
+        'name' => 'required|string|max:255',
+        'logo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        'multi_images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        'description' => 'required|string',
+        'address' => 'required|string',
+        'city' => 'required|string',
+        'zip_code' => 'required|string',
+        'phone_number' => 'required|string',
+        'email' => 'required|email',
+        'website_url' => 'nullable|string',
+        'operating_hours' => 'required|string',
+        'closed_days' => 'nullable|string',
+        'price_range' => 'required|string',
+        'social_links' => 'nullable|json',
+        'status' => 'required|in:0,1',
+        'google_map' => 'nullable|string',
+        'parking_availability' => 'nullable|boolean',
+        'outdoor_seating' => 'nullable|boolean',
+        'smoking' => 'nullable|boolean',
+        'available' => 'nullable|string',
+        'wifi_availability' => 'nullable|boolean',
+        'menu' => 'required|json',
+        'sub_town' => 'nullable|string',
+    ]);
+
+    $destinationPath = public_path('assets/restaurants');
+    if (!File::exists($destinationPath)) {
+        File::makeDirectory($destinationPath, 0755, true);
     }
+
+    // Handle logo update
+    $logoPath = $restaurant->logo;
+    if ($request->hasFile('logo')) {
+        if ($restaurant->logo && File::exists(public_path($restaurant->logo))) {
+            File::delete(public_path($restaurant->logo));
+        }
+        $logo = $request->file('logo');
+        $logoName = time() . '_logo.' . $logo->getClientOriginalExtension();
+        $logo->move($destinationPath, $logoName);
+        $logoPath = 'assets/restaurants/' . $logoName;
+    }
+
+    // Handle multiple images upload
+    $multiImagesPaths = [];
+    if ($restaurant->multi_images) {
+        // Ensure $restaurant->multi_images is treated as a JSON string
+        $multiImagesPaths = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images, true) : $restaurant->multi_images;
+    }
+
+    if ($request->hasFile('multi_images')) {
+        foreach ($request->file('multi_images') as $image) {
+            $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $imageName);
+            $multiImagesPaths[] = 'assets/restaurants/' . $imageName;
+        }
+    }
+
+    // Handle sub-town
+    $subTown = $request->sub_town;
+    if (empty($subTown)) {
+        $subTown = $restaurant->sub_towns;
+    }
+
+    // Update the restaurant
+    $restaurant->update([
+        'category_id' => $request->category_id,
+        'name' => $request->name,
+        'logo' => $logoPath,
+        'multi_images' => !empty($multiImagesPaths) ? json_encode($multiImagesPaths) : null,
+        'description' => $request->description,
+        'address' => $request->address,
+        'city' => $request->city,
+        'zip_code' => $request->zip_code,
+        'phone_number' => $request->phone_number,
+        'email' => $request->email,
+        'website_url' => $request->website_url,
+        'operating_hours' => $request->operating_hours,
+        'closed_days' => $request->closed_days,
+        'price_range' => $request->price_range,
+        'social_links' => $request->social_links,
+        'status' => $request->status,
+        'google_map' => $request->google_map,
+        'parking_availability' => $request->parking_availability,
+        'outdoor_seating' => $request->outdoor_seating,
+        'smoking' => $request->smoking,
+        'available' => $request->available,
+        'wifi_availability' => $request->wifi_availability,
+        'menu' => $request->menu,
+        'sub_towns' => $subTown,
+    ]);
+
+    return redirect()->route('resturant.index')->with('success', 'Restaurant updated successfully!');
+}
 
     public function destroy(Restaurant $restaurant)
     {
