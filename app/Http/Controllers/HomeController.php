@@ -35,7 +35,7 @@ class HomeController extends Controller
             ->paginate(10);
 
         // dd($discountedRestaurants);
-        $restaurants = Restaurant::where('status', 1)->paginate(8);
+        $restaurants = Restaurant::where('status', 1)->paginate(12);
         $menus = Menu::all();
         $category = Category::all();
         $priceRange = Restaurant::whereNotNull('price_range')
@@ -124,7 +124,7 @@ class HomeController extends Controller
                 $q->whereNull('closed_days')
                     ->orWhereJsonDoesntContain('closed_days', $dayId);
             })
-            ->paginate(9);
+            ->paginate(10);
 
         return view('search-results', compact(
             'restaurants',

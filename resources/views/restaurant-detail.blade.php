@@ -70,9 +70,8 @@
       <div class="col-auto">
         <div class="row x-gap-15 y-gap-15 items-center">
           <div class="col-auto">
-            <div class="text-14">
-              このレストランのフードメニューは次の価格から
-              <span class="text-22 text-dark-1 fw-500">¥{{ number_format($restaurant->price_range) }}</span>
+            <div class="fw-500 d-flex justify-content-end align-items-center">
+              <span class="text-20"><i class="icon-food text-20 mr-10"></i>~ ¥{{ number_format($restaurant->price_range) }}</span>
             </div>
           </div>
 
@@ -288,29 +287,29 @@
   });
 </script>
 <?php
-  $closedDays = json_encode(array_map('intval', explode(',', $restaurant->closed_days))); 
+$closedDays = json_encode(array_map('intval', explode(',', $restaurant->closed_days)));
 ?>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var closedDays = <?php echo $closedDays; ?>; 
-        var calendarEl = document.getElementById('calendar');
+  document.addEventListener('DOMContentLoaded', function() {
+    var closedDays = <?php echo $closedDays; ?>;
+    var calendarEl = document.getElementById('calendar');
 
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            locale: 'ja', 
-            dayCellDidMount: function (info) {
-                var day = info.date.getDay(); 
-                
-                if (closedDays.includes(day)) { 
-                    info.el.style.backgroundColor = '#ffcccc';
-                    info.el.style.color = 'red'; 
-                }
-            }
-        });
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      locale: 'ja',
+      dayCellDidMount: function(info) {
+        var day = info.date.getDay();
 
-        calendar.render();
+        if (closedDays.includes(day)) {
+          info.el.style.backgroundColor = '#ffcccc';
+          info.el.style.color = 'red';
+        }
+      }
     });
+
+    calendar.render();
+  });
 </script>
 
 

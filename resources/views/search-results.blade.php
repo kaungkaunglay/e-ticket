@@ -258,9 +258,9 @@
                                 </div>
 
                                 <div class="col-md-auto text-right md:text-left">
-                                    <div class="text-14 text-light-1 mt-50 md:mt-20">{{ translate('restaurant_menu_start') }}</div>
-                                    <div class="text-22 lh-12 fw-600 mt-5">¥{{ number_format($restaurant->price_range) }}</div>
-                                    <div class="text-14 text-light-1 mt-5">{{ translate('taxes_not_included') }}</div>
+                                    <div class="fw-500 d-flex justify-content-end">
+                                        <span class="text-22 lh-12 fw-600 mt-5"><i class="icon-food text-20 mr-10"></i>~ ¥{{ number_format($restaurant->price_range) }}</span>
+                                    </div>
 
                                     <a href="{{ route('restaurant.detail', ['id' => $restaurant->id]) }}" class="button -md -dark-1 bg-blue-1 text-white mt-24">
                                         {{ translate('see_availability') }}

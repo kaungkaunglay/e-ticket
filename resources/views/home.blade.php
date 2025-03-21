@@ -221,8 +221,8 @@
                      </a>
                      <p class="text-light-1 lh-14 text-14 mt-5 text-clamp">{{$restaurant->description}}</p>
                      <div class="mt-5">
-                     <div class="fw-500 d-flex justify-content-between">
-                     <span>{{translate('starting_from')}}</span> <span class="text-green-2">¥{{ number_format($restaurant->price_range) }}</span>
+                     <div class="fw-500 d-flex justify-content-end align-items-center">
+                        <span class="text-20"><i class="icon-food text-20 mr-10"></i>~ ¥{{ number_format($restaurant->price_range) }}</span>
                      </div>
                      </div>
                      </div>
@@ -288,8 +288,8 @@
                               <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
                               </div> -->
                            <div class="mt-5">
-                              <div class="fw-500 d-flex justify-content-between">
-                                 {{translate('starting_from')}} <span class="text-green-2">¥{{number_format($restaurant->price_range)}}</span>
+                              <div class="fw-500 d-flex justify-content-end">
+                                 <span class="text-20"><i class="icon-food text-20 mr-10"></i>~ ¥{{ number_format($restaurant->price_range) }}</span>
                               </div>
                            </div>
                         </div>
@@ -303,6 +303,9 @@
                      {{ translate('load_more') }}
                      </a>
                   </div>
+               </div>
+               <div class="pagination">
+                  {{ $restaurants->links('pagination::bootstrap-5') }}
                </div>
             </div>
          </div>
