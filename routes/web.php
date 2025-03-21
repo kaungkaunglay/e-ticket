@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Models\Resturant;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\ResturantController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -18,7 +19,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\Auth\GoogleController;
-use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\Facades\Socialite;  
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -183,6 +187,8 @@ Route::middleware(['admin'])->group(function () {
     Route::put('owner/resturant/{restaurant}', [ResturantController::class, 'update'])->name('resturant.update');
     Route::delete('owner/resturant/{restaurant}', [ResturantController::class, 'destroy'])->name('resturant.destroy');
 
+    Route::get('owner/get-sub-towns/{cityName}', [ResturantController::class, 'getSubadminTowns'])->name('get.owner.towns');
+
     //category
 
     Route::get('owner/categories', [CategoryController::class, 'index'])->name('categories.index');
@@ -198,7 +204,7 @@ Route::middleware(['admin'])->group(function () {
     Route::post('owner/storeOrUpdate/{id?}', [SupportController::class, 'storeOrUpdate'])->name('createsupport.storeOrUpdate');
     Route::delete('owner/question/{id}', [SupportController::class, 'questiondestroy'])->name('question.destroy');
 
-
+   
 
     Route::get('owner/supportcategory', [SupportController::class, 'category'])->name('support.category');
     Route::get('owner/createcategory/{id?}', [SupportController::class, 'createcategory'])->name('support.createcategory');
@@ -216,10 +222,13 @@ Route::middleware(['admin'])->group(function () {
     Route::get('menu/manage/{id?}', [MenuController::class, 'manage'])->name('menu.manage');
     Route::post('menu/store-or-update/{id?}', [MenuController::class, 'storeOrUpdate'])->name('menu.storeOrUpdate');
 
+     
 
+    // Route::get('owner/city', [CityController::class, 'create'])->name('city.create');
+    // Route::get('owner/cityshow', [CityController::class, 'cityshow'])->name('city.cityshow');
+    // Route::post('owner/cityedit', [CityController::class, 'cityedit'])->name('city.cityedit');
 
-
-
+    
     //promotion
     Route::post('/admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
 });
