@@ -55,7 +55,7 @@
                 <div data-x-dd-click="searchMenu-loc">
                     <!-- <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4> -->
                     <div class="text-15 text-light-1 ls-2 lh-16">
-                        <select id="city" name="" class="js-search js-dd-focus w-100">
+                        <select id="city" name="citydata" class="js-search js-dd-focus w-100">
                             <option value="">{{ translate('select_city') }}</option>
                             @foreach($cities as $city)
                                 <option value="{{ $city->id }}">{{ $city->name }}</option>
@@ -68,7 +68,7 @@
                 <div data-x-dd-click="searchMenu-loc">
                     <!-- <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('sub_location') }}</h4> -->
                     <div class="text-15 text-light-1 ls-2 lh-16">
-                        <select id="subTown" name="city" class="js-search js-dd-focus w-100" disabled>
+                        <select id="subTown" name="sub_towns" class="js-search js-dd-focus w-100" disabled>
                             <option value="">{{ translate('select_sub_location') }}</option>
                         </select>
                     </div>
