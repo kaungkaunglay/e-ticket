@@ -105,89 +105,7 @@
 <section class="layout-pt-md layout-pb-lg">
     <div class="container">
         <div class="row y-gap-30">
-            <!-- Sidebar Filters -->
-            <!-- <div class="col-xl-3 col-lg-4 lg:d-none">
-                    <aside class="sidebar y-gap-40">
-                    
-                        <div class="sidebar__item pb-30">
-                            <h5 class="text-18 fw-500 mb-10">{{ translate('price') }}</h5>
-                            <div class="row x-gap-10 y-gap-30">
-                                <div class="col-12">
-                                    <div class="js-price-rangeSlider">
-                                        <div class="text-14 fw-500"></div>
-
-                                        <div class="d-flex justify-between mb-20">
-                                            <div class="text-15 text-dark-1">
-                                                <span class="js-lower" id="lower-value">¥{{ number_format($minPrice ?? 0) }}</span>
-                                                -
-                                                <span class="js-upper" id="upper-value">¥{{ number_format($maxPrice ?? 10000) }}</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="px-5">
-                                            <div class="js-slider" id="price-range-slider"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    
-                        <form method="GET" action="{{ route('restaurant.price.search') }}" id="search-form">
-                            <input type="hidden" name="query" value="{{ $query ?? '' }}">
-                            <input type="hidden" name="check_in" value="{{ $checkIn ?? '' }}">
-                            <input type="hidden" name="min_price" id="min-price" value="{{ $minPrice ?? 0 }}">
-                            <input type="hidden" name="max_price" id="max-price" value="{{ $maxPrice ?? 10000 }}">
-                        </form>
-
-                    
-                        <div class="sidebar__item">
-                            <h5 class="text-18 fw-500 mb-10">{{ translate('style') }}</h5>
-                            <form id="filter-form" method="GET" action="{{ route('restaurant.searchcheckbox.search') }}">
-                            
-                                <input type="hidden" name="city" value="{{ $query ?? '' }}">
-
-                                <div class="sidebar-checkbox">
-                                    @php
-                                        $priceRanges = [
-                                            ['label' => 'budget', 'min' => 100, 'max' => 200],
-                                            ['label' => 'mid_range', 'min' => 200, 'max' => 300],
-                                            ['label' => 'luxury', 'min' => 300, 'max' => 400],
-                                            ['label' => 'family_friendly', 'min' => 400, 'max' => 500],
-                                            ['label' => 'business', 'min' => 500, 'max' => 8000],
-                                        ];
-                                        $selectedFilters = request()->input('filter_price', []);
-                                    @endphp
-
-                                    @foreach ($priceRanges as $range)
-                                        @php
-                                            $value = $range['min'] . '-' . $range['max'];
-                                            $isChecked = in_array($value, $selectedFilters);
-                                        @endphp
-
-                                        <div class="row y-gap-10 items-center justify-between">
-                                            <div class="col-auto">
-                                                <div class="d-flex items-center">
-                                                    <div class="form-checkbox">
-                                                        <input type="checkbox" name="filter_price[]" value="{{ $value }}" 
-                                                            {{ $isChecked ? 'checked' : '' }}>
-                                                        <div class="form-checkbox__mark">
-                                                            <div class="form-checkbox__icon icon-check"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-15 ml-10">{{ translate($range['label']) }}</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="text-15 text-light-1">{{ $range['min'] }} - {{ $range['max'] }}</div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </form>
-                        </div>
-                    </aside>
-                </div> -->
+           
 
 
             <div class="col-xl-9 col-lg-8">
@@ -272,7 +190,7 @@
                     </div>
                     @endforeach
                 </div>
-
+                       
 
                 @if ($restaurants->isEmpty())
                     <p class="text-center text-muted">データがありません。</p>
@@ -386,7 +304,7 @@
                     dataType: 'json',
                     success: function(data) {
                         $('#subTown').empty();
-                        $('#subTown').append('<option value="">{{ translate('select_sub_location ') }}</option>');
+                        $('#subTown').append('<option value="">{{ translate('select_sub_location') }}</option>');
                         $.each(data, function(key, value) {
                             $('#subTown').append('<option value="' + value.id + '">' + value.name + '</option>');
                         });

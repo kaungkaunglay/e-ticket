@@ -84,35 +84,43 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
+
         $priceRangedata = Restaurant::whereNotNull('price_range')
             ->distinct()
             ->pluck('price_range')
             ->unique()
             ->sort();
+
         $categorydata = Category::all();
         $cities = City::all();
         $subTowns = Sub_towns::all();
+
+
         $query = $request->input('city');
         $checkIn = $request->input('check_in');
-        $priceFrom = (float) $request->input('price_from');
         $priceTo = (float) $request->input('price_to');
         $category = $request->input('category');
         $smoking = $request->input('smoking');
-        $date = new DateTime($checkIn);
-        $dayOfWeek = $date->format('l');
-        $dayId = DB::table('weeks')
-            ->where('day_eg', $dayOfWeek)
-            ->value('id');
+
+
+        $dayOfWeek = null;
+        $dayId = null;
+        if ($checkIn) {
+            $date = new DateTime($checkIn);
+            $dayOfWeek = $date->format('l');
+            $dayId = DB::table('weeks')
+                ->where('day_eg', $dayOfWeek)
+                ->value('id');
+        }
+
+
         $restaurants = Restaurant::where('status', 1)
             ->when($query, function ($q) use ($query) {
                 return $q->where('city', $query);
             })
-            ->when($priceFrom && $priceTo, function ($q) use ($priceFrom, $priceTo) {
-                if ($priceFrom == $priceTo) {
-                    return $q->whereRaw('CAST(price_range AS DECIMAL(10,2)) = ?', [$priceFrom]);
-                } else {
-                    return $q->whereRaw('CAST(price_range AS DECIMAL(10,2)) BETWEEN ? AND ?', [$priceFrom, $priceTo]);
-                }
+            ->when($priceTo, function ($q) use ($priceTo) {
+                return $q->where('price_range', '<=', $priceTo)
+                    ->orderBy('price_range', 'desc');
             })
             ->when($category, function ($q) use ($category) {
                 return $q->where('category_id', $category);
@@ -120,28 +128,29 @@ class HomeController extends Controller
             ->when(isset($smoking), function ($q) use ($smoking) {
                 return $q->where('smoking', $smoking);
             })
-            ->where(function ($q) use ($dayId) {
-                $q->whereNull('closed_days')
-                    ->orWhereJsonDoesntContain('closed_days', $dayId);
+            ->when($dayId, function ($q) use ($dayId) {
+                return $q->where(function ($q) use ($dayId) {
+                    $q->whereNull('closed_days')
+                        ->orWhereJsonDoesntContain('closed_days', $dayId);
+                });
             })
-            ->paginate(10);
+            ->paginate();
+
 
         return view('search-results', compact(
             'restaurants',
             'query',
             'checkIn',
             'dayOfWeek',
-            'priceFrom',
             'priceTo',
             'category',
             'smoking',
             'priceRangedata',
             'categorydata',
             'cities',
-            'subTowns',
+            'subTowns'
         ));
     }
-
 
 
 
