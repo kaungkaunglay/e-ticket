@@ -134,24 +134,24 @@
         </div>
       </div>
       <div class="galleryGrid__item relative d-flex">
-        @if($restaurant->multi_images) @php $images = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images) : $restaurant->multi_images; $firstImage = $images[2] ?? null; @endphp @if($firstImage)
+        @if($restaurant->multi_images) @php $images = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images) : $restaurant->multi_images; $firstImage = $images[1] ?? null; @endphp @if($firstImage)
         <img src="{{ asset($firstImage) }}" alt="image" class="rounded-4" />
         @endif @endif
         <div class="galleryGrid__item">
-          @if($restaurant->multi_images) @php $images = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images) : $restaurant->multi_images; $firstImage = $images[3] ?? null; @endphp @if($firstImage)
+          @if($restaurant->multi_images) @php $images = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images) : $restaurant->multi_images; $firstImage = $images[2] ?? null; @endphp @if($firstImage)
           <img src="{{ asset($firstImage) }}" alt="image" class="rounded-4" />
           @endif @endif
         </div>
       </div>
 
       <div class="galleryGrid__item">
-        @if($restaurant->multi_images) @php $images = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images) : $restaurant->multi_images; $firstImage = $images[4] ?? null; @endphp @if($firstImage)
+        @if($restaurant->multi_images) @php $images = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images) : $restaurant->multi_images; $firstImage = $images[2] ?? null; @endphp @if($firstImage)
         <img src="{{ asset($firstImage) }}" alt="image" class="rounded-4" />
         @endif @endif
       </div>
 
       <div class="galleryGrid__item relative d-flex">
-        @if($restaurant->multi_images) @php $images = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images) : $restaurant->multi_images; $firstImage = $images[4] ?? null; @endphp @if($firstImage)
+        @if($restaurant->multi_images) @php $images = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images) : $restaurant->multi_images; $firstImage = $images[3] ?? null; @endphp @if($firstImage)
         <img src="{{ asset($firstImage) }}" alt="image" class="rounded-4" />
         @endif @endif @if($restaurant->multi_images) @php $images = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images) : $restaurant->multi_images; $firstImage = $images[0] ?? null; @endphp
         @if($firstImage)
