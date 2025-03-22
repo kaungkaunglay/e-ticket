@@ -24,6 +24,7 @@ class SubTownsTableSeeder extends Seeder
         $kobe = City::where('name', 'Kobe')->first();
         $sendai = City::where('name', 'Sendai')->first();
         $hiroshima = City::where('name', 'Hiroshima')->first();
+        $niigata = City::where('name', '新潟県')->first();
     
         // Insert sub-towns for each city
         Sub_towns::create(['name' => 'Shibuya', 'city_id' => $tokyo->id]);
@@ -57,5 +58,7 @@ class SubTownsTableSeeder extends Seeder
 
         Sub_towns::create(['name' => 'Naka', 'city_id' => $hiroshima->id]);
         Sub_towns::create(['name' => 'Hondori', 'city_id' => $hiroshima->id]);
+
+        Sub_towns::create(['name' => '新潟市', 'city_id' => $niigata->id]);
     }
 }

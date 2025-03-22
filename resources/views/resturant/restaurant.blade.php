@@ -181,14 +181,14 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <label class="lh-1 text-16 text-light-1 mb-10">都道府県</label>
+                <label class="lh-1 text-16 text-light-1 mb-10">住所</label>
                 <div class="form-input">
                     <input type="text" name="address" value="{{ old('address', $restaurant->address ?? '') }}" required>
 
                 </div>
             </div>
             <div class="col-md-2">
-                <label class="lh-1 text-16 text-light-1 mb-10">{{translate('city')}}</label>
+                <label class="lh-1 text-16 text-light-1 mb-10">{{translate('都道府県')}}</label>
                 <div class="form-input">
                     <input type="text" name="city" value="{{ old('city', $restaurant->city ?? '') }}" required>
 
@@ -197,7 +197,7 @@
             <div class="col-md-2">
                 <label class="lh-1 text-16 text-light-1 mb-10">{{translate('zip_code')}}</label>
                 <div class="form-input">
-                    <input type="text" name="zip_code" value="{{ old('zip_code', $restaurant->zip_code ?? '') }}" required>
+                    <input type="text" name="zip_code" maxlength="7" value="{{ old('zip_code', $restaurant->zip_code ?? '') }}" required>
 
                 </div>
             </div>
@@ -222,7 +222,7 @@
             <div class="col-md-2">
                 <label class="lh-1 text-16 text-light-1 mb-10">{{translate('phone')}}</label>
                 <div class="form-input">
-                    <input type="text" name="phone_number" value="{{ old('phone_number', $restaurant->phone_number ?? '') }}" required>
+                    <input type="text" name="phone_number" maxlength="11" value="{{ old('phone_number', $restaurant->phone_number ?? '') }}" required>
 
                 </div>
             </div>
@@ -281,32 +281,38 @@
                 </div>
 
             </div>
-            <div data-x-dd-click="searchMenu-loc">
-                <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4>
-                <div class="text-15 text-light-1 ls-2 lh-16" style="border: 1px solid var(--color-border);">
-                    <select id="city" name="city" class="js-search js-dd-focus w-100">
-                        <option value="">{{ translate('Select City') }}</option>
-                        @foreach($cities as $city)
-                        <option value="{{ $city->name }}" {{ $restaurant->city == $city->name ? 'selected' : '' }}>
-                            {{ $city->name }}
-                        </option>
-                        @endforeach
-                    </select>
+            <h2 class="text-15">検索用</h2>
+
+            <div class="d-flex" style="gap: 20px;">
+                <div data-x-dd-click="searchMenu-loc col-md-6">
+                    <h4 class="text-15 fw-500 ls-2 lh-16">都道府県</h4>
+                    <div class="text-15 text-light-1 ls-2 lh-16" style="border: 1px solid var(--color-border);">
+                        <select id="city" name="city" class="js-search js-dd-focus w-100">
+                            <option value="">{{ translate('都道府県を選んでください') }}</option>
+                            @foreach($cities as $city)
+                            <option value="{{ $city->name }}" {{ $restaurant->city == $city->name ? 'selected' : '' }}>
+                                {{ $city->name }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div data-x-dd-click="searchMenu-loc col-6">
+                    <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('市町区村') }}</h4>
+                    <div class="text-15 text-light-1 ls-2 lh-16" style="border: 1px solid var(--color-border);">
+                        <select id="subTown" name="sub_town" class="js-search js-dd-focus w-100" disabled>
+                            <option value="">{{ translate('市町区村を選んでください') }}</option>
+                            @isset($restaurant)
+                            @if ($restaurant->sub_towns)
+                            <option value="{{ $restaurant->sub_towns }}" selected>{{ $restaurant->sub_towns }}</option>
+                            @endif
+                            @endisset
+                        </select>
+                    </div>
                 </div>
             </div>
-            <div data-x-dd-click="searchMenu-loc">
-                <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('sub location') }}</h4>
-                <div class="text-15 text-light-1 ls-2 lh-16" style="border: 1px solid var(--color-border);">
-                    <select id="subTown" name="sub_town" class="js-search js-dd-focus w-100" disabled>
-                        <option value="">{{ translate('Select Sub Location') }}</option>
-                        @isset($restaurant)
-                        @if ($restaurant->sub_towns)
-                        <option value="{{ $restaurant->sub_towns }}" selected>{{ $restaurant->sub_towns }}</option>
-                        @endif
-                        @endisset
-                    </select>
-                </div>
-            </div>
+
+            
             <!-- Available -->
             <div class="col-12">
                 <label class="lh-1 text-16 text-light-1 mb-10">{{translate('available')}}</label>
@@ -552,7 +558,7 @@
                     dataType: 'json',
                     success: function(data) {
                         $('#subTown').empty();
-                        $('#subTown').append('<option value="">{{ translate('Select Sub Location ') }}</option>');
+                        $('#subTown').append('<option value="">{{ translate('市町区村を選んでください') }}</option>');
                         $.each(data, function(key, value) {
 
                             var selected = (value.name === savedSubTown) ? 'selected' : '';
@@ -563,7 +569,7 @@
             } else {
                 $('#subTown').prop('disabled', true);
                 $('#subTown').empty();
-                $('#subTown').append('<option value="">{{ translate('Select Sub Location ') }}</option>');
+                $('#subTown').append('<option value="">{{ translate('市町区村を選んでください') }}</option>');
             }
         });
     });
