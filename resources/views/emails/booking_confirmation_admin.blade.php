@@ -11,10 +11,10 @@
 
     <h2>ご予約内容：</h2>
 
-    <p><strong>ユーザー名：</strong> {{ $user->name }}</p>
+    <p><strong>ユーザー名：</strong> {{ $user->last_name }}{{ $user->first_name }}</p>
     <p><strong>メールアドレス：</strong>{{ $user->email }}</p>
     <p><strong>電話番号 :</strong>{{ $user->phone }}</p>
-    
+
     <ul>
         <li><strong>店舗名：</strong> {{ $restaurant->name }}</li>
         <li><strong>予約日時：</strong> {{ $booking->select_date }}</li>
