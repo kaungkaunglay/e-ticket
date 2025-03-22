@@ -9,6 +9,7 @@
     <!-- <p>{{ $booking->first_name }} 様</p> -->
 
     <p><strong>{{ $restaurant->name }}</strong> へのご予約が確定いたしました。</p>
+    <p><strong>ユーザー名：</strong> {{ $user->name }}</p>
 
     <p><strong>ご予約内容：</strong></p>
     <ul>
