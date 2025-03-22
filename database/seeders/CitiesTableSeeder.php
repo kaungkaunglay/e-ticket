@@ -13,15 +13,17 @@ class CitiesTableSeeder extends Seeder
     public function run(): void
     {
         // Japanese cities
-        City::create(['name' => '東京都']);
-        City::create(['name' => '大阪府']);
-        City::create(['name' => '京都府']);
+       
+
+        City::create(['name' => '東京']);
+        City::create(['name' => '大阪']);
+        City::create(['name' => '京都']);
         City::create(['name' => '北海道']);
-        City::create(['name' => '福岡県']);
-        City::create(['name' => '愛知県']);
-        City::create(['name' => '兵庫県']);
-        City::create(['name' => '宮城県']);
-        City::create(['name' => '広島県']);
-        City::create(['name' => '新潟県']);
+        City::create(['name' => '福岡']);
+        City::create(['name' => '愛知']);
+        City::create(['name' => '兵庫']);
+        City::create(['name' => '宮城']);
+        City::create(['name' => '広島']);
+        City::create(['name' => '新潟']);
     }
 }
