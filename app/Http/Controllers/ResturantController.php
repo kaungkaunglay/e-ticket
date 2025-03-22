@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\File;
 use App\Models\Week;
 use App\Models\City;
 use App\Models\Sub_towns;
-
+use Illuminate\Support\Facades\Log;
 class ResturantController extends Controller
 {
     public function index()
@@ -275,7 +275,7 @@ class ResturantController extends Controller
         'smoking' => 'nullable|boolean',
         'available' => 'nullable|string',
         'wifi_availability' => 'nullable|boolean',
-        'menu' => 'required|json',
+        // 'menu' => 'required|json',
         'sub_town' => 'nullable|string',
     ]);
 
@@ -284,7 +284,7 @@ class ResturantController extends Controller
         File::makeDirectory($destinationPath, 0755, true);
     }
 
-    // Handle logo update
+   
     $logoPath = $restaurant->logo;
     if ($request->hasFile('logo')) {
         if ($restaurant->logo && File::exists(public_path($restaurant->logo))) {
@@ -296,10 +296,9 @@ class ResturantController extends Controller
         $logoPath = 'assets/restaurants/' . $logoName;
     }
 
-    // Handle multiple images upload
+    
     $multiImagesPaths = [];
     if ($restaurant->multi_images) {
-        // Ensure $restaurant->multi_images is treated as a JSON string
         $multiImagesPaths = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images, true) : $restaurant->multi_images;
     }
 
@@ -311,13 +310,13 @@ class ResturantController extends Controller
         }
     }
 
-    // Handle sub-town
+    
     $subTown = $request->sub_town;
     if (empty($subTown)) {
         $subTown = $restaurant->sub_towns;
     }
 
-    // Update the restaurant
+   
     $restaurant->update([
         'category_id' => $request->category_id,
         'name' => $request->name,
@@ -347,6 +346,53 @@ class ResturantController extends Controller
 
     return redirect()->route('resturant.index')->with('success', 'Restaurant updated successfully!');
 }
+
+
+public function deleteImage(Request $request, Restaurant $restaurant)
+{
+    Log::info('Delete Image Request:', $request->all());
+
+    $request->validate([
+        'image_path' => 'required|string',
+    ]);
+
+    $imagePath = $request->input('image_path');
+    Log::info('Image Path:', ['path' => $imagePath]);
+
+    // Ensure `multi_images` is always an array
+    $multiImagesPaths = is_string($restaurant->multi_images) 
+        ? json_decode($restaurant->multi_images, true) 
+        : $restaurant->multi_images;
+
+    if (!is_array($multiImagesPaths)) {
+        $multiImagesPaths = [];
+    }
+
+    Log::info('Initial Multi Images:', $multiImagesPaths);
+
+    // Remove the image if found in the array
+    if (($key = array_search($imagePath, $multiImagesPaths)) !== false) {
+        unset($multiImagesPaths[$key]);
+        $multiImagesPaths = array_values($multiImagesPaths);
+    }
+
+    Log::info('Updated Multi Images:', $multiImagesPaths);
+
+    // Only delete file if it's a local file (not a URL)
+    if (!filter_var($imagePath, FILTER_VALIDATE_URL) && File::exists(public_path($imagePath))) {
+        File::delete(public_path($imagePath));
+    }
+
+    // Save the updated list of images
+    $restaurant->multi_images = json_encode($multiImagesPaths);
+    $restaurant->save();
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Image deleted successfully!',
+    ]);
+}
+
 
     public function destroy(Restaurant $restaurant)
     {

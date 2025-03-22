@@ -81,7 +81,7 @@ Route::post('/supportcontect', [HomeController::class, 'supportcontect'])->name(
 
 Route::get('/get-sub-towns/{cityId}', [HomeController::class, 'getSubTowns'])->name('get.sub.towns');
 
-
+// Route::delete('/restaurants/{restaurant}/delete-image', [ResturantController::class, 'deleteImage'])->name('restaurants.deleteImage');
 // Route::get('/login', function () {
 //     return view('login');
 // })->name('login');

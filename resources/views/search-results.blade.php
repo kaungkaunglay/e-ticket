@@ -30,22 +30,31 @@
                             <div class="searchMenu-loc flex-grow-1">
                                 <!-- <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4> -->
                                 <div class="text-15 text-light-1 ls-2 lh-16">
-                                    <select id="city" name="" class="js-search js-dd-focus w-100">
-                                        <option value="">{{ translate('select_city') }}</option>
-                                        @foreach($cities as $city)
-                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                <select id="city" name="citydata" class="js-search js-dd-focus w-100">
+                                <option value="">{{ translate('select_city') }}</option>
+                                @foreach($cities as $city)
+                                    <option value="{{ $city->id }}" {{ $query == $city->id ? 'selected' : '' }}>
+                                        {{ $city->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                      </div>
                             </div>
 
                             <!-- Location Input -->
                             <div class="searchMenu-loc flex-grow-1">
                                 <!-- <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4> -->
                                 <div class="text-15 text-light-1 ls-2 lh-16">
-                                    <select id="subTown" name="city" class="js-search js-dd-focus w-100" disabled>
-                                        <option value="">{{ translate('select_sub_location') }}</option>
-                                    </select>
+                                <select id="subTown" name="sub_towns" class="js-search js-dd-focus w-100" {{ $subtownsdata ? '' : 'disabled' }}>
+    <option value="">{{ translate('select_sub_location') }}</option>
+    @if($subtownsdata)
+        @foreach($subTowns as $subTown)
+            <option value="{{ $subTown->id }}" {{ $subtownsdata == $subTown->id ? 'selected' : '' }}>
+                {{ $subTown->name }}
+            </option>
+        @endforeach
+    @endif
+</select>
                                 </div>
                             </div>
                             <!-- Price Range: To -->
@@ -293,6 +302,7 @@
     });
 
 
+  
     $(document).ready(function() {
         $('#city').change(function() {
             var cityId = $(this).val();
