@@ -60,5 +60,8 @@ class SubTownsTableSeeder extends Seeder
         Sub_towns::create(['name' => '本通', 'city_id' => $hiroshima->id]);
 
         Sub_towns::create(['name' => '新潟市', 'city_id' => $niigata->id]);
+        
+        Sub_towns::create(['name' => '江東区', 'city_id' => $tokyo->id]);
+        Sub_towns::create(['name' => '中央区', 'city_id' => $tokyo->id]);
     }
 }

@@ -16,7 +16,7 @@
                     <div class="text-center mb-3">
                         <h1 class="text-30 fw-600">
                             @if($query)
-                            Search Results for "{{ $query }}"
+                                検索結果
                             @else
                             {{ translate('restaurant_near') }}
                             @endif
@@ -31,7 +31,7 @@
                                 <!-- <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4> -->
                                 <div class="text-15 text-light-1 ls-2 lh-16">
                                 <select id="city" name="citydata" class="js-search js-dd-focus w-100">
-                                <option value="">{{ translate('select_city') }}</option>
+                                <option value="">{{ translate('都道府県') }}</option>
                                 @foreach($cities as $city)
                                     <option value="{{ $city->id }}" {{ $query == $city->id ? 'selected' : '' }}>
                                         {{ $city->name }}
@@ -46,22 +46,22 @@
                                 <!-- <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4> -->
                                 <div class="text-15 text-light-1 ls-2 lh-16">
                                 <select id="subTown" name="sub_towns" class="js-search js-dd-focus w-100" {{ $subtownsdata ? '' : 'disabled' }}>
-    <option value="">{{ translate('select_sub_location') }}</option>
-    @if($subtownsdata)
-        @foreach($subTowns as $subTown)
-            <option value="{{ $subTown->id }}" {{ $subtownsdata == $subTown->id ? 'selected' : '' }}>
-                {{ $subTown->name }}
-            </option>
-        @endforeach
-    @endif
-</select>
+                                    <option value="">{{ translate('市町区村') }}</option>
+                                    @if($subtownsdata)
+                                        @foreach($subTowns as $subTown)
+                                            <option value="{{ $subTown->id }}" {{ $subtownsdata == $subTown->id ? 'selected' : '' }}>
+                                                {{ $subTown->name }}
+                                            </option>
+                                        @endforeach
+                                    @endif
+                                </select>
                                 </div>
                             </div>
                             <!-- Price Range: To -->
                             <div class="searchMenu-loc flex-grow-1">
                                 <!-- <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('price_with_to') }}</h4> -->
                                 <select class="form-control" name="price_to">
-                                    <option value="">{{ translate('Select Price Range') }}</option>
+                                    <option value="">{{ translate('価格帯を選択') }}</option>
                                     @if(is_array($priceRangedata) || $priceRangedata instanceof \Traversable)
                                     @foreach($priceRangedata as $price)
                                     <option value="{{ $price }}" {{ $priceTo == $price ? 'selected' : '' }}>{{ number_format($price) }}</option>
@@ -314,7 +314,7 @@
                     dataType: 'json',
                     success: function(data) {
                         $('#subTown').empty();
-                        $('#subTown').append('<option value="">{{ translate('select_sub_location') }}</option>');
+                        $('#subTown').append('<option value="">{{ translate('市町区村') }}</option>');
                         $.each(data, function(key, value) {
                             $('#subTown').append('<option value="' + value.id + '">' + value.name + '</option>');
                         });
@@ -323,7 +323,7 @@
             } else {
                 $('#subTown').prop('disabled', true);
                 $('#subTown').empty();
-                $('#subTown').append('<option value="">{{ translate('select_sub_location') }}</option>');
+                $('#subTown').append('<option value="">{{ translate('市町区村') }}</option>');
             }
         });
     });
