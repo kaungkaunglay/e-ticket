@@ -55,8 +55,8 @@
                 <div data-x-dd-click="searchMenu-loc">
                     <!-- <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('location') }}</h4> -->
                     <div class="text-15 text-light-1 ls-2 lh-16">
-                        <select id="city" name="citydata" class="js-search js-dd-focus w-100">
-                            <option value="">{{ translate('select_city') }}</option>
+                        <select id="city" name="" class="js-search js-dd-focus w-100">
+                            <option value="">都道府県</option>
                             @foreach($cities as $city)
                                 <option value="{{ $city->id }}">{{ $city->name }}</option>
                             @endforeach
@@ -68,8 +68,8 @@
                 <div data-x-dd-click="searchMenu-loc">
                     <!-- <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('sub_location') }}</h4> -->
                     <div class="text-15 text-light-1 ls-2 lh-16">
-                        <select id="subTown" name="sub_towns" class="js-search js-dd-focus w-100" disabled>
-                            <option value="">{{ translate('select_sub_location') }}</option>
+                        <select id="subTown" name="city" class="js-search js-dd-focus w-100" disabled>
+                            <option value="">市町区村</option>
                         </select>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                      <!-- <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('price_with_to') }}</h4> -->
                      <div class="text-15 text-light-1 ls-2 lh-16">
                         <select name="price_to" class="js-search js-dd-focus w-100">
-                           <option value="">{{ translate('Select Price Range') }}</option>
+                           <option value="">目安の価格</option>
                            @foreach($priceRange as $price)
                            <option value="{{ $price }}">{{ number_format($price) }}</option>
                            @endforeach
@@ -132,8 +132,8 @@
                      <div class="text-15 text-light-1 ls-2 lh-16">
                         <select class="js-search js-dd-focus w-100" name="smoking">
                            <option value="">{{ translate('Select Smoking Preference') }}</option>
-                           <option value="1">{{ translate('Allowed') }}</option>
-                           <option value="0">{{ translate('Not Allowed') }}</option>
+                           <option value="1">喫煙可</option>
+                           <option value="0">禁煙</option>
                         </select>
                      </div>
                   </div>
@@ -376,7 +376,7 @@
                     dataType: 'json',
                     success: function(data) {
                         $('#subTown').empty();
-                        $('#subTown').append('<option value="">{{ translate('select_sub_location') }}</option>');
+                        $('#subTown').append('<option value="">{{ translate('市町区村') }}</option>');
                         $.each(data, function(key, value) {
                             $('#subTown').append('<option value="' + value.id + '">' + value.name + '</option>');
                         });
@@ -385,7 +385,7 @@
             } else {
                 $('#subTown').prop('disabled', true);
                 $('#subTown').empty();
-                $('#subTown').append('<option value="">{{ translate('select_sub_location') }}</option>');
+                $('#subTown').append('<option value="">{{ translate('市町区村') }}</option>');
             }
         });
     });

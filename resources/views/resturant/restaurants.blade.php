@@ -53,7 +53,7 @@
                                 <td>{{$restaurant->address}}</td>
                                 <th>
                                     <span style="color: {{ $restaurant->status == 1 ? 'green' : 'orange' }}; font-weight: bold;">
-                                        {{ $restaurant->status == 1 ? 'Approved' : 'Pending' }}
+                                        {{ $restaurant->status == 1 ? '承認済' : '保留' }}
                                     </span>
                                 </th>
 

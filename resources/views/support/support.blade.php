@@ -31,7 +31,7 @@
                         <thead class="bg-light-2">
                             <tr>
                                 <th>{{translate('name')}}</th>
-                                <th>{{translate('description')}}</th>
+                                <th>{{translate('内容')}}</th>
                                 <th>{{translate('created')}}</th>
                                 <th>{{translate('action')}}</th>
                             </tr>

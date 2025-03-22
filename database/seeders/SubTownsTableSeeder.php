@@ -13,36 +13,49 @@ class SubTownsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $cities = City::whereIn('name', [
-            'Tokyo', 'Osaka', 'Kyoto', 'Hokkaido', 'Fukuoka',
-            'Sapporo', 'Nagoya', 'Kobe', 'Sendai', 'Hiroshima'
-        ])->get()->keyBy('name'); // Fetch cities and map by name
+        // Fetch cities by name
+        $tokyo = City::where('name', 'Tokyo')->first();
+        $osaka = City::where('name', 'Osaka')->first();
+        $kyoto = City::where('name', 'Kyoto')->first();
+        $hokkaido = City::where('name', 'Hokkaido')->first();
+        $fukuoka = City::where('name', 'Fukuoka')->first();
+        $sapporo = City::where('name', 'Sapporo')->first();
+        $nagoya = City::where('name', 'Nagoya')->first();
+        $kobe = City::where('name', 'Kobe')->first();
+        $sendai = City::where('name', 'Sendai')->first();
+        $hiroshima = City::where('name', 'Hiroshima')->first();
+    
+        // Insert sub-towns for each city
+        Sub_towns::create(['name' => 'Shibuya', 'city_id' => $tokyo->id]);
+        Sub_towns::create(['name' => 'Shinjuku', 'city_id' => $tokyo->id]);
+        Sub_towns::create(['name' => 'Ikebukuro', 'city_id' => $tokyo->id]);
 
-        $subTowns = [
-            'Tokyo' => ['Shibuya', 'Shinjuku', 'Ikebukuro'],
-            'Osaka' => ['Umeda', 'Namba', 'Minami'],
-            'Kyoto' => ['Gion', 'Arashiyama'],
-            'Hokkaido' => ['Otaru', 'Asahikawa'],
-            'Fukuoka' => ['Tenjin', 'Hakata'],
-            'Sapporo' => ['Susukino', 'Odori'],
-            'Nagoya' => ['Osu', 'Sakae'],
-            'Kobe' => ['Motomachi', 'Chinatown'],
-            'Sendai' => ['Aoba', 'Miyagi'],
-            'Hiroshima' => ['Naka', 'Hondori'],
-        ];
+        Sub_towns::create(['name' => 'Umeda', 'city_id' => $osaka->id]);
+        Sub_towns::create(['name' => 'Namba', 'city_id' => $osaka->id]);
+        Sub_towns::create(['name' => 'Minami', 'city_id' => $osaka->id]);
 
-        foreach ($subTowns as $cityName => $towns) {
-            if (!isset($cities[$cityName])) {
-                $this->command->error("City '{$cityName}' not found. Skipping...");
-                continue;
-            }
+        Sub_towns::create(['name' => 'Gion', 'city_id' => $kyoto->id]);
+        Sub_towns::create(['name' => 'Arashiyama', 'city_id' => $kyoto->id]);
 
-            foreach ($towns as $town) {
-                Sub_towns::create([
-                    'name' => $town,
-                    'city_id' => $cities[$cityName]->id,
-                ]);
-            }
-        }
+        Sub_towns::create(['name' => 'Otaru', 'city_id' => $hokkaido->id]);
+        Sub_towns::create(['name' => 'Asahikawa', 'city_id' => $hokkaido->id]);
+
+        Sub_towns::create(['name' => 'Tenjin', 'city_id' => $fukuoka->id]);
+        Sub_towns::create(['name' => 'Hakata', 'city_id' => $fukuoka->id]);
+
+        Sub_towns::create(['name' => 'Susukino', 'city_id' => $sapporo->id]);
+        Sub_towns::create(['name' => 'Odori', 'city_id' => $sapporo->id]);
+
+        Sub_towns::create(['name' => 'Osu', 'city_id' => $nagoya->id]);
+        Sub_towns::create(['name' => 'Sakae', 'city_id' => $nagoya->id]);
+
+        Sub_towns::create(['name' => 'Motomachi', 'city_id' => $kobe->id]);
+        Sub_towns::create(['name' => 'Chinatown', 'city_id' => $kobe->id]);
+
+        Sub_towns::create(['name' => 'Aoba', 'city_id' => $sendai->id]);
+        Sub_towns::create(['name' => 'Miyagi', 'city_id' => $sendai->id]);
+
+        Sub_towns::create(['name' => 'Naka', 'city_id' => $hiroshima->id]);
+        Sub_towns::create(['name' => 'Hondori', 'city_id' => $hiroshima->id]);
     }
 }
