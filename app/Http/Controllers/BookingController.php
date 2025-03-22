@@ -97,9 +97,10 @@ class BookingController extends Controller
             'note' => $request->note,
         ]);
 
-
+        // Send email to the authenticated user
         Mail::to(Auth::user()->email)->send(new BookingConfirmation($booking, Auth::user()));
 
+        // Send email to sthahar896@gmail.com
         Mail::to('sthahar896@gmail.com')->send(new BookingConfirmation($booking, Auth::user()));
 
         return redirect()->route('booking.thankyou')->with('success', 'Your booking was successful! A confirmation email has been sent.');
