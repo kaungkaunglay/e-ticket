@@ -10,6 +10,7 @@ use App\Models\Favorite;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\BookingConfirmation;
+use App\Mail\BookingConfirmationAdmin;
 
 class BookingController extends Controller
 {
@@ -101,7 +102,7 @@ class BookingController extends Controller
         Mail::to(Auth::user()->email)->send(new BookingConfirmation($booking, Auth::user()));
 
         // Send email to sthahar896@gmail.com
-        Mail::to('sthahar896@gmail.com')->send(new BookingConfirmation($booking, Auth::user()));
+        Mail::to('sthahar896@gmail.com')->send(new BookingConfirmationAdmin($booking, Auth::user()));
 
         return redirect()->route('booking.thankyou')->with('success', 'Your booking was successful! A confirmation email has been sent.');
     }
