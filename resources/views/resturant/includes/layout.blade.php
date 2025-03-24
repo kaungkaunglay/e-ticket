@@ -17,6 +17,15 @@
     <link rel="stylesheet" href="{{ asset('assets/css/vendors.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
 
+ <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css">
+
+<!-- DataTables JS -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+
     <title>r-buzz</title>
 </head>
 
@@ -607,6 +616,10 @@
 
     <script src="{{ asset('assets/js/vendors.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+
+    
+
+
 </body>
 
 </html>

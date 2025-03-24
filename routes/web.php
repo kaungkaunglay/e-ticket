@@ -194,16 +194,16 @@ Route::middleware(['admin'])->group(function () {
 
 
 
-    Route::get('owner/supportcategory', [SupportController::class, 'category'])->name('support.category');
+    Route::get('owner/support-category', [SupportController::class, 'category'])->name('support.category');
     Route::get('owner/createcategory/{id?}', [SupportController::class, 'createcategory'])->name('support.createcategory');
     Route::post('owner/storecategory', [SupportController::class, 'storecategory'])->name('support.storecategory');
     Route::put('owner/updatecategory/{id}', [SupportController::class, 'update'])->name('support.updatecategory');
     Route::get('owner/support-category/{id}/edit', [SupportController::class, 'edit'])->name('support-category.edit');
     Route::delete('owner/support-category/{id}', [SupportController::class, 'destroy'])->name('support-category.destroy');
 
-    Route::get('owner/admin_booking', [UserController::class, 'adminbooking'])->name('adminbooking.dashboard');
+    Route::get('owner/admin-booking', [UserController::class, 'adminbooking'])->name('adminbooking.dashboard');
 
-    Route::get('owner/userlist', [UserController::class, 'userlist'])->name('adminbooking.userlist');
+    Route::get('owner/user-list', [UserController::class, 'userlist'])->name('adminbooking.userlist');
 
 
     Route::get('/menu', [MenuController::class, 'index'])->name('menu.index');
