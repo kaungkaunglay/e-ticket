@@ -44,7 +44,7 @@
                         @csrf
                         <div class="row y-gap-20">
                             <div class="col-12">
-                                <h1 class="text-22 fw-500 text-center">ログインss</h1>
+                                <h1 class="text-22 fw-500 text-center">ログイン</h1>
                                 <p class="text-center">ようこそ</p>
                             </div>
 

@@ -65,10 +65,10 @@
                                         <td>¥{{ number_format($booking->price_range) }}</td>
                                         <!-- <td>{{ $booking->website_url }}</td> -->
 
-
-                                        <td>{{ $booking->select_date }}</td>
-
-                                        <td>{{ $booking->note ?? 'No Note' }}</td>
+        
+            <td>{{ $booking->select_date }}</td>
+           
+            <td>{{ $booking->note ?? 'ユーザーコメントがありません' }}</td>
 
 
                                         <td>

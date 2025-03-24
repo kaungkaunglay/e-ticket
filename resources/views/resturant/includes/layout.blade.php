@@ -56,8 +56,8 @@
         <div data-anim="fade" class="header__container px-30 sm:px-20">
             <div class="-left-side">
                 <a href="{{route('admin.dashboard')}}" class="header-logo" data-x="header-logo" data-x-toggle="is-logo-dark">
-                    <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon" />
-                    <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon" />
+                  <img src="{{asset('assets/img/general/216415.jpg')}}" alt="logo icon" style="width: 90px;height: 90px;padding: 4px;">
+                  <img src="{{asset('assets/img/general/216415.jpg')}}" alt="logo icon">
                 </a>
             </div>
 
@@ -195,12 +195,13 @@
                     </a>
                 </div>
 
-                <div class="sidebar__item">
+                <!-- Comment out by thahar will be open at phase 2 -->
+                <!-- <div class="sidebar__item">
                     <a href="{{ route('promo.show')}}" class="sidebar__button d-flex items-center text-15 lh-1 fw-500">
                         <img src="{{asset('/assets/img/dashboard/sidebar/booking.svg')}}" alt="image" class="mr-15" />
                         {{translate('promotion_code')}}
                     </a>
-                </div>
+                </div> -->
 
                 <div class="sidebar__item">
                     <div class="accordion -db-sidebar js-accordion">
@@ -298,6 +299,35 @@
                             </div>
                         </div>
                     </div>
+
+
+                    <!-- <div class="accordion -db-sidebar js-accordion">
+                        <div class="accordion__item">
+                            <div class="accordion__button">
+                                <div class="sidebar__button col-12 d-flex items-center justify-between">
+                                    <div class="d-flex items-center text-15 lh-1 fw-500">
+                                        <img src="{{asset('/assets/img/dashboard/sidebar/hotel.svg')}}" alt="image" class="mr-10" />
+                                        {{translate('citys')}}
+                                    </div>
+                                    <div class="icon-chevron-sm-down text-7"></div>
+                                </div>
+                            </div>
+
+                            <div class="accordion__content">
+                                <ul class="list-disc pt-15 pb-5 pl-40">
+                                    <li>
+                                        <a href="{{ route('support.index') }}" class="text-15">{{translate('Add City ')}}</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{ route('support.category') }}" class="text-15">{{translate('Add Sub City')}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> -->
+
+
                 </div>
                 <div class="sidebar__item">
                     <a href="/logout" class="sidebar__button d-flex items-center text-15 lh-1 fw-500" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

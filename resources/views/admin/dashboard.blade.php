@@ -2,15 +2,15 @@
 
 @section('content')
 <div class="container">
-    <h1>レストランとユーザーの注文レポート</h1> 
+    <h1>レストラン別ユーザー予約数</h1> 
 
     
     <div class="chart-container mb-5">
-        <h2>レストラン別注文数</h2> 
+        <h2>レストラン別予約数</h2> 
         <canvas id="restaurantChart" width="400" height="200"></canvas>
     </div>
     <div class="chart-container">
-        <h2>ユーザー別注文数</h2> 
+        <h2>ユーザー別予約数</h2> 
         <canvas id="userChart" width="400" height="200"></canvas>
     </div>
 </div>
@@ -32,7 +32,7 @@
                     data: {
                         labels: labels,
                         datasets: [{
-                            label: '注文数',
+                            label: '予約数',
                             data: orderCounts,
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
                             borderColor: 'rgba(75, 192, 192, 1)',
@@ -45,7 +45,7 @@
                                 beginAtZero: true,
                                 title: {
                                     display: true,
-                                    text: '注文数' 
+                                    text: '予約数' 
                                 }
                             },
                             x: {
@@ -73,7 +73,7 @@
                     data: {
                         labels: labels,
                         datasets: [{
-                            label: '注文数', 
+                            label: '予約数', 
                             data: orderCounts,
                             backgroundColor: 'rgba(153, 102, 255, 0.2)',
                             borderColor: 'rgba(153, 102, 255, 1)',
@@ -86,7 +86,7 @@
                                 beginAtZero: true,
                                 title: {
                                     display: true,
-                                    text: '注文数' 
+                                    text: '予約数' 
                                 }
                             },
                             x: {

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('restaurant_id')->nullable(); 
             $table->date('select_date')->nullable();
             $table->text('user_id')->nullable();
+            $table->string('status')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();
         });

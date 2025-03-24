@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             MenuSeeder::class,
             RestaurantSeeder::class,
+            CitiesTableSeeder::class,
+            SubTownsTableSeeder::class,
         ]);
     }
 }

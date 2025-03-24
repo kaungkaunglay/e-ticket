@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\SubscriptionConfirmation;
 use App\Models\Menu;
 use Carbon\Carbon;
+use App\Models\Sub_towns;
 use DateTime;
+
+
+
 
 class HomeController extends Controller
 {
@@ -24,13 +28,14 @@ class HomeController extends Controller
     public function home()
     {
 
+
         $discountedRestaurants = Restaurant::where('status', 1)
             ->whereNotNull('discount')
             ->where('discount', '>', 0)
             ->paginate(10);
 
         // dd($discountedRestaurants);
-        $restaurants = Restaurant::where('status', 1)->paginate(8);
+        $restaurants = Restaurant::where('status', 1)->paginate(12);
         $menus = Menu::all();
         $category = Category::all();
         $priceRange = Restaurant::whereNotNull('price_range')
@@ -38,8 +43,16 @@ class HomeController extends Controller
             ->pluck('price_range')
             ->unique()
             ->sort();
+        $cities = City::all();
+        $subTowns = Sub_towns::all();
 
-        return view('home', compact('restaurants', 'discountedRestaurants', 'menus', 'priceRange', 'category'));
+        return view('home', compact('restaurants', 'discountedRestaurants', 'menus', 'priceRange', 'category', 'cities', 'subTowns'));
+    }
+
+    public function getSubTowns($cityId)
+    {
+        $subTowns = Sub_towns::where('city_id', $cityId)->get();
+        return response()->json($subTowns);
     }
 
 
@@ -68,35 +81,66 @@ class HomeController extends Controller
     }
 
 
+
+  
+    
     public function search(Request $request)
     {
+        // Fetch distinct price ranges for filtering
         $priceRangedata = Restaurant::whereNotNull('price_range')
             ->distinct()
             ->pluck('price_range')
             ->unique()
             ->sort();
+    
+        // Fetch all categories, cities, and sub-towns for dropdowns
         $categorydata = Category::all();
-        $query = $request->input('city');
+        $cities = City::all();
+        $subTowns = Sub_towns::all();
+        $query = $request->input('citydata'); 
+        $subtownsdata = $request->input('sub_towns'); 
         $checkIn = $request->input('check_in');
-        $priceFrom = (float) $request->input('price_from');
         $priceTo = (float) $request->input('price_to');
         $category = $request->input('category');
         $smoking = $request->input('smoking');
-        $date = new DateTime($checkIn);
-        $dayOfWeek = $date->format('l');
-        $dayId = DB::table('weeks')
-            ->where('day_eg', $dayOfWeek)
-            ->value('id');
+    
+       
+        $dayOfWeek = null;
+        $dayId = null;
+        if ($checkIn) {
+            $date = new DateTime($checkIn);
+            $dayOfWeek = $date->format('l');
+            $dayId = DB::table('weeks')
+                ->where('day_eg', $dayOfWeek)
+                ->value('id');
+        }
+    
+        
+        $cityName = null;
+        if ($query) {
+            $cityName = City::where('id', $query)->value('name'); 
+        }
+    
+       
+        $subTownId = null;
+        if ($subtownsdata) {
+           
+         
+            $subTownId = Sub_towns::where('id', $subtownsdata)->value('name'); 
+        
+        }
+    
+        
         $restaurants = Restaurant::where('status', 1)
-            ->when($query, function ($q) use ($query) {
-                return $q->where('city', $query);
+            ->when($cityName, function ($q) use ($cityName) {
+                return $q->where('city', $cityName); 
             })
-            ->when($priceFrom && $priceTo, function ($q) use ($priceFrom, $priceTo) {
-                if ($priceFrom == $priceTo) {
-                    return $q->whereRaw('CAST(price_range AS DECIMAL(10,2)) = ?', [$priceFrom]);
-                } else {
-                    return $q->whereRaw('CAST(price_range AS DECIMAL(10,2)) BETWEEN ? AND ?', [$priceFrom, $priceTo]);
-                }
+            ->when($subTownId, function ($q) use ($subTownId) {
+                return $q->where('sub_towns', $subTownId); 
+            })
+            ->when($priceTo, function ($q) use ($priceTo) {
+                return $q->where('price_range', '<=', $priceTo)
+                         ->orderBy('price_range', 'desc');
             })
             ->when($category, function ($q) use ($category) {
                 return $q->where('category_id', $category);
@@ -104,27 +148,29 @@ class HomeController extends Controller
             ->when(isset($smoking), function ($q) use ($smoking) {
                 return $q->where('smoking', $smoking);
             })
-            ->where(function ($q) use ($dayId) {
-                $q->whereNull('closed_days')
-                    ->orWhereJsonDoesntContain('closed_days', $dayId);
+            ->when($dayId, function ($q) use ($dayId) {
+                return $q->where(function ($q) use ($dayId) {
+                    $q->whereNull('closed_days')
+                      ->orWhereJsonDoesntContain('closed_days', $dayId);
+                });
             })
-            ->paginate(9);
-
+            ->paginate();
+    
         return view('search-results', compact(
             'restaurants',
             'query',
             'checkIn',
             'dayOfWeek',
-            'priceFrom',
             'priceTo',
             'category',
             'smoking',
             'priceRangedata',
-            'categorydata'
+            'categorydata',
+            'cities',
+            'subTowns',
+             'subtownsdata'
         ));
     }
-
-
 
 
 
@@ -167,6 +213,7 @@ class HomeController extends Controller
 
 
         $query = $request->input('city');
+        // dd($query);
         $checkIn = $request->input('check_in');
         $minPrice = $request->input('min_price');
         $maxPrice = $request->input('max_price');

@@ -32,147 +32,151 @@ class UserController extends Controller
     {
         return view('user.dashboard');
     }
-    
-        public function show()
-        {
-            $user = Auth::user();
-            $favorites = Favorite::select('favorites.*', 'restaurants.*') 
-                ->where('favorites.user_id', $user->id)
-                ->join('restaurants', 'favorites.restaurants_id', '=', 'restaurants.id')
-                ->get();
 
-                // dd($favorites);
-            $bookings = Booking::select('bookings.*', 'restaurants.name as restaurant_name', 'restaurants.address as restaurant_address') 
-                        ->where('bookings.user_id', $user->id)
-                        ->join('restaurants', 'bookings.restaurant_id', '=', 'restaurants.id') 
-                        ->get();
-            return view('user.dashboard', compact('user', 'bookings','favorites'));
-        }
+    public function show()
+    {
+        $user = Auth::user();
+        $favorites = Favorite::select('favorites.*', 'restaurants.*')
+            ->where('favorites.user_id', $user->id)
+            ->join('restaurants', 'favorites.restaurants_id', '=', 'restaurants.id')
+            ->get();
 
-        public function adminbooking()
-        {
-            $bookings = Booking::select('bookings.*', 'restaurants.name as restaurant_name', 'restaurants.address as restaurant_address', 'restaurants.city', 'restaurants.phone_number', 'restaurants.price_range', 'restaurants.website_url')
-                                ->join('restaurants', 'bookings.restaurant_id', '=', 'restaurants.id') 
-                                ->get();
-        
-            return view('resturant.booking', compact('bookings'));
-        }
+        // dd($favorites);
+        $bookings = Booking::select('bookings.*', 'restaurants.name as restaurant_name', 'restaurants.address as restaurant_address')
+            ->where('bookings.user_id', $user->id)
+            ->where(function ($query) {
+                $query->whereNull('bookings.status')
+                    ->orWhere('bookings.status', '!=', 1);
+            })
+            ->join('restaurants', 'bookings.restaurant_id', '=', 'restaurants.id')
+            ->get();
+        return view('user.dashboard', compact('user', 'bookings', 'favorites'));
+    }
 
-        
+    public function adminbooking()
+    {
+        $bookings = Booking::select('bookings.*', 'restaurants.name as restaurant_name', 'restaurants.address as restaurant_address', 'restaurants.city', 'restaurants.phone_number', 'restaurants.price_range', 'restaurants.website_url')
+            ->join('restaurants', 'bookings.restaurant_id', '=', 'restaurants.id')
+            ->get();
+
+        return view('resturant.booking', compact('bookings'));
+    }
 
 
-    
+
+
+
     public function profileupdate(Request $request)
-{
-   
-    $validator = Validator::make($request->all(), [
-        'id' => 'required|exists:users,id', 
-        'first_name' => 'required|string|max:255',
-        'last_name' => 'required|string|max:255',
-        'phone' => 'required|string|max:15',
-        'email' => 'required|email|max:255|unique:users,email,' . $request->id, 
-        'postal_code' => 'nullable|string|max:20',  
-        'address' => 'nullable|string|max:255',     
-    ]);
+    {
 
-    if ($validator->fails()) {
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|exists:users,id',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'phone' => 'required|string|max:15',
+            'email' => 'required|email|max:255|unique:users,email,' . $request->id,
+            'postal_code' => 'nullable|string|max:20',
+            'address' => 'nullable|string|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation errors',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+
+        $user = User::find($request->id);
+
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => 'User not found',
+            ], 404);
+        }
+
+
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->phone = $request->phone;
+        $user->email = $request->email;
+
+
+        if ($request->has('postal_code')) {
+            $user->postal_code = $request->postal_code;
+        }
+
+        if ($request->has('address')) {
+            $user->address = $request->address;
+        }
+
+        $user->save();
+
         return response()->json([
-            'success' => false,
-            'message' => 'Validation errors',
-            'errors' => $validator->errors()
-        ], 422);
+            'success' => true,
+            'message' => 'Profile updated successfully',
+            'user' => $user
+        ], 200);
     }
 
 
-    $user = User::find($request->id);
+    public function userpassword(Request $request)
+    {
 
-    if (!$user) {
+        $messages = [
+            'old_password.required' => 'The old password field is required.',
+            'new_password.required' => 'The new password field is required.',
+            'new_password.min' => 'The new password must be at least 8 characters.',
+            'new_password.confirmed' => 'The new password and confirmation password do not match.',
+        ];
+
+
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|exists:users,id',
+            'old_password' => 'required|string',
+            'new_password' => 'required|string|min:8|confirmed',
+        ], $messages);
+
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Validation failed',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+
+        $user = User::find($request->id);
+
+
+        if (!Hash::check($request->old_password, $user->password)) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'The provided old password is incorrect.'
+            ], 400);
+        }
+
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
         return response()->json([
-            'success' => false,
-            'message' => 'User not found',
-        ], 404);
+            'status' => 'success',
+            'message' => 'Password updated successfully!'
+        ], 200);
     }
 
 
-    $user->first_name = $request->first_name;
-    $user->last_name = $request->last_name;
-    $user->phone = $request->phone;
-    $user->email = $request->email;
-    
 
-    if ($request->has('postal_code')) {
-        $user->postal_code = $request->postal_code;
+    public function userlist()
+    {
+        $users = User::whereHas('roles', function ($query) {
+            $query->where('role_id', 3);
+        })->paginate(10);
+        return view('resturant.userlist', compact('users'));
     }
-
-    if ($request->has('address')) {
-        $user->address = $request->address;
-    }
-    
-    $user->save(); 
-
-    return response()->json([
-        'success' => true,
-        'message' => 'Profile updated successfully',
-        'user' => $user
-    ], 200);
-}
-
-
-public function userpassword(Request $request) {
-    // Custom validation messages
-    $messages = [
-        'old_password.required' => 'The old password field is required.',
-        'new_password.required' => 'The new password field is required.',
-        'new_password.min' => 'The new password must be at least 8 characters.',
-        'new_password.confirmed' => 'The new password and confirmation password do not match.',
-    ];
-
-    // Validate the request
-    $validator = Validator::make($request->all(), [
-        'id' => 'required|exists:users,id',  
-        'old_password' => 'required|string', 
-        'new_password' => 'required|string|min:8|confirmed', 
-    ], $messages);
-
-    // If validation fails, return JSON response with errors
-    if ($validator->fails()) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Validation failed',
-            'errors' => $validator->errors(),
-        ], 422);
-    }
-
-    // Find the user
-    $user = User::find($request->id);
-
-    // Check if the old password is correct
-    if (!Hash::check($request->old_password, $user->password)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'The provided old password is incorrect.'
-        ], 400);
-    }
-
-    // Update the password
-    $user->password = Hash::make($request->new_password);
-    $user->save(); 
-
-    return response()->json([
-        'status' => 'success',
-        'message' => 'Password updated successfully!'
-    ], 200); 
-}
-
-    
-    
-public function userlist()
-{
-    $users = User::whereHas('roles', function ($query) {
-        $query->where('role_id', 3);
-    })->paginate(10); 
-    return view('resturant.userlist', compact('users'));
-}
 
     /**
      * Store a newly created resource in storage.
@@ -185,7 +189,7 @@ public function userlist()
     /**
      * Display the specified resource.
      */
-   
+
     /**
      * Show the form for editing the specified resource.
      */

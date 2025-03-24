@@ -28,7 +28,6 @@
                         <thead class="bg-light-2">
                             <tr>
                                 <th>{{translate('id')}}</th>
-                                <th>{{translate('menu')}}</th>
                                 <th>{{translate('image')}}</th>
                                 <th>{{translate('created')}}</th>
                                 <th>{{translate('action')}}</th>
@@ -38,12 +37,12 @@
                             @foreach($menus as $menu)
                                 <tr>
                                     <td>{{ $menu->id }}</td>
-                                    <td>{{ $menu->menu }}</td>
-                                      <td>  @if ($menu->image)
+                                    <td>  @if ($menu->image)
                                             <img src="{{ asset($menu->image) }}" alt="Menu Image" style="max-width: 200px;">
                                         @else
                                             <p>No image available</p>
-                                        @endif</td>
+                                        @endif
+                                    </td>
                                     <td>{{ $menu->created_at->format('Y-m-d H:i:s') }}</td>
                                     <td>
                                 <div class="d-flex align-items-center gap-10">

@@ -132,6 +132,9 @@
                                         <li class="{{ request()->routeIs('support.page') ? 'active' : '' }}">
                                             <a href="{{ locale_route('support.page') }}">サポート</a>
                                         </li>
+
+                                      
+
                                         <li class="mobile-only {{ request()->routeIs('login') ? 'active' : '' }}">
                                             <a href="{{ locale_route('login') }}">ログイン</a>
                                         </li>
@@ -150,8 +153,8 @@
                     </div>
                     <div class="col-auto">
                         <a href="{{locale_route('home')}}" class="header-logo mr-20" data-x="header-logo" data-x-toggle="is-logo-dark">
-                            <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon" style="width: 246px;">
-                            <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon">
+                            <img src="{{asset('assets/img/general/216415.jpg')}}" alt="logo icon" style="width: 90px;height: 90px;padding: 4px;">
+                            <img src="{{asset('assets/img/general/216415.jpg')}}" alt="logo icon">
                         </a>
                     </div>
 
