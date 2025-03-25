@@ -11,35 +11,29 @@
         border: 4px solid #fff;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
-
     .profile-info {
         background: #f9fafb;
         padding: 20px;
         border-radius: 10px;
         margin-top: 20px;
     }
-
     .profile-info .info-item {
         margin-bottom: 15px;
     }
-
     .profile-info .info-label {
         font-size: 14px;
         color: #6b7280;
         margin-bottom: 5px;
     }
-
     .profile-info .info-value {
         font-size: 16px;
         color: #111827;
         font-weight: 500;
     }
-
     .profile-actions {
         margin-top: 30px;
         text-align: center;
     }
-
     .profile-actions .btn {
         margin: 5px;
     }
