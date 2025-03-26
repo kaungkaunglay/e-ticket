@@ -13,6 +13,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="{{ asset('assets/css/vendors.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @yield('style')
 
     <title>r-buzz</title>
@@ -162,7 +163,14 @@
     </style>
 </head>
 
-<body>
+<body  style="
+    width: 460px;
+    margin: 0 auto;
+    min-height: 100vh;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    overflow-x: hidden;
+">
     <div class="preloader js-preloader">
         <div class="preloader__wrap">
             <div class="preloader__icon">

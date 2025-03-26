@@ -2,6 +2,10 @@
 @section('style')
 @endsection
 @section('contents')
+<!-- FontAwesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
 <style>
    .searchMenu-loc,
    .searchMenu-guests {
@@ -39,7 +43,7 @@
    .mainSearch {
       padding: 47px;
       border: 2px solid #ccc;
-      border-radius: 34px;
+      border-radius: 49px !important;
       box-shadow: 0 13px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
    }
 
@@ -59,152 +63,169 @@
       height: 54px;
    }
 </style>
-<section data-anim-wrap class="masthead -type-4">
-   <div class="masthead-slider overflow-x-hidden js-masthead-slider-4">
-      <div class="container">
-         <div class="row justify-center">
-            <div class="col-xl-9">
-               <div class="masthead__content">
-                  <form action="{{ locale_route('restaurant.search') }}" method="GET">
-                     <div class="mainSearch bg-white-bb p-20 lg:p-30 rounded-4 mt-30">
-                        <div class="search-grid">
-                           <!-- Row 1 -->
-                           <div class="search-field">
-                              <select id="city" name="city" class="search-input no-arrow text-center">
-                                 <option value="">Select City</option>
-                                 @foreach($cities as $city)
-                                 <option value="{{ $city->id }}">{{ $city->name }}</option>
-                                 @endforeach
-                              </select>
-                           </div>
+<section >
+        <div class="masthead-slider overflow-x-hidden js-masthead-slider-4">
+            <div class="container">
+                <div class="row justify-center">
+                    <div class="col-xl-9">
+                        <div class="masthead__content">
+                            <form action="{{ locale_route('restaurant.search') }}" method="GET">
+                                <div class="mainSearch bg-white-bb p-20 lg:p-30 rounded-4 mt-30" style="margin-top: 6px !important;">
+                                    <div class="search-grid">
+                                        <!-- Row 1: 市区町村と地域 -->
+                                        <div class="search-field">
+                                            <select id="city" name="city" class="search-input">
+                                                <option value="">市区町村を選択</option>
+                                                @foreach($cities as $city)
+                                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
 
-                           <div class="search-field">
-                              <select id="subTown" name="subTown" class="search-input no-arrow text-center" disabled>
-                                 <option value="">Select Sub-Town</option>
-                              </select>
-                           </div>
+                                        <div class="search-field">
+                                            <select id="subTown" name="subTown" class="search-input" disabled>
+                                                <option value="">地域を選択</option>
+                                            </select>
+                                        </div>
 
-                           <!-- Row 2 -->
-                           <div class="search-field">
-                              <input type="date" id="check_in" name="check_in" class="search-input text-center" style="
-                                 width: 100%;
-                                 padding: 12px;
-                                 border-radius: 8px;
-                                 border: 2px solid black;
-                                 background-color: #fff;
-                                 font-size: 16px;
-                                 color: #333;
-                                 transition: 0.3s ease;
-                                 height: 54px;
-                              " />
-                           </div>
+                                        <!-- Row 2: 日付と価格帯 -->
+                                        <div class="search-field" style="
+                                                border-radius: 8px;
+                                                border: 2px solid black;
+                                                background-color: #fff;
+                                             ">
+                                            <input 
+                                                type="date" 
+                                                id="check_in" 
+                                                name="check_in" 
+                                                class="search-input" 
+                                                placeholder="日付を選択"
+                                            />
+                                        </div>
 
-                           <div class="search-field">
-                              <select name="price_to" class="search-input no-arrow text-center">
-                                 <option value="">Select Price</option>
-                                 @foreach($priceRange as $price)
-                                 <option value="{{ $price }}">{{ number_format($price) }}</option>
-                                 @endforeach
-                              </select>
-                           </div>
+                                        <div class="search-field">
+                                            <select name="price_to" class="search-input">
+                                                <option value="">価格帯を選択</option>
+                                                @foreach($priceRange as $price)
+                                                <option value="{{ $price }}">{{ number_format($price) }}円</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
 
-                           <!-- Row 3 -->
-                           <div class="search-field">
-                              <select name="category" class="search-input no-arrow text-center">
-                                 <option value="">Select Category</option>
-                                 @foreach ($category as $cat)
-                                 <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                                 @endforeach
-                              </select>
-                           </div>
+                                        <!-- Row 3: カテゴリと喫煙 -->
+                                        <div class="search-field">
+                                            <select name="category" class="search-input">
+                                                <option value="">カテゴリを選択</option>
+                                                @foreach ($category as $cat)
+                                                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
 
-                           <div class="search-field">
-                              <select name="smoking" class="search-input no-arrow text-center">
-                                 <option value="">Select Smoking Preference</option>
-                                 <option value="1">喫煙可</option>
-                                 <option value="0">禁煙</option>
-                              </select>
-                           </div>
+                                        <div class="search-field">
+                                            <select name="smoking" class="search-input">
+                                                <option value="">喫煙設定</option>
+                                                <option value="1">喫煙可</option>
+                                                <option value="0">禁煙</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Search Button -->
+                                    <div class="search-button">
+                                        <button class="search-submit">
+                                            <i class="icon-search text-20 mr-10"></i>
+                                            検索
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-
-                        <!-- Search Button -->
-                        <div class="search-button">
-                           <button class="search-submit">
-                              <i class="icon-search text-20 mr-10"></i>
-                              {{ translate('Search') }}
-                           </button>
-                        </div>
-                     </div>
-                  </form>
-               </div>
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
-   </div>
-</section>
+        </div>
+    </section>
 
-<style>
-   .search-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-      margin-bottom: 20px;
-   }
-   
-   .search-input {
-      width: 100%;
-      padding: 12px;
-      border-radius: 8px;
-      border: 2px solid black;
-      background-color: #fff;
-      font-size: 16px;
-      color: #333;
-      transition: 0.3s ease;
-      height: 54px;
-      text-align: center;
-   }
-   
-   /* Remove dropdown arrows */
-   .no-arrow {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      background-image: none;
-      padding-right: 12px; /* Maintain padding balance */
-   }
-   
-   /* Center placeholder text for date input */
-   .search-input::placeholder {
-      text-align: center;
-   }
-   
-   /* Date input customization */
-   input[type="date"]::-webkit-calendar-picker-indicator {
-      display: none;
-   }
-   
-   .search-submit {
-      background-color: #000;
-      color: white;
-      border: none;
-      padding: 15px 30px;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      width: 100%;
-      transition: 0.3s ease;
-   }
-   
-   .search-submit:hover {
-      background-color: #333;
-   }
-   
-   @media (max-width: 768px) {
-      .search-grid {
-         grid-template-columns: 1fr;
-      }
-   }
-</style>
+    <style>
+        /* Reset default dropdown styles */
+        .search-input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid black;
+            background-color: #fff;
+            font-size: 16px;
+            color: #333;
+            transition: 0.3s ease;
+            height: 54px;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        /* Custom dropdown arrow */
+        .search-field {
+            position: relative;
+        }
+        
+        .search-field::after {
+            content: "▼";
+            font-size: 12px;
+            color: #333;
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+        
+        /* Remove custom arrow for date input */
+        input[type="date"].search-input ~ .search-field::after {
+            display: none;
+        }
+        
+        /* Disabled state */
+        .search-input:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        
+        /* Existing styles */
+        .mainSearch {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 4px;
+            margin-top: -81px !important;
+        }
+        
+        .search-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .search-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .search-submit {
+         background-color: #0553c5;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 247px;
+        }
+        .towbutton{
+         margin-top: 26px;
+        }
+    </style>
 
 @if(!$discountedRestaurants)
 <section class="home">
@@ -241,133 +262,30 @@
       </div>
 </section>
 @endif
-<section class="pt-20">
+
+<section class="towbutton">
    <div data-anim-wrap class="container">
       <div class="row justify-center text-center">
          <div class="col-auto">
-            <div class="sectionTitle -md">
-               <h2 class="text-25 lh-16 fw-700 pb-20">{{ translate('popular_restaurants') }}</h2>
+            <!-- First Search Button (Red) -->
+            <div class="search-button mb-10" bis_skin_checked="1">
+               <button class="search-submit" style="background-color:var(--color-red) !important; color: white; padding: 10px 20px; border: none; cursor: pointer;">
+                  検索
+               </button>
+            </div>
+
+            <!-- Second Search Button (Yellow) -->
+            <div class="search-button mt-10" bis_skin_checked="1">
+               <button class="search-submit" style="background-color: #fba405; color: black; padding: 10px 20px; border: none; cursor: pointer;">
+                  検索
+               </button>
             </div>
          </div>
-      </div>
-      <div class="tabs -pills-2 js-tabs">
-         <div class="tabs__content js-tabs-content">
-            <div class="tabs__pane -tab-item-1 is-tab-el-active">
-               <div class="row y-gap-30">
-                  @foreach($restaurants->take(6) as $restaurant)
-                  <div class="col-xl-3 col-lg-3 col-sm-6">
-                     <a href="{{ route('restaurant.detail', ['id' => $restaurant->id]) }}" class="hotelsCard -type-1">
-                        <div class="hotelsCard__image">
-                           <div class="cardImage ratio ratio-1:1">
-                              <div class="cardImage__content">
-                                 <img class="rounded-4 col-12" src="{{ asset('' . $restaurant->logo) }}" alt="{{ $restaurant->name }} logo">
-                              </div>
-                              <div class="cardImage__wishlist">
-                                 <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 favourite-btn" data-id="{{ $restaurant->id }}">
-                                    <i class="icon-heart text-12"></i>
-                                 </button>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="hotelsCard__content mt-10">
-                           <a href="{{ route('restaurant.detail', ['id' => $restaurant->id]) }}" class="hotelsCard -type-1">
-                              <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
-                                 <span>{{ $restaurant->name }}</span>
-                              </h4>
-                           </a>
-                           <p class="text-light-1 lh-14 text-14 mt-5 text-clamp">{{$restaurant->description}}</p>
-                           <div class="mt-5">
-                              <div class="fw-500 d-flex justify-content-end align-items-center">
-                                 <span class="text-20"><i class="icon-food text-20 mr-10"></i>~ ¥{{ number_format($restaurant->price_range) }}</span>
-                              </div>
-                           </div>
-                        </div>
-                     </a>
-                  </div>
-                  @endforeach
-               </div>
-               <div class="row justify-center pt-20">
-                  <div class="col-auto">
-                     <a href="{{locale_route('restaurant.search')}}" class="button -dark-1 py-10 px-40 col-12 rounded-4 bg-red text-white mt-5 mb-5">
-                        {{ translate('load_more') }}
-                     </a>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
+      </div> 
+   </div> 
 </section>
-<section class="py-20">
-   <div data-anim-wrap class="container">
-      <div class="row justify-center text-center">
-         <div class="col-auto">
-            <div class="sectionTitle -md">
-               <h2 class="text-25 lh-16 fw-700 pb-20">{{ translate('restaurant_near_location') }}</h2>
-            </div>
-         </div>
-      </div>
-      <div class="tabs -pills-2 js-tabs">
-         <div class="tabs__content js-tabs-content">
-            <div class="tabs__pane -tab-item-1 is-tab-el-active">
-               <div class="row y-gap-30">
-                  @foreach($restaurants as $restaurant)
-                  <div class="col-xl-3 col-lg-3 col-sm-6">
-                     <a href="{{ route('restaurant.detail', ['id' => $restaurant->id]) }}" class="hotelsCard -type-1 ">
-                        <div class="hotelsCard__image">
-                           <div class="cardImage ratio ratio-1:1">
-                              <div class="cardImage__content">
-                                 <img class="rounded-4 col-12" src="{{ asset('' . $restaurant->logo) }}" alt="{{ $restaurant->name }} logo">
-                              </div>
-                              <div class="cardImage__wishlist">
-                                 <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 favourite-btn" data-id="{{ $restaurant->id }}">
-                                    <i class="icon-heart text-12"></i>
-                                 </button>
-                              </div>
-                              @if($restaurant->discount > 0)
-                              <div class="cardImage__leftBadge">
-                                 <div class="py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase bg-dark-1 text-white">
-                                    {{ $restaurant->discount }}% {{ translate('discount') }}
-                                 </div>
-                              </div>
-                              @endif
-                           </div>
-                        </div>
-                        <div class="hotelsCard__content mt-10">
-                           <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
-                              <span>{{$restaurant->name}}</span>
-                           </h4>
-                           <p class="text-light-1 lh-14 text-14 mt-5 text-clamp">{{$restaurant->description}}</p>
-                           <!-- <div class="d-flex items-center mt-20">
-                              <div class="flex-center bg-yellow-1 rounded-4 size-30 text-12 fw-600 text-red">4.8</div>
-                              <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
-                              <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
-                              </div> -->
-                           <div class="mt-5">
-                              <div class="fw-500 d-flex justify-content-end">
-                                 <span class="text-20"><i class="icon-food text-20 mr-10"></i>~ ¥{{ number_format($restaurant->price_range) }}</span>
-                              </div>
-                           </div>
-                        </div>
-                     </a>
-                  </div>
-                  @endforeach
-               </div>
-               <div class="row justify-center pt-20">
-                  <div class="col-auto">
-                     <a href="{{locale_route('restaurant.search')}}" class="button -dark-1 py-10 px-40 col-12 rounded-4 bg-red text-white mt-5 mb-5">
-                        {{ translate('load_more') }}
-                     </a>
-                  </div>
-               </div>
-               <div class="pagination">
-                  {{ $restaurants->links('pagination::bootstrap-5') }}
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</section>
+
+
 @include('includes.subscribe')
 @endsection
 <!-- Flatpickr CSS -->
