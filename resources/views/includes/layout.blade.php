@@ -18,6 +18,17 @@
 
     <title>r-buzz</title>
     <style>
+        /* Strict 450px container */
+        body {
+            width: 450px;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+        }
+
         .dropdown {
             position: relative;
             display: inline-block;
@@ -60,7 +71,7 @@
         .header-container {
             position: relative;
             width: 100%;
-            height: 593px;
+            height: 200px; /* Reduced for mobile */
             overflow: hidden;
             margin-bottom: -3px;
         }
@@ -72,7 +83,7 @@
             object-position: center;
         }
         
-        /* Right side menu styles */
+        /* Right side menu styles - contained within 450px */
         .right-side-menu {
             position: fixed;
             top: 0;
@@ -87,28 +98,34 @@
         }
         
         .right-side-menu.active {
-            right: 0;
+            right: calc(450px - 300px); /* Pushes menu to left edge of frame */
         }
         
-        /* Menu toggle on left side */
+        /* Menu toggle button - contained within 450px */
         .menu-toggle {
             cursor: pointer;
             font-size: 24px;
-            padding: 15px;
+            padding: 10px;
             position: absolute;
             right: 15px;
             top: 15px;
             z-index: 1001;
             color: white;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.5);
             border-radius: 4px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
+        /* Overlay - limited to 450px width */
         .menu-overlay {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
+            width: 450px;
             height: 100%;
             background: rgba(0,0,0,0.5);
             z-index: 999;
@@ -154,23 +171,57 @@
             z-index: 1;
             background: white;
             padding-top: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        /* Footer adjustments */
+        footer {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
         }
         
         /* Hide all other header elements */
         .header-logo, .header-actions {
             display: none !important;
         }
+        
+        /* Footer responsive styles */
+        .footer .container {
+            padding: 30px 15px;
+        }
+        
+        .footer .row {
+            flex-direction: column;
+        }
+        
+        .footer .col-auto, 
+        .footer .col-xl-2, 
+        .footer .col-lg-4, 
+        .footer .col-sm-6 {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 450px;
+            height: 100%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
     </style>
 </head>
 
-<body  style="
-    width: 460px;
-    margin: 0 auto;
-    min-height: 100vh;
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    overflow-x: hidden;
-">
+<body>
     <div class="preloader js-preloader">
         <div class="preloader__wrap">
             <div class="preloader__icon">
@@ -190,17 +241,17 @@
     </div>
 
     <main>
-      
-    @if(request()->routeIs('home'))
-    <div class="header-container">
-        <img src="{{ asset('assets/img/masthead/4/216409.jpg') }}" 
-             alt="Header image" 
-             class="header-image">
-    </div>
-@endif
+        @if(request()->routeIs('home'))
+        <div class="header-container">
+            <img src="{{ asset('assets/img/masthead/4/216409.jpg') }}" 
+                 alt="Header image" 
+                 class="header-image">
+        </div>
+        @endif
 
         <div class="menu-toggle js-menu-toggle">☰</div>
-        <!-- Right Side Menu -->
+        
+        <!-- Right Side Menu - contained within 450px -->
         <div class="right-side-menu js-right-side-menu">
             <div class="right-menu-content">
                 <ul class="menu__nav text-dark-1">
@@ -217,22 +268,22 @@
                         <a href="{{ locale_route('support.page') }}">サポート</a>
                     </li>
                     @auth
-                                @php
-                                $user = auth()->user();
-                                $role = $user->roles()->first()->id ?? null;
-                                $dashboardRoute = '/home'; // Default route
+                    @php
+                    $user = auth()->user();
+                    $role = $user->roles()->first()->id ?? null;
+                    $dashboardRoute = '/home';
 
-                                if ($role == 1) {
-                                $dashboardRoute = route('admin.dashboard');
-                                $logoutRoute = route('admin.logout');
-                                } elseif ($role == 2) {
-                                $dashboardRoute = route('vendor.dashboard');
-                                $logoutRoute = route('vendor.logout');
-                                } elseif ($role == 3) {
-                                $dashboardRoute = route('user.dashboard');
-                                $logoutRoute = route('logout');
-                                }
-                                @endphp
+                    if ($role == 1) {
+                        $dashboardRoute = route('admin.dashboard');
+                        $logoutRoute = route('admin.logout');
+                    } elseif ($role == 2) {
+                        $dashboardRoute = route('vendor.dashboard');
+                        $logoutRoute = route('vendor.logout');
+                    } elseif ($role == 3) {
+                        $dashboardRoute = route('user.dashboard');
+                        $logoutRoute = route('logout');
+                    }
+                    @endphp
                     <li>
                         <a href="{{ $dashboardRoute }}">ダッシュボード</a>
                     </li>
@@ -246,7 +297,6 @@
                         </form>
                     </li>
                     @else
-                    <!-- Login/Signup links in slider menu -->
                     <li class="{{ request()->routeIs('login') ? 'active' : '' }}">
                         <a href="{{ locale_route('login') }}">ログイン</a>
                     </li>
@@ -258,7 +308,7 @@
             </div>
         </div>
         
-        <!-- Menu Overlay -->
+        <!-- Menu Overlay - contained within 450px -->
         <div class="menu-overlay js-menu-overlay"></div>
 
         <div class="main-content">
@@ -267,36 +317,36 @@
 
         <footer class="footer -type-1">
             <div class="container">
-                <div class="pt-60 pb-60">
-                    <div class="row y-gap-40 justify-between xl:justify-start">
-                        <div class="col-xl-2 col-lg-4 col-sm-6 d-flex flex-column">
+                <div class="pt-30 pb-30">
+                    <div class="row y-gap-20">
+                        <div class="col-12 d-flex flex-column">
                             <a href="index.html" class="header-logo mr-20">
-                                <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon">
+                                <img src="{{asset('assets/img/general/logo-dark.svg')}}" alt="logo icon" style="max-width: 150px;">
                             </a>
-                            <p class="text-14 mt-30 fw-500 text-dark-1">テーブルを予約する</p>
+                            <p class="text-14 mt-20 fw-500 text-dark-1">テーブルを予約する</p>
                         </div>
                         
-                        <div class="col-xl-2 col-lg-4 col-sm-6">
-                            <h5 class="text-20 fw-500 mb-30">お問い合わせ</h5>
-                            <div class="mt-30">
-                                <div class="text-14 mt-30">フリーダイヤルカスタマーケア</div>
+                        <div class="col-12">
+                            <h5 class="text-18 fw-500 mb-15">お問い合わせ</h5>
+                            <div class="mt-15">
+                                <div class="text-14">フリーダイヤルカスタマーケア</div>
                                 <a href="#" class="text-14 fw-500 text-blue-1 mt-5">電話 : 098888888</a>
                             </div>
-                            <div class="mt-35">
-                                <div class="text-14 mt-30">ライブサポートが必要ですか？」</div>
+                            <div class="mt-20">
+                                <div class="text-14">ライブサポートが必要ですか？」</div>
                                 <a href="#" class="text-14 fw-500 text-blue-1 mt-5">メール : {{config('email')}}</a>
                             </div>
                         </div>
 
-                        <div class="col-xl-2 col-lg-4 col-sm-6">
-                            <h5 class="text-20 fw-500 mb-30">会社情報</h5>
+                        <div class="col-12">
+                            <h5 class="text-18 fw-500 mb-15">会社情報</h5>
                             <div class="d-flex y-gap-10 flex-column">
                                 <a href="{{locale_route('about')}}">私たちについて</a>
                             </div>
                         </div>
 
-                        <div class="col-xl-2 col-lg-4 col-sm-6">
-                            <h5 class="text-20 fw-500 mb-30">サポート</h5>
+                        <div class="col-12">
+                            <h5 class="text-18 fw-500 mb-15">サポート</h5>
                             <div class="d-flex y-gap-10 flex-column">
                                 <a href="{{locale_route('support.page')}}">よくある質問</a>
                                 <a href="{{locale_route('terms')}}">利用規約</a>
@@ -304,8 +354,8 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-2 col-lg-4 col-sm-6">
-                            <h5 class="text-20 fw-500 mb-30">その他</h5>
+                        <div class="col-12">
+                            <h5 class="text-18 fw-500 mb-15">その他</h5>
                             <div class="d-flex y-gap-10 flex-column">
                                 <a href="{{locale_route('home')}}">ホーム</a>
                                 <a href="{{locale_route('login')}}">ログイン</a>
@@ -316,24 +366,15 @@
                     </div>
                 </div>
 
-                <div class="py-20 border-top-light">
-                    <div class="row justify-between items-center y-gap-10">
-                        <div class="col-auto">
-                            <div class="row x-gap-30 y-gap-10">
-                                <div class="col-auto">
-                                    <div class="d-flex items-center">
-                                        著作権 2025 年 by Andfun Yangon Co.,LTD
-                                    </div>
-                                </div>
+                <div class="py-15 border-top-light">
+                    <div class="row y-gap-10">
+                        <div class="col-12">
+                            <div class="text-14">
+                                著作権 2025 年 by Andfun Yangon Co.,LTD
                             </div>
                         </div>
-
-                        <div class="col-auto">
-                            <div class="row y-gap-10 items-center">
-                                <div class="col-auto">
-                                    <a href="{{locale_route('terms')}}">利用規約</a>
-                                </div>
-                            </div>
+                        <div class="col-12">
+                            <a href="{{locale_route('terms')}}">利用規約</a>
                         </div>
                     </div>
                 </div>
@@ -373,6 +414,19 @@
                     menuOverlay.classList.remove('active');
                     document.body.classList.remove('no-scroll');
                 });
+            });
+
+            // Hide preloader when page loads
+            window.addEventListener('load', function() {
+                const preloader = document.querySelector('.js-preloader');
+                if (preloader) {
+                    setTimeout(function() {
+                        preloader.style.opacity = '0';
+                        setTimeout(function() {
+                            preloader.style.display = 'none';
+                        }, 300);
+                    }, 500);
+                }
             });
         });
     </script>
