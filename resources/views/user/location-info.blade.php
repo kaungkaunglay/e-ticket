@@ -19,11 +19,15 @@
     </div>
 
     <div class="card shadow-lg p-4 mt-3">
-        <p id="noBookingsMessage" class="text-center text-muted mt-3" style="display: none;">
-            予約は見つかりませんでした。
+        @if($bookings->isEmpty())
+        <p id="noBookingsMessage" class="text-center text-muted mt-3">
+            <i class="fas fa-calendar-times me-2"></i>予約は見つかりませんでした。
+        </p>
+        @else
+        <p class="mb-3 text-center" style="color: #B22222; font-weight: bold;">
+            <i class="fas fa-clipboard-list me-2"></i>現在の予約数: {{ $bookings->count() }}件
         </p>
 
-        @if(!$bookings->isEmpty())
         <div class="container table-responsive">
             <table id="bookingTable" class="table table-hover table-striped">
                 <thead class="thead-dark text-center" style="background-color: #FFA500;color: white;">
@@ -31,8 +35,8 @@
                         <th>レストラン名</th>
                         <th>住所</th>
                         <th>電話番号</th>
-                        <th>予約日</th>
-                        <th>価格範囲</th>
+                        <th>予約日時</th>
+                        <th>価格帯</th>
                         <th>メモ</th>
                         <th>操作</th>
                     </tr>
@@ -40,19 +44,44 @@
                 <tbody>
                     @foreach($bookings as $booking)
                     <tr>
-                        <td><strong>{{ $booking->restaurant->name }}</strong></td>
-                        <td>{{ $booking->restaurant->address }}</td>
-                        <td>{{ $booking->restaurant->phone_number }}</td>
-                        <td class="text-center">{{ $booking->select_date }}</td>
-                        <td class="text-center">¥{{ number_format($booking->restaurant->price_range) }}</td>
-                        <td>{{ $booking->note ?? 'メモなし' }}</td>
+                        <td><strong>{{ $booking->restaurant->name ?? '未設定' }}</strong></td>
+                        <td>{{ $booking->restaurant->address ?? '未設定' }}</td>
+                        <td>{{ $booking->restaurant->phone_number ?? '未設定' }}</td>
                         <td class="text-center">
-                            <button class="btn btn-primary btn-sm">
-                                <i class="fas fa-eye"></i>
-                            </button><br>
-                            <button class="btn btn-danger btn-sm cancel-booking" data-id="{{ $booking->id }}">
-                                <i class="fas fa-times-circle"></i>
-                            </button>
+                            @if($booking->select_date)
+                                {{ \Carbon\Carbon::parse($booking->select_date)->format('Y/m/d H:i') }}
+                            @else
+                                未設定
+                            @endif
+                        </td>
+                        <td class="text-center">
+                            @if($booking->restaurant->price_range)
+                                ¥{{ number_format($booking->restaurant->price_range) }}
+                            @else
+                                未設定
+                            @endif
+                        </td>
+                        <td>
+                            @if($booking->note)
+                                <span class="badge bg-light text-dark">{{ $booking->note }}</span>
+                            @else
+                                メモなし
+                            @endif
+                        </td>
+                        <td class="text-center">
+                            <div class="d-flex flex-column gap-2">
+                                <a href="/restaurant/{{ $booking->restaurant_id }}" 
+                                   class="btn btn-primary btn-sm"
+                                   title="レストラン詳細">
+                                    <!-- <i class="fas fa-eye"></i> 詳細 -->
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <button class="btn btn-danger btn-sm cancel-booking" 
+                                        data-id="{{ $booking->id }}"
+                                        title="予約キャンセル">
+                                        <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                     @endforeach
