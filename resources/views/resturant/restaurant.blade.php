@@ -115,7 +115,7 @@
 
                 <input type="hidden" name="menu" id="selected-menu-ids">
             </div>
-            
+
 
 
             <div class="col-md-3">
@@ -138,7 +138,7 @@
 
 
 
-            
+
 
             <!-- Logo & Cover Image -->
             <div class="col-md-6">
@@ -181,14 +181,14 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <label class="lh-1 text-16 text-light-1 mb-10">{{translate('address')}}</label>
+                <label class="lh-1 text-16 text-light-1 mb-10">住所</label>
                 <div class="form-input">
                     <input type="text" name="address" value="{{ old('address', $restaurant->address ?? '') }}" required>
 
                 </div>
             </div>
             <div class="col-md-2">
-                <label class="lh-1 text-16 text-light-1 mb-10">{{translate('city')}}</label>
+                <label class="lh-1 text-16 text-light-1 mb-10">{{translate('都道府県')}}</label>
                 <div class="form-input">
                     <input type="text" name="city" value="{{ old('city', $restaurant->city ?? '') }}" required>
 
@@ -197,7 +197,7 @@
             <div class="col-md-2">
                 <label class="lh-1 text-16 text-light-1 mb-10">{{translate('zip_code')}}</label>
                 <div class="form-input">
-                    <input type="text" name="zip_code" value="{{ old('zip_code', $restaurant->zip_code ?? '') }}" required>
+                    <input type="text" name="zip_code" maxlength="7" value="{{ old('zip_code', $restaurant->zip_code ?? '') }}" required>
 
                 </div>
             </div>
@@ -222,7 +222,7 @@
             <div class="col-md-2">
                 <label class="lh-1 text-16 text-light-1 mb-10">{{translate('phone')}}</label>
                 <div class="form-input">
-                    <input type="text" name="phone_number" value="{{ old('phone_number', $restaurant->phone_number ?? '') }}" required>
+                    <input type="text" name="phone_number" maxlength="11" value="{{ old('phone_number', $restaurant->phone_number ?? '') }}" required>
 
                 </div>
             </div>
@@ -276,8 +276,43 @@
                 <div class="form-check col-md-3 text-center">
                     <input type="checkbox" name="outdoor_seating" value="1" {{ old('outdoor_seating', $restaurant->outdoor_seating ?? false) ? 'checked' : '' }}> {{translate('outdoor_seating')}}
                 </div>
+                <div class="form-check col-md-3 text-center">
+                    <input type="checkbox" name="smoking" value="1" {{ old('outdoor_seating', $restaurant->smoking ?? false) ? 'checked' : '' }}> {{translate('smoking')}}
+                </div>
+
+            </div>
+            <h2 class="text-15">検索用</h2>
+
+            <div class="d-flex" style="gap: 20px;">
+                <div data-x-dd-click="searchMenu-loc col-md-6">
+                    <h4 class="text-15 fw-500 ls-2 lh-16">都道府県</h4>
+                    <div class="text-15 text-light-1 ls-2 lh-16" style="border: 1px solid var(--color-border);">
+                        <select id="city" name="city" class="js-search js-dd-focus w-100">
+                            <option value="">{{ translate('都道府県を選んでください') }}</option>
+                            @foreach($cities as $city)
+                            <option value="{{ $city->name }}" {{ $restaurant->city == $city->name ? 'selected' : '' }}>
+                                {{ $city->name }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div data-x-dd-click="searchMenu-loc col-6">
+                    <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('市町区村') }}</h4>
+                    <div class="text-15 text-light-1 ls-2 lh-16" style="border: 1px solid var(--color-border);">
+                        <select id="subTown" name="sub_town" class="js-search js-dd-focus w-100" disabled>
+                            <option value="">{{ translate('市町区村を選んでください') }}</option>
+                            @isset($restaurant)
+                            @if ($restaurant->sub_towns)
+                            <option value="{{ $restaurant->sub_towns }}" selected>{{ $restaurant->sub_towns }}</option>
+                            @endif
+                            @endisset
+                        </select>
+                    </div>
+                </div>
             </div>
 
+            
             <!-- Available -->
             <div class="col-12">
                 <label class="lh-1 text-16 text-light-1 mb-10">{{translate('available')}}</label>
@@ -311,7 +346,16 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    function removeImage(element) {
+    if (element && element.parentElement) {
+        element.parentElement.remove();
+    }
+}
+
+
+
     document.addEventListener('DOMContentLoaded', function() {
         const multiImagesInput = document.getElementById('multi_images');
         const imagePreview = document.getElementById('image-preview');
@@ -489,5 +533,44 @@
                 element.parentElement.remove();
             }
         }
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+
+        var savedCity = "{{ $restaurant->city ?? '' }}";
+        var savedSubTown = "{{ $restaurant->sub_towns ?? '' }}";
+
+
+        if (savedCity) {
+            $('#city').val(savedCity).trigger('change');
+        }
+
+
+        $('#city').change(function() {
+            var cityName = $(this).val();
+            if (cityName) {
+                $('#subTown').prop('disabled', false);
+                $.ajax({
+                    url: '/owner/get-sub-towns/' + cityName,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#subTown').empty();
+                        $('#subTown').append('<option value="">{{ translate('市町区村を選んでください') }}</option>');
+                        $.each(data, function(key, value) {
+
+                            var selected = (value.name === savedSubTown) ? 'selected' : '';
+                            $('#subTown').append('<option value="' + value.name + '" ' + selected + '>' + value.name + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#subTown').prop('disabled', true);
+                $('#subTown').empty();
+                $('#subTown').append('<option value="">{{ translate('市町区村を選んでください') }}</option>');
+            }
+        });
     });
 </script>

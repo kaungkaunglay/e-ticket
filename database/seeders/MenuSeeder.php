@@ -19,44 +19,44 @@ class MenuSeeder extends Seeder
       
         $menus = [
             [
-                'menu' => 'Pasta Carbonara',
-                'image' => 'https://images.unsplash.com/photo-1595295333158-4742f28fbd85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                'menu' => 'menu 1',
+                'image' => 'https://tblg.k-img.com/resize/660x370c/restaurant/images/Rvw/206831/6b8e1e9b6d2cf5403453a91fa65a3484.jpg?token=48ecdc6&api=v2',
             ],
             [
-                'menu' => 'Margherita Pizza',
-                'image' => 'https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                'menu' => 'menu 2',
+                'image' => 'https://tblg.k-img.com/resize/660x370c/restaurant/images/Rvw/206830/1620d425d0e143bd897fd321006d9901.jpg?token=2e6da4d&api=v2',
             ],
             [
-                'menu' => 'Grilled Salmon',
-                'image' => 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                'menu' => 'menu 3',
+                'image' => 'https://tblg.k-img.com/restaurant/images/Rvw/27981/150x150_square_27981030.jpg',
             ],
             [
-                'menu' => 'Beef Burger',
-                'image' => 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                'menu' => 'menu 4',
+                'image' => 'https://tblg.k-img.com/restaurant/images/Rvw/131038/150x150_square_131038650.jpg',
             ],
             [
-                'menu' => 'Sushi Platter',
-                'image' => 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                'menu' => 'menu 5',
+                'image' => 'https://tblg.k-img.com/restaurant/images/Rvw/131038/150x150_square_131038643.jpg',
             ],
             [
-                'menu' => 'Chicken Tikka Masala',
-                'image' => 'https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                'menu' => 'menu 6',
+                'image' => 'https://tblg.k-img.com/restaurant/images/Rvw/131038/150x150_square_131038653.jpg',
             ],
             [
-                'menu' => 'Caesar Salad',
-                'image' => 'https://images.unsplash.com/photo-1546793665-c74683f339c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                'menu' => 'menu 7',
+                'image' => 'https://tblg.k-img.com/restaurant/images/Rvw/131038/150x150_square_131038662.jpg',
             ],
             [
-                'menu' => 'BBQ Ribs',
-                'image' => 'https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                'menu' => 'menu 8',
+                'image' => 'https://tblg.k-img.com/restaurant/images/Rvw/175400/150x150_square_958f6c119d4abc1b4f3757effc00da6a.jpg',
             ],
             [
-                'menu' => 'Vegetable Stir Fry',
-                'image' => 'https://images.unsplash.com/photo-1597047084897-51e81819a499?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                'menu' => 'menu 9',
+                'image' => 'https://tblg.k-img.com/restaurant/images/Rvw/175400/150x150_square_ab455f4540d675fd77ba38edcf23c264.jpg',
             ],
             [
-                'menu' => 'Tiramisu',
-                'image' => 'https://images.unsplash.com/photo-1610462275441-9280204d9c22?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                'menu' => 'menu 10',
+                'image' => 'https://tblg.k-img.com/restaurant/images/Rvw/175400/150x150_square_2e00b7308a647e890773225a639ba14a.jpg',
             ],
         ];
 

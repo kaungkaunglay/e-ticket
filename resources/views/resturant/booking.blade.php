@@ -33,8 +33,8 @@
             <th>{{translate('phone')}}</th>
             <th>{{translate('price')}}</th>
             <!-- <th>Web Url</th> -->
-            <th>{{translate('note')}}</th>
-            <th>Note</th>
+            <th>{{translate('booking_date')}}</th>
+            <th>ユーザーコメント</th>
             <th>{{translate('view')}}</th>
         </tr>
     </thead>
@@ -56,7 +56,7 @@
         
             <td>{{ $booking->select_date }}</td>
            
-            <td>{{ $booking->note ?? 'No Note' }}</td>
+            <td>{{ $booking->note ?? 'ユーザーコメントがありません' }}</td>
 
        
             <td>

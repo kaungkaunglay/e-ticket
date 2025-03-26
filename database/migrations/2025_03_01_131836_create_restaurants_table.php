@@ -20,7 +20,8 @@ return new class extends Migration
             $table->text('multi_images')->nullable();
             $table->text('description');
             $table->string('address');
-            $table->string('city');
+            $table->string('city')->nullable();
+            $table->text('sub_towns')->nullable();
             $table->string('zip_code');
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
@@ -39,6 +40,7 @@ return new class extends Migration
             $table->text('google_map')->nullable();
             $table->string('status'); 
             $table->string('available')->nullable();
+            $table->string('smoking')->nullable();
             $table->string('user_id')->nullable();
             $table->timestamps();
         });

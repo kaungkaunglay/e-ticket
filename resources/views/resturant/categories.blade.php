@@ -38,7 +38,6 @@
                             <tr>
                                 <th>{{translate('id')}}</th>
                                 <th>{{translate('name')}}</th>
-                                <th>{{translate('image')}}</th>
                                 <th>{{translate('created')}}</th>
                                 <th>{{translate('action')}}</th>
                             </tr>
@@ -48,9 +47,6 @@
                             <tr>
                                 <td class="text-blue-1 fw-500">{{$category->id}}</td>
                                 <td class="text-blue-1 fw-500">{{$category->name}}</td>
-                                <td>
-                                    <img src="{{asset($category->image)}}" alt="{{$category->name}}" style="width: 20%;">
-                                </td>
                                 <td>{{$category->created_at->format('d m y')}}</td>
                                 <td>
                                     <div class="row x-gap-10 y-gap-10 items-center">

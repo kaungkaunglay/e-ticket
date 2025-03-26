@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Models\Resturant;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\ResturantController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -18,7 +19,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\Auth\GoogleController;
-use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\Facades\Socialite;  
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,11 +41,13 @@ Route::get('/restaurant/{id}', [HomeController::class, 'detail'])->name('restaur
 
 
 Route::get('/report', [HomeController::class, 'report'])->name('restaurant.report');
-
 Route::get('/reportuser', [HomeController::class, 'reportuser'])->name('restaurant.reportuser');
 
 Route::get('/booking/detail/{id}', [BookingController::class, 'show'])->name('booking.detail');
 Route::post('/booking/save', [BookingController::class, 'booksave'])->name('booking.save');
+
+Route::get('/booking/cancel', [BookingController::class, 'bookcancel'])->name('booking.cancel');
+
 Route::get('/booking/thank-you', [BookingController::class, 'thankYou'])->name('booking.thankyou');
 
 
@@ -57,19 +63,25 @@ Route::get('/booking/favourite', [BookingController::class, 'favourite'])->name(
 Route::get('/favorites/remove', [BookingController::class, 'remove'])->name('favorites.remove');
 
 Route::get('/restaurant-lists', [HomeController::class, 'search'])->name('restaurant.search');
+// Route::get('/restaurant-lists', [HomeController::class, 'searchresult'])->name('restaurant.search.post');
+
+
 Route::get('/search-price', [HomeController::class, 'pricesearch'])->name('restaurant.price.search');
 Route::get('/search-checkbox', [HomeController::class, 'searchcheckbox'])->name('restaurant.searchcheckbox.search');
 Route::get('/restaurant-alllists', [HomeController::class, 'allsearch'])->name('restaurantall.search');
 
 Route::get('/search-price', [HomeController::class, 'pricesearch'])->name('restaurant.price.search');
 Route::get('/get-cities', [HomeController::class, 'getCities'])->name('cities.get');
-Route::get('/restaurant-list', [ResturantController::class, 'all'])->name('restaurant-list');
+Route::get('/restaurant-list-data', [ResturantController::class, 'all'])->name('restaurant-list');
 
 
 Route::post('/notify-new-update', [HomeController::class, 'notifynewupdate'])->name('notifynewupdate.post');
 Route::post('/supportcontect', [HomeController::class, 'supportcontect'])->name('supportcontect.post');
 
 
+Route::get('/get-sub-towns/{cityId}', [HomeController::class, 'getSubTowns'])->name('get.sub.towns');
+
+// Route::delete('/restaurants/{restaurant}/delete-image', [ResturantController::class, 'deleteImage'])->name('restaurants.deleteImage');
 // Route::get('/login', function () {
 //     return view('login');
 // })->name('login');
@@ -137,7 +149,7 @@ Route::get('/password/sent/{email}', [ForgetPasswordController::class, 'showSent
 Route::get('/password/reset/{token}', [ForgetPasswordController::class, 'showResetForm'])->name('show_reset_form');
 Route::post('/password/reset', [ForgetPasswordController::class, 'reset'])->name('reset_password');
 Route::get('/password/success', [ForgetPasswordController::class, 'success'])->name('reset_success');
-Route::PUT('/user/password', [UserController::class, 'userpassword'])->name('user.password');
+Route::put('/user/password', [UserController::class, 'userpassword'])->name('user.password');
 Route::get('/promotion/show', [SupportController::class, 'promoshow'])->name('promo.show');
 Route::POST('/promotion/search', [SupportController::class, 'search'])->name('promo.search');
 Route::post('/promotion/update', [SupportController::class, 'updatePromo'])->name('update.promo');
@@ -175,6 +187,8 @@ Route::middleware(['admin'])->group(function () {
     Route::put('owner/resturant/{restaurant}', [ResturantController::class, 'update'])->name('resturant.update');
     Route::delete('owner/resturant/{restaurant}', [ResturantController::class, 'destroy'])->name('resturant.destroy');
 
+    Route::get('owner/get-sub-towns/{cityName}', [ResturantController::class, 'getSubadminTowns'])->name('get.owner.towns');
+
     //category
 
     Route::get('owner/categories', [CategoryController::class, 'index'])->name('categories.index');
@@ -190,7 +204,7 @@ Route::middleware(['admin'])->group(function () {
     Route::post('owner/storeOrUpdate/{id?}', [SupportController::class, 'storeOrUpdate'])->name('createsupport.storeOrUpdate');
     Route::delete('owner/question/{id}', [SupportController::class, 'questiondestroy'])->name('question.destroy');
 
-
+   
 
     Route::get('owner/supportcategory', [SupportController::class, 'category'])->name('support.category');
     Route::get('owner/createcategory/{id?}', [SupportController::class, 'createcategory'])->name('support.createcategory');
@@ -207,11 +221,14 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/menu', [MenuController::class, 'index'])->name('menu.index');
     Route::get('menu/manage/{id?}', [MenuController::class, 'manage'])->name('menu.manage');
     Route::post('menu/store-or-update/{id?}', [MenuController::class, 'storeOrUpdate'])->name('menu.storeOrUpdate');
-  
+
+     
+
+    // Route::get('owner/city', [CityController::class, 'create'])->name('city.create');
+    // Route::get('owner/cityshow', [CityController::class, 'cityshow'])->name('city.cityshow');
+    // Route::post('owner/cityedit', [CityController::class, 'cityedit'])->name('city.cityedit');
 
     
-
-
     //promotion
     Route::post('/admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
 });

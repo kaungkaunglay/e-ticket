@@ -17,7 +17,7 @@ class TranslationSeeder extends Seeder
             ['key' => 'discover_amazing', 'en' => 'Discover amazing places at exclusive deals', 'jp' => '特別セールで素晴らしいレストランを発見'],
             ['key' => 'discover_more', 'en' => 'Discover More', 'jp' => 'もっと探す'],
             ['key' => 'search_data', 'en' => 'Search', 'jp' => '検索'], 
-            ['key' => 'discount_restaurants', 'en' => 'Discount Restaurants', 'jp' => 'ディスカウントがあるレストラン'],   
+            ['key' => 'discount_restaurants', 'en' => 'Discount Restaurants', 'jp' => '本日のプロモーション'],   
             ['key' => 'popular_restaurants', 'en' => 'Popular Restaurants', 'jp' => '人気のレストラン'],
             ['key' => 'restaurant_near', 'en' => 'Restaurant Near Your Location', 'jp' => '現在地近くのレストラン'],
             ['key' => 'notify_new_update', 'en' => 'Notify New Update & Discount', 'jp' => '新しいアップデートと割引を通知する'],  
@@ -36,7 +36,11 @@ class TranslationSeeder extends Seeder
             ['key' => 'or_sign_in_with', 'en' => 'or sign in with', 'jp' => 'または次の方法でサインインします '], 
             ['key' => 'creating_an_account', 'en' => ' By creating an account, you agree to our Terms of Service and Privacy Statement.', 'jp' => 'アカウントを作成すると、サービス利用規約とプライバシーに関する声明に同意したことになります。 '],
             ['key' => 'how_can_help_you', 'en' => 'How Can I Help You?', 'jp' => 'どんな御用でしょうか？'], 
+           
+            ['key' => 'signup', 'en' => 'Sign Up', 'jp' => 'サインアップ'],
+            ['key' => 'user_list', 'en' => 'User list', 'jp' => 'ユーザーリスト'],
 
+            
             ['key' => 'home', 'en' => 'Home', 'jp' => 'ホーム'],
             ['key' => 'categories', 'en' => 'Categories', 'jp' => 'カテゴリー'],
             ['key' => 'profile', 'en' => 'Profile', 'jp' => 'プロフィール'],
@@ -47,7 +51,7 @@ class TranslationSeeder extends Seeder
             ['key' => 'register', 'en' => 'Register', 'jp' => '登録'],
             ['key' => 'select_your_language', 'en' => 'Select Your Language', 'jp' => '言語を選択'],
         
-            ['key' => 'reserve_table', 'en' => 'Reserve Your Table at the Finest Restaurants Today!', 'jp' => '今すぐ最高級レストランを予約しましょう!'],
+            ['key' => 'reserve_table', 'en' => 'Reserve Your Table at the Finest Restaurants Today!', 'jp' => '今日はどちらのレストランをご希望でしょう'],
             ['key' => 'contact_us', 'en' => 'Contact Us', 'jp' => 'お問い合わせ'],
             ['key' => 'toll_free_customer_care', 'en' => 'Toll Free Customer Care', 'jp' => 'カスタマーサポート'],
             ['key' => 'phone', 'en' => 'Phone', 'jp' => '電話'],
@@ -67,7 +71,7 @@ class TranslationSeeder extends Seeder
             ['key' => 'check_out', 'en' => 'Check Out', 'jp' => 'チェックアウト'],
             ['key' => 'guest', 'en' => 'Guest', 'jp' => 'ゲスト'],
             ['key' => 'search', 'en' => 'Search', 'jp' => '検索'],
-            ['key' => 'discount_restaurants', 'en' => 'Discount Restaurants', 'jp' => 'ディスカウントのあるレストラン'],
+            ['key' => 'discount_restaurants', 'en' => 'Discount Restaurants', 'jp' => '本日のプロモーション'],
             ['key' => 'popular_restaurants', 'en' => 'Popular Restaurants', 'jp' => '人気のレストラン'],
             ['key' => 'view_all', 'en' => 'View all', 'jp' => 'すべて表示'],
             ['key' => 'restaurant_near_location', 'en' => 'Restaurant Near Your Location', 'jp' => '近くのレストラン'],
@@ -203,6 +207,36 @@ class TranslationSeeder extends Seeder
             ['key' => 'note', 'en' => 'Note', 'jp' => 'メモ'],
             ['key' => 'all_menu_list', 'en' => 'All Menu List', 'jp' => 'すべてのメニューリスト'],
             ['key' => 'menu_create', 'en' => 'Create Menu', 'jp' => 'メニュー作成'],
+
+            ['key' => 'checkin_date', 'en' => 'Check in date', 'jp' => 'チェックイン日'],
+            ['key' => 'price_with_dropdown', 'en' => 'Price From', 'jp' => '価格（最小）'],
+            ['key' => 'price_with_to', 'en' => 'Price To', 'jp' => '価格（最大）'],
+            ['key' => 'smoking', 'en' => 'Smoking', 'jp' => '喫煙'],
+            ['key' => 'Select Price Range', 'en' => 'Select Price Range', 'jp' => '価格範囲を選択'],
+           
+            ['key' => 'Select Category', 'en' => 'Select Category', 'jp' => 'カテゴリを選択'],
+
+
+            ['key' => 'Select Smoking Preference', 'en' => 'Select Smoking Preference', 'jp' => '喫煙の希望を選択'],
+            ['key' => 'Allowed', 'en' => 'Allowed', 'jp' => '許可'],
+            ['key' => 'Not Allowed', 'en' => 'Not Allowed', 'jp' => '禁止'],
+            
+            ['key' => 'sub_location', 'en' => 'sub location', 'jp' => 'サブエリア'],
+            ['key' => 'select_city', 'en' => 'select city', 'jp' => '都市を選択'],
+            ['key' => 'select_sub_location', 'en' => 'select sub location', 'jp' => 'サブロケーションを選択']
+            
+
+
+
+
+           
+
+            
+            
+
+            
+
+            
 
         ];
 

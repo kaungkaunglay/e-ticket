@@ -31,7 +31,7 @@
 
     <div class="row y-gap-40 justify-between pt-50">
 
-      <div data-anim-child="slide-up delay-2" class="col-lg-3 col-sm-6 m-auto">
+      <div  class="col-lg-3 col-sm-6 m-auto">
 
         <div class="featureIcon -type-1 ">
           <div class="d-flex justify-center">
@@ -94,7 +94,7 @@
         </p>
       </div>
 
-      <div data-anim-child="slide-up delay-2" class="col-lg-6">
+      <div  class="col-lg-6">
         <img src="{{asset('assets/img/pages/about/2.png')}}" alt="image" class="rounded-4">
       </div>
     </div>

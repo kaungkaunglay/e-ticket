@@ -53,7 +53,7 @@
                                 <td>{{$restaurant->address}}</td>
                                 <th>
                                     <span style="color: {{ $restaurant->status == 1 ? 'green' : 'orange' }}; font-weight: bold;">
-                                        {{ $restaurant->status == 1 ? 'Approved' : 'Pending' }}
+                                        {{ $restaurant->status == 1 ? '承認済' : '保留' }}
                                     </span>
                                 </th>
 
@@ -61,11 +61,11 @@
                                 <td>
                                     <div class="row x-gap-10 y-gap-10 items-center">
 
-                                        <div class="col-auto">
+                                        <!-- <div class="col-auto">
                                             <button class="flex-center bg-light-2 rounded-4 size-35">
                                                 <i class="icon-eye text-16 text-light-1"></i>
                                             </button>
-                                        </div>
+                                        </div> -->
 
                                         <div class="col-auto">
                                             <a href="{{ route('resturant.edit', $restaurant->id) }}">
@@ -97,7 +97,8 @@
     </div>
 
     <div class="pt-30">
-        <div class="row justify-between">
+        {{ $restaurants->links('pagination::bootstrap-4') }}
+        <!-- <div class="row justify-between">
             <div class="col-auto">
                 <button class="button -blue-1 size-40 rounded-full border-light">
                     <i class="icon-chevron-left text-12"></i>
@@ -157,7 +158,7 @@
                     <i class="icon-chevron-right text-12"></i>
                 </button>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 @endsection

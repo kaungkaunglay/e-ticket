@@ -150,49 +150,70 @@ border: 2px solid #afa9a9 !important;
 <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.min.js"></script>
 <script>
-    document.getElementById('password-change-form').addEventListener('submit', async function(event) {
-        event.preventDefault(); 
-        const formData = {
-            id: document.querySelector('input[name="id"]').value,
-            old_password: document.getElementById('old_password').value,
-            new_password: document.getElementById('new_password').value,
-            new_password_confirmation: document.getElementById('new_password_confirmation').value,
-        };
+   document.getElementById('password-change-form').addEventListener('submit', async function(event) {
+    event.preventDefault(); 
+    const formData = {
+        id: document.querySelector('input[name="id"]').value,
+        old_password: document.getElementById('old_password').value,
+        new_password: document.getElementById('new_password').value,
+        new_password_confirmation: document.getElementById('new_password_confirmation').value,
+    };
 
-        try {
-          
-            const response = await fetch("{{ route('user.password') }}", {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-                },
-                body: JSON.stringify(formData),
+    console.log('Form Data:', formData); 
+
+    try {
+        const response = await fetch("{{ route('user.password') }}", {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+            },
+            body: JSON.stringify(formData),
+        });
+
+        console.log('Response Status:', response.status); 
+        console.log('Response Headers:', response.headers); 
+
+        
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            const text = await response.text(); 
+            console.error('Expected JSON but got:', text); 
+            throw new Error('Server returned non-JSON response');
+        }
+
+        const data = await response.json();
+        console.log('Response Data:', data); 
+
+        if (response.ok) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: data.message || 'Password changed successfully!',
             });
 
-            const data = await response.json();
-            if (response.ok) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success!',
-                    text: data.message || 'Password changed successfully!',
-                });
+            document.getElementById('password-change-form').reset();
+        } else {
+            let errorMessage = data.message || 'Failed to change password. Please try again.';
 
-                document.getElementById('password-change-form').reset();
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error!',
-                    text: data.message || 'Failed to change password. Please try again.',
-                });
+            
+            if (data.errors) {
+                errorMessage = Object.values(data.errors).join('<br>');
             }
-        } catch (error) {
-            console.error('Error:', error);
+
             Swal.fire({
                 icon: 'error',
                 title: 'Error!',
-                text: 'An unexpected error occurred. Please try again.',
+                html: errorMessage, 
             });
         }
-    });
+    } catch (error) {
+        console.error('Error:', error); 
+        Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'An unexpected error occurred. Please try again.',
+        });
+    }
+});
 </script>

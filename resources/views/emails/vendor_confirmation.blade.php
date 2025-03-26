@@ -85,7 +85,7 @@
 <body>
     <div class="email-container">
         <div class="header">
-        <img src="https://s6.imgcdn.dev/Yho9sh.png" alt="会社ロゴ">
+        <img src="https://res.cloudinary.com/da45qmffk/image/upload/v1742181851/logo-dark_r8vepo_vtcuq7.png" alt="会社ロゴ">
         </div>
         <div class="content">
             <h1>こんにちは、{{ $name }}さん!</h1>
