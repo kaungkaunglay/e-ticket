@@ -70,7 +70,7 @@
                         <div class="search-grid">
                            <!-- Row 1 -->
                            <div class="search-field">
-                              <select id="city" name="city" class="search-input">
+                              <select id="city" name="city" class="search-input no-arrow text-center">
                                  <option value="">Select City</option>
                                  @foreach($cities as $city)
                                  <option value="{{ $city->id }}">{{ $city->name }}</option>
@@ -79,7 +79,7 @@
                            </div>
 
                            <div class="search-field">
-                              <select id="subTown" name="subTown" class="search-input" disabled>
+                              <select id="subTown" name="subTown" class="search-input no-arrow text-center" disabled>
                                  <option value="">Select Sub-Town</option>
                               </select>
                            </div>
@@ -100,7 +100,7 @@
                            </div>
 
                            <div class="search-field">
-                              <select name="price_to" class="search-input">
+                              <select name="price_to" class="search-input no-arrow text-center">
                                  <option value="">Select Price</option>
                                  @foreach($priceRange as $price)
                                  <option value="{{ $price }}">{{ number_format($price) }}</option>
@@ -110,7 +110,7 @@
 
                            <!-- Row 3 -->
                            <div class="search-field">
-                              <select name="category" class="search-input">
+                              <select name="category" class="search-input no-arrow text-center">
                                  <option value="">Select Category</option>
                                  @foreach ($category as $cat)
                                  <option value="{{ $cat->id }}">{{ $cat->name }}</option>
@@ -119,7 +119,7 @@
                            </div>
 
                            <div class="search-field">
-                              <select name="smoking" class="search-input">
+                              <select name="smoking" class="search-input no-arrow text-center">
                                  <option value="">Select Smoking Preference</option>
                                  <option value="1">喫煙可</option>
                                  <option value="0">禁煙</option>
@@ -153,7 +153,7 @@
    
    .search-input {
       width: 100%;
-      padding: 12px 35px 12px 12px;
+      padding: 12px;
       border-radius: 8px;
       border: 2px solid black;
       background-color: #fff;
@@ -162,19 +162,25 @@
       transition: 0.3s ease;
       height: 54px;
       text-align: center;
-      /* Custom dropdown arrow */
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: calc(50% + 45px) center;
-      background-size: 12px;
+   }
+   
+   /* Remove dropdown arrows */
+   .no-arrow {
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
+      background-image: none;
+      padding-right: 12px; /* Maintain padding balance */
    }
    
-   .date-input {
-      background-image: none;
-      padding: 12px;
+   /* Center placeholder text for date input */
+   .search-input::placeholder {
+      text-align: center;
+   }
+   
+   /* Date input customization */
+   input[type="date"]::-webkit-calendar-picker-indicator {
+      display: none;
    }
    
    .search-submit {
@@ -196,10 +202,6 @@
    @media (max-width: 768px) {
       .search-grid {
          grid-template-columns: 1fr;
-      }
-      
-      .search-input {
-         background-position: calc(50% + 40px) center;
       }
    }
 </style>
@@ -430,8 +432,7 @@
                dataType: 'json',
                success: function(data) {
                   $('#subTown').empty();
-                  $('#subTown').append('<option value="">{{ translate('
-                     市町区村 ') }}</option>');
+                  $('#subTown').append('<option value="">{{ translate('市町区村 ') }}</option>');
                   $.each(data, function(key, value) {
                      $('#subTown').append('<option value="' + value.id + '">' + value.name + '</option>');
                   });
@@ -440,8 +441,7 @@
          } else {
             $('#subTown').prop('disabled', true);
             $('#subTown').empty();
-            $('#subTown').append('<option value="">{{ translate('
-               市町区村 ') }}</option>');
+            $('#subTown').append('<option value="">{{ translate('市町区村 ') }}</option>');
          }
       });
    });
