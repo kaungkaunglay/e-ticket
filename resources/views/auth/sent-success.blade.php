@@ -100,7 +100,7 @@
     </style>
 @endsection
 @section('contents')
-    <section class="layout-pt-lg layout-pb-lg bg-blue-2">
+    <section class="layout-pt-lg layout-pb-lg bg-blue-2" style="height: 100vh;">
         <div class="container">
             <div class="row justify-center">
                 <div class="col-xl-6 col-lg-7 col-md-9">

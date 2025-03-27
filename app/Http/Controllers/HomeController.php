@@ -156,7 +156,7 @@ class HomeController extends Controller
             })
             ->paginate();
     
-        return view('search-results', compact(
+        return view('resturants.index', compact(
             'restaurants',
             'query',
             'checkIn',
