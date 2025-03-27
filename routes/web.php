@@ -43,8 +43,8 @@ Route::get('/restaurant/{id}', [HomeController::class, 'detail'])->name('restaur
 Route::get('/report', [HomeController::class, 'report'])->name('restaurant.report');
 Route::get('/reportuser', [HomeController::class, 'reportuser'])->name('restaurant.reportuser');
 
-Route::get('/booking/detail',[BookingController::class,'detail'])->name('booking.detail');
-// Route::get('/booking/detail/{id}', [BookingController::class, 'show'])->name('booking.detail');
+// Route::get('/booking/detail',[BookingController::class,'detail'])->name('booking.detail');
+Route::get('/booking/detail/{id}', [BookingController::class, 'show'])->name('booking.detail');
 Route::post('/booking/save', [BookingController::class, 'booksave'])->name('booking.save');
 
 Route::get('/booking/cancel', [BookingController::class, 'bookcancel'])->name('booking.cancel');

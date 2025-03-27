@@ -18,9 +18,9 @@ class BookingController extends Controller
      * Display a listing of the resource.
      */
 
-    public function detail(){
-        return view('booking-detail');
-    }
+    // public function detail(){
+    //     return view('booking-detail');
+    // }
     public function index()
     {
         //
@@ -88,7 +88,8 @@ class BookingController extends Controller
     }
 
     public function booksave(Request $request)
-    {
+    {    
+       
         $request->validate([
             'restaurant_id' => 'required|exists:restaurants,id',
             'select_date' => 'required|date',
@@ -102,10 +103,12 @@ class BookingController extends Controller
             'note' => $request->note,
         ]);
 
-        // Send email to the authenticated user
+        
+
+      
         Mail::to(Auth::user()->email)->send(new BookingConfirmation($booking, Auth::user()));
 
-        // Send email to sthahar896@gmail.com
+        
         Mail::to('kado@and-fun.com')->send(new BookingConfirmationAdmin($booking, Auth::user()));
 
         return redirect()->route('booking.thankyou')->with('success', 'Your booking was successful! A confirmation email has been sent.');
