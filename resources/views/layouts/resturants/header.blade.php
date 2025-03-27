@@ -1,3 +1,6 @@
+@php
+    use Illuminate\Support\Facades\Route;
+@endphp
 <div class="row bg-white">
     <div class="col-12">
         <div class="row p-3">
@@ -19,9 +22,15 @@
             </div>
         </div>
     </div>
+   
     <div class="col-12 mt-6">
-        <div class="w-100 px-2 py-1 bg-red text-white t-small">
+    <div class="w-100 px-2 py-1 bg-red text-white t-small">
+        @if(request()->routeIs('restaurant.detail'))
+            レストラン詳細
+        @else
             現在地近くのレストラン
-        </div>
+        @endif
     </div>
+</div>
+
 <div>

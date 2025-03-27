@@ -92,7 +92,7 @@ class HomeController extends Controller
             ->pluck('price_range')
             ->unique()
             ->sort();
-    
+        
         // Fetch all categories, cities, and sub-towns for dropdowns
         $categorydata = Category::all();
         $cities = City::all();
@@ -154,7 +154,9 @@ class HomeController extends Controller
                       ->orWhereJsonDoesntContain('closed_days', $dayId);
                 });
             })
-            ->paginate();
+            ->paginate(10);
+
+            // dd($restaurants);
     
         return view('resturants.index', compact(
             'restaurants',
