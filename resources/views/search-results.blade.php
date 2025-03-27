@@ -197,7 +197,11 @@
                             </div>
                         </div>
                     </div>
-                    @if ($restaurants->isEmpty())
+                    @endforeach
+                </div>
+                       
+
+                @if ($restaurants->isEmpty())
                     <p class="text-center text-muted">データがありません。</p>
                 @else
                     @if ($restaurants->lastPage() > 1)
@@ -240,19 +244,12 @@
                         </div>
                     @endif
                 @endif
-                    @endforeach
-                </div>
+
 
             </div>
-            
         </div>
     </div>
-
-    
 </section>
-
-
-
 @include('includes.subscribe')
 
 @endsection
