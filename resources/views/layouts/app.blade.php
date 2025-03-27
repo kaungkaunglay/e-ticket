@@ -181,14 +181,14 @@
     </style>
 </head>
 
-<body class="bg-secondary">
+<body class="" style="background: #f4f4f4">
 
     <main class="bg-white vh-100 d-flex justify-content-between mx-auto flex-column overflow-x-hidden position-relative " style="max-width: 460px;">
         <header class="position-fixed" style="max-width: 460px;">
             @include('layouts.resturants.header')
         </header>
     
-        <div class=" js-right-side-menu position-absolute bg-white vh-100" style="width: 300px;right:0;top:0;">
+        <div class="right-side-menu js-right-side-menu" >
             <div class="right-menu-content">
                 <ul class="menu__nav text-dark-1">
                     <li class="{{ request()->routeIs('home') ? 'active' : '' }}">
@@ -245,7 +245,7 @@
         </div>
         
         <!-- Menu Overlay - covers only the 450px frame -->
-        <div class="menu-overlay js-menu-overlay"></div>
+        {{-- <div class="menu-overlay js-menu-overlay"></div> --}}
     
         <main class="" style="margin-top: 90px;">
     

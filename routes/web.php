@@ -247,3 +247,6 @@ Route::middleware(['vendor'])->group(function () {
     Route::delete('vendor/resturant/{restaurant}', [ShoperController::class, 'destroy'])->name('vendor.resturant.destroy');
     Route::post('/vendor/logout', [VendorLoginController::class, 'logout'])->name('vendor.logout');
 });
+Route::get('/mobile',function(){
+    return view('layouts.mobile-view');
+});
