@@ -1,49 +1,87 @@
-<div class="tabs__pane -tab-item-2">
-    <div class="col-xl-12">
-        <h3 class="text-20 fw-600 mb-3">予約履歴</h3>
+<style>
+    .dataTables_length {
+        display: none;
+    }
+    .dataTables_filter {
+        display: none;
+    }
+    .dataTables_info {
+        display: none;
+    }
+    .dataTables_paginate {
+        display: none;
+    }
+</style>
 
+<div class="col-xl-12 pt-20">
+    <div class="" style="background-color: #B22222;">
+        <h2 class="mb-3 container" style="color: white;">予約一覧</h2>
+    </div>
+
+    <div class="card shadow-lg p-4 mt-3">
         @if($bookings->isEmpty())
-        <p class="text-center text-muted">予約は見つかりませんでした。</p>
+        <p id="noBookingsMessage" class="text-center text-muted mt-3">
+            <i class="fas fa-calendar-times me-2"></i>予約は見つかりませんでした。
+        </p>
         @else
+        <p class="mb-3 text-center" style="color: #B22222; font-weight: bold;">
+            <i class="fas fa-clipboard-list me-2"></i>現在の予約数: {{ $bookings->count() }}件
+        </p>
 
-        <p class="mb-3 fw-bold text-primary">合計予約数: {{ $bookings->count() }}</p>
-
-        <div class="table-responsive">
-            <table id="bookingTable" class="table table-hover w-100">
-                <thead class="bg-light">
-                    <tr class="text-dark fw-bold">
+        <div class="container table-responsive">
+            <table id="bookingTable" class="table table-hover table-striped">
+                <thead class="thead-dark text-center" style="background-color: #FFA500;color: white;">
+                    <tr>
                         <th>レストラン名</th>
                         <th>住所</th>
-                        <th>市区町村</th>
                         <th>電話番号</th>
-                        <th>価格範囲</th>
-                        <th>予約日</th>
+                        <th>予約日時</th>
+                        <th>価格帯</th>
                         <th>メモ</th>
-                        <th>詳細</th>
-                        <th>キャンセル</th>
+                        <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($bookings as $booking)
                     <tr>
-                        <td class="align-middle">{{ $booking->restaurant->name }}</td>
-                        <td class="align-middle">{{ $booking->restaurant->address }}</td>
-                        <td class="align-middle">{{ $booking->restaurant->city }}</td>
-                        <td class="align-middle">{{ $booking->restaurant->phone_number }}</td>
-                        <td class="align-middle text-success">¥{{ number_format($booking->restaurant->price_range) }}</td>
-                        <td class="align-middle text-info fw-bold">{{ $booking->select_date }}</td>
-                        <td class="align-middle">{{ $booking->note ?? 'メモなし' }}</td>
-                        <td class="align-middle text-center">
-                            <a href="/restaurant/{{ $booking->restaurant_id }}" title="レストランを見る">
-                                <button class="btn btn-outline-primary btn-sm">
-                                    <i class="fas fa-eye"></i> プレビュー
-                                </button>
-                            </a>
+                        <td><strong>{{ $booking->restaurant->name ?? '未設定' }}</strong></td>
+                        <td>{{ $booking->restaurant->address ?? '未設定' }}</td>
+                        <td>{{ $booking->restaurant->phone_number ?? '未設定' }}</td>
+                        <td class="text-center">
+                            @if($booking->select_date)
+                                {{ \Carbon\Carbon::parse($booking->select_date)->format('Y/m/d H:i') }}
+                            @else
+                                未設定
+                            @endif
                         </td>
-                        <td class="align-middle text-center">
-                            <button class="btn btn-outline-danger btn-sm cancel-booking" data-id="{{ $booking->id }}">
-                                <i class="fas fa-times-circle"></i> キャンセル
-                            </button>
+                        <td class="text-center">
+                            @if($booking->restaurant->price_range)
+                                ¥{{ number_format($booking->restaurant->price_range) }}
+                            @else
+                                未設定
+                            @endif
+                        </td>
+                        <td>
+                            @if($booking->note)
+                                <span class="badge bg-light text-dark">{{ $booking->note }}</span>
+                            @else
+                                メモなし
+                            @endif
+                        </td>
+                        <td class="text-center">
+                            <div class="d-flex flex-column gap-2">
+                                <a href="/restaurant/{{ $booking->restaurant_id }}" 
+                                   class="btn btn-primary btn-sm"
+                                   title="レストラン詳細">
+                                    <!-- <i class="fas fa-eye"></i> 詳細 -->
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <button class="btn btn-danger btn-sm cancel-booking" 
+                                        data-id="{{ $booking->id }}"
+                                        title="予約キャンセル">
+                                        <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                     @endforeach

@@ -2,26 +2,28 @@
     <form id="subscribeForm" action="{{ route('notifynewupdate.post') }}" method="POST">
         @csrf
         <div data-anim-child="fade delay-1" class="section-bg__item -mx-20">
-            <img src="{{ asset('assets/img/Subscribe.jpg') }}" alt="subscribe">
+            <!-- <img src="{{ asset('assets/img/Subscribe.jpg') }}" alt="subscribe"> -->
         </div>
 
         <div class="container">
-            <div  class="row items-center justify-center text-center bg-sub">
+            <div class="row items-center justify-center text-center bg-sub" style="background-color: #434343;">
                 <div class="col-auto">
                     <i class="icon-newsletter text-60 sm:text-40 text-white"></i>
 
                     <h2 class="text-30 sm:text-24 lh-15 text-white mt-20">{{ translate('notify_update_discount') }}</h2>
                     <p class="text-white mt-5">{{ translate('enter_email_send') }}</p>
 
-                    <div class="single-field -w-410 d-flex x-gap-10 flex-wrap y-gap-20 pt-30">
-                        <div class="col-auto">
-                            <input class="col-12 bg-white h-60" type="email" name="email" placeholder="{{ translate('your_email') }}" required>
+                    <div class="single-field d-flex flex-nowrap justify-center pt-30" style="max-width: 410px; margin: 0 auto;">
+                        <div style="flex-grow: 1;">
+                            <input class="bg-white h-60" type="email" name="email" placeholder="{{ translate('your_email') }}" required 
+                                   style="width: 100%; height: 60px; padding: 0 15px; border: none; border-radius: 4px 0 0 4px;">
                         </div>
-                        <div class="col-auto">
-                            <button type="submit" class="button -md -white h-60 bg-dark-1 text-white" id="submitButton">
+                        <div>
+                            <button type="submit" class="h-60 text-white" id="submitButton" 
+                                    style="background-color: #ff0000; border: none; padding: 0 25px; border-radius: 0 4px 4px 0; cursor: pointer; height: 60px;">
                                 <span id="buttonText">{{ translate('subscribe') }}</span>
                                 <span id="loadingSpinner" class="loading-spinner" style="display: none;">
-                                    <i class="fa fa-spinner fa-spin"></i> <!-- Font Awesome spinner -->
+                                    <i class="fa fa-spinner fa-spin"></i>
                                 </span>
                             </button>
                         </div>
@@ -29,9 +31,11 @@
                 </div>
             </div>
         </div>
+        <div>
+            asdasdasdasd
+</div>
     </form>
 </section>
-
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
