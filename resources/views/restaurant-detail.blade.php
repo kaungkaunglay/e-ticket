@@ -60,25 +60,23 @@
 </section>
 
 <section>
-  <div class="container" style="
-    padding: 20px;
-">
-    <div class="row g-1">
+  <div class="container" style="padding: 20px;">
+    <div class="row g-1" style="display: flex; flex-wrap: nowrap; overflow-x: auto; margin-left: 0; margin-right: 0;">
       @if($restaurant->multi_images)
-      @php
-      $images = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images) : $restaurant->multi_images;
-      $displayImages = array_slice($images, 0, 4);
-      @endphp
+        @php
+          $images = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images) : $restaurant->multi_images;
+          $displayImages = array_slice($images, 0, 4);
+        @endphp
 
-      @foreach($displayImages as $key => $image)
-      <div class="col-md-3 col-sm-6">
-        <div class="gallery-frame" style="height: 115px !important; overflow: hidden;">
-          <img src="{{ asset($image) }}"
-            alt="Restaurant image {{ $key+1 }}"
-            style="width: 100%; height: 100%; object-fit: cover;">
-        </div>
-      </div>
-      @endforeach
+        @foreach($displayImages as $key => $image)
+          <div class="col" style="flex: 0 0 25%; max-width: 25%; padding-left: 5px; padding-right: 5px;">
+            <div class="gallery-frame" style="height: 115px; overflow: hidden;">
+              <img src="{{ asset($image) }}" 
+                   alt="Restaurant image {{ $key+1 }}" 
+                   style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+          </div>
+        @endforeach
       @endif
     </div>
   </div>
@@ -147,8 +145,8 @@
     <div class="d-flex justify-content-between align-items-center" style="
     padding: 23px;
 ">
-    <!-- Location Button -->
-    <a href="{{ $restaurant->google_map }}" class="d-flex justify-content-center align-items-center text-white" style="
+      <!-- Location Button -->
+      <a href="{{ $restaurant->google_map }}" class="d-flex justify-content-center align-items-center text-white" style="
         width: 178px;
         background-color: #228B22;
         border: none;
@@ -157,10 +155,10 @@
         text-decoration: none;
     ">
         <i class="fa-solid fa-location-dot me-2"></i> 地図を表示
-    </a>
+      </a>
 
-    <!-- Booking Button -->
-    <a href="{{ route('booking.detail', ['id' => $restaurant->id]) }}" class="d-flex justify-content-center align-items-center text-white" style="
+      <!-- Booking Button -->
+      <a href="{{ route('booking.detail', ['id' => $restaurant->id]) }}" class="d-flex justify-content-center align-items-center text-white" style="
         width: 178px;
         background-color: #F10146;
         border: none;
@@ -169,8 +167,8 @@
         text-decoration: none;
     ">
         予約 &nbsp;<i class="fa-solid fa-calendar-check me-2"></i>
-    </a>
-</div>
+      </a>
+    </div>
 
 
 

@@ -11,15 +11,19 @@
         display: none;
         color: white;
     }
+
     .button-text {
         transition: opacity 0.3s;
     }
+
     .is-loading .button-text {
         opacity: 0;
     }
+
     .is-loading .loading-spinner {
         display: block !important;
     }
+
     #submit-button {
         position: relative;
         min-height: 60px;
@@ -79,27 +83,27 @@
                             <label style="font-size: 10px">お名前</label>
                         </div>
                         <div class="col-4 align-content-center">
-                            <input type="text" name="first_name" class="w-100 h-75 border-0" value="{{ auth()->user()->first_name }}" >
+                            <input type="text" name="first_name" class="w-100 h-75 border-0" value="{{ auth()->user()->first_name }}">
                         </div>
                         <div class="col-4 align-content-center">
-                            <input type="text" name="last_name" class="w-100 h-75 border-0" value="{{ auth()->user()->last_name }}" >
+                            <input type="text" name="last_name" class="w-100 h-75 border-0" value="{{ auth()->user()->last_name }}">
                         </div>
                     </div>
                     <div class="row mt-1">
                         <div class="col-4 justify-center"><label style="font-size: 10px">お名前(かな)</label></div>
-                        <div class="col-4 align-content-center"><input type="text" name="first_name_kana" class="w-100 h-75 border-0" ></div>
-                        <div class="col-4 align-content-center"><input type="text" name="last_name_kana" class="w-100 h-75 border-0" ></div>
+                        <div class="col-4 align-content-center"><input type="text" name="first_name_kana" class="w-100 h-75 border-0"></div>
+                        <div class="col-4 align-content-center"><input type="text" name="last_name_kana" class="w-100 h-75 border-0"></div>
                     </div>
                     <div class="row mt-1">
                         <div class="col-4 justify-center"><label style="font-size: 10px">電話番号</label></div>
                         <div class="col-8 align-content-center">
-                            <input type="tel" name="phone" class="w-100 h-75 border-0" value="{{ auth()->user()->phone }}" >
+                            <input type="tel" name="phone" class="w-100 h-75 border-0" value="{{ auth()->user()->phone }}">
                         </div>
                     </div>
                     <div class="row mt-1">
                         <div class="col-4 justify-center"><label style="font-size: 10px">メールアドレス</label></div>
                         <div class="col-8 align-content-center">
-                            <input type="email" name="email" class="w-100 h-75 border-0" value="{{ auth()->user()->email }}" >
+                            <input type="email" name="email" class="w-100 h-75 border-0" value="{{ auth()->user()->email }}">
                         </div>
                     </div>
                     <div class="row mt-1">
@@ -115,9 +119,9 @@
                         <p class="fw-bold text-center" style="font-size: 8px">予約成立後にお店へ連絡なくキャンセルされると、サービスのご利用を制限させていただく場合があります。 また、予約時にご登録いただいた連絡先が無効な場合、お店の判断により予約がキャンセルとなることがあります。</p>
                         <p class="bg-white px-3 py-1 fw-bold text-center" style="font-size: 12px">来店日時 <span class="fw-bold fs-6">2025</span>年 <span class="fw-bold fs-6">3</span>月 <span class="fw-bold fs-6">23</span>日 (日) <span class="fw-bold fs-6">19:00</span> 来店人数 <span class="fw-bold fs-6">2</span>名</p>
 
-                        <button type="submit" class="button -md -dark-1 bg-red h-50 text-white mt-30 col-9 mx-auto bg-danger text-white px-2 py-1 text-center rounded-3" 
-                                style="width: 286px;"
-                                id="submit-button">
+                        <button type="submit" class="button -md -dark-1 bg-red h-50 text-white mt-30 col-9 mx-auto bg-danger text-white px-2 py-1 text-center rounded-3"
+                            style="width: 286px;"
+                            id="submit-button">
                             <span class="button-text">
                                 利用規約·同意事項·注意事項に同意し、上記内容で <br>
                                 <span style="font-size: 15px">予約する</span>
@@ -134,27 +138,27 @@
 </section>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('booking-form');
-    const submitButton = document.getElementById('submit-button');
-    
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            
-            submitButton.classList.add('is-loading');
-            submitButton.disabled = true;
-            
-            
-        });
-    }
-    
-  
-    @if($errors->any())
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('booking-form');
+        const submitButton = document.getElementById('submit-button');
+
+        if (form) {
+            form.addEventListener('submit', function(e) {
+
+                submitButton.classList.add('is-loading');
+                submitButton.disabled = true;
+
+
+            });
+        }
+
+
+        @if($errors - > any())
         if (submitButton) {
             submitButton.classList.remove('is-loading');
             submitButton.disabled = false;
         }
-    @endif
-});
+        @endif
+    });
 </script>
 @endsection
