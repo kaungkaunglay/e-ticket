@@ -89,6 +89,8 @@
         /* Menu content styling */
         .right-menu-content {
             padding: 60px 20px 20px;
+            max-width: 480px;
+            margin: auto;
         }
         
         .menu__nav {
@@ -209,8 +211,8 @@
     </style>
 </head>
 
-<body>
-    <div class="mobile-frame">
+<body >
+    <div class="mobile-frame" >
         <div class="preloader js-preloader">
             <div class="preloader__wrap">
                 <div class="preloader__icon">
@@ -297,15 +299,15 @@
                 </div>
             </div>
             
-            <!-- Menu Overlay - covers only the 450px frame -->
+          
             <div class="menu-overlay js-menu-overlay"></div>
 
             <div class="main-content">
                 @yield('contents')
             </div>
             <div class="container content">
-    <span class="left">Test1</span>
-    <span class="right">Test2</span>
+    <span class="left">運営会社：A company</span>
+    <span class="right">プライバシーポリシー</span>
 </div>
             <footer class="footer -type-1">
               
