@@ -77,12 +77,12 @@
                 <div class="col-auto">
                     @if ($restaurants->onFirstPage())
                         <button class="button size-40 rounded-full" disabled 
-                            style="background-color: white !important; border: 2px solid pink !important; color: pink !important;">
+                            style="background-color: white !important; border: 2px solid #F10146 !important; color: #F10146 !important;">
                             <i class="icon-chevron-left text-12"></i>
                         </button>
                     @else
                         <a href="{{ $restaurants->previousPageUrl() }}" class="button size-40 rounded-full"
-                            style="background-color: white !important; border: 2px solid pink !important; color: pink !important; text-decoration: none !important;">
+                            style="background-color: white !important; border: 2px solid #F10146 !important; color: #F10146 !important; text-decoration: none !important;">
                             <i class="icon-chevron-left text-12"></i>
                         </a>
                     @endif
@@ -93,9 +93,9 @@
                         <a href="{{ $restaurants->url($page) }}" class="mx-2" 
                             style="text-decoration: none !important;">
                             <div class="size-40 flex-center rounded-full"
-                                style="background-color: {{ $restaurants->currentPage() == $page ? 'pink' : 'white' }} !important;
-                                       color: {{ $restaurants->currentPage() == $page ? 'white' : 'pink' }} !important;
-                                       border: 2px solid pink !important;">
+                                style="background-color: {{ $restaurants->currentPage() == $page ? '#F10146' : 'white' }} !important;
+                                       color: {{ $restaurants->currentPage() == $page ? 'white' : '#F10146' }} !important;
+                                       border: 2px solid #F10146 !important;">
                                 {{ $page }}
                             </div>
                         </a>
@@ -105,12 +105,12 @@
                 <div class="col-auto">
                     @if ($restaurants->hasMorePages())
                         <a href="{{ $restaurants->nextPageUrl() }}" class="button size-40 rounded-full"
-                            style="background-color: white !important; border: 2px solid pink !important; color: pink !important; text-decoration: none !important;">
+                            style="background-color: white !important; border: 2px solid #F10146 !important; color: #F10146 !important; text-decoration: none !important;">
                             <i class="icon-chevron-right text-12"></i>
                         </a>
                     @else
                         <button class="button size-40 rounded-full" disabled 
-                            style="background-color: white !important; border: 2px solid pink !important; color: pink !important;">
+                            style="background-color: white !important; border: 2px solid #F10146 !important; color: #F10146 !important;">
                             <i class="icon-chevron-right text-12"></i>
                         </button>
                     @endif
