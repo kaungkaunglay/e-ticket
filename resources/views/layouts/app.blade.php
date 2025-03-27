@@ -14,24 +14,56 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="{{ asset('assets/css/vendors.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}"> --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     @yield('style')
 
     <title>r-buzz</title>
     <style>
-        .bg-red{
+        body{
+            position: relative;
+        }
+        .bg-red {
             background-color: #b22222;
         }
-        .t-red{
+
+        .t-red {
             color: #b22222
         }
 
-        .t-small{
+        .t-small {
             font-size: 12px;
         }
+
+        .t-10 {
+            font-size: 10px;
+        }
+
+        .t-9 {
+            font-size: 10px;
+        }
+
+        .t-8 {
+            font-size: 8px;
+        }
+
+        .t-7 {
+            font-size: 7px;
+        }
+
+        .t-6 {
+            font-size: 6px;
+        }
+
+        .t-5 {
+            font-size: 5px;
+        }
+
         .dropdown {
             position: relative;
             display: inline-block;
@@ -61,40 +93,97 @@
             background-color: #f1f1f1;
         }
 
-        @media screen and (min-width: 768px) {
-            .mobile-only {
-                display: none !important;
-
-            }
+        /* Right side menu - properly contained within 450px */
+        .right-side-menu {
+            position: fixed;
+            top: 0;
+            right: -300px; /* Start hidden */
+            width: 300px; /* Takes most of the 450px width */
+            height: 100%;
+            background: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .right-side-menu.active {
+            right: 0; /* Slides in to right edge of 450px frame */
         }
 
-        @media screen and (max-width: 767px) {
-            .mobile-only {
-                display: block !important;
-
-            }
+        /* Menu toggle button */
+        .menu-toggle {
+            cursor: pointer;
+            font-size: 24px;
+            padding: 10px;
+            position: absolute;
+            right: 15px; /* Positioned within 450px frame */
+            top: 15px;
+            z-index: 1001;
+            color: white;
+            background: rgba(0,0,0,0.5);
+            border-radius: 4px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
+        /* Overlay - covers only the 450px frame */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 450px; /* Matches frame width */
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Menu content styling */
+        .right-menu-content {
+            padding: 60px 20px 20px;
+        }
+        
+        .menu__nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .menu__nav li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .menu__nav li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 16px;
+            display: block;
+        }
+        
         .menu__nav li.active a {
             color: #ff0000;
             font-weight: bold;
-            /* text-decoration: underline;  */
         }
 
-        @media (max-width: 767px) {
-            .header .header-logo img {
-                max-width: 120px;
-                margin-left: 42px !important;
-            }
-        }
         input[type="search"]::-webkit-search-cancel-button {
-    display: none;
-}
-
+            display: none;
+        }
     </style>
 </head>
 
-<body>
+<body class="vh-100 d-flex justify-content-between flex-column mx-auto position-relative" style="max-width: 460px;">
     {{-- <div class="preloader js-preloader">
         <div class="preloader__wrap">
             <div class="preloader__icon">
@@ -116,18 +205,77 @@
         <div class="preloader__title">r-buzz</div>
     </div> --}}
 
-
-    <main class="container">
-
-
+    <header class="position-fixed" style="max-width: 460px;">
         @include('layouts.resturants.header')
+    </header>
+
+    <!-- Right Side Menu - properly contained in 450px frame -->
+    <div class="right-side-menu js-right-side-menu">
+        <div class="right-menu-content">
+            <ul class="menu__nav text-dark-1">
+                <li class="{{ request()->routeIs('home') ? 'active' : '' }}">
+                    <a href="{{ locale_route('home') }}">ホーム</a>
+                </li>
+                <li class="{{ request()->is('restaurant/search', 'search-price', 'search-checkbox', 'restaurant-lists') ? 'active' : '' }}">
+                    <a href="{{ locale_route('restaurant.search') }}">レストラン</a>
+                </li>
+                <li class="{{ request()->routeIs('about') ? 'active' : '' }}">
+                    <a href="{{ locale_route('about') }}">私たちについて</a>
+                </li>
+                <li class="{{ request()->routeIs('support.page') ? 'active' : '' }}">
+                    <a href="{{ locale_route('support.page') }}">サポート</a>
+                </li>
+                @auth
+                @php
+                $user = auth()->user();
+                $role = $user->roles()->first()->id ?? null;
+                $dashboardRoute = '/home';
+
+                if ($role == 1) {
+                    $dashboardRoute = route('admin.dashboard');
+                    $logoutRoute = route('admin.logout');
+                } elseif ($role == 2) {
+                    $dashboardRoute = route('vendor.dashboard');
+                    $logoutRoute = route('vendor.logout');
+                } elseif ($role == 3) {
+                    $dashboardRoute = route('user.dashboard');
+                    $logoutRoute = route('logout');
+                }
+                @endphp
+                <li>
+                    <a href="{{ $dashboardRoute }}">ダッシュボード</a>
+                </li>
+                <li>
+                    <form action="{{ $logoutRoute }}" method="POST">
+                        @csrf
+                        @method($role == 1 || $role == 2 ? 'POST' : 'GET')
+                        <button type="submit" style="background: none; border: none; color: #333; font-size: 16px; cursor: pointer; padding: 0; text-align: left; width: 100%;">
+                            ログアウト
+                        </button>
+                    </form>
+                </li>
+                @else
+                <li class="{{ request()->routeIs('login') ? 'active' : '' }}">
+                    <a href="{{ locale_route('login') }}">ログイン</a>
+                </li>
+                <li class="{{ request()->routeIs('signup') ? 'active' : '' }}">
+                    <a href="{{ locale_route('signup') }}">登録</a>
+                </li>
+                @endauth
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Menu Overlay - covers only the 450px frame -->
+    <div class="menu-overlay js-menu-overlay"></div>
+
+    <main class="" style="margin-top: 90px;">
 
         @yield('contents')
 
-        @include('layouts.resturants.footer')
-
     </main>
 
+    @include('layouts.resturants.footer')
 
 
     <!-- JavaScript -->
@@ -137,7 +285,9 @@
     {{-- <script src="{{ asset('assets/js/vendors.js') }}"></script> --}}
     {{-- <script src="{{ asset('assets/js/main.js') }}"></script> --}}
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
 </body>
 
 
@@ -157,6 +307,48 @@
             dropdown.addEventListener('mouseleave', () => {
                 dropdown.querySelector('.dropdown-content').style.display = 'none';
             });
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Right side menu toggle functionality
+        const menuToggle = document.querySelector('.js-menu-toggle');
+        const rightSideMenu = document.querySelector('.js-right-side-menu');
+        const menuOverlay = document.querySelector('.js-menu-overlay');
+
+        menuToggle.addEventListener('click', function() {
+            rightSideMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        });
+
+        menuOverlay.addEventListener('click', function() {
+            rightSideMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        });
+
+        // Close menu when clicking on a link
+        const menuLinks = document.querySelectorAll('.right-side-menu a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                rightSideMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            });
+        });
+
+        // Hide preloader when page loads
+        window.addEventListener('load', function() {
+            const preloader = document.querySelector('.js-preloader');
+            if (preloader) {
+                setTimeout(function() {
+                    preloader.style.opacity = '0';
+                    setTimeout(function() {
+                        preloader.style.display = 'none';
+                    }, 300);
+                }, 500);
+            }
         });
     });
 </script>

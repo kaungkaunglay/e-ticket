@@ -1,7 +1,7 @@
-<div class="row bg-white ">
+<div class="row bg-white">
     <div class="col-12">
-        <div class="row">
-            <div class="col-10 py-3">
+        <div class="row p-3">
+            <div class="col-11">
                 <div class=" px-2 d-flex justify-content-between border border-2 rounded-0 border-dark">
                     <div class="" style="width: 15%">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -14,7 +14,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-2"></div>
+            <div class="col-1 d-flex align-items-center">
+                <i class="fa-solid fa-bars js-menu-toggle"></i>
+            </div>
         </div>
     </div>
     <div class="col-12 mt-6">
