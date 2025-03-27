@@ -1,6 +1,73 @@
 @extends('layouts.app')
 
 @section('contents')
+
+<style>
+    .modal-confirmation {
+        text-align: center;
+        padding: 30px;
+    }
+    .confirmation-icon {
+        font-size: 50px;
+        /* color: #28a745; */
+        margin-bottom: 20px;
+    }
+    .confirmation-message {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+    .confirmation-footer {
+        margin-top: 30px;
+        /* border-top: 1px solid #eee; */
+        padding-top: 20px;
+    }
+    .nav-link {
+        /* color: #007bff; */
+        text-decoration: none;
+    }
+</style>
+
+<!-- Button to trigger modal (for demo purposes) -->
+{{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reservationModal">
+    予約確認モーダルを表示
+</button> --}}
+
+
+<div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-confirmation">
+                <i class="fa-solid fa-check text-white bg-primary rounded-circle p-3 fs-3 mx-auto mb-4"></i>
+                {{-- <div class="confirmation-icon text-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                    </svg>
+                </div> --}}
+                <h4 class="modal-title mb-1 fw-bold" id="reservationModalLabel">ご予約が確定しました！</h4>
+                <div class="confirmation-message fw-bold">
+                    <p>ご来店を心よりお待ちしております。</p>
+                    <p>ご予約内容はメールでもご確認頂けます。</p>
+                </div>
+                <div class="confirmation-footer">
+                    <div class="d-flex justify-content-center gap-4">
+                        <a href="#" class="btn btn-success w-50">ホーム</a>
+                        <a href="#" class="btn btn-danger w-50">レストラン一覧</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    {{-- <div class="box bg-white border position-absolute w-75 p-4 text-center rounded-3" style="top: 300px;margin:0px 50px;">
+        <i class="fa-solid fa-check text-white bg-primary rounded-circle p-2 fs-3 mx-auto"></i>
+        <p style="font-size:12px">ご予約が確定しました！<br> ご来店を心よりお待ちしております。</p>
+        <p style="font-size:12px">ご予約内容はメールでもご確認頂けます。</p>
+        <div class="">
+            <button>ホーム</button>
+            <button>レストラン一覧</button>
+        </div>
+    </div> --}}
     <section class="p-3">
         <h5 class="d-flex border-bottom border-danger">
             <p class="text-danger fw-bold me-2">アンジェロ</p>
