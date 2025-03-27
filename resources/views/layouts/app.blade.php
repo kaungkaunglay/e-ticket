@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=460, user-scalable=no">
     <link rel="icon" type="image/png" href="{{ asset('assets/img/general/home.png') }}">
 
     <!-- Google fonts -->
@@ -25,9 +25,7 @@
 
     <title>r-buzz</title>
     <style>
-        body{
-            position: relative;
-        }
+
         .bg-red {
             background-color: #b22222;
         }
@@ -183,7 +181,80 @@
     </style>
 </head>
 
-<body class="vh-100 d-flex justify-content-between flex-column mx-auto position-relative" style="max-width: 460px;">
+<body class="bg-secondary">
+
+    <main class="bg-white vh-100 d-flex justify-content-between mx-auto flex-column overflow-x-hidden position-relative " style="max-width: 460px;">
+        <header class="position-fixed" style="max-width: 460px;">
+            @include('layouts.resturants.header')
+        </header>
+    
+        <div class=" js-right-side-menu position-absolute bg-white vh-100" style="width: 300px;right:0;top:0;">
+            <div class="right-menu-content">
+                <ul class="menu__nav text-dark-1">
+                    <li class="{{ request()->routeIs('home') ? 'active' : '' }}">
+                        <a href="{{ locale_route('home') }}">ホーム</a>
+                    </li>
+                    <li class="{{ request()->is('restaurant/search', 'search-price', 'search-checkbox', 'restaurant-lists') ? 'active' : '' }}">
+                        <a href="{{ locale_route('restaurant.search') }}">レストラン</a>
+                    </li>
+                    <li class="{{ request()->routeIs('about') ? 'active' : '' }}">
+                        <a href="{{ locale_route('about') }}">私たちについて</a>
+                    </li>
+                    <li class="{{ request()->routeIs('support.page') ? 'active' : '' }}">
+                        <a href="{{ locale_route('support.page') }}">サポート</a>
+                    </li>
+                    @auth
+                    @php
+                    $user = auth()->user();
+                    $role = $user->roles()->first()->id ?? null;
+                    $dashboardRoute = '/home';
+    
+                    if ($role == 1) {
+                        $dashboardRoute = route('admin.dashboard');
+                        $logoutRoute = route('admin.logout');
+                    } elseif ($role == 2) {
+                        $dashboardRoute = route('vendor.dashboard');
+                        $logoutRoute = route('vendor.logout');
+                    } elseif ($role == 3) {
+                        $dashboardRoute = route('user.dashboard');
+                        $logoutRoute = route('logout');
+                    }
+                    @endphp
+                    <li>
+                        <a href="{{ $dashboardRoute }}">ダッシュボード</a>
+                    </li>
+                    <li>
+                        <form action="{{ $logoutRoute }}" method="POST">
+                            @csrf
+                            @method($role == 1 || $role == 2 ? 'POST' : 'GET')
+                            <button type="submit" style="background: none; border: none; color: #333; font-size: 16px; cursor: pointer; padding: 0; text-align: left; width: 100%;">
+                                ログアウト
+                            </button>
+                        </form>
+                    </li>
+                    @else
+                    <li class="{{ request()->routeIs('login') ? 'active' : '' }}">
+                        <a href="{{ locale_route('login') }}">ログイン</a>
+                    </li>
+                    <li class="{{ request()->routeIs('signup') ? 'active' : '' }}">
+                        <a href="{{ locale_route('signup') }}">登録</a>
+                    </li>
+                    @endauth
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Menu Overlay - covers only the 450px frame -->
+        <div class="menu-overlay js-menu-overlay"></div>
+    
+        <main class="" style="margin-top: 90px;">
+    
+            @yield('contents')
+    
+        </main>
+    
+        @include('layouts.resturants.footer')
+    </main>
     {{-- <div class="preloader js-preloader">
         <div class="preloader__wrap">
             <div class="preloader__icon">
@@ -204,78 +275,7 @@
 
         <div class="preloader__title">r-buzz</div>
     </div> --}}
-
-    <header class="position-fixed" style="max-width: 460px;">
-        @include('layouts.resturants.header')
-    </header>
-
-    <!-- Right Side Menu - properly contained in 450px frame -->
-    <div class="right-side-menu js-right-side-menu">
-        <div class="right-menu-content">
-            <ul class="menu__nav text-dark-1">
-                <li class="{{ request()->routeIs('home') ? 'active' : '' }}">
-                    <a href="{{ locale_route('home') }}">ホーム</a>
-                </li>
-                <li class="{{ request()->is('restaurant/search', 'search-price', 'search-checkbox', 'restaurant-lists') ? 'active' : '' }}">
-                    <a href="{{ locale_route('restaurant.search') }}">レストラン</a>
-                </li>
-                <li class="{{ request()->routeIs('about') ? 'active' : '' }}">
-                    <a href="{{ locale_route('about') }}">私たちについて</a>
-                </li>
-                <li class="{{ request()->routeIs('support.page') ? 'active' : '' }}">
-                    <a href="{{ locale_route('support.page') }}">サポート</a>
-                </li>
-                @auth
-                @php
-                $user = auth()->user();
-                $role = $user->roles()->first()->id ?? null;
-                $dashboardRoute = '/home';
-
-                if ($role == 1) {
-                    $dashboardRoute = route('admin.dashboard');
-                    $logoutRoute = route('admin.logout');
-                } elseif ($role == 2) {
-                    $dashboardRoute = route('vendor.dashboard');
-                    $logoutRoute = route('vendor.logout');
-                } elseif ($role == 3) {
-                    $dashboardRoute = route('user.dashboard');
-                    $logoutRoute = route('logout');
-                }
-                @endphp
-                <li>
-                    <a href="{{ $dashboardRoute }}">ダッシュボード</a>
-                </li>
-                <li>
-                    <form action="{{ $logoutRoute }}" method="POST">
-                        @csrf
-                        @method($role == 1 || $role == 2 ? 'POST' : 'GET')
-                        <button type="submit" style="background: none; border: none; color: #333; font-size: 16px; cursor: pointer; padding: 0; text-align: left; width: 100%;">
-                            ログアウト
-                        </button>
-                    </form>
-                </li>
-                @else
-                <li class="{{ request()->routeIs('login') ? 'active' : '' }}">
-                    <a href="{{ locale_route('login') }}">ログイン</a>
-                </li>
-                <li class="{{ request()->routeIs('signup') ? 'active' : '' }}">
-                    <a href="{{ locale_route('signup') }}">登録</a>
-                </li>
-                @endauth
-            </ul>
-        </div>
-    </div>
     
-    <!-- Menu Overlay - covers only the 450px frame -->
-    <div class="menu-overlay js-menu-overlay"></div>
-
-    <main class="" style="margin-top: 90px;">
-
-        @yield('contents')
-
-    </main>
-
-    @include('layouts.resturants.footer')
 
 
     <!-- JavaScript -->
@@ -288,12 +288,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-</body>
+
 
 
 <!-- Mirrored from creativelayers.net/themes/r-buzz-html/home-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2025 09:17:58 GMT -->
-
-</html>
 
 
 <script>
@@ -352,3 +350,9 @@
         });
     });
 </script>
+
+</body>
+
+
+</html>
+
