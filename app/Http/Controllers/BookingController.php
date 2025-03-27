@@ -17,6 +17,10 @@ class BookingController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function detail(){
+        return view('booking-detail');
+    }
     public function index()
     {
         //
