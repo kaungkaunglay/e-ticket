@@ -31,12 +31,15 @@
                 </div>
             </div>
         </div>
-        <div>
-            asdasdasdasd
-</div>
-    </form>
-</section>
+  
 
+    </form>
+    
+</section>
+<div style="padding: 24px;font-size: 20px;">
+    新鮮なお魚が、おろし価格で購入ができるサイトはこちら→ 
+    <img src="{{ asset('assets/img/general/216415.jpg') }}" width="50" height="50" />
+</div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">

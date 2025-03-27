@@ -267,17 +267,17 @@
    <div data-anim-wrap class="container">
       <div class="row justify-center text-center">
          <div class="col-auto">
-            <!-- First Search Button (Red) -->
+         
             <div class="search-button mb-10" bis_skin_checked="1">
                <button class="search-submit" style="background-color:var(--color-red) !important; color: white; padding: 10px 20px; border: none; cursor: pointer;">
-                  検索
+               おすすめ店舗 一 発検索
                </button>
             </div>
 
-            <!-- Second Search Button (Yellow) -->
+           
             <div class="search-button mt-10" bis_skin_checked="1">
-               <button class="search-submit" style="background-color: #fba405; color: black; padding: 10px 20px; border: none; cursor: pointer;">
-                  検索
+               <button class="search-submit" style="background-color: #ffa500; color: black; padding: 10px 20px; border: none; cursor: pointer;">
+               おすすめ店舗再検索
                </button>
             </div>
          </div>
