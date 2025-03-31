@@ -1,15 +1,67 @@
 <style>
-    .dataTables_length {
-        display: none;
+    .booking-card {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+        border-left: 4px solid #B22222;
     }
-    .dataTables_filter {
-        display: none;
+    
+    .booking-header {
+        background-color: #f8f9fa;
+        padding: 12px 15px;
+        border-bottom: 1px solid #eee;
+        font-weight: bold;
+        color: #B22222;
     }
-    .dataTables_info {
-        display: none;
+    
+    .booking-body {
+        padding: 15px;
     }
-    .dataTables_paginate {
-        display: none;
+    
+    .booking-row {
+        display: flex;
+        margin-bottom: 10px;
+    }
+    
+    .booking-label {
+        font-weight: bold;
+        min-width: 100px;
+        color: #555;
+    }
+    
+    .booking-value {
+        flex: 1;
+    }
+    
+    .booking-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+        gap: 10px;
+    }
+    
+    .btn-sm {
+        flex: 1;
+        padding: 8px 12px;
+        border-radius: 6px;
+    }
+    
+    .note-badge {
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: #f0f0f0;
+        border-radius: 4px;
+        margin-top: 5px;
+    }
+    
+    @media (max-width: 576px) {
+        .booking-row {
+            flex-direction: column;
+        }
+        
+        .booking-label {
+            margin-bottom: 3px;
+        }
     }
 </style>
 
@@ -28,96 +80,77 @@
             <i class="fas fa-clipboard-list me-2"></i>現在の予約数: {{ $bookings->count() }}件
         </p>
 
-        <div class="container table-responsive">
-            <table id="bookingTable" class="table table-hover table-striped">
-                <thead class="thead-dark text-center" style="background-color: #FFA500;color: white;">
-                    <tr>
-                        <th>レストラン名</th>
-                        <th>住所</th>
-                        <th>電話番号</th>
-                        <th>予約日時</th>
-                        <th>価格帯</th>
-                        <th>メモ</th>
-                        <th>操作</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($bookings as $booking)
-                    <tr>
-                        <td><strong>{{ $booking->restaurant->name ?? '未設定' }}</strong></td>
-                        <td>{{ $booking->restaurant->address ?? '未設定' }}</td>
-                        <td>{{ $booking->restaurant->phone_number ?? '未設定' }}</td>
-                        <td class="text-center">
+        <div class="container">
+            @foreach($bookings as $booking)
+            <div class="booking-card">
+                <div class="booking-header">
+                    {{ $booking->restaurant->name ?? '未設定' }}
+                </div>
+                <div class="booking-body">
+                    <div class="booking-row">
+                        <div class="booking-label">住所</div>
+                        <div class="booking-value">{{ $booking->restaurant->address ?? '未設定' }}</div>
+                    </div>
+                    <div class="booking-row">
+                        <div class="booking-label">電話番号</div>
+                        <div class="booking-value">{{ $booking->restaurant->phone_number ?? '未設定' }}</div>
+                    </div>
+                    <div class="booking-row">
+                        <div class="booking-label">予約日時</div>
+                        <div class="booking-value">
                             @if($booking->select_date)
                                 {{ \Carbon\Carbon::parse($booking->select_date)->format('Y/m/d H:i') }}
                             @else
                                 未設定
                             @endif
-                        </td>
-                        <td class="text-center">
+                        </div>
+                    </div>
+                    <div class="booking-row">
+                        <div class="booking-label">価格帯</div>
+                        <div class="booking-value">
                             @if($booking->restaurant->price_range)
                                 ¥{{ number_format($booking->restaurant->price_range) }}
                             @else
                                 未設定
                             @endif
-                        </td>
-                        <td>
+                        </div>
+                    </div>
+                    <div class="booking-row">
+                        <div class="booking-label">メモ</div>
+                        <div class="booking-value">
                             @if($booking->note)
-                                <span class="badge bg-light text-dark">{{ $booking->note }}</span>
+                                <span class="note-badge">{{ $booking->note }}</span>
                             @else
                                 メモなし
                             @endif
-                        </td>
-                        <td class="text-center">
-                            <div class="d-flex flex-column gap-2">
-                                <a href="/restaurant/{{ $booking->restaurant_id }}" 
-                                   class="btn btn-primary btn-sm"
-                                   title="レストラン詳細">
-                                    <!-- <i class="fas fa-eye"></i> 詳細 -->
-                                    <i class="fas fa-eye"></i>
-                                </a>
-                                <button class="btn btn-danger btn-sm cancel-booking" 
-                                        data-id="{{ $booking->id }}"
-                                        title="予約キャンセル">
-                                        <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="booking-actions">
+                        <a href="/restaurant/{{ $booking->restaurant_id }}" 
+                           class="btn btn-primary btn-sm"
+                           title="レストラン詳細">
+                            <i class="fas fa-eye me-1"></i> 詳細
+                        </a>
+                        <button class="btn btn-danger btn-sm cancel-booking" 
+                                data-id="{{ $booking->id }}"
+                                title="予約キャンセル">
+                            <i class="fas fa-trash-alt me-1"></i> キャンセル
+                        </button>
+                    </div>
+                </div>
+            </div>
+            @endforeach
         </div>
         @endif
     </div>
 </div>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $(document).ready(function() {
-        $('#bookingTable').DataTable({
-            "pageLength": 5,
-            "ordering": true,
-            "info": false,
-            "autoWidth": false,
-            "language": {
-                "lengthMenu": "表示 _MENU_ 件",
-                "zeroRecords": "該当する予約がありません",
-                "infoEmpty": "該当するデータはありません",
-                "search": "検索:",
-                "paginate": {
-                    "first": "最初",
-                    "last": "最後",
-                    "next": "次へ",
-                    "previous": "前へ"
-                }
-            }
-        });
-
         $('.cancel-booking').click(function() {
             let bookingId = $(this).data('id');
             Swal.fire({
@@ -160,60 +193,3 @@
         });
     });
 </script>
-
-
-<style>
-    body {
-        background-color: #f5f5f5;
-    }
-
-    .table thead th {
-        text-align: center;
-        vertical-align: middle;
-        padding: 12px;
-    }
-
-    .table td {
-        text-align: center;
-        vertical-align: middle;
-    }
-
-    .btn-sm {
-        padding: 6px 12px;
-        font-size: 14px;
-        border-radius: 8px;
-    }
-
-    .btn-outline-primary {
-        border-color: #007bff;
-        color: #007bff;
-    }
-
-    .btn-outline-primary:hover {
-        background-color: #007bff;
-        color: white;
-    }
-
-    .btn-outline-danger {
-        border-color: #dc3545;
-        color: #dc3545;
-    }
-
-    .btn-outline-danger:hover {
-        background-color: #dc3545;
-        color: white;
-    }
-
-    .table-hover tbody tr:hover {
-        background-color: #f8f9fa;
-    }
-
-    .text-primary {
-        font-size: 18px;
-    }
-
-    .text-muted {
-        font-size: 16px;
-        color: gray;
-    }
-</style>
