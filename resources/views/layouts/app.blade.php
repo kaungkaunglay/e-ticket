@@ -185,9 +185,9 @@
     </style>
 </head>
 
-<body>
+<body style="max-width: 460px; margin: 0 auto;">
 
-    <header class='position-fixed w-100 top-0 left-0'>
+    <header class='position-fixed w-100 top-0' style="max-width: 460px; margin:0 auto;">
         @include('layouts.resturants.header')
     </header>
 
