@@ -9,8 +9,8 @@
                     <div class="" style="width: 15%">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
-                    <div class="form-group" style="width: 75%">
-                        <input type="text" class="form-control border-0 outline-0 shadow-0 t-small" placeholder="全国 ラーメン">
+                    <div class="form-group t-small" style="width: 75%">
+                        全国 ラーメン
                     </div>
                     <div class="" style="width: 10%">
                         <small class="t-red t-small  ">検索</small>

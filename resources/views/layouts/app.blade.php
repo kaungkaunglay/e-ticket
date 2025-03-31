@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" data-x="html" data-x-toggle="html-overflow-hidden">
+<html lang='en' data-x='html' data-x-toggle='html-overflow-hidden'>
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=460, user-scalable=no">
-    <link rel="icon" type="image/png" href="{{ asset('assets/img/general/home.png') }}">
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=460, user-scalable=no'>
+    <link rel='icon' type='image/png' href='{{ asset('assets/img/general/home.png') }}'>
 
     <!-- Google fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link rel='preconnect' href='https://fonts.googleapis.com/'>
+    <link rel='preconnect' href='https://fonts.gstatic.com/' crossorigin>
+    <link href='https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&amp;display=swap' rel='stylesheet'>
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="{{ asset('assets/css/vendors.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}"> --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel='stylesheet' href='{{ asset('assets/css/vendors.css') }}'>
+    {{-- <link rel='stylesheet' href='{{ asset('assets/css/main.css') }}'> --}}
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet'
+        integrity='sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH' crossorigin='anonymous'>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css'
+        integrity='sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=='
+        crossorigin='anonymous' referrerpolicy='no-referrer' />
 
     @yield('style')
 
@@ -175,33 +175,33 @@
             font-weight: bold;
         }
 
-        input[type="search"]::-webkit-search-cancel-button {
+        input[type='search']::-webkit-search-cancel-button {
             display: none;
         }
     </style>
 </head>
 
-<body class="" style="background: #f4f4f4">
+<body class='' style='background: #f4f4f4'>
 
-    <main class="bg-white vh-100 d-flex justify-content-between mx-auto flex-column overflow-x-hidden position-relative " style="max-width: 460px;">
-        <header class="position-fixed" style="max-width: 460px;">
+    <main class='bg-white vh-100 d-flex justify-content-between mx-auto flex-column overflow-x-hidden position-relative ' style='max-width: 460px;'>
+        <header class='position-fixed' style='max-width: 460px;'>
             @include('layouts.resturants.header')
         </header>
     
-        <div class="right-side-menu js-right-side-menu" >
-            <div class="right-menu-content">
-                <ul class="menu__nav text-dark-1">
-                    <li class="{{ request()->routeIs('home') ? 'active' : '' }}">
-                        <a href="{{ locale_route('home') }}">ホーム</a>
+        <div class='right-side-menu js-right-side-menu' >
+            <div class='right-menu-content'>
+                <ul class='menu__nav text-dark-1'>
+                    <li class='{{ request()->routeIs('home') ? 'active' : '' }}'>
+                        <a href='{{ locale_route('home') }}'>ホーム</a>
                     </li>
-                    <li class="{{ request()->is('restaurant/search', 'search-price', 'search-checkbox', 'restaurant-lists') ? 'active' : '' }}">
-                        <a href="{{ locale_route('restaurant.search') }}">レストラン</a>
+                    <li class='{{ request()->is('restaurant/search', 'search-price', 'search-checkbox', 'restaurant-lists') ? 'active' : '' }}'>
+                        <a href='{{ locale_route('restaurant.search') }}'>レストラン</a>
                     </li>
-                    <li class="{{ request()->routeIs('about') ? 'active' : '' }}">
-                        <a href="{{ locale_route('about') }}">私たちについて</a>
+                    <li class='{{ request()->routeIs('about') ? 'active' : '' }}'>
+                        <a href='{{ locale_route('about') }}'>私たちについて</a>
                     </li>
-                    <li class="{{ request()->routeIs('support.page') ? 'active' : '' }}">
-                        <a href="{{ locale_route('support.page') }}">サポート</a>
+                    <li class='{{ request()->routeIs('support.page') ? 'active' : '' }}'>
+                        <a href='{{ locale_route('support.page') }}'>サポート</a>
                     </li>
                     @auth
                     @php
@@ -221,23 +221,23 @@
                     }
                     @endphp
                     <li>
-                        <a href="{{ $dashboardRoute }}">ダッシュボード</a>
+                        <a href='{{ $dashboardRoute }}'>ダッシュボード</a>
                     </li>
                     <li>
-                        <form action="{{ $logoutRoute }}" method="POST">
+                        <form action='{{ $logoutRoute }}' method='POST'>
                             @csrf
                             @method($role == 1 || $role == 2 ? 'POST' : 'GET')
-                            <button type="submit" style="background: none; border: none; color: #333; font-size: 16px; cursor: pointer; padding: 0; text-align: left; width: 100%;">
+                            <button type='submit' style='background: none; border: none; color: #333; font-size: 16px; cursor: pointer; padding: 0; text-align: left; width: 100%;'>
                                 ログアウト
                             </button>
                         </form>
                     </li>
                     @else
-                    <li class="{{ request()->routeIs('login') ? 'active' : '' }}">
-                        <a href="{{ locale_route('login') }}">ログイン</a>
+                    <li class='{{ request()->routeIs('login') ? 'active' : '' }}'>
+                        <a href='{{ locale_route('login') }}'>ログイン</a>
                     </li>
-                    <li class="{{ request()->routeIs('signup') ? 'active' : '' }}">
-                        <a href="{{ locale_route('signup') }}">登録</a>
+                    <li class='{{ request()->routeIs('signup') ? 'active' : '' }}'>
+                        <a href='{{ locale_route('signup') }}'>登録</a>
                     </li>
                     @endauth
                 </ul>
@@ -245,9 +245,9 @@
         </div>
         
         <!-- Menu Overlay - covers only the 450px frame -->
-        <div class="menu-overlay js-menu-overlay"></div>
+        <div class='menu-overlay js-menu-overlay'></div>
     
-        <main class="" style="margin-top: 90px;">
+        <main class='' style='margin-top: 90px;'>
     
             @yield('contents')
     
@@ -255,38 +255,38 @@
     
         @include('layouts.resturants.footer')
     </main>
-    {{-- <div class="preloader js-preloader">
-        <div class="preloader__wrap">
-            <div class="preloader__icon">
-                <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_1_41)">
+    {{-- <div class='preloader js-preloader'>
+        <div class='preloader__wrap'>
+            <div class='preloader__icon'>
+                <svg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                    <g clip-path='url(#clip0_1_41)'>
 
-                        <image href="{{ asset('assets/img/general/home.png') }}" x="0" y="0" width="100" height="100" />
+                        <image href='{{ asset('assets/img/general/home.png') }}' x='0' y='0' width='100' height='100' />
                     </g>
 
                     <defs>
-                        <clipPath id="clip0_1_41">
-                            <rect width="100" height="100" fill="white" />
+                        <clipPath id='clip0_1_41'>
+                            <rect width='100' height='100' fill='white' />
                         </clipPath>
                     </defs>
                 </svg>
             </div>
         </div>
 
-        <div class="preloader__title">r-buzz</div>
+        <div class='preloader__title'>r-buzz</div>
     </div> --}}
     
 
 
     <!-- JavaScript -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAz77U5XQuEME6TpftaMdX0bBelQxXRlM"></script>
-    <!-- <script src="../../../unpkg.com/%40googlemaps/markerclusterer%402.5.3/dist/index.min.js"></script> -->
+    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAAz77U5XQuEME6TpftaMdX0bBelQxXRlM'></script>
+    <!-- <script src='../../../unpkg.com/%40googlemaps/markerclusterer%402.5.3/dist/index.min.js'></script> -->
 
-    {{-- <script src="{{ asset('assets/js/vendors.js') }}"></script> --}}
-    {{-- <script src="{{ asset('assets/js/main.js') }}"></script> --}}
+    {{-- <script src='{{ asset('assets/js/vendors.js') }}'></script> --}}
+    {{-- <script src='{{ asset('assets/js/main.js') }}'></script> --}}
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js'
+        integrity='sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz' crossorigin='anonymous'>
     </script>
 
 

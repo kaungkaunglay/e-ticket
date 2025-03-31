@@ -153,7 +153,7 @@
         }
 
 
-        @if($errors - > any())
+        @if($errors -> any())
         if (submitButton) {
             submitButton.classList.remove('is-loading');
             submitButton.disabled = false;
