@@ -21,6 +21,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \App\Http\Middleware\RestrictIP::class,
     ];
 
     /**
@@ -72,5 +73,6 @@ class Kernel extends HttpKernel
         'vendor' => \App\Http\Middleware\VendorMiddleware::class,
         'guest' => \App\Http\Middleware\VendorMiddleware::class,
         'user' => \App\Http\Middleware\UserRoleMiddleware::class, 
+        'restrict.ip' => \App\Http\Middleware\RestrictIP::class,
     ];
 }
