@@ -1,11 +1,40 @@
-<section data-anim-wrap class="section-bg layout-pt-lg layout-pb-lg">
+<section data-anim-wrap class="section-bg mt-4">
     <form id="subscribeForm" action="{{ route('notifynewupdate.post') }}" method="POST">
         @csrf
-        <div data-anim-child="fade delay-1" class="section-bg__item -mx-20">
+        {{-- <div data-anim-child="fade delay-1" class="section-bg__item -mx-20">
             <!-- <img src="{{ asset('assets/img/Subscribe.jpg') }}" alt="subscribe"> -->
-        </div>
+        </div> --}}
+
+        {{-- <div class="container bg-danger">
+            hello
+        </div> --}}
 
         <div class="container">
+            <div class="rounded-4 px-5 pt-3 pb-4 text-center" style="background-color: #434343;">
+                <i class="icon-newsletter text-60 sm:text-40 text-white"></i>
+
+                <h3 class="lh-15 text-white fs-4 mt-20">{{ translate('notify_update_discount') }}</h3>
+                <p class="text-white mt-2" style="font-size: 13px">{{ translate('enter_email_send') }}</p>
+
+                <div class="single-field d-flex flex-nowrap justify-center pt-1" style="max-width: 410px; margin: 0 auto;">
+                    <div style="flex-grow: 1;">
+                        <input type="email" name="email" placeholder="{{ translate('your_email') }}" required 
+                               style="width: 100%; height: 35px; padding: 0 15px; border: none; border-radius: 0px;background-color:#D9D9D9;font-size:13px">
+                    </div>
+                    <div>
+                        <button type="submit" class=" text-white" id="submitButton" 
+                                style="background-color: #ff0000; border: none; padding: 0 10px; cursor: pointer; height: 35px;font-size:13px">
+                            <span id="buttonText">{{ translate('subscribe') }}</span>
+                            <span id="loadingSpinner" class="loading-spinner" style="display: none;">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- <div class="container">
             <div class="row items-center justify-center text-center bg-sub" style="background-color: #434343;">
                 <div class="col-auto">
                     <i class="icon-newsletter text-60 sm:text-40 text-white"></i>
@@ -30,13 +59,13 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
   
 
     </form>
     
 </section>
-<div style="padding: 24px;font-size: 20px;">
+<div class="d-flex justify-content-between align-items-center" style="padding: 24px;font-size: 12px;">
     新鮮なお魚が、おろし価格で購入ができるサイトはこちら→ 
     <img src="{{ asset('assets/img/general/216415.jpg') }}" width="50" height="50" />
 </div>
