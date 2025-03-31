@@ -25,7 +25,9 @@
                     <div class="col-8 t-small">
                         全国 ラーメン
                     </div>
-                    <div class="col-2 t-red t-small">
+                    <div class="col-2 t-red t-small" style="
+    margin-left: 26px;
+">
                         検索
                     </div>
                 </div>
