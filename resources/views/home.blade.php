@@ -42,13 +42,17 @@
 
    .mainSearch {
       padding: 47px;
-      border: 2px solid #ccc;
-      border-radius: 49px !important;
-      box-shadow: 0 13px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      border: 1px solid #ccc;
+      border-radius: 10px !important;
+      box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
    }
 
    .bg-white-bb {
       background-color: #EBEBEB;
+   }
+
+   .bg-secondary{
+      background-color: gray;
    }
 
    .bodyframe {
@@ -70,7 +74,7 @@
                     <div class="col-xl-9">
                         <div class="masthead__content">
                             <form action="{{ locale_route('restaurant.search') }}" method="GET">
-                                <div class="mainSearch bg-white-bb p-20 lg:p-30 rounded-4 mt-30" style="margin-top: 6px !important;">
+                                <div class="mainSearch p-20 lg:p-30 rounded-4 mt-30" style="margin-top: 6px !important;">
                                     <div class="search-grid">
                                         <!-- Row 1: 市区町村と地域 -->
                                         <div class="search-field">
@@ -132,9 +136,9 @@
                                     </div>
 
                                     <!-- Search Button -->
-                                    <div class="search-button">
-                                        <button class="search-submit">
-                                            <i class="icon-search text-20 mr-10"></i>
+                                    <div class="search-button mt-3 text-center">
+                                        <button class="search-submit btn btn-primary w-100 rounded-5">
+                                            <i class="icon-search me-3"></i>
                                             検索
                                         </button>
                                     </div>
@@ -154,14 +158,14 @@
             -moz-appearance: none;
             appearance: none;
             width: 100%;
-            padding: 12px;
+            padding: 5px;
             border-radius: 8px;
-            border: 2px solid black;
+            border: 1px solid black;
             background-color: #fff;
-            font-size: 16px;
+            font-size: 10px;
             color: #333;
             transition: 0.3s ease;
-            height: 54px;
+            height: 30px;
             text-align: center;
             cursor: pointer;
         }
@@ -195,7 +199,7 @@
         
         /* Existing styles */
         .mainSearch {
-            background-color: #fff;
+            background-color: #EBEBEB;
             padding: 20px;
             border-radius: 4px;
             margin-top: -81px !important;
@@ -207,20 +211,20 @@
             gap: 15px;
         }
         
-        .search-button {
+        /* .search-button {
             margin-top: 20px;
             text-align: center;
-        }
+        } */
         
         .search-submit {
-         background-color: #0553c5;
+         /* background-color: #0553c5;
     color: #fff;
     padding: 12px 24px;
     border: none;
     border-radius: 20px;
     cursor: pointer;
     font-size: 16px;
-    width: 247px;
+    width: 247px; */
         }
         .towbutton{
          margin-top: 26px;
@@ -263,13 +267,18 @@
 </section>
 @endif
 
-<section class="towbutton">
+
+<div class="container d-flex flex-column gap-4 mt-4" style="padding: 0px 40px">
+   <button class="btn btn-danger rounded-5">おすすめ店舗 一 発検索</button>
+   <button class="btn btn-warning rounded-5">おすすめ店舗再検索</button>
+</div>
+{{-- <section class="towbutton">
    <div data-anim-wrap class="container">
       <div class="row justify-center text-center">
          <div class="col-auto">
          
-            <div class="search-button mb-10" bis_skin_checked="1">
-               <button class="search-submit" style="background-color:var(--color-red) !important; color: white; padding: 10px 20px; border: none; cursor: pointer;">
+            <div class="search-button mb-10 w-100" bis_skin_checked="1">
+               <button class="btn btn-danger" style="background-color:var(--color-red) !important; color: white; padding: 10px 20px; border: none; cursor: pointer;">
                おすすめ店舗 一 発検索
                </button>
             </div>
@@ -283,7 +292,7 @@
          </div>
       </div> 
    </div> 
-</section>
+</section> --}}
 
 
 @include('includes.subscribe')

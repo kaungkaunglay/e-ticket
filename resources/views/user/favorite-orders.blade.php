@@ -1,114 +1,160 @@
 <style>
-    .dataTables_length {
-        display: none;
+    .favorite-card {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+        border-left: 4px solid #B22222;
+        overflow: hidden;
     }
-
-    .dataTables_filter {
-        display: none;
+    
+    .favorite-header {
+        background-color: #f8f9fa;
+        padding: 12px 15px;
+        border-bottom: 1px solid #eee;
+        font-weight: bold;
+        color: #B22222;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
-
-    .dataTables_info {
-        display: none;
+    
+    .favorite-body {
+        padding: 15px;
     }
-
-    .dataTables_paginate {
-        display: none;
+    
+    .favorite-row {
+        display: flex;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+    }
+    
+    .favorite-label {
+        font-weight: bold;
+        min-width: 100px;
+        color: #555;
+        margin-bottom: 5px;
+    }
+    
+    .favorite-value {
+        flex: 1;
+        word-break: break-word;
+    }
+    
+    .favorite-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    
+    .btn-sm {
+        padding: 8px 12px;
+        border-radius: 6px;
+        min-width: 80px;
+    }
+    
+    .no-favorites {
+        text-align: center;
+        padding: 30px;
+        color: #666;
+        font-size: 1.1rem;
+    }
+    
+    .favorite-badge {
+        display: inline-block;
+        padding: 3px 8px;
+        background-color: #f0f0f0;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        margin: 2px 0;
+    }
+    
+    @media (max-width: 576px) {
+        .favorite-row {
+            flex-direction: column;
+        }
+        
+        .favorite-label {
+            margin-bottom: 3px;
+            min-width: auto;
+        }
+        
+        .favorite-actions {
+            flex-direction: column;
+        }
+        
+        .btn-sm {
+            width: 100%;
+        }
     }
 </style>
 
-<br>
 <div class="col-xl-12 pt-20">
     <div class="" style="background-color: #B22222;">
         <h2 class="mb-3 container" style="color: white;">お気に入りのレストラン</h2>
     </div>
 
     <div class="card shadow-lg p-4 mt-3">
-        <p id="noFavoritesMessage" class="text-center text-muted mt-3" style="display: none;">
-            お気に入りのレストランは見つかりませんでした。
-        </p>
-
-        @if(!$favorites->isEmpty())
-        <div class="container table-responsive">
-            <table id="favoritesTable" class="table table-hover table-striped">
-                <thead class="thead-dark text-center" style="background-color: #FFA500;color: white;">
-                    <tr>
-                        <th>レストラン名</th>
-                        <th>住所</th>
-                        <th>電話番号</th>
-                        <th>予約日</th>
-                        <th>メールアドレス</th>
-                        <th>郵便番号</th>
-                        <th>削除</th>
-                        <th>操作</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($favorites as $favorite)
-                    <tr>
-                        <td><strong>{{ $favorite->name }}</strong></td>
-                        <td>{{ $favorite->address }}</td>
-                        <td>{{ $favorite->phone_number }}</td>
-                        <td class="text-center">{{ $favorite->reservation_date ?? 'N/A' }}</td>
-                        <td>{{ $favorite->email }}</td>
-                        <td>{{ $favorite->city }}</td>
-                        <td class="text-center">{{ $favorite->zip_code }}</td>
-                        <td class="text-center">
-                            <button class="btn btn-primary btn-sm">
-                                <i class="fas fa-eye"></i>
-                            </button><br>
-                            <button class="btn btn-danger btn-sm remove-favorite" data-restaurant-id="{{ $favorite->id }}">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+        @if($favorites->isEmpty())
+        <div id="noFavoritesMessage" class="no-favorites">
+            <i class="fas fa-heart-broken fa-2x mb-3" style="color: #ccc;"></i>
+            <p>お気に入りのレストランは見つかりませんでした。</p>
+        </div>
+        @else
+        <div class="container">
+            @foreach($favorites as $favorite)
+            <div class="favorite-card" id="favorite-{{ $favorite->id }}">
+                <div class="favorite-header">
+                    <span>{{ $favorite->name }}</span>
+                    <button class="btn btn-danger btn-sm remove-favorite" data-restaurant-id="{{ $favorite->id }}">
+                        <i class="fas fa-trash-alt"></i> 削除
+                    </button>
+                </div>
+                <div class="favorite-body">
+                    <div class="favorite-row">
+                        <div class="favorite-label">住所</div>
+                        <div class="favorite-value">{{ $favorite->address }}</div>
+                    </div>
+                    <div class="favorite-row">
+                        <div class="favorite-label">電話番号</div>
+                        <div class="favorite-value">{{ $favorite->phone_number }}</div>
+                    </div>
+                    <div class="favorite-row">
+                        <div class="favorite-label">予約日</div>
+                        <div class="favorite-value">{{ $favorite->reservation_date ?? 'N/A' }}</div>
+                    </div>
+                    <div class="favorite-row">
+                        <div class="favorite-label">メールアドレス</div>
+                        <div class="favorite-value">{{ $favorite->email }}</div>
+                    </div>
+                    <div class="favorite-row">
+                        <div class="favorite-label">郵便番号</div>
+                        <div class="favorite-value">{{ $favorite->zip_code }}</div>
+                    </div>
+                    
+                    <div class="favorite-actions">
+                        <a href="#" class="btn btn-primary btn-sm">
+                            <i class="fas fa-eye"></i> 詳細
+                        </a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
         </div>
         @endif
     </div>
 </div>
 
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     $(document).ready(function() {
-        let table = $("#favoritesTable").DataTable({
-            responsive: true,
-            searching: true,
-            lengthChange: true,
-            pageLength: 10,
-            ordering: true,
-            autoWidth: true,
-            language: {
-                search: "レコードを検索:",
-                paginate: {
-                    next: "次へ",
-                    previous: "前へ",
-                },
-            },
-        });
-
-        function checkIfTableEmpty() {
-            if (table.rows().count() === 0) {
-                $("#favoritesTable").parent().hide(); // Hide table
-                $("#noFavoritesMessage").show(); // Show message
-            } else {
-                $("#favoritesTable").parent().show(); // Show table
-                $("#noFavoritesMessage").hide(); // Hide message
-            }
-        }
-
-        // Initial check on page load
-        checkIfTableEmpty();
-
-        $("#favoritesTable tbody").on("click", ".remove-favorite", function() {
-            let restaurantId = $(this).data("restaurant-id");
-            let row = $(this).closest("tr");
-
+        $('.remove-favorite').click(function() {
+            let restaurantId = $(this).data('restaurant-id');
+            let cardElement = $(this).closest('.favorite-card');
+            
             Swal.fire({
                 title: "お気に入りを削除しますか？",
                 text: "この操作は元に戻せません！",
@@ -125,10 +171,8 @@
                         type: "get",
                         data: {
                             restaurants_id: restaurantId,
-                            _method: "get",
                             _token: "{{ csrf_token() }}",
                         },
-                        dataType: "json",
                         success: function(response) {
                             Swal.fire({
                                 title: "削除されました！",
@@ -136,12 +180,21 @@
                                 icon: "success",
                                 confirmButtonText: "OK",
                             });
-
-                            // Remove row from DataTable
-                            table.row(row).remove().draw(false);
-
-                            // Check if the table is empty
-                            checkIfTableEmpty();
+                            
+                            // Remove the card with animation
+                            cardElement.fadeOut(300, function() {
+                                $(this).remove();
+                                
+                                // Check if no favorites left
+                                if($('.favorite-card').length === 0) {
+                                    $('.container').html(`
+                                        <div id="noFavoritesMessage" class="no-favorites">
+                                            <i class="fas fa-heart-broken fa-2x mb-3" style="color: #ccc;"></i>
+                                            <p>お気に入りのレストランは見つかりませんでした。</p>
+                                        </div>
+                                    `);
+                                }
+                            });
                         },
                         error: function(xhr) {
                             Swal.fire({
@@ -150,7 +203,7 @@
                                 icon: "error",
                                 confirmButtonText: "OK",
                             });
-                        },
+                        }
                     });
                 }
             });

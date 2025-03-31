@@ -13,6 +13,9 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="{{ asset('assets/css/vendors.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     @yield('style')
 
     <title>r-buzz</title>
@@ -146,7 +149,7 @@
         footer {
             width: 100%;
             box-sizing: border-box;
-            padding: 20px;
+            padding: 10px;
             background: white;
         }
 
@@ -184,7 +187,7 @@
     background-color: #000; /* Black background */
     color: #fff; /* White text color */
     text-align: center; /* Center-align text */
-    padding: 20px; /* Padding for spacing */
+    padding: 10px; /* Padding for spacing */
 }
 
 .footer .container {
@@ -194,7 +197,7 @@
 }
 
 .footer .text-14 {
-    font-size: 14px;
+    font-size: 13px;
 }
 .content {
     display: flex;
@@ -305,7 +308,7 @@
             <div class="main-content">
                 @yield('contents')
             </div>
-            <div class="container content">
+            <div class="container content mb-2" style="font-size: 13px">
     <span class="left">運営会社：A company</span>
     <span class="right">プライバシーポリシー</span>
 </div>
@@ -313,7 +316,7 @@
               
     <div class="container">
         <div class="">
-            <div class="row y-gap-10">
+            <div class="row ">
                 <div class="col-12">
                     <div class="text-14">
                         著作権 2025 年 by Andfun Yangon Co.,LTD
