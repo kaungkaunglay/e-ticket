@@ -253,7 +253,7 @@
     </div>
 
     <!-- Menu Overlay - covers only the 450px frame -->
-    <div class='menu-overlay js-menu-overlay' style="
+    <div class='' style="
     background-color: white !important;
 "></div>
 
