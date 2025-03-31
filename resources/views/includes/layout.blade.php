@@ -20,18 +20,7 @@
 
     <title>r-buzz</title>
     <style>
-        /* Mobile frame container */
-        .mobile-frame {
-            width: 450px;
-            min-height: 100vh;
-            margin: 0 auto;
-            position: relative;
-            overflow-x: hidden;
-            background: white;
-            border-left: 1px solid #ddd;
-            border-right: 1px solid #ddd;
-            box-sizing: border-box;
-        }
+
 
         /* Right side menu - properly contained within 450px */
         .right-side-menu {
