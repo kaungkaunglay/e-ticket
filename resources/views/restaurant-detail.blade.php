@@ -149,15 +149,15 @@
       @if($menus->isEmpty())
       <p class="text-center text-muted mt-3">メニューが見つかりません。</p>
       @else
-      <div class="row g-3 mt-3">
+      <div class="row w-100 g-3 mt-3">
         @foreach($menus as $menu)
-        <div class="col-md-4 col-sm-6 d-flex justify-content-center align-items-center" style="width: 21% !important;">
+        <div class="col-3 d-flex justify-content-center align-items-center" >
           <div class="card shadow-sm" style="border: none !important; background: none;">
             <img src="{{ asset($menu->image) }}" alt="{{ $menu->name }}"
-              class="rounded-top"
-              style="width: 70px; height: 50px; object-fit: cover;" />
+              class="rounded-top card-img-top"
+              style="object-fit: cover;" />
             <div class="card-body text-center">
-              <!-- <h5 class="fw-bold text-dark">{{ $menu->menu }}</h5> -->
+              <h5 class="fw-bold text-dark" style="font-size: 8px">{{ $menu->menu }}</h5>
             </div>
           </div>
         </div>

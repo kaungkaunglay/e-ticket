@@ -49,10 +49,7 @@
         font-size: 12px;
     }
 </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+
 
 @php
     // Parse the selected datetime
@@ -78,93 +75,102 @@
 
 <section class="p-3">
     <h5 class="d-flex border-bottom border-danger">
-        <p class="text-danger fw-bold me-2">{{ $restaurant->name }}</p>
-        <p class="fw-400">{{ $restaurant->address }}</p>
+        <p class="text-danger fw-bold me-2 t-small">{{ $restaurant->name }}</p>
+        <p class="fw-400 t-small">{{ $restaurant->address }}</p>
     </h5>
-    <p class="my-2 fw-semibold">来店日時 {{ $year }}年 {{ $month }}月 <span class="fs-3">{{ $day }}</span>日 ({{ $dayOfWeekJapanese }}) {{ $time }}</p>
-    <p class="fw-400"> ¥{{ number_format($restaurant->price_range) }}</p>
+    <p class="my-2 fw-semibold t-small">来店日時 {{ $year }}年 {{ $month }}月 <span class="t-small">{{ $day }}</span>日 ({{ $dayOfWeekJapanese }}) {{ $time }}</p>
+    <p class="fw-400 t-small" > ¥{{ number_format($restaurant->price_range) }}</p>
 
     <ul class="list-unstyled">
         <li>
-            <div class="d-flex">
-                <i class="fa-solid fa-check text-white bg-primary p-1 rounded-circle me-3" style="font-size: 10px"></i>
-                <h6 class="m-0 fw-bold">ご予約人数の内訳</h6>
+            <div class="d-flex align-items-center">
+                <i class="fa-solid fa-circle-check text-primary me-3" ></i>
+                <h6 class="m-0 fw-bold t-small">ご予約人数の内訳</h6>
             </div>
             <div class="ms-4 ps-2">
-                <p class="my-1" style="font-size: 13px">予約人数 <span class="fw-bold fs-3">2</span>名(お子様不可)</p>
-                <p class="bg-warning text-white px-3 py-2 mt-2" style="font-size: 8px">こちらの店舗ではお子様のご予約は受け付けておりません。詳しくは店舗情報の「お子様連れ」をご確認ください。</p>
+                <p class="my-1 t-small" >予約人数 <span class="fw-bold">2</span>名(お子様不可)</p>
+                <p class="bg-warning text-white px-3 py-2 mt-2 t-8">こちらの店舗ではお子様のご予約は受け付けておりません。詳しくは店舗情報の「お子様連れ」をご確認ください。</p>
             </div>
         </li>
         <li>
-            <div class="d-flex">
-                <i class="fa-solid fa-check text-white bg-primary p-1 rounded-circle me-3" style="font-size: 10px"></i>
-                <h6 class="m-0 fw-bold">席の選択</h6>
+            <div class="d-flex  align-items-center">
+                <i class="fa-solid fa-circle-check text-primary me-3" ></i>
+                <h6 class="m-0 fw-bold t-small">席の選択</h6>
             </div>
             <div class="ms-4 ps-2">
-                <p class="my-2" style="font-size: 13px">
+                <p class="my-2 t-small">
                     テーブル席/禁煙
                     @if($restaurant->smoking == 1)
-                    喫煙可 <i class="fa-solid fa-smoking ms-3 fs-5 fw-bold"></i>
+                    喫煙可 <i class="fa-solid fa-smoking ms-3 fs-6 fw-bold"></i>
                     @else
-                    禁煙 <i class="fa-solid fa-ban-smoking ms-3 fs-5 fw-bold"></i>
+                    禁煙 <i class="fa-solid fa-ban-smoking ms-3 fs-6 fw-bold"></i>
                     @endif
                 </p>
             </div>
         </li>
         <li>
-            <div class="d-flex">
-                <i class="fa-solid fa-check text-white bg-primary p-1 rounded-circle me-3" style="font-size: 10px"></i>
-                <h6 class="m-0 fw-bold">その他の情報の入力</h6>
+            <div class="d-flex align-items-center">
+                <i class="fa-solid fa-circle-check text-primary me-3" ></i>
+                <h6 class="m-0 fw-bold t-small">その他の情報の入力</h6>
             </div>
             <div class="ms-4 ps-2">
-                <p class="my-2" style="font-size: 13px">予約者情報 <span class="bg-danger rounded-4 text-white px-1" style="font-size: 10px">必須</span></p>
-                <form action="{{ route('booking.save') }}" method="POST" class="bg-secondary-subtle p-3 me-4" id="booking-form">
+                <p class="my-2 t-small">予約者情報 <span class="bg-danger rounded-4 text-white px-1 t-10">必須</span></p>
+                <form action="{{ route('booking.save') }}" method="POST" class="" id="booking-form">
                     @csrf
                     <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
                     <input type="hidden" name="select_date" value="{{ $selectedDateTime }}">
 
-                    <div class="row mt-1">
-                        <div class="col-4 justify-center">
-                            <label style="font-size: 10px">お名前</label>
+                    <div class="bg-secondary-subtle p-3 me-4 w-100">
+                        <div class="row mt-1">
+                            <div class="col-4 justify-center">
+                                <label style="font-size: 10px">お名前</label>
+                            </div>
+                            <div class="col-8 d-flex">
+                                <div class="me-2">
+                                    <input type="text" name="first_name" class="w-100 h-75 border-0 p-1 t-small" value="{{ auth()->user()->first_name }}">
+                                </div>
+                                <div class="">
+                                    <input type="text" name="last_name" class="w-100 h-75 border-0  p-1 t-small" value="{{ auth()->user()->last_name }}">
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-4 align-content-center">
-                            <input type="text" name="first_name" class="w-100 h-75 border-0" value="{{ auth()->user()->first_name }}">
+                        <div class="row mt-1">
+                            <div class="col-4 justify-center"><label style="font-size: 10px">お名前(かな)</label></div>
+                            <div class="col-8 d-flex">
+                                <div class="me-2"><input type="text" name="first_name_kana" class="w-100 h-75 border-0 p-1 t-small"></div>
+                                <div class=""><input type="text" name="last_name_kana" class="w-100 h-75 border-0 p-1 t-small"></div>
+                            </div>
+                            
                         </div>
-                        <div class="col-4 align-content-center">
-                            <input type="text" name="last_name" class="w-100 h-75 border-0" value="{{ auth()->user()->last_name }}">
+                        <div class="row mt-1">
+                            <div class="col-4 justify-center"><label style="font-size: 10px">電話番号</label></div>
+                            <div class="col-8 align-content-center">
+                                <input type="tel" name="phone" class="w-100 h-75 border-0 p-1 t-small" value="{{ auth()->user()->phone }}">
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-4 justify-center"><label style="font-size: 10px">メールアドレス</label></div>
+                            <div class="col-8 align-content-center">
+                                <input type="email" name="email" class="w-100 h-75 border-0 p-1 t-small" value="{{ auth()->user()->email }}">
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-4 justify-center">
+                                <label style="font-size: 10px">レストランへのご要望</label>
+                            </div>
+                            <div class="col-8 align-content-center">
+                                <textarea class="border-0 w-75" name="note" cols="20" rows="2" style="resize: none"></textarea>
+                            </div>
                         </div>
                     </div>
-                    <div class="row mt-1">
-                        <div class="col-4 justify-center"><label style="font-size: 10px">お名前(かな)</label></div>
-                        <div class="col-4 align-content-center"><input type="text" name="first_name_kana" class="w-100 h-75 border-0"></div>
-                        <div class="col-4 align-content-center"><input type="text" name="last_name_kana" class="w-100 h-75 border-0"></div>
-                    </div>
-                    <div class="row mt-1">
-                        <div class="col-4 justify-center"><label style="font-size: 10px">電話番号</label></div>
-                        <div class="col-8 align-content-center">
-                            <input type="tel" name="phone" class="w-100 h-75 border-0" value="{{ auth()->user()->phone }}">
-                        </div>
-                    </div>
-                    <div class="row mt-1">
-                        <div class="col-4 justify-center"><label style="font-size: 10px">メールアドレス</label></div>
-                        <div class="col-8 align-content-center">
-                            <input type="email" name="email" class="w-100 h-75 border-0" value="{{ auth()->user()->email }}">
-                        </div>
-                    </div>
-                    <div class="row mt-1">
-                        <div class="col-4 justify-center">
-                            <label style="font-size: 10px">レストランへのご要望</label>
-                        </div>
-                        <div class="col-8 align-content-center">
-                            <textarea class="border-0 w-75" name="note" cols="20" rows="2" style="resize: none"></textarea>
-                        </div>
-                    </div>
+
                     <p class="bg-warning text-white px-3 py-2 mt-2" style="font-size: 8px">お手数ですが、ご予約の詳細をご確認いただきますようお願いいたします。</p>
-                    <div class="bg-secondary-subtle p-3 me-4">
-                        <p class="fw-bold text-center" style="font-size: 8px">予約成立後にお店へ連絡なくキャンセルされると、サービスのご利用を制限させていただく場合があります。 また、予約時にご登録いただいた連絡先が無効な場合、お店の判断により予約がキャンセルとなることがあります。</p>
+                        
+                    <div class="bg-secondary-subtle p-3 me-4 w-100">
+                        <p class="fw-bold text-center t-8">予約成立後にお店へ連絡なくキャンセルされると、サービスのご利用を制限させていただく場合があります。 また、予約時にご登録いただいた連絡先が無効な場合、お店の判断により予約がキャンセルとなることがあります。</p>
                         
                         <!-- Date/Time Display -->
-                        <div class="bg-white px-3 py-1 fw-bold text-center" style="font-size: 12px">
+                        <div class="bg-white px-3 py-1 fw-bold text-center t-12">
                             <div class="datetime-display">
                                 来店日時 
                                 <span class="fw-bold fs-6">{{ $year }}</span>年 
@@ -190,19 +196,22 @@
                             <span class="fw-bold fs-6">2</span>名
                         </div>
 
-                        <button type="submit" class="button -md -dark-1 bg-red h-50 text-white mt-30 col-9 mx-auto bg-danger text-white px-2 py-1 text-center rounded-3"
-                            style="width: 286px;"
+                        <div class="d-flex justify-content-center p-3">
+                            <button type="submit" class="button -md -dark-1 bg-danger text-white mt-30 col-9 mx-auto bg-danger text-white px-2 py-1 text-center rounded-3 t-8"
                             id="submit-button">
-                            <span class="button-text">
-                                利用規約·同意事項·注意事項に同意し、上記内容で <br>
-                                <span style="font-size: 15px">予約する</span>
-                            </span>
-                            <span class="loading-spinner">
-                                <i class="fas fa-circle-notch fa-spin me-2"></i> 処理中...
-                            </span>
-                        </button>
+                                <span class="button-text">
+                                    利用規約·同意事項·注意事項に同意し、上記内容で <br>
+                                    <span class="t-10">予約する</span>
+                                </span>
+                                <span class="loading-spinner">
+                                    <i class="fas fa-circle-notch fa-spin me-2"></i> 処理中...
+                                </span>
+                            </button>
+                        </div>
                     </div>
+
                 </form>
+             
             </div>
         </li>
     </ul>
