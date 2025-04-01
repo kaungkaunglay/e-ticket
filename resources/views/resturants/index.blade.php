@@ -68,57 +68,86 @@
         </div>
        
         @endforeach
-        @if ($restaurants->isEmpty())
-    <p class="text-center text-muted">データがありません。</p>
-@else
-    @if ($restaurants->lastPage() > 1)
-        <div class="border-top-light mt-30 pt-30 d-flex justify-content-end">
-            <div class="row align-items-center">
-                <div class="col-auto">
-                    @if ($restaurants->onFirstPage())
-                        <button class="button size-40 rounded-full" disabled 
-                            style="background-color: white !important; border: 2px solid #F10146 !important; color: #F10146 !important;">
-                            <i class="icon-chevron-left text-12"></i>
-                        </button>
-                    @else
-                        <a href="{{ $restaurants->previousPageUrl() }}" class="button size-40 rounded-full"
-                            style="background-color: white !important; border: 2px solid #F10146 !important; color: #F10146 !important; text-decoration: none !important;">
-                            <i class="icon-chevron-left text-12"></i>
-                        </a>
-                    @endif
-                </div>
 
-                <div class="col-auto d-flex">
+        @if ($restaurants->isEmpty())
+            <p class="text-center text-muted">データがありません。</p>
+        @else
+
+        @if ($restaurants->lastPage() > 1)
+            <div class="border-top-light mt-30 pt-30 d-flex justify-content-end gap-1">
+                <div class="">
+                    <a href="{{ $restaurants->previousPageUrl() }}" class="btn btn-outline-danger btn-sm" @if($restaurants->onFirstPage()) disabled @endif>
+                        <i class="icon-chevron-left t-10"></i>
+                    </a>
+                </div>
+                <div class="">
                     @for ($page = 1; $page <= $restaurants->lastPage(); $page++)
-                        <a href="{{ $restaurants->url($page) }}" class="mx-2" 
-                            style="text-decoration: none !important;">
-                            <div class="size-40 flex-center rounded-full"
-                                style="background-color: {{ $restaurants->currentPage() == $page ? '#F10146' : 'white' }} !important;
-                                       color: {{ $restaurants->currentPage() == $page ? 'white' : '#F10146' }} !important;
-                                       border: 2px solid #F10146 !important;">
-                                {{ $page }}
-                            </div>
-                        </a>
+                        <a href="{{ $restaurants->url($page) }}" class="btn {{ $restaurants->currentPage() == $page ? 'btn-danger' : 'btn-outline-danger'}} btn-sm">
+                            {{ $page }}
+                        </a>    
                     @endfor
                 </div>
+                <div class="">
+                    <a href="{{ $restaurants->nextPageUrl() }}" class="btn btn-outline-danger btn-sm" @if($restaurants->hasMorePages()) disabled @endif>
+                        <i class="icon-chevron-right t-10"></i>
+                    </a>
+                </div>
 
-                <div class="col-auto">
-                    @if ($restaurants->hasMorePages())
-                        <a href="{{ $restaurants->nextPageUrl() }}" class="button size-40 rounded-full"
-                            style="background-color: white !important; border: 2px solid #F10146 !important; color: #F10146 !important; text-decoration: none !important;">
+                {{-- <div class="row align-items-center">
+                    <div class="col-auto">
+                        @if ($restaurants->onFirstPage())
+                            <button class="button size-40 rounded-full" disabled 
+                                style="background-color: white !important; border: 2px solid #F10146 !important; color: #F10146 !important;">
+                                <i class="icon-chevron-left text-12"></i>
+                            </button>
+                        @else
+                            <a href="{{ $restaurants->previousPageUrl() }}" class="button size-40 rounded-full"
+                                style="background-color: white !important; border: 2px solid #F10146 !important; color: #F10146 !important; text-decoration: none !important;">
+                                <i class="icon-chevron-left text-12"></i>
+                            </a>
+                        @endif 
+                        <a href="{{ $restaurants->previousPageUrl() }}" class="btn btn-outline-danger btn-sm" @if($restaurants->onFirstPage()) disabled @endif>
+                            <i class="icon-chevron-left text-12"></i>
+                        </a>
+                    </div>
+
+                    <div class="col-auto d-flex">
+                        @for ($page = 1; $page <= $restaurants->lastPage(); $page++)
+                            <a href="{{ $restaurants->url($page) }}" class="mx-2" 
+                                style="text-decoration: none !important;">
+                                <div class="size-40 flex-center rounded-full px-1"
+                                    style="background-color: {{ $restaurants->currentPage() == $page ? '#F10146' : 'white' }} !important;
+                                        color: {{ $restaurants->currentPage() == $page ? 'white' : '#F10146' }} !important;
+                                        border: 2px solid #F10146 !important;">
+                                    {{ $page }}
+                                </div>
+                            </a>
+                            <a href="{{ $restaurants->url($page) }}" class="btn btn-outline-danger btn-sm">
+                                {{ $page }}
+                            </a>
+                        @endfor
+                    </div>
+
+                    <div class="col-auto">
+                        <a href="{{ $restaurants->nextPageUrl() }}" class="btn btn-outline-danger btn-sm" @if($restaurants->hasMorePages()) disabled @endif>
                             <i class="icon-chevron-right text-12"></i>
                         </a>
-                    @else
-                        <button class="button size-40 rounded-full" disabled 
-                            style="background-color: white !important; border: 2px solid #F10146 !important; color: #F10146 !important;">
-                            <i class="icon-chevron-right text-12"></i>
-                        </button>
-                    @endif
-                </div>
+                        @if ($restaurants->hasMorePages())
+                            <a href="{{ $restaurants->nextPageUrl() }}" class="button size-40 rounded-full"
+                                style="background-color: white !important; border: 2px solid #F10146 !important; color: #F10146 !important; text-decoration: none !important;">
+                                <i class="icon-chevron-right text-12"></i>
+                            </a>
+                        @else
+                            <button class="button size-40 rounded-full" disabled 
+                                style="background-color: white !important; border: 2px solid #F10146 !important; color: #F10146 !important;">
+                                <i class="icon-chevron-right text-12"></i>
+                            </button>
+                        @endif
+                    </div>
+                </div> --}}
             </div>
-        </div>
+        @endif
     @endif
-@endif
 
 
         

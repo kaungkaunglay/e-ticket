@@ -21,6 +21,8 @@
         integrity='sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=='
         crossorigin='anonymous' referrerpolicy='no-referrer' />
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
     @yield('style')
 
     <title>r-buzz</title>
@@ -187,142 +189,86 @@
 
 <body style="max-width: 460px; margin: 0 auto;">
 
-    <header class='position-fixed top-0 left-50 ps-2 w-100' style="max-width: 460px;transform: translate-x: -50%;">
+    <header class='position-fixed top-0 left-50 w-100' style="max-width: 460px;transform: translate-x: -50%;">
         @include('layouts.resturants.header')
     </header>
 
-
-
-
-    <div class='right-side-menu js-right-side-menu'>
-        <div class='right-menu-content'>
-            <ul class='menu__nav text-dark-1'>
-                <li class='{{ request()->routeIs('home') ? 'active' : '' }}'>
-                    <a href='{{ locale_route('home') }}'>ホーム</a>
-                </li>
-                <li
-                    class='{{ request()->is('restaurant/search', 'search-price', 'search-checkbox', 'restaurant-lists') ? 'active' : '' }}'>
-                    <a href='{{ locale_route('restaurant.search') }}'>レストラン</a>
-                </li>
-                <li class='{{ request()->routeIs('about') ? 'active' : '' }}'>
-                    <a href='{{ locale_route('about') }}'>私たちについて</a>
-                </li>
-                <li class='{{ request()->routeIs('support.page') ? 'active' : '' }}'>
-                    <a href='{{ locale_route('support.page') }}'>サポート</a>
-                </li>
-                @auth
-                    @php
-                        $user = auth()->user();
-                        $role = $user->roles()->first()->id ?? null;
-                        $dashboardRoute = '/home';
-
-                        if ($role == 1) {
-                            $dashboardRoute = route('admin.dashboard');
-                            $logoutRoute = route('admin.logout');
-                        } elseif ($role == 2) {
-                            $dashboardRoute = route('vendor.dashboard');
-                            $logoutRoute = route('vendor.logout');
-                        } elseif ($role == 3) {
-                            $dashboardRoute = route('user.dashboard');
-                            $logoutRoute = route('logout');
-                        }
-                    @endphp
-                    <li>
-                        <a href='{{ $dashboardRoute }}'>ダッシュボード</a>
-                    </li>
-                    <li>
-                        <form action='{{ $logoutRoute }}' method='POST'>
-                            @csrf
-                            @method($role == 1 || $role == 2 ? 'POST' : 'GET')
-                            <button type='submit'
-                                style='background: none; border: none; color: #333; font-size: 16px; cursor: pointer; padding: 0; text-align: left; width: 100%;'>
-                                ログアウト
-                            </button>
-                        </form>
-                    </li>
-                @else
-                    <li class='{{ request()->routeIs('login') ? 'active' : '' }}'>
-                        <a href='{{ locale_route('login') }}'>ログイン</a>
-                    </li>
-                    <li class='{{ request()->routeIs('signup') ? 'active' : '' }}'>
-                        <a href='{{ locale_route('signup') }}'>登録</a>
-                    </li>
-                @endauth
-            </ul>
-        </div>
-    </div>
-
-    <!-- Menu Overlay - covers only the 450px frame -->
-    <div class='' style="
-    background-color: white !important;
-"></div>
-
-    <main class='' style='margin-top: 90px;'>
-
-
-        <!-- Modal Structure -->
-        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header d-flex justify-content-center">
-                        <small class="modal-title text-center fs-6">ネット予約</small>
-                        {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
-                    </div>
-                    <div class="modal-body border-0 ">
-                        <div class="row">
-                            <div class="col-8 mb-2">
-                                <select class="form-select rounded-0 border-dark shadow-0">
-                                    <option  selected>○ 3月24日(月)</option>
-                                    <option >○ 3月25日(月)</option>
-                                    <option >○ 3月26日(月)</option>
-                                </select>
-                            </div>
-
-                            <div class="col-4 mb-2">
-                                <select class="form-select  rounded-0 border-dark shadow-0">
-                                    <option  selected>○ 2名</option>
-                                    <option >○ 3名</option>
-                                    <option >○ 4名</option>
-                                </select>
-                            </div>
-
-                            <div class="col-4 mb-2">
-                                <select class="form-select form-select-sm  rounded-0 border-dark shadow-0">
-                                    <option  selected>01時</option>
-                                    <option >02時</option>
-                                    <option >03時</option>
-                                </select>
-                            </div>
-
-                            <div class="col-4 mb-2">
-                                <select class="form-select form-select-sm rounded-0 border-dark shadow-0">
-                                    <option  selected>01分</option>
-                                    <option >02分</option>
-                                    <option >03分</option>
-                                </select>
-                            </div>
-
-                            
-
-
-                        </div>
-                        
-                    </div>
-                    <div class="modal-footer d-flex justify-content-center border-0">
-                        <button type="button" class="btn btn-danger px-5 t-7 rounded-0" data-bs-dismiss="modal">予約</button>
-                        {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
-                    </div>
-                </div>
-            </div>
-        </div>
-
+    {{-- <main class='' style='margin-top: 90px;'>
         @yield('contents')
-
     </main>
 
     <footer class="w-100">
         @include('layouts.resturants.footer')
-    </footer>
+    </footer> --}}
+
+    <div class="d-flex flex-column min-vh-100">
+
+        <!-- Modal Structure -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center">
+                    <small class="modal-title text-center fs-6">ネット予約</small>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body border-0 d-flex flex-column ">
+                    <div class="d-flex mb-2">
+
+                        <div class="me-3"  style="width: 65%;">
+                            <div class=" rounded-0 border border-dark d-flex justify-content-between align-items-center px-2 mb-2">
+                                <input type="text" id="modal-datepicker" class="form-control form-control bg-transparent border-0 outline-0  shadow-none" placeholder="YYYY-MM-DD">
+                                <i class="fa-solid fa-calendar-days opacity-50"></i>
+                            </div>
+
+                            <div class="d-flex">
+                                <div class="w-50 me-2">
+                                    <select class="form-select form-select-sm  rounded-0 border-dark shadow-none">
+                                        <option  selected>01時</option>
+                                        <option >02時</option>
+                                        <option >03時</option>
+                                    </select>
+                                </div>
+            
+                                <div class="w-50">
+                                    <select class="form-select form-select-sm rounded-0 border-dark shadow-none">
+                                        <option  selected>01分</option>
+                                        <option >02分</option>
+                                        <option >03分</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        
+
+                        <div class="" style="width: 35%;">
+                            <select class="form-select  rounded-0 border-dark shadow-none">
+                                <option  selected>○ 2名</option>
+                                <option >○ 3名</option>
+                                <option >○ 4名</option>
+                            </select>
+                        </div>
+
+                        
+                    </div>
+
+                </div>
+                <div class="modal-footer d-flex justify-content-center border-0">
+                    <button type="button" class="w-50 btn btn-danger px-5 t-10 rounded-0" data-bs-dismiss="modal">予約</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        <main class="flex-grow-1"  style='margin-top: 90px;'>
+            @yield('contents')
+        </main>
+        <footer class="bg-black text-white text-center py-1 px-4 w-100 t-10">
+            Copyright 2025 designed by Andfun Yangon Co., Ltd
+        </footer>
+    </div>
+    
+
+    
     {{-- <div class='preloader js-preloader'>
         <div class='preloader__wrap'>
             <div class='preloader__icon'>
@@ -355,12 +301,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-
-
-
-    <!-- Mirrored from creativelayers.net/themes/r-buzz-html/home-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2025 09:17:58 GMT -->
-
-
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- Flatpickr Japanese Locale -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
     <script>
         // Add hover functionality to show/hide dropdown
         document.addEventListener('DOMContentLoaded', function() {
@@ -380,6 +324,7 @@
             const menuToggle = document.querySelector('.js-menu-toggle');
             const rightSideMenu = document.querySelector('.js-right-side-menu');
             const menuOverlay = document.querySelector('.js-menu-overlay');
+            const menuClose = document.querySelector('.js-menu-close')
 
             menuToggle.addEventListener('click', function() {
                 rightSideMenu.classList.toggle('active');
@@ -388,6 +333,12 @@
             });
 
             menuOverlay.addEventListener('click', function() {
+                rightSideMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            });
+
+            menuClose.addEventListener('click', function() {
                 rightSideMenu.classList.remove('active');
                 menuOverlay.classList.remove('active');
                 document.body.classList.remove('no-scroll');
@@ -431,6 +382,21 @@
                 getFooter.classList.remove('left-0');
             }
         });
+
+        // datepicker
+        document.addEventListener("DOMContentLoaded", function () {
+            flatpickr("#modal-datepicker", {
+                dateFormat: "Y-m-d",
+                altInput: true,
+                altFormat: "F j, Y",
+                allowInput: true,
+                disableMobile: true ,
+                static: true ,
+                locale: 'ja',
+                defaultDate: "today"
+            });
+        });
+
     </script>
 
 </body>
