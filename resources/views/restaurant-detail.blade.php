@@ -1,13 +1,20 @@
 @extends('layouts.app')
 
 @section('contents')
-
-
 <style>
   .fc-today-button {
     display: none !important;
   }
+  .fc-day-selected {
+    background-color: #F10146 !important;
+    color: white !important;
+  }
+  .closed-day {
+    background-color: #ffcccc !important;
+    color: red !important;
+  }
 </style>
+
 <section class="pt-40">
   <div class="container">
     <div class="row y-gap-20 justify-between items-end pb-20">
@@ -34,21 +41,7 @@
           </div>
 
           <div class="col-auto">
-            <button
-              class="favourite-btn"
-              data-id="{{ $restaurant->id }}"
-              style="
-                                background-color: white;
-                                width: 30px;
-                                height: 30px;
-                                border-radius: 50%;
-                                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-                                border: 1px solid black;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                margin-left: 80px;
-                            ">
+            <button class="favourite-btn" data-id="{{ $restaurant->id }}" style="background-color: white; width: 30px; height: 30px; border-radius: 50%; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); border: 1px solid black; display: flex; align-items: center; justify-content: center; margin-left: 80px;">
               <i class="icon-heart" style="font-size: 12px;"></i>
             </button>
           </div>
@@ -105,36 +98,24 @@
             </div>
           </div>
 
-
-
-          <div class="m-0 d-flex align-items-start flex-wrap mt-1" style="
-    padding: 17px;
-">
+          <div class="m-0 d-flex align-items-start flex-wrap mt-1" style="padding: 17px;">
             @if(!is_null($restaurant->smoking) && $restaurant->smoking)
-            <span class="border border-2 border-dark fw-bold t-8 m-0 px-3 me-2 mb-1" style="
-    font-size: 15px;
-">
+            <span class="border border-2 border-dark fw-bold t-8 m-0 px-3 me-2 mb-1" style="font-size: 15px;">
               {{ translate('smoking') }}
             </span>
             @endif
             @if(!is_null($restaurant->wifi_availability) && $restaurant->wifi_availability)
-            <span class="border border-2 border-dark fw-bold t-8 m-0 px-3 me-2 mb-1" style="
-    font-size: 15px;
-">
+            <span class="border border-2 border-dark fw-bold t-8 m-0 px-3 me-2 mb-1" style="font-size: 15px;">
               {{ translate('wifi') }}
             </span>
             @endif
             @if(!is_null($restaurant->parking_availability) && $restaurant->parking_availability)
-            <span class="border border-2 border-dark fw-bold t-8 m-0 px-3 me-2 mb-1" style="
-    font-size: 15px;
-">
+            <span class="border border-2 border-dark fw-bold t-8 m-0 px-3 me-2 mb-1" style="font-size: 15px;">
               {{ translate('parking') }}
             </span>
             @endif
             @if(!is_null($restaurant->outdoor_seating) && $restaurant->outdoor_seating)
-            <span class="border border-2 border-dark fw-bold t-8 m-0 px-3 me-2 mb-1" style="
-    font-size: 15px;
-">
+            <span class="border border-2 border-dark fw-bold t-8 m-0 px-3 me-2 mb-1" style="font-size: 15px;">
               {{ translate('outdoor_seat') }}
             </span>
             @endif
@@ -142,35 +123,21 @@
         </div>
       </div>
     </div>
-    <div class="d-flex justify-content-between align-items-center" style="
-    padding: 23px;
-">
+    
+    <div class="d-flex justify-content-between align-items-center" style="padding: 23px;">
       <!-- Location Button -->
-      <a href="{{ $restaurant->google_map }}" class="d-flex justify-content-center align-items-center text-white" style="
-        width: 178px;
-        background-color: #228B22;
-        border: none;
-        border-radius: 0;
-        padding: 10px;
-        text-decoration: none;
-    ">
+      <a href="{{ $restaurant->google_map }}" class="d-flex justify-content-center align-items-center text-white" style="width: 178px; background-color: #228B22; border: none; border-radius: 0; padding: 10px; text-decoration: none;">
         <i class="fa-solid fa-location-dot me-2"></i> 地図を表示
       </a>
 
-      <!-- Booking Button -->
-      <a href="{{ route('booking.detail', ['id' => $restaurant->id]) }}" class="d-flex justify-content-center align-items-center text-white" style="
-        width: 178px;
-        background-color: #F10146;
-        border: none;
-        border-radius: 0;
-        padding: 10px;
-        text-decoration: none;
-    ">
+      <!-- Booking Button - Now will pass null if no date selected -->
+      <a href="{{ route('booking.detail', ['id' => $restaurant->id]) }}" 
+         class="d-flex justify-content-center align-items-center text-white" 
+         style="width: 178px; background-color: #F10146; border: none; border-radius: 0; padding: 10px; text-decoration: none;"
+         id="bookingButton">
         予約 &nbsp;<i class="fa-solid fa-calendar-check me-2"></i>
       </a>
     </div>
-
-
 
     <div>
       <div id="calendar"></div>
@@ -198,11 +165,11 @@
       </div>
       @endif
     </div>
-
-
   </div>
 </section>
 <div id="reviews"></div>
+
+<!-- Scripts -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -210,21 +177,51 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.5/main.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.5/main.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/locales-all.min.js"></script>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    flatpickr("#date-picker", {
-      enableTime: true,
-      dateFormat: "Y-m-d H:i",
-      time_24hr: true,
-      onClose: function(selectedDates) {
-        if (selectedDates.length === 1) {
-          document.getElementById("check_in").value = flatpickr.formatDate(selectedDates[0], "Y-m-d H:i");
+  document.addEventListener('DOMContentLoaded', function() {
+    var closedDays = <?php echo json_encode(array_map('intval', explode(',', $restaurant->closed_days))); ?>;
+    var calendarEl = document.getElementById('calendar');
+    var selectedDate = null;
+    var bookingButton = document.getElementById('bookingButton');
+    
+    // Set default booking URL without date parameter
+    var baseBookingUrl = "{{ route('booking.detail', ['id' => $restaurant->id]) }}";
+    bookingButton.href = baseBookingUrl;
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      locale: 'ja',
+      selectable: true,
+      dateClick: function(info) {
+        // Check if day is closed
+        if (closedDays.includes(info.date.getDay())) {
+          toastr.error('この日は定休日です');
+          return;
         }
+        
+        // Remove previous selection
+        document.querySelectorAll('.fc-day-selected').forEach(el => {
+          el.classList.remove('fc-day-selected');
+        });
+        
+        // Highlight new selection
+        info.dayEl.classList.add('fc-day-selected');
+        selectedDate = info.dateStr;
+        
+        // Immediately redirect to booking page with selected date
+        window.location.href = baseBookingUrl + "?date=" + selectedDate;
       },
+      dayCellDidMount: function(info) {
+        var day = info.date.getDay();
+        if (closedDays.includes(day)) {
+          info.el.classList.add('closed-day');
+        }
+      }
     });
+
+    calendar.render();
   });
 
   $(document).ready(function() {
@@ -248,36 +245,11 @@
           if (xhr.status === 422) {
             toastr.error("Invalid request. Please try again.");
           } else {
-            toastr.error("'最初にログインする必要があります。");
+            toastr.error("最初にログインする必要があります。");
           }
         },
       });
     });
   });
 </script>
-<?php
-$closedDays = json_encode(array_map('intval', explode(',', $restaurant->closed_days))); ?>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var closedDays = <?php echo $closedDays; ?>;
-    var calendarEl = document.getElementById('calendar');
-
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      locale: 'ja',
-      dayCellDidMount: function(info) {
-        var day = info.date.getDay();
-
-        if (closedDays.includes(day)) {
-          info.el.style.backgroundColor = '#ffcccc';
-          info.el.style.color = 'red';
-        }
-      }
-    });
-
-    calendar.render();
-  });
-</script>
-
 @endsection

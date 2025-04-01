@@ -202,66 +202,62 @@
     </footer> --}}
 
     <div class="d-flex flex-column min-vh-100">
-
         <!-- Modal Structure -->
-    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header d-flex justify-content-center">
-                    <small class="modal-title text-center fs-6">ネット予約</small>
-                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
-                </div>
-                <div class="modal-body border-0 d-flex flex-column ">
-                    <div class="d-flex mb-2">
-
-                        <div class="me-3"  style="width: 65%;">
-                            <div class=" rounded-0 border border-dark d-flex justify-content-between align-items-center px-2 mb-2">
-                                <input type="text" id="modal-datepicker" class="form-control form-control bg-transparent border-0 outline-0  shadow-none" placeholder="YYYY-MM-DD">
-                                <i class="fa-solid fa-calendar-days opacity-50"></i>
-                            </div>
-
-                            <div class="d-flex">
-                                <div class="w-50 me-2">
-                                    <select class="form-select form-select-sm  rounded-0 border-dark shadow-none">
-                                        <option  selected>01時</option>
-                                        <option >02時</option>
-                                        <option >03時</option>
-                                    </select>
-                                </div>
-            
-                                <div class="w-50">
-                                    <select class="form-select form-select-sm rounded-0 border-dark shadow-none">
-                                        <option  selected>01分</option>
-                                        <option >02分</option>
-                                        <option >03分</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                        </div>
-                        
-
-                        <div class="" style="width: 35%;">
-                            <select class="form-select  rounded-0 border-dark shadow-none">
-                                <option  selected>○ 2名</option>
-                                <option >○ 3名</option>
-                                <option >○ 4名</option>
-                            </select>
-                        </div>
-
-                        
+        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header d-flex justify-content-center">
+                        <small class="modal-title text-center fs-6">ネット予約</small>
                     </div>
+                    <div class="modal-body border-0 d-flex flex-column">
+                        <form action="{{ route('booking.detail', ['id' => $restaurant->id]) }}" method="GET">
+                            <div class="d-flex mb-2">
+                                <div class="me-3" style="width: 65%;">
+                                    <div class="rounded-0 border border-dark d-flex justify-content-between align-items-center px-2 mb-2">
+                                        <input type="text" name="date" id="modal-datepicker" class="form-control form-control bg-transparent border-0 outline-0 shadow-none" placeholder="YYYY-MM-DD" required>
+                                        <i class="fa-solid fa-calendar-days opacity-50"></i>
+                                    </div>
 
-                </div>
-                <div class="modal-footer d-flex justify-content-center border-0">
-                    <button type="button" class="w-50 btn btn-danger px-5 t-10 rounded-0" data-bs-dismiss="modal">予約</button>
+                                    <div class="d-flex">
+                                        <div class="w-50 me-2">
+                                            <select name="hour" class="form-select form-select-sm rounded-0 border-dark shadow-none" required>
+                                                @for($i = 0; $i < 24; $i++)
+                                                    <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}" {{ $i == 12 ? 'selected' : '' }}>{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}時</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+            
+                                        <div class="w-50">
+                                            <select name="minute" class="form-select form-select-sm rounded-0 border-dark shadow-none" required>
+                                                @for($i = 0; $i < 60; $i += 30)
+                                                    <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}分</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div style="width: 35%;">
+                                    <select name="people" class="form-select rounded-0 border-dark shadow-none" required>
+                                        @for($i = 1; $i <= 10; $i++)
+                                            <option value="{{ $i }}" {{ $i == 2 ? 'selected' : '' }}>○ {{ $i }}名</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center border-0">
+                                <button type="submit" class="w-50 btn btn-danger px-5 t-10 rounded-0">予約</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-        <main class="flex-grow-1"  style='margin-top: 90px;'>
+
+        <main class="flex-grow-1" style='margin-top: 90px;'>
             @yield('contents')
         </main>
+        
         <footer class="bg-black text-white text-center py-1 px-4 w-100 t-10">
             Copyright 2025 designed by Andfun Yangon Co., Ltd
         </footer>
@@ -398,7 +394,21 @@
         });
 
     </script>
-
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            flatpickr("#modal-datepicker", {
+                dateFormat: "Y-m-d",
+                altInput: true,
+                altFormat: "F j, Y",
+                allowInput: true,
+                disableMobile: true,
+                static: true,
+                locale: 'ja',
+                defaultDate: "today",
+                minDate: "today"
+            });
+        });
+    </script>
 </body>
 
 

@@ -269,7 +269,7 @@
 
 
 <div class="container d-flex flex-column gap-4 mt-4" style="padding: 0px 40px">
-   <button class="btn btn-danger rounded-5">おすすめ店舗 一 発検索</button>
+   <button class="btn btn-danger rounded-5">おすすめ店舗 一 発検索</a> </button>
    <button class="btn btn-warning rounded-5">おすすめ店舗再検索</button>
 </div>
 {{-- <section class="towbutton">
