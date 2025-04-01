@@ -292,7 +292,7 @@
             </div>
             
           
-            <div class="menu-overlay js-menu-overlay"></div>
+            <div class=""></div>
 
             <div class="main-content">
                 @yield('contents')

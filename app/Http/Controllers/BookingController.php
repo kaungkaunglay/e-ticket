@@ -76,16 +76,19 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-
         if (!Auth::check()) {
             return redirect()->route('login')->with('error', 'You must be logged in to book a restaurant.');
         }
-
+    
         $restaurant = Restaurant::where('status', 1)->findOrFail($id);
         $user = Auth::user();
-
-        return view('booking-detail', compact('restaurant', 'user'));
+        $selectedDate = request('date') ?: now()->format('Y-m-d');
+        $currentTime = now()->format('H:i');
+        $selectedDateTime = $selectedDate . ' ' . $currentTime;
+        // dd($selectedDateTime);
+        return view('booking-detail', compact('restaurant', 'user', 'selectedDate', 'selectedDateTime'));
     }
+
 
     public function booksave(Request $request)
     {    
