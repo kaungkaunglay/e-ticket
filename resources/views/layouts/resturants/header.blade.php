@@ -18,14 +18,14 @@
 
                     
                 </div>--}}
-                <div class="row border border-2 rounded-0 border-dark" data-bs-toggle="modal" data-bs-target="#myModal">
-                    <div class="col-1">
+                <div class="d-flex justify-content-between border border-2 rounded-0 border-dark px-2 pt-1" data-bs-toggle="modal" data-bs-target="#myModal">
+                    <div class="">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
-                    <div class="col-8 t-small">
+                    <div class="text-muted t-small opacity-50" style="min-width: 180px;">
                         全国 ラーメン
                     </div>
-                    <div class="col-2 t-red t-small">
+                    <div class="text-end t-red t-small">
                         検索
                     </div>
                 </div>
