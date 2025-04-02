@@ -12,14 +12,14 @@
             -moz-appearance: none;
             appearance: none;
             width: 100%;
-            padding: 5px;
+            /* padding: 50px; */
             border-radius: 8px;
             border: 1px solid black;
             background-color: #fff;
             font-size: 10px;
             color: #333;
             transition: 0.3s ease;
-            height: 30px;
+            height: 25px;
             text-align: center;
             cursor: pointer;
         }
@@ -30,15 +30,18 @@
         }
 
         .search-field::after {
-            content: "▼";
-            font-size: 12px;
-            color: #333;
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-        }
+    font-family: "Font Awesome 5 Free"; /* Use the correct Font Awesome font */
+    content: "\f078"; /* Unicode for 'fa-chevron-down' */
+    font-weight: 900; /* Ensure it's solid (Font Awesome Free uses weight 900) */
+    font-size: 12px;
+    color: #333;
+    position: absolute;
+    right: 35px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
 
         /* Remove custom arrow for date input */
         input[type="date"].search-input~.search-field::after {
@@ -54,8 +57,8 @@
         /* Existing styles */
         .mainSearch {
             background-color: #EBEBEB;
-            padding: 20px;
-            border-radius: 4px;
+            padding: 10px 20px;
+            /* border-radius: 10px; */
             margin-top: -81px !important;
         }
 
@@ -65,10 +68,11 @@
             gap: 15px;
         }
 
-        /* .search-button {
-               margin-top: 20px;
-               text-align: center;
-           } */
+        .search-button {
+               /* margin-top: 20px; */
+               margin: auto 30px;
+
+           }
 
         .search-submit {
             /* background-color: #0553c5;
@@ -119,7 +123,7 @@
         }
 
         .mainSearch {
-            padding: 47px;
+            /* padding: 47px; */
             border: 1px solid #ccc;
             border-radius: 10px !important;
             box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
@@ -164,7 +168,7 @@
                     <div class="col-xl-9">
                         <div class="masthead__content">
                             <form action="{{ locale_route('restaurant.search') }}" method="GET">
-                                <div class="mainSearch p-20 lg:p-30 rounded-4 mt-30" style="margin-top: 6px !important;">
+                                <div class="mainSearch p-20 lg:p-30 mt-30" style="margin-top: 6px !important;">
                                     <div class="search-grid">
                                         <!-- Row 1: 市区町村と地域 -->
                                         <div class="search-field">
@@ -224,8 +228,8 @@
 
                                     <!-- Search Button -->
                                     <div class="search-button mt-3 text-center">
-                                        <button class="search-submit btn btn-primary w-100 rounded-5">
-                                            <i class="icon-search me-3"></i>
+                                        <button class="search-submit btn btn-primary w-100 rounded-5 p-0" style="font-size: 15px">
+                                            <i class="icon-search me-1"></i>
                                             検索
                                         </button>
                                     </div>
@@ -281,9 +285,9 @@
     @endif
 
 
-    <div class="container d-flex flex-column gap-4 mt-4" style="padding: 0px 40px">
-        <a href="{{ route('restaurant.search') }}" class="btn btn-danger rounded-5">おすすめ店舗 一 発検索</a>
-        <a href="{{ route('restaurant.search') }}" class="btn btn-warning rounded-5">おすすめ店舗再検索</a>
+    <div class="container d-flex flex-column gap-4 mt-4" style="padding: 0px 60px">
+        <a href="{{ route('restaurant.search') }}" class="btn btn-danger rounded-4" style="font-size: 15px">おすすめ店舗 一 発検索</a>
+        <a href="{{ route('restaurant.search') }}" class="btn btn-warning rounded-4 text-white" style="font-size: 15px">おすすめ店舗再検索</a>
     </div>
     {{-- <section class="towbutton">
    <div data-anim-wrap class="container">

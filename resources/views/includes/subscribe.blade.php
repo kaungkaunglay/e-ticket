@@ -13,8 +13,8 @@
             <div class="rounded-4 px-5 pt-3 pb-4 text-center" style="background-color: #434343;">
                 <i class="icon-newsletter text-60 sm:text-40 text-white"></i>
 
-                <h3 class="lh-15 text-white fs-4 mt-20">{{ translate('notify_update_discount') }}</h3>
-                <p class="text-white mt-2" style="font-size: 13px">{{ translate('enter_email_send') }}</p>
+                <h3 class="lh-15 text-white fs-4 mt-10">{{ translate('notify_update_discount') }}</h3>
+                <p class="text-white mt-2 mb-0" style="font-size: 13px">{{ translate('enter_email_send') }}</p>
 
                 <div class="single-field d-flex flex-nowrap justify-center pt-1" style="max-width: 410px; margin: 0 auto;">
                     <div style="flex-grow: 1;">
@@ -23,7 +23,7 @@
                     </div>
                     <div>
                         <button type="submit" class=" text-white" id="submitButton" 
-                                style="background-color: #ff0000; border: none; padding: 0 10px; cursor: pointer; height: 35px;font-size:13px">
+                                style="background-color: #cf1111; border: none; padding: 0 10px; cursor: pointer; height: 35px;font-size:13px">
                             <span id="buttonText">{{ translate('subscribe') }}</span>
                             <span id="loadingSpinner" class="loading-spinner" style="display: none;">
                                 <i class="fa fa-spinner fa-spin"></i>

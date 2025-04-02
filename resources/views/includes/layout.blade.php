@@ -45,19 +45,45 @@
             cursor: pointer;
             font-size: 24px;
             padding: 10px;
-            position: absolute;
-            right: 15px; /* Positioned within 450px frame */
+            position: fixed;
+            right: 15px; 
             top: 15px;
             z-index: 1001;
             color: white;
             background: rgba(0,0,0,0.5);
             border-radius: 4px;
-            width: 40px;
+            /* width: 40px; */
             height: 40px;
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            align-items: flex-end;
+            /* align-items: center; */
             justify-content: center;
         }
+
+        /* .menu-toggle {
+    width: 40px;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    cursor: pointer;
+    position: relative;
+} */
+
+        .menu-toggle span {
+    display: block;
+    background-color: white;
+    height: 4px;
+    width: 30px;
+    margin: 3px 0;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle span:last-child {
+    width: 15px; /* Smaller bottom line */
+}
 
         /* Overlay - covers only the 450px frame */
         .menu-overlay {
@@ -120,7 +146,7 @@
         .header-image {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            /* object-fit: cover; */
             object-position: center;
         }
 
@@ -129,8 +155,9 @@
             position: relative;
             z-index: 1;
             background: white;
-            padding-top: 20px;
+            /* padding-top: 20px; */
             width: 100%;
+            padding: 20px 30px 0px 30px;
             box-sizing: border-box;
         }
 
@@ -190,6 +217,7 @@
 }
 .content {
     display: flex;
+    padding: 0px 60px;
     justify-content: space-between; /* Push elements to the edges */
 }
 
@@ -232,7 +260,10 @@
             </div>
             @endif
 
-            <div class="menu-toggle js-menu-toggle">☰</div>
+            <div class="menu-toggle js-menu-toggle">
+                <span></span>
+                <span></span>
+            </div>
             
             <!-- Right Side Menu - properly contained in 450px frame -->
             <div class="right-side-menu js-right-side-menu">
@@ -297,7 +328,7 @@
             <div class="main-content">
                 @yield('contents')
             </div>
-            <div class="container content mb-2" style="font-size: 13px">
+            <div class="container content pb-2" style="font-size: 13px;background-color:white">
     <span class="left">運営会社：A company</span>
     <span class="right">プライバシーポリシー</span>
 </div>
