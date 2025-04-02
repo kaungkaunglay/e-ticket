@@ -10,15 +10,14 @@
         </div> --}}
 
         <div class="container">
-            <div class="rounded-4 px-5 pt-3 pb-4 text-center" style="background-color: #434343;">
+            <div class="subscribe-box rounded-4 px-5 pt-3 pb-4 text-center" style="background-color: #434343;">
                 <i class="icon-newsletter text-60 sm:text-40 text-white"></i>
-
                 <h3 class="lh-15 text-white fs-4 mt-10">{{ translate('notify_update_discount') }}</h3>
                 <p class="text-white mt-2 mb-0" style="font-size: 13px">{{ translate('enter_email_send') }}</p>
 
                 <div class="single-field d-flex flex-nowrap justify-center pt-1" style="max-width: 410px; margin: 0 auto;">
                     <div style="flex-grow: 1;">
-                        <input type="email" name="email" placeholder="{{ translate('your_email') }}" required 
+                        <input class="email" type="email" name="email" placeholder="{{ translate('your_email') }}" required 
                                style="width: 100%; height: 35px; padding: 0 15px; border: none; border-radius: 0px;background-color:#D9D9D9;font-size:13px">
                     </div>
                     <div>
@@ -65,7 +64,7 @@
     </form>
     
 </section>
-<div class="d-flex justify-content-between align-items-center" style="padding: 24px;font-size: 12px;">
+<div class="footer1 d-flex justify-content-between align-items-center" style="padding: 24px;font-size: 12px;">
     新鮮なお魚が、おろし価格で購入ができるサイトはこちら→ 
     <img src="{{ asset('assets/img/general/216415.jpg') }}" width="50" height="50" />
 </div>

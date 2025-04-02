@@ -228,6 +228,15 @@
 .right {
     text-align: right;
 }
+
+@media (max-width: 410px) {
+    .main-content{
+        padding: 20px 10px 0px 10px;
+    }
+    .content{
+        padding: 10px 30px !important;
+    }
+}
     </style>
 </head>
 
