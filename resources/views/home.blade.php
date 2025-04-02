@@ -168,7 +168,7 @@
                                     <div class="search-grid">
                                         <!-- Row 1: 市区町村と地域 -->
                                         <div class="search-field">
-                                            <select id="city" name="city" class="search-input">
+                                            <select id="city" name="cityName" class="search-input">
                                                 <option value="">市区町村を選択</option>
                                                 @foreach ($cities as $city)
                                                     <option value="{{ $city->id }}">{{ $city->name }}</option>

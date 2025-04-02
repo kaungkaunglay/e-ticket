@@ -210,7 +210,7 @@
                         <small class="modal-title text-center fs-6">ネット予約</small>
                     </div>
                     <div class="modal-body border-0 d-flex flex-column">
-                        <form action="{{ route('booking.detail', ['id' => $restaurant->id]) }}" method="GET">
+                        <form action="{{ route('booking.detail', ['id']) }}" method="GET">
                             <div class="d-flex mb-2">
                                 <div class="me-3" style="width: 65%;">
                                     <div class="rounded-0 border border-dark d-flex justify-content-between align-items-center px-2 mb-2">
@@ -267,7 +267,7 @@
     
     {{-- <div class='preloader js-preloader'>
         <div class='preloader__wrap'>
-            <div class='preloader__icon'>
+            <div class='preloader__icon'> 
                 <svg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'>
                     <g clip-path='url(#clip0_1_41)'>
 
