@@ -210,7 +210,7 @@
                         <small class="modal-title text-center fs-6">ネット予約</small>
                     </div>
                     <div class="modal-body border-0 d-flex flex-column">
-                        <form action="" method="GET">
+                        <form action="{{ route('booking.detail', ['id']) }}" method="GET">
                             <div class="d-flex mb-2">
                                 <div class="me-3" style="width: 65%;">
                                     <div class="rounded-0 border border-dark d-flex justify-content-between align-items-center px-2 mb-2">
@@ -228,12 +228,12 @@
                                         </div>
             
                                         <div class="w-50">
-                                            <select name="minute" class="form-select form-select-sm rounded-0 border-dark shadow-none" required>
-                                                @for($i = 0; $i < 60; $i += 30)
-                                                    <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}分</option>
-                                                @endfor
-                                            </select>
-                                        </div>
+                                    <select name="minute" class="form-select form-select-sm rounded-0 border-dark shadow-none" required>
+                                        @for($i = 0; $i < 60; $i++)
+                                            <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}分</option>
+                                        @endfor
+                                    </select>
+                                </div>
                                     </div>
                                 </div>
                                 
@@ -267,7 +267,7 @@
     
     {{-- <div class='preloader js-preloader'>
         <div class='preloader__wrap'>
-            <div class='preloader__icon'>
+            <div class='preloader__icon'> 
                 <svg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'>
                     <g clip-path='url(#clip0_1_41)'>
 
@@ -302,113 +302,119 @@
     <!-- Flatpickr Japanese Locale -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
     <script>
-        // Add hover functionality to show/hide dropdown
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropdowns = document.querySelectorAll('.dropdown');
-            dropdowns.forEach(dropdown => {
-                dropdown.addEventListener('mouseenter', () => {
-                    dropdown.querySelector('.dropdown-content').style.display = 'block';
-                });
-                dropdown.addEventListener('mouseleave', () => {
-                    dropdown.querySelector('.dropdown-content').style.display = 'none';
-                });
-            });
+document.addEventListener('DOMContentLoaded', function() {
+   
+    flatpickr("#modal-datepicker", {
+        dateFormat: "Y-m-d",
+        altInput: true,
+        altFormat: "Y年m月d日",
+        allowInput: true,
+        disableMobile: true,
+        static: true,
+        locale: 'ja',
+        defaultDate: "today",
+        minDate: "today"
+    });
+
+  
+    const dropdowns = document.querySelectorAll('.dropdown');
+    dropdowns.forEach(dropdown => {
+        dropdown.addEventListener('mouseenter', () => {
+            dropdown.querySelector('.dropdown-content').style.display = 'block';
         });
+        dropdown.addEventListener('mouseleave', () => {
+            dropdown.querySelector('.dropdown-content').style.display = 'none';
+        });
+    });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            // Right side menu toggle functionality
-            const menuToggle = document.querySelector('.js-menu-toggle');
-            const rightSideMenu = document.querySelector('.js-right-side-menu');
-            const menuOverlay = document.querySelector('.js-menu-overlay');
-            const menuClose = document.querySelector('.js-menu-close')
+    
+    const menuToggle = document.querySelector('.js-menu-toggle');
+    const rightSideMenu = document.querySelector('.js-right-side-menu');
+    const menuOverlay = document.querySelector('.js-menu-overlay');
+    const menuClose = document.querySelector('.js-menu-close');
 
-            menuToggle.addEventListener('click', function() {
-                rightSideMenu.classList.toggle('active');
-                menuOverlay.classList.toggle('active');
-                document.body.classList.toggle('no-scroll');
-            });
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+            rightSideMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        });
+    }
 
-            menuOverlay.addEventListener('click', function() {
-                rightSideMenu.classList.remove('active');
-                menuOverlay.classList.remove('active');
-                document.body.classList.remove('no-scroll');
-            });
+    if (menuOverlay) {
+        menuOverlay.addEventListener('click', function() {
+            rightSideMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        });
+    }
 
-            menuClose.addEventListener('click', function() {
-                rightSideMenu.classList.remove('active');
-                menuOverlay.classList.remove('active');
-                document.body.classList.remove('no-scroll');
-            });
+    if (menuClose) {
+        menuClose.addEventListener('click', function() {
+            rightSideMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        });
+    }
 
-            // Close menu when clicking on a link
-            const menuLinks = document.querySelectorAll('.right-side-menu a');
-            menuLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    rightSideMenu.classList.remove('active');
-                    menuOverlay.classList.remove('active');
-                    document.body.classList.remove('no-scroll');
-                });
-            });
-
-            // Hide preloader when page loads
-            window.addEventListener('load', function() {
-                const preloader = document.querySelector('.js-preloader');
-                if (preloader) {
-                    setTimeout(function() {
-                        preloader.style.opacity = '0';
-                        setTimeout(function() {
-                            preloader.style.display = 'none';
-                        }, 300);
-                    }, 500);
+   
+    const bookingForm = document.querySelector('#myModal form');
+    if (bookingForm) {
+        bookingForm.addEventListener('submit', function(e) {
+            const hourSelect = this.querySelector('[name="hour"]');
+            const minuteSelect = this.querySelector('[name="minute"]');
+            const dateInput = this.querySelector('[name="date"]');
+            
+            const selectedHour = parseInt(hourSelect.value);
+            const selectedMinute = parseInt(minuteSelect.value);
+            const selectedDate = dateInput.value;
+            
+            const now = new Date();
+            const today = now.toISOString().split('T')[0];
+            
+            if (selectedDate === today) {
+                const currentHour = now.getHours();
+                const currentMinute = now.getMinutes();
+                
+                if (selectedHour < currentHour || 
+                   (selectedHour === currentHour && selectedMinute < currentMinute)) {
+                    e.preventDefault();
+                    alert('過去の時間を選択することはできません。未来の時間を選択してください。');
+                    return false;
                 }
-            });
-        });
-
-        window.addEventListener('resize', function() {
-            const getBody = document.querySelector('body');
-            const getFooter = document.querySelector('footer');
-
-            if (getBody.clientHeight < window.innerHeight) {
-                getFooter.classList.add('position-fixed');
-                getFooter.classList.add('bottom-0');
-                getFooter.classList.add('left-0');
-            } else {
-                getFooter.classList.remove('position-fixed');
-                getFooter.classList.remove('bottom-0');
-                getFooter.classList.remove('left-0');
             }
+            return true;
         });
+    }
 
-        // datepicker
-        document.addEventListener("DOMContentLoaded", function () {
-            flatpickr("#modal-datepicker", {
-                dateFormat: "Y-m-d",
-                altInput: true,
-                altFormat: "F j, Y",
-                allowInput: true,
-                disableMobile: true ,
-                static: true ,
-                locale: 'ja',
-                defaultDate: "today"
-            });
-        });
+    window.addEventListener('load', function() {
+        const preloader = document.querySelector('.js-preloader');
+        if (preloader) {
+            setTimeout(function() {
+                preloader.style.opacity = '0';
+                setTimeout(function() {
+                    preloader.style.display = 'none';
+                }, 300);
+            }, 500);
+        }
+    });
 
-    </script>
-<script>
-        document.addEventListener("DOMContentLoaded", function () {
-            flatpickr("#modal-datepicker", {
-                dateFormat: "Y-m-d",
-                altInput: true,
-                altFormat: "F j, Y",
-                allowInput: true,
-                disableMobile: true,
-                static: true,
-                locale: 'ja',
-                defaultDate: "today",
-                minDate: "today"
-            });
-        });
-    </script>
+   
+    window.addEventListener('resize', function() {
+        const getBody = document.querySelector('body');
+        const getFooter = document.querySelector('footer');
+
+        if (getBody && getFooter) {
+            if (getBody.clientHeight < window.innerHeight) {
+                getFooter.classList.add('position-fixed', 'bottom-0', 'left-0');
+            } else {
+                getFooter.classList.remove('position-fixed', 'bottom-0', 'left-0');
+            }
+        }
+    });
+});
+</script>
+
 </body>
 
 

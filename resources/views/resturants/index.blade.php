@@ -26,7 +26,8 @@
                     </div>
                     <div class="d-flex justify-content-between align-items-start">
                         <div class="w-50 t-8" >
-                        {{ $restaurant->address }}
+                        {{ $restaurant->address }}<br>
+                        {{ $restaurant->city }}
                             <a href="{{ $restaurant->google_map }}" class="t-10 d-block mt-1">{{ translate('show_on_map') }}</a>
                         </div>
                         <div class="w-50">

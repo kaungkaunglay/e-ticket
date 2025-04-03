@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\BookingConfirmation;
 use App\Mail\BookingConfirmationAdmin;
+use PDF;
 
 class BookingController extends Controller
 {
@@ -92,28 +93,35 @@ class BookingController extends Controller
 
     public function booksave(Request $request)
     {    
-       
         $request->validate([
             'restaurant_id' => 'required|exists:restaurants,id',
             'select_date' => 'required|date',
             'note' => 'nullable|string',
         ]);
-
+    
         $booking = Booking::create([
             'restaurant_id' => $request->restaurant_id,
             'user_id' => Auth::id(),
             'select_date' => $request->select_date,
             'note' => $request->note,
         ]);
-
+    
+     
+        $restaurant = Restaurant::find($request->restaurant_id);
         
+ 
+        $pdf = PDF::loadView('emails.booking_pdf', [
+            'booking' => $booking,
+            'user' => Auth::user(),
+            'restaurant' => $restaurant
+        ]);
+    
 
+        Mail::to(Auth::user()->email)->send(new BookingConfirmation($booking, Auth::user(), $pdf));
+        
       
-        Mail::to(Auth::user()->email)->send(new BookingConfirmation($booking, Auth::user()));
-
-        
-        Mail::to('kado@and-fun.com')->send(new BookingConfirmationAdmin($booking, Auth::user()));
-
+        Mail::to('zwehtetnaing@andfun.biz')->send(new BookingConfirmationAdmin($booking, Auth::user(), $pdf));
+    
         return redirect()->route('booking.thankyou')->with('success', 'Your booking was successful! A confirmation email has been sent.');
     }
 

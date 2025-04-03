@@ -89,14 +89,35 @@
 
 
                             <div class="col-12 input-group">
-                                <div class="form-input">
-                                    <input type="number" name="phone" id="phone" placeholder="電話番号" value="{{ old('phone') }}" maxlength="10" required>
-                                </div>
-                                @error('phone')
-                                <span class="invalid-feedback text-red-500">{{ $message }}</span>
-                                @enderror
+                            <div class="form-input">
+                                <input 
+                                    type="tel" 
+                                    name="phone" 
+                                    id="phone" 
+                                    placeholder="電話番号" 
+                                    value="{{ old('phone') }}" 
+                                    maxlength="11" 
+                                    pattern="[0-9]{11}" 
+                                    required
+                                    title="電話番号は11桁の数字で入力してください"
+                                    oninvalid="this.setCustomValidity('電話番号は11桁の数字で入力してください')"
+                                    oninput="this.setCustomValidity('')"
+                                >
                             </div>
-
+                            @error('phone')
+                                <span class="invalid-feedback text-red-500">
+                                    @if($message == 'The phone must be 11 characters.')
+                                        電話番号は11桁で入力してください
+                                    @elseif($message == 'The phone field is required.')
+                                        電話番号を入力してください
+                                    @elseif($message == 'The phone format is invalid.')
+                                        電話番号は数字のみで入力してください
+                                    @else
+                                        {{ $message }}
+                                    @endif
+                                </span>
+                            @enderror
+                        </div>
 
                             <div class="col-12 input-group">
                                 <div class="form-input">
@@ -120,7 +141,7 @@
 
                             <div class="col-12 input-group">
                                 <div class="form-input">
-                                    <input type="text" name="postal_code" id="postal_code" placeholder="郵便番号" value="{{ old('postal_code') }}" required maxlength="6">
+                                    <input type="text" name="postal_code" id="postal_code" placeholder="郵便番号" value="{{ old('postal_code') }}" required maxlength="7">
                                 </div>
                                 @error('postal_code')
                                 <span class="invalid-feedback text-red-500">{{ $message }}</span>
