@@ -127,7 +127,7 @@ class BookingController extends Controller
     Mail::to(Auth::user()->email)->send(new BookingConfirmation($booking, Auth::user(), $bookingPdf));
     
 
-    Mail::to('zwehtetnaing@andfun.biz')->send(new BookingConfirmationAdmin($booking, Auth::user(), $bookingPdf));
+    Mail::to('mailto:kado@andfun.biz')->send(new BookingConfirmationAdmin($booking, Auth::user(), $bookingPdf));
 
     return redirect()->route('booking.thankyou')->with('success', 'Your booking was successful! A confirmation email has been sent.');
 }
