@@ -210,7 +210,7 @@
                         <small class="modal-title text-center fs-6">ネット予約</small>
                     </div>
                     <div class="modal-body border-0 d-flex flex-column">
-                        <form action="{{ route('booking.detail', ['id' => $restaurant->id]) }}" method="GET">
+                        <form action="" method="GET">
                             <div class="d-flex mb-2">
                                 <div class="me-3" style="width: 65%;">
                                     <div class="rounded-0 border border-dark d-flex justify-content-between align-items-center px-2 mb-2">
