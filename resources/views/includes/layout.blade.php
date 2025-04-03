@@ -264,7 +264,7 @@
             @if(request()->routeIs('home'))
             <div class="header-container">
                 <img src="{{ asset('assets/img/masthead/4/216409.jpg') }}" 
-                     alt="Header image" 
+                    
                      class="header-image">
             </div>
             @endif

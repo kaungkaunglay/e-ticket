@@ -111,7 +111,7 @@ class BookingController extends Controller
 
     $bookingPdf = PDF::loadView('emails.booking_pdf', [
             'booking' => $booking,
-            'user' => Auth::user(),
+            'user' => Auth::user(), 
             'restaurant' => $restaurant
         ])
         ->setPaper('a4')
@@ -120,6 +120,8 @@ class BookingController extends Controller
         ->setOption('fontDir', public_path('assets/fonts/NotoSanJP/'))
         ->setOption('fontCache', storage_path('fonts/'))
         ->setOption('isHtml5ParserEnabled', true);
+
+      
 
    
     Mail::to(Auth::user()->email)->send(new BookingConfirmation($booking, Auth::user(), $bookingPdf));

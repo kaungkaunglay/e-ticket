@@ -80,8 +80,7 @@
 <body>
     <div class="content">
         <div class="header">
-          
-            <h1>ご予約ありがとうございます！</h1>
+          <h1>ご予約ありがとうございます！</h1>
         </div>
         
         <p><strong>{{ $restaurant->name }}</strong> へのご予約が確定いたしました。</p>
@@ -89,7 +88,7 @@
         <div class="details">
             <div class="detail-item">
                 <span class="detail-label">店舗名：</span>
-                {{ $restaurant->name }}
+                <strong>{{ $restaurant->name }}</strong>
             </div>
             <div class="detail-item">
                 <span class="detail-label">予約日時：</span>
