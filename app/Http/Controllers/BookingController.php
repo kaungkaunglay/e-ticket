@@ -108,7 +108,7 @@ class BookingController extends Controller
 
     $restaurant = Restaurant::find($request->restaurant_id);
     
-    // Generate PDF with comprehensive font configuration
+
     $bookingPdf = PDF::loadView('emails.booking_pdf', [
             'booking' => $booking,
             'user' => Auth::user(),
@@ -121,10 +121,10 @@ class BookingController extends Controller
         ->setOption('fontCache', storage_path('fonts/'))
         ->setOption('isHtml5ParserEnabled', true);
 
-    // Send to customer with PDF attachment
+   
     Mail::to(Auth::user()->email)->send(new BookingConfirmation($booking, Auth::user(), $bookingPdf));
     
-    // Send to admin with PDF attachment
+
     Mail::to('zwehtetnaing@andfun.biz')->send(new BookingConfirmationAdmin($booking, Auth::user(), $bookingPdf));
 
     return redirect()->route('booking.thankyou')->with('success', 'Your booking was successful! A confirmation email has been sent.');

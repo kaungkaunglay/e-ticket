@@ -58,7 +58,7 @@
 <body>
     <div class="content">
         <div class="header">
-            <img src="{{ asset('assets/img/general/home.png') }}" class="header-image" alt="Header Image">
+           
             <h1>ご予約ありがとうございます！</h1>
         </div>
         
@@ -75,7 +75,7 @@
             </div>
             <div class="detail-item">
                 <span class="detail-label">お名前：</span>
-                {{ $user->name }}
+                {{ $user->first_name }}
             </div>
             @if($booking->note)
             <div class="detail-item">
