@@ -106,21 +106,20 @@ class BookingController extends Controller
             'note' => $request->note,
         ]);
     
-        // Get restaurant data
+     
         $restaurant = Restaurant::find($request->restaurant_id);
         
-        // Generate PDF
+ 
         $pdf = PDF::loadView('emails.booking_pdf', [
             'booking' => $booking,
             'user' => Auth::user(),
             'restaurant' => $restaurant
-        ])->setOption('encoding', 'UTF-8')
-          ->setOption('defaultFont', 'Noto Sans JP');
+        ]);
     
-        // Send to customer with PDF attachment
+
         Mail::to(Auth::user()->email)->send(new BookingConfirmation($booking, Auth::user(), $pdf));
         
-        // Send to admin with PDF attachment
+      
         Mail::to('zwehtetnaing@andfun.biz')->send(new BookingConfirmationAdmin($booking, Auth::user(), $pdf));
     
         return redirect()->route('booking.thankyou')->with('success', 'Your booking was successful! A confirmation email has been sent.');
