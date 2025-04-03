@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="icon" type="image/png" href="{{ asset('assets/img/general/home.jpg') }}">
+
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
@@ -26,7 +28,7 @@
             <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_1_41)">
 
-                        <image href="{{ asset('assets/img/general/home.png') }}" x="0" y="0" width="100" height="100" />
+                        <image href="{{ asset('assets/img/general/home.jpg') }}" x="25" y="25" width="40" height="40" />
                     </g>
 
                     <defs>
