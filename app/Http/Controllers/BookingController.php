@@ -92,38 +92,43 @@ class BookingController extends Controller
 
 
     public function booksave(Request $request)
-    {    
-        $request->validate([
-            'restaurant_id' => 'required|exists:restaurants,id',
-            'select_date' => 'required|date',
-            'note' => 'nullable|string',
-        ]);
+{    
+    $request->validate([
+        'restaurant_id' => 'required|exists:restaurants,id',
+        'select_date' => 'required|date',
+        'note' => 'nullable|string',
+    ]);
+
+    $booking = Booking::create([
+        'restaurant_id' => $request->restaurant_id,
+        'user_id' => Auth::id(),
+        'select_date' => $request->select_date,
+        'note' => $request->note,
+    ]);
+
+    $restaurant = Restaurant::find($request->restaurant_id);
     
-        $booking = Booking::create([
-            'restaurant_id' => $request->restaurant_id,
-            'user_id' => Auth::id(),
-            'select_date' => $request->select_date,
-            'note' => $request->note,
-        ]);
-    
-     
-        $restaurant = Restaurant::find($request->restaurant_id);
-        
- 
-        $pdf = PDF::loadView('emails.booking_pdf', [
+    // Generate PDF with comprehensive font configuration
+    $bookingPdf = PDF::loadView('emails.booking_pdf', [
             'booking' => $booking,
             'user' => Auth::user(),
             'restaurant' => $restaurant
-        ]);
-    
+        ])
+        ->setPaper('a4')
+        ->setOption('defaultFont', 'Noto Sans JP')
+        ->setOption('isRemoteEnabled', true)
+        ->setOption('fontDir', public_path('assets/fonts/NotoSanJP/'))
+        ->setOption('fontCache', storage_path('fonts/'))
+        ->setOption('isHtml5ParserEnabled', true);
 
-        Mail::to(Auth::user()->email)->send(new BookingConfirmation($booking, Auth::user(), $pdf));
-        
-      
-        Mail::to('zwehtetnaing@andfun.biz')->send(new BookingConfirmationAdmin($booking, Auth::user(), $pdf));
+    // Send to customer with PDF attachment
+    Mail::to(Auth::user()->email)->send(new BookingConfirmation($booking, Auth::user(), $bookingPdf));
     
-        return redirect()->route('booking.thankyou')->with('success', 'Your booking was successful! A confirmation email has been sent.');
-    }
+    // Send to admin with PDF attachment
+    Mail::to('zwehtetnaing@andfun.biz')->send(new BookingConfirmationAdmin($booking, Auth::user(), $bookingPdf));
+
+    return redirect()->route('booking.thankyou')->with('success', 'Your booking was successful! A confirmation email has been sent.');
+}
 
 
     public function bookCancel(Request $request) 
