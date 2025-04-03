@@ -244,7 +244,7 @@
                                         <!-- Row 1: 市区町村と地域 -->
                                         <div class="search-field">
                                             <select id="city" name="cityName" class="search-input">
-                                                <option value="">市区町村を選択</option>
+                                                <option value="">都道府県を選択</option>
                                                 @foreach ($cities as $city)
                                                     <option value="{{ $city->id }}">{{ $city->name }}</option>
                                                 @endforeach
@@ -253,7 +253,7 @@
 
                                         <div class="search-field">
                                             <select id="subTown" name="subTown" class="search-input" disabled>
-                                                <option value="">地域を選択</option>
+                                                <option value="">市町区村を選択</option>
                                             </select>
                                         </div>
 

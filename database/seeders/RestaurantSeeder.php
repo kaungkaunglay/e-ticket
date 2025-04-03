@@ -184,7 +184,7 @@ class RestaurantSeeder extends Seeder
                 'closed_days' => json_encode([1, 3]),
                 'wifi_availability' => 0,
                 'social_links' => json_encode([
-                    'facebook' => 'https://facebook.com/restaurant',
+                'facebook' => 'https://facebook.com/restaurant',
                     'instagram' => 'https://instagram.com/restaurant'
                 ]),
                 'status' => 1,

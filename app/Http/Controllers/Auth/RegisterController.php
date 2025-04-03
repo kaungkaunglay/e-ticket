@@ -54,10 +54,10 @@ class RegisterController extends Controller
     {
        
         $request->validate([
-            'first_name' => 'nullable|min:3|max:50',
-            'last_name' => 'required|min:3|max:50',
+            'first_name' => 'nullable|min:2|max:50',
+            'last_name' => 'required|min:2|max:50',
             'email' => 'required|email|unique:users',
-            'phone' => 'required|string|max:20',
+            'phone' => 'required|string|size:11',
             'password' => 'required|min:8|confirmed',
             'postal_code' => 'required|string|max:10',
             'address' => 'required|string|max:255',
@@ -67,6 +67,7 @@ class RegisterController extends Controller
             'email.required' => 'メールアドレスを入力してください。', 
             'email.email' => '有効なメールアドレスを入力してください。', 
             'email.unique' => 'このメールアドレスは既に使用されています。', 
+            'phone.size' => '電話番号は11桁で入力してください。',
             'phone.required' => '電話番号を入力してください。', 
             'password.required' => 'パスワードを入力してください。',
             'password.min' => 'パスワードは8文字以上で入力してください。', 
@@ -120,7 +121,7 @@ class RegisterController extends Controller
         try {
             Mail::to($vendor->email)->send(new VendorConfirmationMail($vendor, $promoCode, $confirmationToken));
         } catch (\Exception $e) {
-            \Log::error('Email sending failed: ' . $e->getMessage());
+            Log::error('Email sending failed: ' . $e->getMessage());
             return redirect()->back()->with('error', '確認メールの送信に失敗しました。もう一度お試しください。'); 
         }
     
