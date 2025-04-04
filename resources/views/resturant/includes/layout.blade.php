@@ -27,7 +27,7 @@
             <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_1_41)">
 
-                        <image href="{{ asset('assets/img/general/home.png') }}" x="0" y="0" width="100" height="100" />
+                        <image href="{{ asset('assets/img/general/home.png') }}" x="25" y="25" width="100" height="100" />
                     </g>
 
                     <defs>
