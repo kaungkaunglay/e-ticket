@@ -159,10 +159,10 @@
             </div>
             <div class="col-8 d-flex">
                 <div class="me-2">
-                    <input type="text" name="first_name" class="w-100 h-75 border-0 p-1 t-small" value="{{ auth()->user()->first_name }}" placeholder="例: 山田">
+                    <input type="text" name="first_name" class="w-100 h-75 border-0 p-1 t-small" value="{{ auth()->user()->first_name }}" placeholder="山田">
                 </div>
                 <div class="">
-                    <input type="text" name="last_name" class="w-100 h-75 border-0 p-1 t-small" value="{{ auth()->user()->last_name }}" placeholder="例: 太郎">
+                    <input type="text" name="last_name" class="w-100 h-75 border-0 p-1 t-small" value="{{ auth()->user()->last_name }}" placeholder="太郎">
                 </div>
             </div>
         </div>
@@ -170,23 +170,23 @@
             <div class="col-4 justify-center"><label style="font-size: 10px">お名前(かな)</label></div>
             <div class="col-8 d-flex">
                 <div class="me-2">
-                    <input type="text" name="first_name_kana" class="w-100 h-75 border-0 p-1 t-small" placeholder="例: やまだ">
+                    <input type="text" name="first_name_kana" class="w-100 h-75 border-0 p-1 t-small" placeholder="やまだ">
                 </div>
                 <div class="">
-                    <input type="text" name="last_name_kana" class="w-100 h-75 border-0 p-1 t-small" placeholder="例: たろう">
+                    <input type="text" name="last_name_kana" class="w-100 h-75 border-0 p-1 t-small" placeholder="たろう">
                 </div>
             </div>
         </div>
         <div class="row mt-1">
             <div class="col-4 justify-center"><label style="font-size: 10px">電話番号</label></div>
             <div class="col-8 align-content-center">
-                <input type="tel" name="phone" class="w-100 h-75 border-0 p-1 t-small" value="{{ auth()->user()->phone }}" placeholder="例: 090-1234-5678">
+                <input type="tel" name="phone" class="w-100 h-75 border-0 p-1 t-small" value="{{ auth()->user()->phone }}" placeholder="090-1234-5678">
             </div>
         </div>
         <div class="row mt-1">
             <div class="col-4 justify-center"><label style="font-size: 10px">メールアドレス</label></div>
             <div class="col-8 align-content-center">
-                <input type="email" name="email" class="w-100 h-75 border-0 p-1 t-small" value="{{ auth()->user()->email }}" placeholder="例: example@example.com">
+                <input type="email" name="email" class="w-100 h-75 border-0 p-1 t-small" value="{{ auth()->user()->email }}" placeholder="example@example.com">
             </div>
         </div>
         <div class="row mt-1">
