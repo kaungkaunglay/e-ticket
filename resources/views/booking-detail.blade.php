@@ -48,11 +48,13 @@
         padding: 5px 15px;
         font-size: 12px;
     }
+    .t-small { font-size: 12px; }
+    .t-8 { font-size: 8px; }
+    .t-10 { font-size: 10px; }
+    .t-12 { font-size: 12px; }
 </style>
 
-
 @php
-    // Parse the selected datetime
     $dateTime = new DateTime($selectedDateTime);
     $year = $dateTime->format('Y');
     $month = $dateTime->format('n');
@@ -60,7 +62,6 @@
     $dayOfWeek = $dateTime->format('D');
     $time = $dateTime->format('H:i');
     
-    // Map English day names to Japanese
     $dayMap = [
         'Mon' => '月',
         'Tue' => '火',
@@ -79,22 +80,22 @@
         <p class="fw-400 t-small">{{ $restaurant->address }}</p>
     </h5>
     <p class="my-2 fw-semibold t-small">来店日時 {{ $year }}年 {{ $month }}月 <span class="t-small">{{ $day }}</span>日 ({{ $dayOfWeekJapanese }}) {{ $time }}</p>
-    <p class="fw-400 t-small" > ¥{{ number_format($restaurant->price_range) }}</p>
+    <p class="fw-400 t-small">¥{{ number_format($restaurant->price_range) }}</p>
 
     <ul class="list-unstyled">
         <li>
             <div class="d-flex align-items-center">
-                <i class="fa-solid fa-circle-check text-primary me-3" ></i>
+                <i class="fa-solid fa-circle-check text-primary me-3"></i>
                 <h6 class="m-0 fw-bold t-small">ご予約人数の内訳</h6>
             </div>
             <div class="ms-4 ps-2">
-                <p class="my-1 t-small" >予約人数 <span class="fw-bold">2</span>名(お子様不可)</p>
+                <p class="my-1 t-small">予約人数 <span class="fw-bold">2</span>名(お子様不可)</p>
                 <p class="bg-warning text-white px-3 py-2 mt-2 t-8">こちらの店舗ではお子様のご予約は受け付けておりません。詳しくは店舗情報の「お子様連れ」をご確認ください。</p>
             </div>
         </li>
         <li>
-            <div class="d-flex  align-items-center">
-                <i class="fa-solid fa-circle-check text-primary me-3" ></i>
+            <div class="d-flex align-items-center">
+                <i class="fa-solid fa-circle-check text-primary me-3"></i>
                 <h6 class="m-0 fw-bold t-small">席の選択</h6>
             </div>
             <div class="ms-4 ps-2">
@@ -110,7 +111,7 @@
         </li>
         <li>
             <div class="d-flex align-items-center">
-                <i class="fa-solid fa-circle-check text-primary me-3" ></i>
+                <i class="fa-solid fa-circle-check text-primary me-3"></i>
                 <h6 class="m-0 fw-bold t-small">その他の情報の入力</h6>
             </div>
             <div class="ms-4 ps-2">
@@ -127,31 +128,30 @@
                             </div>
                             <div class="col-8 d-flex">
                                 <div class="me-2">
-                                    <input type="text" name="first_name" class="w-100 h-75 border-0 p-1 t-small" value="{{ auth()->user()->first_name }}">
+                                    <input type="text" name="first_name" class="w-100 h-75 border-0 p-1 t-small" value="{{ auth()->user()->first_name }}" required>
                                 </div>
                                 <div class="">
-                                    <input type="text" name="last_name" class="w-100 h-75 border-0  p-1 t-small" value="{{ auth()->user()->last_name }}">
+                                    <input type="text" name="last_name" class="w-100 h-75 border-0 p-1 t-small" value="{{ auth()->user()->last_name }}" required>
                                 </div>
                             </div>
                         </div>
                         <div class="row mt-1">
                             <div class="col-4 justify-center"><label style="font-size: 10px">お名前(かな)</label></div>
                             <div class="col-8 d-flex">
-                                <div class="me-2"><input type="text" name="first_name_kana" class="w-100 h-75 border-0 p-1 t-small"></div>
-                                <div class=""><input type="text" name="last_name_kana" class="w-100 h-75 border-0 p-1 t-small"></div>
+                                <div class="me-2"><input type="text" name="first_name_kana" class="w-100 h-75 border-0 p-1 t-small" required></div>
+                                <div class=""><input type="text" name="last_name_kana" class="w-100 h-75 border-0 p-1 t-small" required></div>
                             </div>
-                            
                         </div>
                         <div class="row mt-1">
                             <div class="col-4 justify-center"><label style="font-size: 10px">電話番号</label></div>
                             <div class="col-8 align-content-center">
-                                <input type="tel" name="phone" class="w-100 h-75 border-0 p-1 t-small" value="{{ auth()->user()->phone }}">
+                                <input type="tel" name="phone" class="w-100 h-75 border-0 p-1 t-small" value="{{ auth()->user()->phone }}" required>
                             </div>
                         </div>
                         <div class="row mt-1">
                             <div class="col-4 justify-center"><label style="font-size: 10px">メールアドレス</label></div>
                             <div class="col-8 align-content-center">
-                                <input type="email" name="email" class="w-100 h-75 border-0 p-1 t-small" value="{{ auth()->user()->email }}">
+                                <input type="email" name="email" class="w-100 h-75 border-0 p-1 t-small" value="{{ auth()->user()->email }}" required>
                             </div>
                         </div>
                         <div class="row mt-1">
@@ -164,12 +164,11 @@
                         </div>
                     </div>
 
-                    <p class="bg-warning text-white px-3 py-2 mt-2" style="font-size: 8px">お手数ですが、ご予約の詳細をご確認いただきますようお願いいたします。</p>
+                    <p class="bg-warning text-white px-3 py-2 mt-2 t-8">お手数ですが、ご予約の詳細をご確認いただきますようお願いいたします。</p>
                         
                     <div class="bg-secondary-subtle p-3 me-4 w-100">
-                        <p class="fw-bold text-center t-8">予約成立後にお店へ連絡なくキャンセルされると、サービスのご利用を制限させていただく場合があります。 また、予約時にご登録いただいた連絡先が無効な場合、お店の判断により予約がキャンセルとなることがあります。</p>
+                        <p class="fw-bold text-center t-8">予約成立後にお店へ連絡なくキャンセルされると、サービスのご利用を制限させていただく場合があります。また、予約時にご登録いただいた連絡先が無効な場合、お店の判断により予約がキャンセルとなることがあります。</p>
                         
-                        <!-- Date/Time Display -->
                         <div class="bg-white px-3 py-1 fw-bold text-center t-12">
                             <div class="datetime-display">
                                 来店日時 
@@ -183,22 +182,19 @@
                                 </span>
                             </div>
                             
-                            <!-- Date/Time Edit Form -->
                             <div class="datetime-input-container">
-                                <input type="text" id="datetimePicker" class="form-control" value="{{ $selectedDateTime }}">
+                                <input type="text" id="datetimePicker" class="form-control" value="{{ $selectedDateTime }}" readonly>
                                 <div class="datetime-actions">
-                                    <button class="btn btn-sm btn-danger" onclick="saveDatetime()">保存</button>
-                                    <button class="btn btn-sm btn-outline-secondary" onclick="cancelDatetimeEdit()">キャンセル</button>
+                                    <button type="button" class="btn btn-sm btn-danger" onclick="saveDatetime()">保存</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="cancelDatetimeEdit()">キャンセル</button>
                                 </div>
                             </div>
                             
-                            来店人数 
-                            <span class="fw-bold fs-6">2</span>名
+                            来店人数 <span class="fw-bold fs-6">2</span>名
                         </div>
 
                         <div class="d-flex justify-content-center p-3">
-                            <button type="submit" class="button -md -dark-1 bg-danger text-white mt-30 col-9 mx-auto bg-danger text-white px-2 py-1 text-center rounded-3 t-8"
-                            id="submit-button">
+                            <button type="submit" class="button -md -dark-1 bg-danger text-white mt-30 col-9 mx-auto bg-danger text-white px-2 py-1 text-center rounded-3 t-8" id="submit-button">
                                 <span class="button-text">
                                     利用規約·同意事項·注意事項に同意し、上記内容で <br>
                                     <span class="t-10">予約する</span>
@@ -209,19 +205,21 @@
                             </button>
                         </div>
                     </div>
-
                 </form>
-             
             </div>
         </li>
     </ul>
 </section>
 
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 <script>
     let datetimePicker;
+    let isEditingDatetime = false;
     
     document.addEventListener('DOMContentLoaded', function() {
-      
         datetimePicker = flatpickr("#datetimePicker", {
             enableTime: true,
             dateFormat: "Y-m-d H:i",
@@ -229,13 +227,16 @@
             locale: "ja",
             minDate: "today",
             defaultDate: "{{ $selectedDateTime }}",
-            minuteIncrement: 30,
+            minuteIncrement: 15,
             disable: [
                 function(date) {
                     const closedDays = [<?php echo implode(',', array_map('intval', explode(',', $restaurant->closed_days))) ?>];
                     return closedDays.includes(date.getDay());
                 }
-            ]
+            ],
+            onReady: function(selectedDates, dateStr, instance) {
+                instance.set('minuteIncrement', 15);
+            }
         });
 
         const form = document.getElementById('booking-form');
@@ -243,6 +244,10 @@
 
         if (form) {
             form.addEventListener('submit', function(e) {
+                if (isEditingDatetime) {
+                    e.preventDefault();
+                    return;
+                }
                 submitButton.classList.add('is-loading');
                 submitButton.disabled = true;
             });
@@ -257,13 +262,17 @@
     });
 
     function showDatetimeEdit() {
+        isEditingDatetime = true;
         document.querySelector('.datetime-display').style.display = 'none';
         document.querySelector('.datetime-input-container').style.display = 'block';
+        datetimePicker.open();
     }
 
     function cancelDatetimeEdit() {
+        isEditingDatetime = false;
         document.querySelector('.datetime-display').style.display = 'block';
         document.querySelector('.datetime-input-container').style.display = 'none';
+        datetimePicker.setDate("{{ $selectedDateTime }}");
     }
 
     function saveDatetime() {
@@ -273,18 +282,15 @@
             return;
         }
 
-        
         const year = selectedDatetime.getFullYear();
         const month = selectedDatetime.getMonth() + 1;
         const day = selectedDatetime.getDate();
         const hours = String(selectedDatetime.getHours()).padStart(2, '0');
-        const minutes = String(selectedDatetime.getMinutes()).padStart(2, '0');
+        const minutes = String(Math.floor(selectedDatetime.getMinutes() / 15) * 15).padStart(2, '0');
         
-       
         const dayMap = {0: '日', 1: '月', 2: '火', 3: '水', 4: '木', 5: '金', 6: '土'};
         const dayOfWeekJapanese = dayMap[selectedDatetime.getDay()];
 
-       
         document.querySelector('.datetime-display').innerHTML = `
             来店日時 
             <span class="fw-bold fs-6">${year}</span>年 
@@ -297,17 +303,15 @@
             </span>
         `;
 
-       
         document.querySelector('input[name="select_date"]').value = 
             `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')} ${hours}:${minutes}:00`;
 
-     
-        cancelDatetimeEdit();
-        
-       
         document.querySelector('.fw-semibold').innerHTML = `
-            来店日時 ${year}年 ${month}月 <span class="fs-3">${day}</span>日 (${dayOfWeekJapanese}) ${hours}:${minutes}
+            来店日時 ${year}年 ${month}月 <span class="t-small">${day}</span>日 (${dayOfWeekJapanese}) ${hours}:${minutes}
         `;
+
+        isEditingDatetime = false;
+        cancelDatetimeEdit();
     }
 </script>
 @endsection

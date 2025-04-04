@@ -49,6 +49,92 @@
         padding: 18px;
         color: red;
     }
+    .custom-file-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+}
+
+.hidden-input {
+    display: none; /* Hide default file input */
+}
+
+.custom-label {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.custom-label:hover {
+    background-color: #0056b3;
+}
+
+.file-name {
+    font-size: 14px;
+    color: #555;
+}
+.custom-file-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+}
+
+.hidden-input {
+    display: none; /* Hide default input */
+}
+
+.custom-label {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.custom-label:hover {
+    background-color: #0056b3;
+}
+
+.file-name {
+    font-size: 14px;
+    color: #555;
+}
+
+.image-preview-item {
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+}
+
+.image-preview-item img {
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.remove-image {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+}
+
 </style>
 <div class="row y-gap-20 justify-between items-end pb-60 lg:pb-40 md:pb-32">
     <div class="col-auto">
@@ -142,12 +228,20 @@
 
             <!-- Logo & Cover Image -->
             <div class="col-md-6">
-                <label class="lh-1 text-16 text-light-1 mb-10">{{translate('logo')}}</label>
-                <input type="file" name="logo" class="form-control" {{ isset($restaurant) ? '' : 'required' }}>
-                @if(isset($restaurant) && $restaurant->logo)
-                <img src="{{ asset($restaurant->logo) }}" alt="Logo" width="100" class="mt-2">
-                @endif
-            </div>
+    <label class="lh-1 text-16 text-light-1 mb-10">{{ translate('logo') }}</label>
+    
+    <div class="custom-file-upload">
+        <input type="file" name="logo" id="fileInput" class="hidden-input" {{ isset($restaurant) ? '' : 'required' }} onchange="updateFileName()">
+        <label for="fileInput" class="custom-label">📂 ファイルを選択してください</label>
+        <span id="fileName" class="file-name">選択されたファイル: なし</span>
+    </div>
+
+    @if(isset($restaurant) && $restaurant->logo)
+        <img src="{{ asset($restaurant->logo) }}" alt="Logo" width="100" class="mt-2">
+    @endif
+</div>
+
+
             <!-- <div class="col-12">
                 <label class="lh-1 text-16 text-light-1 mb-10">{{translate('cover_image')}}</label>
                 <input type="file" name="cover_image" class="form-control">
@@ -156,22 +250,31 @@
                 @endif
             </div> -->
             <div class="col-md-6">
-                <label class="lh-1 text-16 text-light-1 mb-10">{{translate('multiple_image')}}</label>
-                <input type="file" name="multi_images[]" class="form-control" id="multi_images" multiple>
-                <div id="image-preview" class="mt-2">
-                    @if($restaurant->multi_images)
-                    @php
-                    $images = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images) : $restaurant->multi_images;
-                    @endphp
-                    @foreach($images as $image)
-                    <div class="image-preview-item">
-                        <img src="{{ asset($image) }}" alt="Multi Image" width="100" class="mr-2 mt-2">
-                        <span class="remove-image" onclick="removeImage(this)">×</span>
-                    </div>
-                    @endforeach
-                    @endif
+    <label class="lh-1 text-16 text-light-1 mb-10">{{ translate('multiple_image') }}</label>
+
+    <!-- Custom File Input -->
+    <div class="custom-file-upload">
+        <input type="file" name="multi_images[]" class="hidden-input" id="multi_images" multiple onchange="previewImages()">
+        <label for="multi_images" class="custom-label">📂 複数の画像を選択</label>
+        <span id="fileCount" class="file-name">選択された画像: 0</span>
+    </div>
+
+    <!-- Image Preview Section -->
+    <div id="image-preview" class="mt-2">
+        @if(isset($restaurant) && $restaurant->multi_images)
+            @php
+                $images = is_string($restaurant->multi_images) ? json_decode($restaurant->multi_images, true) : $restaurant->multi_images;
+            @endphp
+            @foreach($images as $image)
+                <div class="image-preview-item">
+                    <img src="{{ asset($image) }}" alt="Multi Image" width="100" class="mr-2 mt-2">
+                    <span class="remove-image" onclick="removeImage(this, '{{ $image }}')">×</span>
                 </div>
-            </div>
+            @endforeach
+        @endif
+    </div>
+</div>
+
             <!-- Description, Address, City, Zip Code -->
             <div class="col-12">
                 <label class="lh-1 text-16 text-light-1 mb-10">{{translate('description')}}</label>
@@ -348,6 +451,13 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+
+function updateFileName() {
+    const input = document.getElementById('fileInput');
+    const fileName = input.files.length > 0 ? input.files[0].name : '選択されたファイル: なし';
+    document.getElementById('fileName').textContent = fileName;
+}
+
     function removeImage(element) {
     if (element && element.parentElement) {
         element.parentElement.remove();
@@ -490,7 +600,7 @@
 
                     const removeButton = document.createElement('button');
                     removeButton.className = 'btn btn-danger btn-sm float-right movespace';
-                    removeButton.textContent = 'Remove';
+                    removeButton.innerHTML = '<i class="icon-trash-2 text-16 text-light-1"></i>';
                     removeButton.onclick = function() {
                         selectedWeeksList.removeChild(listItem);
                         selectedWeeks = selectedWeeks.filter(id => id !== weekId);
@@ -508,25 +618,31 @@
         /** PREPOPULATE SELECTED MENUS **/
         const initialSelectedMenus = JSON.parse('{!! json_encode($restaurant->menu) !!}');
         if (selectedMenusList && menuSelect) {
-            initialSelectedMenus.forEach(menuId => {
-                const menuName = document.querySelector(`#menu-select option[value="${menuId}"]`).textContent;
-                const listItem = document.createElement('li');
-                listItem.className = 'list-group-item';
-                listItem.textContent = menuName;
-                const removeButton = document.createElement('button');
-                removeButton.className = 'btn btn-danger btn-sm float-right movespace';
-                removeButton.textContent = 'Remove';
-                removeButton.onclick = function() {
-                    selectedMenusList.removeChild(listItem);
-                    selectedMenus = selectedMenus.filter(id => id !== menuId);
-                    updateSelectedMenuIds();
-                };
-                listItem.appendChild(removeButton);
-                selectedMenusList.appendChild(listItem);
-            });
-            selectedMenus = initialSelectedMenus;
+    initialSelectedMenus.forEach(menuId => {
+        const menuName = document.querySelector(`#menu-select option[value="${menuId}"]`).textContent;
+        const listItem = document.createElement('li');
+        listItem.className = 'list-group-item';
+        listItem.textContent = menuName;
+
+        // Create the remove button
+        const removeButton = document.createElement('button');
+        removeButton.className = 'btn btn-danger btn-sm float-right movespace';
+        removeButton.innerHTML = '<i class="icon-trash-2 text-16 text-light-1"></i>'; // Use innerHTML instead of textContent
+
+        removeButton.onclick = function() {
+            selectedMenusList.removeChild(listItem);
+            selectedMenus = selectedMenus.filter(id => id !== menuId);
             updateSelectedMenuIds();
-        }
+        };
+
+        listItem.appendChild(removeButton);
+        selectedMenusList.appendChild(listItem);
+    });
+
+    selectedMenus = initialSelectedMenus;
+    updateSelectedMenuIds();
+}
+
 
         function removeImage(element) {
             if (element && element.parentElement) {

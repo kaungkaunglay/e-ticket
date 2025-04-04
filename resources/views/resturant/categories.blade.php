@@ -38,7 +38,7 @@
                             <tr>
                                 <th>{{translate('id')}}</th>
                                 <th>{{translate('name')}}</th>
-                                <th>{{translate('created')}}</th>
+                                <!-- <th>{{translate('created')}}</th> -->
                                 <th>{{translate('action')}}</th>
                             </tr>
                         </thead>
@@ -47,7 +47,9 @@
                             <tr>
                                 <td class="text-blue-1 fw-500">{{$category->id}}</td>
                                 <td class="text-blue-1 fw-500">{{$category->name}}</td>
-                                <td>{{$category->created_at->format('d m y')}}</td>
+                                <!-- <td>
+                                        {{ $category->created_at ? $category->created_at->format('d m y') : 'N/A' }}
+                                    </td> -->
                                 <td>
                                     <div class="row x-gap-10 y-gap-10 items-center">
                                         <div class="col-auto">
