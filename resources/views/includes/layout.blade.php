@@ -174,7 +174,7 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 450px;
+            /* width: 450px; */
             height: 100%;
             background: white;
             display: flex;
