@@ -120,7 +120,7 @@
                 <h6 class="m-0 fw-bold t-small">ご予約人数の内訳</h6>
             </div>
             <div class="ms-4 ps-2">
-                <p class="my-1 t-small">予約人数 <span class="fw-bold">2</span>名(お子様不可)</p>
+                <p class="my-1 t-small">予約人数 <span class="fw-bold">{{ $people ?? 0 }}</span>名(お子様不可)</p>
                 <p class="bg-warning text-white px-3 py-2 mt-2 t-8">こちらの店舗ではお子様のご予約は受け付けておりません。詳しくは店舗情報の「お子様連れ」をご確認ください。</p>
             </div>
         </li>
@@ -194,7 +194,7 @@
                 <label style="font-size: 10px">レストランへのご要望</label>
             </div>
             <div class="col-8 align-content-center">
-                <textarea class="border-0 w-75" name="note" cols="20" rows="2" style="resize: none" placeholder="ご要望をお書きください"></textarea>
+                <textarea class="border-0 w-100" name="note" cols="20" rows="2" style="resize: none" placeholder="ご要望をお書きください"></textarea>
             </div>
         </div>
     </div>
@@ -239,7 +239,13 @@
                 </div>
             </div>
 
-            来店人数 <span class="fw-bold fs-6">2</span>名
+            <div class="bg-white px-3 py-1 fw-bold text-center t-12">
+    
+    来店人数 <span class="fw-bold fs-6">{{ $people ?? 0 }}</span>名
+    @if(($people ?? 0) > 0)
+        <!-- (お子様<span class="fw-bold fs-6">{{ $children ?? 0 }}</span>名) -->
+    @endif
+</div>
         </div>
 
         <div class="d-flex justify-content-center p-3">

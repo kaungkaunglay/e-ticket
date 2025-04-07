@@ -102,7 +102,7 @@ class HomeController extends Controller
     }
 
     public function detail($id)
-    {
+    {  
         $restaurant = Restaurant::where('status', 1)->findOrFail($id);
         $menuIds = json_decode($restaurant->menu, true);
         $menus = Menu::whereIn('id', $menuIds)->get();

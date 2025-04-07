@@ -110,7 +110,7 @@ class ResturantController extends Controller
     }
 
    
-    $city = City::firstOrCreate(['name' => $request->city]);
+    // $city = City::firstOrCreate(['name' => $request->city]);
 
    
     $subTown = $request->sub_town; 

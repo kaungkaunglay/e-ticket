@@ -261,7 +261,7 @@
                                         <div class="search-field"
                                             style="
                                                 border-radius: 8px;
-                                                border: 2px solid black;
+                                                border: 1px solid black;
                                                 background-color: #fff;
                                              ">
                                             <input type="text" id="check_in" name="check_in" class="search-input"

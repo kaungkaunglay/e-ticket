@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\BookingConfirmation;
 use App\Mail\BookingConfirmationAdmin;
+use Illuminate\Support\Facades\Validator;
 use PDF;
 
 class BookingController extends Controller
@@ -83,11 +84,26 @@ class BookingController extends Controller
     
         $restaurant = Restaurant::where('status', 1)->findOrFail($id);
         $user = Auth::user();
-        $selectedDate = request('date') ?: now()->format('Y-m-d');
-        $currentTime = now()->format('H:i');
-        $selectedDateTime = $selectedDate . ' ' . $currentTime;
-        // dd($selectedDateTime);
-        return view('booking-detail', compact('restaurant', 'user', 'selectedDate', 'selectedDateTime'));
+        $validator = Validator::make(request()->all(), [
+            'date' => 'required|date|after_or_equal:today',
+            'hour' => 'required|integer|between:'.$restaurant->opening_time.','.$restaurant->closing_time,
+            'minute' => 'required|in:00,15,30,45',
+            'people' => 'required|integer|min:1|max:10'
+        ]);
+    
+        // if ($validator->fails()) {
+        //     return redirect()->back()
+        //         ->withErrors($validator)
+        //         ->withInput();
+        // }
+    
+        $selectedDate = request('date');
+        $hour = str_pad(request('hour'), 2, '0', STR_PAD_LEFT);
+        $minute = request('minute');
+        $people = request('people');
+        $selectedDateTime = $selectedDate . ' ' . $hour . ':' . $minute . ':00';
+    
+        return view('booking-detail', compact('restaurant', 'user', 'selectedDate', 'selectedDateTime', 'people'));
     }
 
 

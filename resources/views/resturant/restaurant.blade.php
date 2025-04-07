@@ -298,12 +298,18 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <label class="lh-1 text-16 text-light-1 mb-10">{{translate('zip_code')}}</label>
-                <div class="form-input">
-                    <input type="text" name="zip_code" maxlength="7" value="{{ old('zip_code', $restaurant->zip_code ?? '') }}" required>
-
-                </div>
-            </div>
+    <label class="lh-1 text-16 text-light-1 mb-10">{{translate('zip_code')}}</label>
+    <div class="form-input">
+        <input type="text" name="zip_code" id="zip_code" maxlength="7" 
+               value="{{ old('zip_code', $restaurant->zip_code ?? '') }}" 
+               required
+               oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 7)"
+               onkeyup="fetchAddressFromZip(this.value)">
+        <div id="zip-code-loading" class="loading-spinner" style="display: none;">
+            <div class="spinner"></div>
+        </div>
+    </div>
+</div>
 
             <!-- Latitude & Longitude -->
             <!-- <div class="col-md-6">
@@ -387,33 +393,23 @@
             <h2 class="text-15">検索用</h2>
 
             <div class="d-flex" style="gap: 20px;">
-                <div data-x-dd-click="searchMenu-loc col-md-6">
-                    <h4 class="text-15 fw-500 ls-2 lh-16">都道府県</h4>
-                    <div class="text-15 text-light-1 ls-2 lh-16" style="border: 1px solid var(--color-border);">
-                        <select id="city" name="city" class="js-search js-dd-focus w-100">
-                            <option value="">{{ translate('都道府県を選んでください') }}</option>
-                            @foreach($cities as $city)
-                            <option value="{{ $city->name }}" {{ $restaurant->city == $city->name ? 'selected' : '' }}>
-                                {{ $city->name }}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div data-x-dd-click="searchMenu-loc col-6">
-                    <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('市町区村') }}</h4>
-                    <div class="text-15 text-light-1 ls-2 lh-16" style="border: 1px solid var(--color-border);">
-                        <select id="subTown" name="sub_town" class="js-search js-dd-focus w-100" disabled>
-                            <option value="">{{ translate('市町区村を選んでください') }}</option>
-                            @isset($restaurant)
-                            @if ($restaurant->sub_towns)
-                            <option value="{{ $restaurant->sub_towns }}" selected>{{ $restaurant->sub_towns }}</option>
-                            @endif
-                            @endisset
-                        </select>
-                    </div>
-                </div>
-            </div>
+    <div data-x-dd-click="searchMenu-loc col-md-6">
+        <h4 class="text-15 fw-500 ls-2 lh-16">都道府県</h4>
+        <div class="text-15 text-light-1 ls-2 lh-16" style="border: 1px solid var(--color-border);">
+            <input type="text" id="prefecture" name="city" class="js-search js-dd-focus w-100"
+                   value="{{ old('city', $restaurant->city ?? '') }}" 
+                   placeholder="{{ translate('都道府県') }}" required>
+        </div>
+    </div>
+    <div data-x-dd-click="searchMenu-loc col-6">
+        <h4 class="text-15 fw-500 ls-2 lh-16">{{ translate('市町区村') }}</h4>
+        <div class="text-15 text-light-1 ls-2 lh-16" style="border: 1px solid var(--color-border);">
+            <input type="text" id="city-town" name="sub_town" class="js-search js-dd-focus w-100"
+                   value="{{ old('sub_town', $restaurant->sub_town ?? '') }}" 
+                   placeholder="{{ translate('市町区村') }}" required>
+        </div>
+    </div>
+</div>
 
             
             <!-- Available -->
@@ -689,4 +685,88 @@ function updateFileName() {
             }
         });
     });
+</script>
+
+
+<style>
+.loading-spinner {
+    margin-top: 5px;
+    text-align: center;
+}
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
+
+<script>
+// Debounce function to limit API calls
+function debounce(func, wait) {
+    let timeout;
+    return function() {
+        const context = this, args = arguments;
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            func.apply(context, args);
+        }, wait);
+    };
+}
+
+// Function to fetch address from zip code
+const fetchAddressFromZip = debounce(function(zipCode) {
+    // Only make API call if we have a valid 7-digit zip code
+    if (zipCode.length === 7 && /^\d+$/.test(zipCode)) {
+        const loadingElement = document.getElementById('zip-code-loading');
+        const prefectureInput = document.getElementById('prefecture');
+        const cityTownInput = document.getElementById('city-town');
+        
+        loadingElement.style.display = 'block';
+        
+        fetch(`https://api.zipaddress.net/?zipcode=${zipCode}`)
+            .then(response => response.json())
+            .then(data => {
+                loadingElement.style.display = 'none';
+                
+                if (data.code === 200 && data.data) {
+                    // Update the prefecture field
+                    if (data.data.city) {
+                        prefectureInput.value = data.data.city;
+                    }
+                    
+                    // Update the town (city/district) field
+                    if (data.data.town) {
+                        cityTownInput.value = data.data.town;
+                    }
+                } else {
+                    console.log('No address found for this zip code');
+                }
+            })
+            .catch(error => {
+                loadingElement.style.display = 'none';
+                console.error('Error fetching zip code data:', error);
+            });
+    }
+}, 500); // 500ms debounce time
+
+// Initialize with existing values if they exist
+document.addEventListener('DOMContentLoaded', function() {
+    const zipCodeInput = document.getElementById('zip_code');
+    const prefectureInput = document.getElementById('prefecture');
+    const cityTownInput = document.getElementById('city-town');
+    
+    // If zip code exists but prefecture/city doesn't, try to fetch
+    if (zipCodeInput.value && zipCodeInput.value.length === 7 && 
+        (!prefectureInput.value || !cityTownInput.value)) {
+        fetchAddressFromZip(zipCodeInput.value);
+    }
+});
 </script>
