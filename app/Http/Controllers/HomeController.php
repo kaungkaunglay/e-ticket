@@ -27,34 +27,64 @@ class HomeController extends Controller
      */
     public function home()
     {
-
-
         $discountedRestaurants = Restaurant::where('status', 1)
             ->whereNotNull('discount')
             ->where('discount', '>', 0)
             ->paginate(10);
 
-        // dd($discountedRestaurants);
         $restaurants = Restaurant::where('status', 1)->paginate(12);
         $menus = Menu::all();
         $category = Category::all();
+
         $priceRange = Restaurant::whereNotNull('price_range')
             ->distinct()
             ->pluck('price_range')
             ->unique()
             ->sort();
-        $cities = City::all();
-        $subTowns = Sub_towns::all();
 
-        return view('home', compact('restaurants', 'discountedRestaurants', 'menus', 'priceRange', 'category', 'cities', 'subTowns'));
+
+        $cities = City::whereIn('name', function ($query) {
+            $query->select('city')
+                ->from('restaurants')
+                ->where('status', 1)
+                ->distinct();
+        })
+            ->orderBy('name')
+            ->get();
+        $subTowns = Sub_towns::whereIn('name', function ($query) {
+            $query->select('sub_towns')
+                ->from('restaurants')
+                ->where('status', 1)
+                ->distinct();
+        })
+            ->orderBy('name')
+            ->get();
+
+        return view('home', compact(
+            'restaurants',
+            'discountedRestaurants',
+            'menus',
+            'priceRange',
+            'category',
+            'cities',
+            'subTowns'
+        ));
     }
 
     public function getSubTowns($cityId)
     {
-        $subTowns = Sub_towns::where('city_id', $cityId)->get();
+        $subTowns = Sub_towns::where('city_id', $cityId)
+            ->whereIn('name', function ($query) {
+                $query->select('sub_towns')
+                    ->from('restaurants')
+                    ->where('status', 1)
+                    ->distinct();
+            })
+            ->orderBy('name')
+            ->get();
+
         return response()->json($subTowns);
     }
-
 
     public function searchresult()
     {
@@ -72,7 +102,7 @@ class HomeController extends Controller
     }
 
     public function detail($id)
-    {
+    {  
         $restaurant = Restaurant::where('status', 1)->findOrFail($id);
         $menuIds = json_decode($restaurant->menu, true);
         $menus = Menu::whereIn('id', $menuIds)->get();
@@ -82,97 +112,97 @@ class HomeController extends Controller
 
 
 
-  
-    
+
+
     public function search(Request $request)
-{
-    // Fetch distinct price ranges for filtering
-    $priceRangedata = Restaurant::whereNotNull('price_range')
-        ->distinct()
-        ->pluck('price_range')
-        ->unique()
-        ->sort();
-    
-    // Fetch all categories, cities, and sub-towns for dropdowns
-    $categorydata = Category::all();
-    $cities = City::all();
-    $subTowns = Sub_towns::all();
-    
-    // Get form inputs (corrected field names)
-    $cityId = $request->input('cityName'); // Changed from 'citydata' to 'cityName'
-    $subTownId = $request->input('subTown'); // Changed from 'sub_towns' to 'subTown'
-    $checkIn = $request->input('check_in');
-    $priceTo = (float) $request->input('price_to');
-    $category = $request->input('category');
-    $smoking = $request->input('smoking');
+    {
+        // Fetch distinct price ranges for filtering
+        $priceRangedata = Restaurant::whereNotNull('price_range')
+            ->distinct()
+            ->pluck('price_range')
+            ->unique()
+            ->sort();
 
-    // Day of week calculation
-    $dayOfWeek = null;
-    $dayId = null;
-    if ($checkIn) {
-        $date = new DateTime($checkIn);
-        $dayOfWeek = $date->format('l');
-        $dayId = DB::table('weeks')
-            ->where('day_eg', $dayOfWeek)
-            ->value('id');
-    }
-    
-    // Get city name if city ID is provided
-    $cityName = null;
-    if ($cityId) {
-        $city = City::find($cityId);
-        $cityName = $city ? $city->name : null;
-    }
-     
-    // dd($cityName);
-    // Get sub-town name if sub-town ID is provided
-    $subTownName = null;
-    if ($subTownId) {
-        $subTown = Sub_towns::find($subTownId);
-        $subTownName = $subTown ? $subTown->name : null;
-    }
-    
-    // Restaurant query
-    $restaurants = Restaurant::where('status', 1)
-        ->when($cityName, function ($q) use ($cityName) {
-            return $q->where('city', $cityName); 
-        })
-        ->when($subTownName, function ($q) use ($subTownName) {
-            return $q->where('sub_towns', $subTownName); 
-        })
-        ->when($priceTo, function ($q) use ($priceTo) {
-            return $q->where('price_range', '<=', $priceTo)
-                     ->orderBy('price_range', 'desc');
-        })
-        ->when($category, function ($q) use ($category) {
-            return $q->where('category_id', $category);
-        })
-        ->when(isset($smoking), function ($q) use ($smoking) {
-            return $q->where('smoking', $smoking);
-        })
-        ->when($dayId, function ($q) use ($dayId) {
-            return $q->where(function ($q) use ($dayId) {
-                $q->whereNull('closed_days')
-                  ->orWhereJsonDoesntContain('closed_days', $dayId);
-            });
-        })
-        ->paginate(10);
+        // Fetch all categories, cities, and sub-towns for dropdowns
+        $categorydata = Category::all();
+        $cities = City::all();
+        $subTowns = Sub_towns::all();
 
-    return view('resturants.index', compact(
-        'restaurants',
-        'cityId',
-        'checkIn',
-        'dayOfWeek',
-        'priceTo',
-        'category',
-        'smoking',
-        'priceRangedata',
-        'categorydata',
-        'cities',
-        'subTowns',
-        'subTownId'
-    ));
-}
+        // Get form inputs (corrected field names)
+        $cityId = $request->input('cityName'); // Changed from 'citydata' to 'cityName'
+        $subTownId = $request->input('subTown'); // Changed from 'sub_towns' to 'subTown'
+        $checkIn = $request->input('check_in');
+        $priceTo = (float) $request->input('price_to');
+        $category = $request->input('category');
+        $smoking = $request->input('smoking');
+
+        // Day of week calculation
+        $dayOfWeek = null;
+        $dayId = null;
+        if ($checkIn) {
+            $date = new DateTime($checkIn);
+            $dayOfWeek = $date->format('l');
+            $dayId = DB::table('weeks')
+                ->where('day_eg', $dayOfWeek)
+                ->value('id');
+        }
+
+        // Get city name if city ID is provided
+        $cityName = null;
+        if ($cityId) {
+            $city = City::find($cityId);
+            $cityName = $city ? $city->name : null;
+        }
+
+        // dd($cityName);
+        // Get sub-town name if sub-town ID is provided
+        $subTownName = null;
+        if ($subTownId) {
+            $subTown = Sub_towns::find($subTownId);
+            $subTownName = $subTown ? $subTown->name : null;
+        }
+
+        // Restaurant query
+        $restaurants = Restaurant::where('status', 1)
+            ->when($cityName, function ($q) use ($cityName) {
+                return $q->where('city', $cityName);
+            })
+            ->when($subTownName, function ($q) use ($subTownName) {
+                return $q->where('sub_towns', $subTownName);
+            })
+            ->when($priceTo, function ($q) use ($priceTo) {
+                return $q->where('price_range', '<=', $priceTo)
+                    ->orderBy('price_range', 'desc');
+            })
+            ->when($category, function ($q) use ($category) {
+                return $q->where('category_id', $category);
+            })
+            ->when(isset($smoking), function ($q) use ($smoking) {
+                return $q->where('smoking', $smoking);
+            })
+            ->when($dayId, function ($q) use ($dayId) {
+                return $q->where(function ($q) use ($dayId) {
+                    $q->whereNull('closed_days')
+                        ->orWhereJsonDoesntContain('closed_days', $dayId);
+                });
+            })
+            ->paginate(10);
+
+        return view('resturants.index', compact(
+            'restaurants',
+            'cityId',
+            'checkIn',
+            'dayOfWeek',
+            'priceTo',
+            'category',
+            'smoking',
+            'priceRangedata',
+            'categorydata',
+            'cities',
+            'subTowns',
+            'subTownId'
+        ));
+    }
 
 
 

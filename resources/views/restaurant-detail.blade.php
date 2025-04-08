@@ -2,9 +2,6 @@
 
 @section('contents')
 <style>
-  #calendar{
-    z-index: 0;
-  }
   .fc-today-button {
     display: none !important;
   }
@@ -15,6 +12,9 @@
   .closed-day {
     background-color: #ffcccc !important;
     color: red !important;
+  }
+  .fc-button-group{
+    display: none !important;
   }
 </style>
 
@@ -126,25 +126,106 @@
         </div>
       </div>
     </div>
-    
+   <section>
     <div class="d-flex justify-content-between align-items-center" style="padding: 23px;">
-      <!-- Location Button -->
-      <a href="{{ $restaurant->google_map }}" class="d-flex justify-content-center align-items-center text-white" style="width: 178px; background-color: #228B22; border: none; border-radius: 0; padding: 10px; text-decoration: none;">
-        <i class="fa-solid fa-location-dot me-2"></i> 地図を表示
-      </a>
+  <!-- Location Button -->
+  <a href="{{ $restaurant->google_map }}" class="d-flex justify-content-center align-items-center text-white" style="width: 178px; background-color: #228B22; border: none; border-radius: 0; padding: 10px; text-decoration: none;">
+    <i class="fa-solid fa-location-dot me-2"></i> 地図を表示
+  </a>
 
-      <!-- Booking Button - Now will pass null if no date selected -->
-      <a href="{{ route('booking.detail', ['id' => $restaurant->id]) }}" 
-         class="d-flex justify-content-center align-items-center text-white" 
-         style="width: 178px; background-color: #F10146; border: none; border-radius: 0; padding: 10px; text-decoration: none;"
-         id="bookingButton">
-        予約 &nbsp;<i class="fa-solid fa-calendar-check me-2"></i>
-      </a>
-    </div>
+  <!-- Booking Button -->
+  <button type="button" 
+          class="d-flex justify-content-center align-items-center text-white" 
+          style="width: 178px; background-color: #F10146; border: none; border-radius: 0; padding: 10px; text-decoration: none;"
+          data-bs-toggle="modal" 
+          data-bs-target="#bookingModal">
+    予約 &nbsp;<i class="fa-solid fa-calendar-check me-2"></i>
+  </button>
+</div>
 
-    <div>
-      <div id="calendar" ></div>
+<!-- Booking Modal -->
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="bookingModalLabel">{{ $restaurant->name }} 予約</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="bookingForm" action="{{ route('booking.detail', ['id' => $restaurant->id]) }}" method="GET">
+          @csrf
+          
+          <!-- Date Selection -->
+          <div class="mb-3">
+            <label for="bookingDate" class="form-label">日付</label>
+            <input type="date" class="form-control @error('date') is-invalid @enderror" id="bookingDate" name="date" required min="{{ date('Y-m-d') }}">
+            @error('date')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+          </div>
+          
+          <!-- Time Selection -->
+          <div class="mb-3">
+            <label for="bookingTime" class="form-label">時間</label>
+            <div class="row">
+              <div class="col-6">
+                <select class="form-select @error('hour') is-invalid @enderror" id="bookingHour" name="hour" required>
+                  <option value="" selected disabled>時</option>
+                  @php
+                    $openingHour = $restaurant->opening_time ?? 10;
+                    $closingHour = $restaurant->closing_time ?? 22;
+                  @endphp
+                  @for($i = $openingHour; $i <= $closingHour; $i++)
+                    <option value="{{ $i }}" {{ old('hour') == $i ? 'selected' : '' }}>
+                      {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}時
+                    </option>
+                  @endfor
+                </select>
+                @error('hour')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="col-6">
+                <select class="form-select @error('minute') is-invalid @enderror" id="bookingMinute" name="minute" required>
+                  <option value="" selected disabled>分</option>
+                  <option value="00" {{ old('minute') == '00' ? 'selected' : '' }}>00分</option>
+                  <option value="15" {{ old('minute') == '15' ? 'selected' : '' }}>15分</option>
+                  <option value="30" {{ old('minute') == '30' ? 'selected' : '' }}>30分</option>
+                  <option value="45" {{ old('minute') == '45' ? 'selected' : '' }}>45分</option>
+                </select>
+                @error('minute')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+            </div>
+          </div>
+          
+          <!-- Number of Children -->
+          <div class="mb-3">
+            <label for="bookingPeople" class="form-label">子供の人数</label>
+            <select class="form-select @error('people') is-invalid @enderror" id="bookingPeople" name="people" required>
+              <option value="" selected disabled>選択してください</option>
+              @for($i = 1; $i <= 10; $i++)
+                <option value="{{ $i }}" {{ old('people') == $i ? 'selected' : '' }}>{{ $i }}</option>
+              @endfor
+            </select>
+            @error('people')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+        <button type="submit" form="bookingForm" class="btn btn-primary">予約確認へ進む</button>
+      </div>
     </div>
+  </div>
+</div>
+</section> 
+<div class="mt-4 mb-5">
+  <div id="calendar" style="height: 500px;"></div>
+</div>
 
     <div class="col-12">
       <h3 class="text-22 fw-500 pt-40 border-top-light">メニュー</h3>
@@ -155,7 +236,7 @@
       <div class="row w-100 g-3 mt-3">
         @foreach($menus as $menu)
         <div class="col-3 d-flex justify-content-center align-items-center" >
-          <div class="card z-1 shadow-sm" style="border: none !important; background: none;">
+          <div class="card shadow-sm" style="border: none !important; background: none;">
             <img src="{{ asset($menu->image) }}" alt="{{ $menu->name }}"
               class="rounded-top card-img-top"
               style="object-fit: cover;" />
@@ -181,78 +262,122 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.5/main.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.5/main.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/locales-all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
+    // Set date constraints
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('bookingDate').min = today;
+    
+    const maxDate = new Date();
+    maxDate.setMonth(maxDate.getMonth() + 3);
+    document.getElementById('bookingDate').max = maxDate.toISOString().split('T')[0];
+    
+    // Form validation before submission
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+        const date = document.getElementById('bookingDate').value;
+        const hour = document.getElementById('bookingHour').value;
+        const minute = document.getElementById('bookingMinute').value;
+        const people = document.getElementById('bookingPeople').value;
+        
+        if (!date || !hour || !minute || !people) {
+            e.preventDefault();
+            alert('すべてのフィールドを入力してください');
+        }
+    });
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize FullCalendar with date restrictions
     var closedDays = <?php echo json_encode(array_map('intval', explode(',', $restaurant->closed_days))); ?>;
     var calendarEl = document.getElementById('calendar');
-    var selectedDate = null;
-    var bookingButton = document.getElementById('bookingButton');
     
-    // Set default booking URL without date parameter
-    var baseBookingUrl = "{{ route('booking.detail', ['id' => $restaurant->id]) }}";
-    bookingButton.href = baseBookingUrl;
-
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      locale: 'ja',
-      selectable: true,
-      dateClick: function(info) {
-        // Check if day is closed
-        if (closedDays.includes(info.date.getDay())) {
-          toastr.error('この日は定休日です');
-          return;
-        }
+    if (calendarEl) {
+        var today = new Date();
+        today.setHours(0, 0, 0, 0); // Set to beginning of day
         
-        // Remove previous selection
-        document.querySelectorAll('.fc-day-selected').forEach(el => {
-          el.classList.remove('fc-day-selected');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            locale: 'ja',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            selectable: true,
+            validRange: {
+                start: today // Disable all dates before today
+            },
+            dayCellClassNames: function(arg) {
+                let classNames = [];
+                
+                // Check if date is in the past
+                if (arg.date < today) {
+                    classNames.push('fc-day-past');
+                }
+                
+                // Check if day is closed
+                if (closedDays.includes(arg.date.getDay())) {
+                    classNames.push('closed-day');
+                }
+                
+                return classNames;
+            },
+            dateClick: function(info) {
+                // Check if date is in the past
+                if (info.date < today) {
+                    toastr.error('過去の日付は選択できません');
+                    return;
+                }
+                
+                // Check if day is closed
+                if (closedDays.includes(info.date.getDay())) {
+                    toastr.error('この日は定休日です');
+                    return;
+                }
+                
+                // Update booking form date
+                document.getElementById('bookingDate').value = info.dateStr;
+                
+                // Show booking modal
+                var bookingModal = new bootstrap.Modal(document.getElementById('bookingModal'));
+                bookingModal.show();
+            },
+            eventDidMount: function(info) {
+                // Style closed days and past days
+                if (closedDays.includes(info.date.getDay())) {
+                    info.el.style.backgroundColor = '#f8f9fa';
+                    info.el.style.color = '#adb5bd';
+                    info.el.style.cursor = 'not-allowed';
+                }
+                if (info.date < today) {
+                    info.el.style.backgroundColor = '#f8f9fa';
+                    info.el.style.color = '#adb5bd';
+                    info.el.style.cursor = 'not-allowed';
+                }
+            }
         });
         
-        // Highlight new selection
-        info.dayEl.classList.add('fc-day-selected');
-        selectedDate = info.dateStr;
+        calendar.render();
+    }
+
+    // Form validation for booking date
+    document.getElementById('bookingForm')?.addEventListener('submit', function(e) {
+        const dateInput = document.getElementById('bookingDate');
+        const selectedDate = new Date(dateInput.value);
+        selectedDate.setHours(0, 0, 0, 0);
         
-        // Immediately redirect to booking page with selected date
-        window.location.href = baseBookingUrl + "?date=" + selectedDate;
-      },
-      dayCellDidMount: function(info) {
-        var day = info.date.getDay();
-        if (closedDays.includes(day)) {
-          info.el.classList.add('closed-day');
+        if (selectedDate < today) {
+            e.preventDefault();
+            toastr.error('過去の日付は選択できません');
+            dateInput.focus();
+            return;
         }
-      }
+        
+        // Rest of your validation logic...
     });
-
-    calendar.render();
-  });
-
-  $(document).ready(function() {
-    $(".favourite-btn").click(function(e) {
-      e.preventDefault();
-
-      let restaurantId = $(this).data("id");
-      let token = "{{ csrf_token() }}";
-
-      $.ajax({
-        url: "{{ route('booking.favourite') }}",
-        type: "GET",
-        data: {
-          _token: token,
-          restaurants_id: restaurantId,
-        },
-        success: function(response) {
-          toastr.success(response.message);
-        },
-        error: function(xhr) {
-          if (xhr.status === 422) {
-            toastr.error("Invalid request. Please try again.");
-          } else {
-            toastr.error("最初にログインする必要があります。");
-          }
-        },
-      });
-    });
-  });
+});
 </script>
 @endsection

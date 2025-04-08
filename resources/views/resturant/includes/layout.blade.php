@@ -27,7 +27,7 @@
             <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_1_41)">
 
-                        <image href="{{ asset('assets/img/general/home.png') }}" x="0" y="0" width="100" height="100" />
+                        <image href="{{ asset('assets/img/general/home.png') }}" x="25" y="25" width="100" height="100" />
                     </g>
 
                     <defs>
@@ -311,38 +311,7 @@
             <div class="dashboard__content bg-light-2">
                 @yield('content')
 
-                <footer class="footer -dashboard mt-60">
-                    <div class="footer__row row y-gap-10 items-center justify-between">
-                        <div class="col-auto">
-                            <div class="row y-gap-20 items-center">
-                                <div class="col-auto">
-                                    <div class="text-14 lh-14 mr-30">© 2022 r-buzz LLC All rights reserved.</div>
-                                </div>
-
-                                <div class="col-auto">
-                                    <div class="row x-gap-20 y-gap-10 items-center text-14">
-                                        <div class="col-auto">
-                                            <a href="#" class="text-13 lh-1">Privacy</a>
-                                        </div>
-                                        <div class="col-auto">
-                                            <a href="#" class="text-13 lh-1">Terms</a>
-                                        </div>
-                                        <div class="col-auto">
-                                            <a href="#" class="text-13 lh-1">Site Map</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-auto">
-                            <div class="d-flex x-gap-5 y-gap-5 items-center">
-                                <button class="text-14 fw-500 underline">English (US)</button>
-                                <button class="text-14 fw-500 underline">USD</button>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
+                
             </div>
         </div>
     </div>

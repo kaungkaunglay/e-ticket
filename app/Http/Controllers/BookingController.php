@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\BookingConfirmation;
 use App\Mail\BookingConfirmationAdmin;
-use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Validator;
+use PDF;
 
 class BookingController extends Controller
 {
@@ -83,47 +84,69 @@ class BookingController extends Controller
     
         $restaurant = Restaurant::where('status', 1)->findOrFail($id);
         $user = Auth::user();
-        $selectedDate = request('date') ?: now()->format('Y-m-d');
-        $currentTime = now()->format('H:i');
-        $selectedDateTime = $selectedDate . ' ' . $currentTime;
-        // dd($selectedDateTime);
-        return view('booking-detail', compact('restaurant', 'user', 'selectedDate', 'selectedDateTime'));
+        $validator = Validator::make(request()->all(), [
+            'date' => 'required|date|after_or_equal:today',
+            'hour' => 'required|integer|between:'.$restaurant->opening_time.','.$restaurant->closing_time,
+            'minute' => 'required|in:00,15,30,45',
+            'people' => 'required|integer|min:1|max:10'
+        ]);
+    
+        // if ($validator->fails()) {
+        //     return redirect()->back()
+        //         ->withErrors($validator)
+        //         ->withInput();
+        // }
+    
+        $selectedDate = request('date');
+        $hour = str_pad(request('hour'), 2, '0', STR_PAD_LEFT);
+        $minute = request('minute');
+        $people = request('people');
+        $selectedDateTime = $selectedDate . ' ' . $hour . ':' . $minute . ':00';
+    
+        return view('booking-detail', compact('restaurant', 'user', 'selectedDate', 'selectedDateTime', 'people'));
     }
 
 
     public function booksave(Request $request)
-    {    
-        $request->validate([
-            'restaurant_id' => 'required|exists:restaurants,id',
-            'select_date' => 'required|date',
-            'note' => 'nullable|string',
-        ]);
-    
-        $booking = Booking::create([
-            'restaurant_id' => $request->restaurant_id,
-            'user_id' => Auth::id(),
-            'select_date' => $request->select_date,
-            'note' => $request->note,
-        ]);
-    
-     
-        $restaurant = Restaurant::find($request->restaurant_id);
-        
- 
-        $pdf = PDF::loadView('emails.booking_pdf', [
-            'booking' => $booking,
-            'user' => Auth::user(),
-            'restaurant' => $restaurant
-        ]);
+{    
+    $request->validate([
+        'restaurant_id' => 'required|exists:restaurants,id',
+        'select_date' => 'required|date',
+        'note' => 'nullable|string',
+    ]);
+
+    $booking = Booking::create([
+        'restaurant_id' => $request->restaurant_id,
+        'user_id' => Auth::id(),
+        'select_date' => $request->select_date,
+        'note' => $request->note,
+    ]);
+
+    $restaurant = Restaurant::find($request->restaurant_id);
     
 
-        Mail::to(Auth::user()->email)->send(new BookingConfirmation($booking, Auth::user(), $pdf));
-        
+    $bookingPdf = PDF::loadView('emails.booking_pdf', [
+            'booking' => $booking,
+            'user' => Auth::user(), 
+            'restaurant' => $restaurant
+        ])
+        ->setPaper('a4')
+        ->setOption('defaultFont', 'Noto Sans JP')
+        ->setOption('isRemoteEnabled', true)
+        ->setOption('fontDir', public_path('assets/fonts/NotoSanJP/'))
+        ->setOption('fontCache', storage_path('fonts/'))
+        ->setOption('isHtml5ParserEnabled', true);
+
       
-        Mail::to('zwehtetnaing@andfun.biz')->send(new BookingConfirmationAdmin($booking, Auth::user(), $pdf));
+
+   
+    Mail::to(Auth::user()->email)->send(new BookingConfirmation($booking, Auth::user(), $bookingPdf));
     
-        return redirect()->route('booking.thankyou')->with('success', 'Your booking was successful! A confirmation email has been sent.');
-    }
+
+    Mail::to('kado@andfun.biz')->send(new BookingConfirmationAdmin($booking, Auth::user(), $bookingPdf));
+
+    return redirect()->route('booking.thankyou')->with('success', 'Your booking was successful! A confirmation email has been sent.');
+}
 
 
     public function bookCancel(Request $request) 

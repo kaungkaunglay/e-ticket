@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="{{ asset('assets/img/general/home.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/img/general/home.jpg') }}">
 
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -174,7 +174,7 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 450px;
+            /* width: 450px; */
             height: 100%;
             background: white;
             display: flex;
@@ -247,7 +247,7 @@
                 <div class="preloader__icon">
                     <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_1_41)">
-                            <image href="{{ asset('assets/img/general/home.png') }}" x="0" y="0" width="100" height="100" />
+                            <image href="{{ asset('assets/img/general/home.jpg') }}" x="25" y="25" width="40" height="40" />
                         </g>
                         <defs>
                             <clipPath id="clip0_1_41">
@@ -264,7 +264,7 @@
             @if(request()->routeIs('home'))
             <div class="header-container">
                 <img src="{{ asset('assets/img/masthead/4/216409.jpg') }}" 
-                     alt="Header image" 
+                    
                      class="header-image">
             </div>
             @endif

@@ -197,7 +197,7 @@ class TranslationSeeder extends Seeder
             ['key' => 'restaurant_type', 'en' => 'Restaurant Type', 'jp' => 'レストランの種類'],
             ['key' => 'menu', 'en' => 'Menu', 'jp' => 'メニュー'],
             ['key' => 'select_a_menu', 'en' => 'Select a Menu', 'jp' => 'メニューを選択'],
-            ['key' => 'select_a_week', 'en' => 'Select a Week', 'jp' => '週を選択'],
+            ['key' => 'select_a_week', 'en' => 'Select a Week', 'jp' => '曜日を選択'],
             ['key' => 'google_map', 'en' => 'Google Map', 'jp' => 'Googleマップ'],
             ['key' => 'discount', 'en' => 'Discount', 'jp' => '割引'],
             ['key' => 'promotion_code', 'en' => 'Promotion Code', 'jp' => 'プロモーションコード'],
