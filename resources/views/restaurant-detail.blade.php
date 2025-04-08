@@ -143,7 +143,7 @@
   </button>
 </div>
 
-<!-- Booking Modal -->
+{{-- <!-- Booking Modal -->
 <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -221,7 +221,112 @@
       </div>
     </div>
   </div>
+</div> --}}
+<!-- Booking Modal -->
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-sm">
+      <!-- Modal Header -->
+      <div class="modal-header bg-danger text-white border-0">
+        <h5 class="modal-title fw-bold fs-6" id="bookingModalLabel">
+          <i class="fas fa-utensils me-2"></i>{{ $restaurant->name }} 予約
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body p-3">
+        <form id="bookingForm" action="{{ route('booking.detail', ['id' => $restaurant->id]) }}" method="GET">
+          @csrf
+
+          <!-- Date Selection -->
+          <div class="mb-3 d-flex justify-content-between align-items-center">
+            <label for="bookingDate" class="form-label fw-medium text-muted">
+              <i class="fas fa-calendar-alt me-2"></i>日付
+            </label>
+            <input type="text" class="form-control @error('date') is-invalid @enderror" id="bookingDate" name="date" required min="{{ date('Y-m-d') }}">
+            @error('date')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+          </div>
+
+          <!-- Time Selection -->
+          <div class="mb-3">
+            <label for="bookingTime" class="form-label fw-medium text-muted">
+              <i class="fas fa-clock me-2"></i>時間
+            </label>
+            <div class="row g-2">
+              <div class="col-6">
+                <select class="form-select @error('hour') is-invalid @enderror" id="bookingHour" name="hour" required>
+                  <option value="" selected disabled>時</option>
+                  @php
+                    $openingHour = $restaurant->opening_time ?? 10;
+                    $closingHour = $restaurant->closing_time ?? 22;
+                  @endphp
+                  @for($i = $openingHour; $i <= $closingHour; $i++)
+                    <option value="{{ $i }}" {{ old('hour') == $i ? 'selected' : '' }}>
+                      {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}時
+                    </option>
+                  @endfor
+                </select>
+                @error('hour')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="col-6">
+                <select class="form-select @error('minute') is-invalid @enderror" id="bookingMinute" name="minute" required>
+                  <option value="" selected disabled>分</option>
+                  <option value="00" {{ old('minute') == '00' ? 'selected' : '' }}>00分</option>
+                  <option value="15" {{ old('minute') == '15' ? 'selected' : '' }}>15分</option>
+                  <option value="30" {{ old('minute') == '30' ? 'selected' : '' }}>30分</option>
+                  <option value="45" {{ old('minute') == '45' ? 'selected' : '' }}>45分</option>
+                </select>
+                @error('minute')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+            </div>
+          </div>
+
+          <!-- Number of Children -->
+          <div class="mb-3">
+            <label for="bookingPeople" class="form-label fw-medium text-muted">
+              <i class="fas fa-child me-2"></i>子供の人数
+            </label>
+            <select class="form-select @error('people') is-invalid @enderror" id="bookingPeople" name="people" required>
+              <option value="" selected disabled>選択してください</option>
+              @for($i = 1; $i <= 10; $i++)
+                <option value="{{ $i }}" {{ old('people') == $i ? 'selected' : '' }}>{{ $i }}</option>
+              @endfor
+            </select>
+            @error('people')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+          </div>
+
+          <!-- Price and Operating Hours Info -->
+          <div class="bg-light p-3 rounded mb-3">
+            <p class="mb-1 text-muted"><i class="fas fa-yen-sign me-2"></i><strong>料金:</strong> ¥1,000</p>
+            <p class="mb-0 text-muted"><i class="fas fa-store me-2"></i><strong>営業時間:</strong> [9:00 AM - 10:00 PM]</p>
+          </div>
+        </form>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer border-0 d-flex ">
+        <button type="button" class="btn btn-outline-danger " data-bs-dismiss="modal">
+          <i class="fas fa-times me-2"></i>閉じる
+        </button>
+        <button type="submit" form="bookingForm" class="btn btn-success ">
+          <i class="fas fa-check me-2"></i>予約確認へ進む
+        </button>
+        
+      </div>
+    </div>
+  </div>
 </div>
+
+
 </section> 
 <div class="mt-4 mb-5">
   <div id="calendar" style="height: 500px;"></div>
@@ -264,6 +369,8 @@
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/locales-all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
+
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Set date constraints
@@ -289,6 +396,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <script>
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize FullCalendar with date restrictions
     var closedDays = <?php echo json_encode(array_map('intval', explode(',', $restaurant->closed_days))); ?>;
@@ -378,6 +486,27 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Rest of your validation logic...
     });
+
+
+
+
 });
+
+
+$(document).ready(function() {
+    
+    flatpickr("#bookingDate", {
+        dateFormat: "Y-m-d",
+        altInput: true,
+        altFormat: "Y年m月d日",
+        allowInput: true,
+        disableMobile: true,
+        static: true,
+        locale: 'ja',
+        defaultDate: "today",
+        minDate: "today"
+    });
+  });
 </script>
 @endsection
+
