@@ -197,7 +197,7 @@
                         </div>
 
                         <div class="d-flex justify-content-center p-3">
-                            <button type="submit" class="button -md -dark-1 bg-danger text-white mt-30 col-9 mx-auto bg-danger text-white px-2 py-1 text-center rounded-3 t-8"
+                            <button type="submit" class="button -md -dark-1 rbg-danger text-white mt-30 col-9 mx-auto bg-danger text-white px-2 py-1 text-center rounded-3 t-8"
                             id="submit-button">
                                 <span class="button-text">
                                     利用規約·同意事項·注意事項に同意し、上記内容で <br>

@@ -159,6 +159,7 @@ Route::post('/promotion/update', [SupportController::class, 'updatePromo'])->nam
 
 Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/user-dashboard', [UserController::class, 'show'])->name('user.dashboard');
+    Route::get('/user-dashboard-change', [UserController::class, 'showChange'])->name('user.dashboard');
     Route::PUT('/user/profileupdate', [UserController::class, 'profileupdate'])->name('user.profileupdate');
     Route::get('/user_booking', [UserController::class, 'userbooking'])->name('userbooking.dashboard');
 });
@@ -251,3 +252,5 @@ Route::middleware(['vendor'])->group(function () {
 Route::get('/mobile',function(){
     return view('layouts.mobile-view');
 });
+
+

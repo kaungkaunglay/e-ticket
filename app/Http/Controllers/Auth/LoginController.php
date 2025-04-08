@@ -82,9 +82,9 @@ class LoginController extends Controller
         $request->session()->regenerate();
         
         if ($roleId == 2) {
-            return redirect()->intended('/vendor/dashboard');
+            return redirect()->intended(route('home'));
         } elseif ($roleId == 3) {
-            return redirect()->intended('/user-dashboard');
+            return redirect()->intended(route('home'));
         }
     
         return redirect()->intended('/home');

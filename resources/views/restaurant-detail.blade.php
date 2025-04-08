@@ -2,6 +2,9 @@
 
 @section('contents')
 <style>
+  #calendar{
+    z-index: 0;
+  }
   .fc-today-button {
     display: none !important;
   }
@@ -140,7 +143,7 @@
     </div>
 
     <div>
-      <div id="calendar"></div>
+      <div id="calendar" ></div>
     </div>
 
     <div class="col-12">
@@ -152,7 +155,7 @@
       <div class="row w-100 g-3 mt-3">
         @foreach($menus as $menu)
         <div class="col-3 d-flex justify-content-center align-items-center" >
-          <div class="card shadow-sm" style="border: none !important; background: none;">
+          <div class="card z-1 shadow-sm" style="border: none !important; background: none;">
             <img src="{{ asset($menu->image) }}" alt="{{ $menu->name }}"
               class="rounded-top card-img-top"
               style="object-fit: cover;" />

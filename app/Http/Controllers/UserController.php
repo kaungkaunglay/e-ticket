@@ -53,6 +53,12 @@ class UserController extends Controller
         return view('user.dashboard', compact('user', 'bookings', 'favorites'));
     }
 
+    public function showChange()
+    {
+        $user = Auth::user();
+        return view('user.dashboard-change', compact('user'));
+    }
+
     public function adminbooking()
     {
         $bookings = Booking::select('bookings.*', 'restaurants.name as restaurant_name', 'restaurants.address as restaurant_address', 'restaurants.city', 'restaurants.phone_number', 'restaurants.price_range', 'restaurants.website_url')

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\BookingConfirmation;
 use App\Mail\BookingConfirmationAdmin;
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BookingController extends Controller
 {
