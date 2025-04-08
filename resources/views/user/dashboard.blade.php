@@ -1,4 +1,4 @@
-@extends('includes.layout')
+@extends('layouts.app')
 
 @section('style')
 <link rel="stylesheet" href="{{ asset('assets/css/contact.css') }}">
@@ -68,6 +68,7 @@
 
                 <div class="tabs__content pt-1 js-tabs-content" style="background-color: white;">
                     @include('user.personal-info', ['user' => $user]) 
+                    {{-- @include('user.personal-info-change', ['user' => $user])  --}}
                     @include('user.location-info', ['bookings' => $bookings]) 
                     @include('user.change-password', ['user' => $user]) 
                     @include('user.favorite-orders', ['favorites' => $favorites]) 

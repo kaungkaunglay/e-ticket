@@ -56,7 +56,21 @@ class UserController extends Controller
     public function showChange()
     {
         $user = Auth::user();
-        return view('user.dashboard-change', compact('user'));
+        $favorites = Favorite::select('favorites.*', 'restaurants.*')
+            ->where('favorites.user_id', $user->id)
+            ->join('restaurants', 'favorites.restaurants_id', '=', 'restaurants.id')
+            ->get();
+
+        // dd($favorites);
+        $bookings = Booking::select('bookings.*', 'restaurants.name as restaurant_name', 'restaurants.address as restaurant_address')
+            ->where('bookings.user_id', $user->id)
+            ->where(function ($query) {
+                $query->whereNull('bookings.status')
+                    ->orWhere('bookings.status', '!=', 1);
+            })
+            ->join('restaurants', 'bookings.restaurant_id', '=', 'restaurants.id')
+            ->get();
+        return view('user.dashboard-change', compact('user', 'bookings', 'favorites'));
     }
 
     public function adminbooking()

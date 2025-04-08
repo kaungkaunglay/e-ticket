@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    <div class="col-12 mt-6">
+    {{-- <div class="col-12 mt-6">
         <div class="w-100 px-2 py-1 bg-red text-white t-small">
             @if (request()->routeIs('restaurant.detail'))
                 レストラン詳細
@@ -44,7 +44,7 @@
                 現在地近くのレストラン
             @endif
         </div>
-    </div>
+    </div> --}}
 
 </div>
 
