@@ -80,14 +80,17 @@ class LoginController extends Controller
         }
         
         $request->session()->regenerate();
+
+        $request->session()->regenerate();
         
-        if ($roleId == 2) {
-            return redirect()->intended(route('home'));
-        } elseif ($roleId == 3) {
-            return redirect()->intended(route('home'));
-        }
+        // if ($roleId == 2) {
+        //     return redirect()->intended(route('home'));
+        // } elseif ($roleId == 3) {
+        //     return redirect()->intended(route('home'));
+        // }
+
     
-        return redirect()->intended('/home');
+        return redirect()->intended('/');
     }
 
 

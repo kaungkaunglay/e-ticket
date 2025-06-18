@@ -18,9 +18,16 @@
   }
 </style>
 
-<section class="pt-40">
+<section class="pt-40" style="margin-top: 20px;">
   <div class="container">
     <div class="row y-gap-20 justify-between items-end pb-20">
+
+      <div class="col-12 mb-6">
+        <div class="w-100 px-2 py-1 bg-red text-white t-small">
+          レストラン詳細
+        </div>
+      </div>
+
       <div class="col-auto">
         <div class="row x-gap-20 items-center">
           <div class="col-auto">

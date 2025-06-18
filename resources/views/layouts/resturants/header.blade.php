@@ -1,10 +1,59 @@
 @php
     use Illuminate\Support\Facades\Route;
 @endphp
+
+<style>
+    
+    .burger span {
+        height: 3px;
+        width: 25px;
+        margin: 2px 0;
+    }
+
+    .burger span:last-child {
+        width: 15px; /* Smaller bottom line */
+    }
+</style>
 <div class="row bg-white margin-0">
     <div class="col-12">
         <div class="d-flex justify-content-between  p-3">
-            <div class="w-100">
+            @auth
+                @php
+                    $user = auth()->user();
+                    $role = $user->roles()->first()->id ?? null;
+                    $dashboardRoute = '/home';
+
+                    if ($role == 1) {
+                        $dashboardRoute = route('admin.dashboard');
+                        $logoutRoute = route('admin.logout');
+                    } elseif ($role == 2) {
+                        $dashboardRoute = route('vendor.dashboard');
+                        $logoutRoute = route('vendor.logout');
+                    } elseif ($role == 3) {
+                        $dashboardRoute = route('user.dashboard');
+                        $logoutRoute = route('logout');
+                    }
+                @endphp
+                
+                <div class="dropdown">
+
+                    <div class="pe-3 d-flex align-items-center w-100 h-100" data-bs-toggle="dropdown" data-bs-target="#dropdown-menu" >
+                        <i class="fa-solid fa-user fa-lg"></i>
+                    </div>
+                    
+                    <ul class="dropdown-content dropdown-menu" id="dropdown-menu">
+
+                        <li><a class="dropdown-item" href="{{ $dashboardRoute }}">プロフィール</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0);" onclick="document.getElementById('logoutForm').submit()">ログアウト</a></li>
+                         
+                        <form action='{{ $logoutRoute }}' id="logoutForm" method='POST'>
+                            @csrf
+                            @method($role == 1 || $role == 2 ? 'POST' : 'GET')
+                        </form>
+                    </ul>
+                </div>
+            @endauth
+            <div class="w-100 {{ request()->routeIs('home') || request()->routeIs('support') || request()->routeIs('about-us') ? 'hidden' : ''}}" >
                 {{-- <div class=" px-2 d-flex justify-content-between border border-2 rounded-0 border-dark" data-bs-toggle="modal" data-bs-target="#myModal">
                     <div class="" style="width: 15%">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -30,8 +79,10 @@
                     </div>
                 </div>
             </div>
-            <div class="ps-3 d-flex align-items-center ">
-                <i class="fa-solid fa-bars js-menu-toggle fa-lg"></i>
+            <div class="ps-3 d-flex flex-column align-items-end justify-content-center burger js-menu-toggle ">
+                {{-- <i class="fa-solid fa-bars js-menu-toggle fa-lg"></i> --}}
+                <span class="d-block bg-dark"></span>
+                <span class="d-block bg-dark"></span>
             </div>
         </div>
     </div>
@@ -70,22 +121,7 @@
                 <a href='{{ locale_route('support.page') }}'>サポート</a>
             </li>
             @auth
-                @php
-                    $user = auth()->user();
-                    $role = $user->roles()->first()->id ?? null;
-                    $dashboardRoute = '/home';
 
-                    if ($role == 1) {
-                        $dashboardRoute = route('admin.dashboard');
-                        $logoutRoute = route('admin.logout');
-                    } elseif ($role == 2) {
-                        $dashboardRoute = route('vendor.dashboard');
-                        $logoutRoute = route('vendor.logout');
-                    } elseif ($role == 3) {
-                        $dashboardRoute = route('user.dashboard');
-                        $logoutRoute = route('logout');
-                    }
-                @endphp
                 <li>
                     <a href='{{ $dashboardRoute }}'>ダッシュボード</a>
                 </li>
@@ -103,6 +139,7 @@
                 <li class='{{ request()->routeIs('login') ? 'active' : '' }}'>
                     <a href='{{ locale_route('login') }}'>ログイン</a>
                 </li>
+
                 <li class='{{ request()->routeIs('signup') ? 'active' : '' }}'>
                     <a href='{{ locale_route('signup') }}'>登録</a>
                 </li>

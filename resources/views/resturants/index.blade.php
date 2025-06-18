@@ -2,7 +2,13 @@
 
 @section('contents')
 
-    <div class="row p-3 mt-1">
+<div class="row p-3 mt-1">
+
+    <div class="col-12 mb-6">
+        <div class="w-100 px-2 py-1 bg-red text-white t-small">
+            現在地近くのレストラン
+        </div>
+    </div>
 
     @foreach($restaurants as $restaurant)
     <form action="{{ locale_route('restaurant.search') }}" method="GET">
@@ -153,6 +159,6 @@
 
         
 
-    </div>
+</div>
 
 @endsection

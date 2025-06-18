@@ -73,17 +73,17 @@
 } */
 
         .menu-toggle span {
-    display: block;
-    background-color: white;
-    height: 4px;
-    width: 30px;
-    margin: 3px 0;
-    transition: all 0.3s ease;
-}
+            display: block;
+            background-color: white;
+            height: 4px;
+            width: 30px;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+        }
 
-.menu-toggle span:last-child {
-    width: 15px; /* Smaller bottom line */
-}
+        .menu-toggle span:last-child {
+            width: 15px; /* Smaller bottom line */
+        }
 
         /* Overlay - covers only the 450px frame */
         .menu-overlay {

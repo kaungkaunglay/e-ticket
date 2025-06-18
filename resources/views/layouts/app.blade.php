@@ -254,7 +254,7 @@
             </div>
         </div>
 
-        <main class="flex-grow-1" style='margin-top: 90px;'>
+        <main class="flex-grow-1 " style='margin-top: 40px;'>
             @yield('contents')
         </main>
         
