@@ -381,7 +381,7 @@
     padding: 0;
     border: none;
     border-radius: 20px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
 }
 
 .calendar-header {
