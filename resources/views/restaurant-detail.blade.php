@@ -134,7 +134,7 @@
       </div>
     </div>
    <section>
-    <div class="d-flex justify-content-between align-items-center" style="padding: 23px;">
+    <div class="d-flex justify-content-between align-items-center" style="padding:10px 23px 5px 23px;">
   <!-- Location Button -->
   <a href="{{ $restaurant->google_map }}" class="d-flex justify-content-center align-items-center text-white" style="width: 178px; background-color: #228B22; border: none; border-radius: 0; padding: 10px; text-decoration: none;">
     <i class="fa-solid fa-location-dot me-2"></i>地図を表示
@@ -336,7 +336,7 @@
 
 </section> 
 <!-- Calendar Section -->
-<div class="calendar-section mt-4 mb-4">
+<div class="calendar-section mt-1 mb-4">
     <div class="calendar-container">
         <div class="calendar-header">
             <button id="prevMonth" class="nav-arrow">
@@ -380,7 +380,8 @@
     background: transparent;
     padding: 0;
     border: none;
-    box-shadow: none;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .calendar-header {
@@ -449,7 +450,7 @@
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     /* gap: 4px; */
-    margin-left: -42px;
+    /* margin-left: -42px; */
 }
 
 .date-cell {
