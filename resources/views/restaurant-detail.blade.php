@@ -451,10 +451,11 @@
     grid-template-columns: repeat(7, 1fr);
     /* gap: 4px; */
     /* margin-left: -42px; */
+    /* padding: 0 42px; */
 }
 
 .date-cell {
-    aspect-ratio: 1;
+    /* aspect-ratio: 1; */
     display: flex;
     flex-direction: column;
     align-items: center;
