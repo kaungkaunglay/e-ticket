@@ -137,7 +137,7 @@
     <div class="d-flex justify-content-between align-items-center" style="padding: 23px;">
   <!-- Location Button -->
   <a href="{{ $restaurant->google_map }}" class="d-flex justify-content-center align-items-center text-white" style="width: 178px; background-color: #228B22; border: none; border-radius: 0; padding: 10px; text-decoration: none;">
-    <i class="fa-solid fa-location-dot me-2"></i> 地図を表示
+    <i class="fa-solid fa-location-dot me-2"></i>地図を表示
   </a>
 
   <!-- Booking Button -->
@@ -335,9 +335,357 @@
 
 
 </section> 
-<div class="mt-4 mb-5">
-  <div id="calendar" style="height: 500px;"></div>
+<!-- Calendar Section -->
+<div class="calendar-section mt-4 mb-4">
+    <div class="calendar-container">
+        <div class="calendar-header">
+            <button id="prevMonth" class="nav-arrow">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <h3 id="currentMonthYear">2025年6月</h3>
+            <button id="nextMonth" class="nav-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <div class="calendar-weekdays">
+            <div class="weekday">日</div>
+            <div class="weekday">月</div>
+            <div class="weekday">火</div>
+            <div class="weekday">水</div>
+            <div class="weekday">木</div>
+            <div class="weekday">金</div>
+            <div class="weekday">土</div>
+        </div>
+        
+        <div class="calendar-dates" id="calendarDates">
+            <!-- Dates will be populated by JavaScript -->
+        </div>
+        
+      
+       
+    </div>
 </div>
+
+<style>
+/* Calendar Styles */
+.calendar-section {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.calendar-container {
+    background: transparent;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+}
+
+.calendar-header {
+    display: none !important;
+    /* Old styles kept but commented for reference
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    */
+}
+
+.nav-arrow {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    color: #333;
+    transition: all 0.2s;
+}
+
+.nav-arrow:hover {
+    background: #e9ecef;
+}
+
+.calendar-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 12px;
+    color: #666;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+
+.calendar-weekdays .weekday {
+    padding: 10px 5px;
+    color: #333;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.calendar-weekdays .weekday:first-child {
+    color: #ff4b4b; /* Red for Sunday */
+}
+
+.calendar-weekdays .weekday:last-child {
+    color: #4b8bf4; /* Blue for Saturday */
+}
+
+.calendar-dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    /* gap: 4px; */
+    margin-left: -42px;
+}
+
+.date-cell {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    background: transparent;
+    transition: all 0.2s;
+    padding: 8px 0;
+}
+
+.date-cell:hover {
+    background-color: #f8f9fa;
+}
+
+.date-cell.today {
+    background-color: #f0f7ff;
+    font-weight: 500;
+    border-color: #d0e3ff;
+}
+
+.date-cell.selected {
+    background-color: #f10146;
+    color: white;
+    border-color: #f10146;
+}
+
+.date-cell.disabled {
+    color: #ddd;
+    background-color: #f9f9f9;
+    cursor: not-allowed;
+    border-color: #f0f0f0;
+}
+
+.date-cell.empty {
+    visibility: hidden;
+    border: none;
+    background: transparent;
+}
+
+.date-number {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.date-availability {
+    font-size: 22px;
+    margin-top: 4px;
+    line-height: 1;
+    font-weight: 800;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.availability-marker {
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+    margin-right: 4px;
+}
+
+.availability-marker.available {
+    color: #4CAF50; /* Green for available */
+}
+
+.availability-marker.limited {
+    color: #FFC107; /* Yellow for limited */
+}
+
+.availability-marker.full {
+    color: #F44336; /* Red for full */
+}
+
+.availability-legend {
+    font-size: 13px;
+    color: #666;
+    padding: 8px 0;
+    border-top: 1px solid #eee;
+    margin-top: 10px;
+}
+
+.availability-ok {
+    color: #4CAF50; /* Green */
+}
+
+.availability-warning {
+    color: #FFC107; /* Yellow */
+}
+
+.availability-full {
+    color: #F44336; /* Red */
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .calendar-container {
+        padding: 8px;
+    }
+    
+    .date-number {
+        font-size: 12px;
+    }
+    
+    .date-availability {
+        font-size: 10px;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const calendarDates = document.getElementById('calendarDates');
+    const currentMonthYear = document.getElementById('currentMonthYear');
+    const prevMonthBtn = document.getElementById('prevMonth');
+    const nextMonthBtn = document.getElementById('nextMonth');
+    
+    const today = new Date(2025, 5, 18); // June 18, 2025
+    today.setHours(0, 0, 0, 0); // Normalize time to start of day
+    let currentDate = new Date(today); // Start with today's date
+    let selectedDate = null;
+    
+    // Sample availability data - replace with your actual data
+    const availabilityData = {}; // Will be populated dynamically from the server
+    
+    function renderCalendar() {
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+        // Use the same today reference from the outer scope
+        
+        // Update month/year display
+        currentMonthYear.textContent = `${year}年${month + 1}月`;
+        
+        // Clear existing dates
+        calendarDates.innerHTML = '';
+        
+        // Get first day of month and total days in month
+        const firstDayOfMonth = new Date(year, month, 1);
+        const firstDay = firstDayOfMonth.getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        
+        // Find the first day to display (today or first day of month, whichever is later)
+        const firstDayToShow = today > firstDayOfMonth ? today.getDate() : 1;
+        
+        // Add empty cells only for days before the first day to show
+        const firstVisibleDay = new Date(year, month, firstDayToShow);
+        const firstVisibleDayOfWeek = firstVisibleDay.getDay();
+        
+        // Calculate how many empty cells we need at the start
+        const emptyCells = firstVisibleDayOfWeek - firstDay;
+        if (emptyCells > 0) {
+            for (let i = 0; i < emptyCells; i++) {
+                const emptyCell = document.createElement('div');
+                emptyCell.className = 'date-cell empty';
+                calendarDates.appendChild(emptyCell);
+            }
+        }
+        
+        // Add only future and current days of the month
+        for (let day = firstDayToShow; day <= daysInMonth; day++) {
+            const checkDate = new Date(year, month, day);
+            const dateString = checkDate.toISOString().split('T')[0];
+                
+            const dateCell = document.createElement('div');
+            dateCell.className = 'date-cell';
+                
+            // Check if it's today
+            const isToday = checkDate.toDateString() === today.toDateString();
+            if (isToday) {
+                dateCell.classList.add('today');
+            }
+            
+            // Check if it's selected
+            if (selectedDate && selectedDate.toDateString() === checkDate.toDateString()) {
+                dateCell.classList.add('selected');
+            }
+                
+                // Add date number
+            const dateNumber = document.createElement('div');
+            dateNumber.className = 'date-number';
+            dateNumber.textContent = day;
+            
+            // Add availability status
+            const availability = document.createElement('div');
+            availability.className = 'date-availability';
+            
+            // Set default availability status (only 'available' or 'full')
+            const status = Math.random() > 0.5 ? 'available' : 'full'; // 50/50 for demo
+            const symbol = status === 'available' ? '○' : '×';          
+            availability.textContent = symbol;
+            availability.classList.add(`availability-${status}`);
+            
+            dateCell.appendChild(dateNumber);
+            dateCell.appendChild(availability);
+            
+            // Add click event
+            dateCell.addEventListener('click', function() {
+                // Update selected date
+                selectedDate = new Date(year, month, day);
+                
+                // Update UI
+                document.querySelectorAll('.date-cell').forEach(cell => {
+                    cell.classList.remove('selected');
+                });
+                dateCell.classList.add('selected');
+                
+                // Update the booking form date
+                document.getElementById('booking_date').value = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            });
+            
+            calendarDates.appendChild(dateCell);
+        }
+    }
+    
+    // Navigation
+    prevMonthBtn.addEventListener('click', function() {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar();
+    });
+    
+    nextMonthBtn.addEventListener('click', function() {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar();
+    });
+    
+    // Initial render
+    renderCalendar();
+});
+</script>
 
     <div class="col-12">
       <h3 class="text-22 fw-500 pt-40 border-top-light">メニュー</h3>
