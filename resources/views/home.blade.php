@@ -357,11 +357,15 @@
     @endif
 
 
-    <div class="container d-flex flex-column gap-4 mt-4" style="padding: 0px 60px">
-        <a href="{{ route('restaurant.search') }}" class="btn btn-danger rounded-4" style="font-size: 15px">おすすめ店舗 一
-            発検索</a>
-        <a href="{{ route('restaurant.search') }}" class="btn btn-warning rounded-4 text-white"
-            style="font-size: 15px">おすすめ店舗再検索</a>
+    <div class="container d-flex flex-column gap-4 mt-4" style="padding: 0px 20px">
+        <a href="{{ route('restaurant.search') }}" class="btn text-white fw-bold w-100 py-4" 
+            style="font-size: 24px; background-color: #d7003a; border-radius: 50px; border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            おすすめ店舗 一発検索
+        </a>
+        <a href="{{ route('restaurant.search') }}" class="btn text-white fw-bold py-3"
+            style="font-size: 15px; background-color: #ff6b35; border-radius: 50px; border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            おすすめ店舗再検索
+        </a>
     </div>
     {{-- <section class="towbutton">
    <div data-anim-wrap class="container">

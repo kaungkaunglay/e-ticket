@@ -1,7 +1,7 @@
 {
     "noto sans jp": {
-        "300": "C:\\Users\\May Wine\\Desktop\\r-buzz\\e-ticket\\public\\assets\/fonts\/NotoSanJP\/\/noto_sans_jp_300_ce689d62c23b73070c8de522322ccc11",
-        "normal": "C:\\Users\\May Wine\\Desktop\\r-buzz\\e-ticket\\public\\assets\/fonts\/NotoSanJP\/\/noto_sans_jp_normal_e17a870f33afdfcc4d80a7451eb337a8",
-        "bold": "noto_sans_jp_bold_4edfad8b18f9d4771d1b64d4becbd26b"
+        "300": "C:\\project\\ticket\\e-ticket-main\\public\\assets\/fonts\/NotoSanJP\/\/noto_sans_jp_300_b6abb0decd9e371c9c9e4f475cbdfed4",
+        "normal": "noto_sans_jp_normal_eba1ca7ebfcfedbcf4b122dba7864e13",
+        "bold": "C:\\project\\ticket\\e-ticket-main\\public\\assets\/fonts\/NotoSanJP\/\/noto_sans_jp_bold_30bbeeb2f774ff7e3ce032e19953fb01"
     }
 }

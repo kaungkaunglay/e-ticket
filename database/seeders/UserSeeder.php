@@ -43,7 +43,7 @@ class UserSeeder extends Seeder
      
         $shoperUser = User::create([
             'first_name' => 'Shoper',
-            'email' => 'shoper@gmail.com',
+            'email' => 'shoper',
             'password' => Hash::make('password')
         ]);
         $shoperUser->assignRole(2); 
