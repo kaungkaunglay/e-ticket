@@ -296,12 +296,12 @@
                                             </select>
                                         </div>
                                     </div>
-
+                                      <br>
                                     <!-- Search Button -->
-                                    <div class="search-button mt-3 text-center">
-                                        <button class="search-submit btn btn-primary w-100 rounded-5 p-0"
-                                            style="font-size: 15px">
-                                            <i class="icon-search me-1"></i>
+                                    <div class="">
+                                        <button class="search-submit btn btn-primary w-100 rounded-5 py-3"
+                                        style="font-size: 20px;font-weight: bold;background-color: #0066cc;border-radius: 15px !important;">
+                                            <i class="icon-search me-2" style="font-size: 1.2em;"></i>
                                             検索
                                         </button>
                                     </div>
@@ -357,13 +357,13 @@
     @endif
 
 
-    <div class="container d-flex flex-column gap-4 mt-4" style="padding: 0px 20px">
+    <div class="container d-flex flex-column gap-4 mt-4" style="padding: 0px 20px;margin-top: -4px !important;">
         <a href="{{ route('restaurant.search') }}" class="btn text-white fw-bold w-100 py-4" 
-            style="font-size: 24px; background-color: #d7003a; border-radius: 50px; border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            style="font-size: 15px; background-color: #d7003a; border-radius: 15px; border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
             おすすめ店舗 一発検索
         </a>
         <a href="{{ route('restaurant.search') }}" class="btn text-white fw-bold py-3"
-            style="font-size: 15px; background-color: #ff6b35; border-radius: 50px; border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        style="margin-top: -18px;font-size: 15px;background-color: #ffa500;border-radius: 15px;border: none;box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
             おすすめ店舗再検索
         </a>
     </div>
