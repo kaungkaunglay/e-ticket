@@ -5,10 +5,7 @@
   .fc-today-button {
     display: none !important;
   }
-  .fc-day-selected {
-    background-color: #F10146 !important;
-    color: white !important;
-  }
+  /* Removed active day highlight styling */
   .closed-day {
     background-color: #ffcccc !important;
     color: red !important;
@@ -348,16 +345,6 @@
             </button>
         </div>
         
-        <div class="calendar-weekdays">
-            <div class="weekday">日</div>
-            <div class="weekday">月</div>
-            <div class="weekday">火</div>
-            <div class="weekday">水</div>
-            <div class="weekday">木</div>
-            <div class="weekday">金</div>
-            <div class="weekday">土</div>
-        </div>
-        
         <div class="calendar-dates" id="calendarDates">
             <!-- Dates will be populated by JavaScript -->
         </div>
@@ -446,6 +433,15 @@
     color: #4b8bf4; /* Blue for Saturday */
 }
 
+/* Day of week colors */
+.day-of-week.sunday-tuesday {
+    color: #ff4b4b; /* Red for Sunday and Tuesday */
+}
+
+.day-of-week.saturday {
+    color: #4b8bf4; /* Blue for Saturday */
+}
+
 .calendar-dates {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -473,16 +469,15 @@
 }
 
 .date-cell.today {
-    background-color: #f0f7ff;
+    /* Removed background color for today's date */
     font-weight: 500;
-    border-color: #d0e3ff;
 }
 
-.date-cell.selected {
+/* .date-cell.selected {
     background-color: #f10146;
     color: white;
     border-color: #f10146;
-}
+} */
 
 .date-cell.disabled {
     color: #ddd;
@@ -576,88 +571,83 @@ document.addEventListener('DOMContentLoaded', function() {
     const prevMonthBtn = document.getElementById('prevMonth');
     const nextMonthBtn = document.getElementById('nextMonth');
     
-    const today = new Date(2025, 5, 18); // June 18, 2025
+    // Set today's date to current date
+    const today = new Date();
     today.setHours(0, 0, 0, 0); // Normalize time to start of day
-    let currentDate = new Date(today); // Start with today's date
+    let currentDate = new Date(today);
     let selectedDate = null;
     
-    // Sample availability data - replace with your actual data
-    const availabilityData = {}; // Will be populated dynamically from the server
+    // Hide navigation buttons since we only show 7 days
+    prevMonthBtn.style.display = 'none';
+    nextMonthBtn.style.display = 'none';
+    
+    // Update month/year display to show date range
+    function updateDateRangeDisplay() {
+        const endDate = new Date(today);
+        endDate.setDate(today.getDate() + 6);
+        
+        const formatDate = (date) => {
+            return `${date.getMonth() + 1}月${date.getDate()}日`;
+        };
+        
+        currentMonthYear.textContent = `${formatDate(today)} 〜 ${formatDate(endDate)}`;
+    }
     
     function renderCalendar() {
-        const year = currentDate.getFullYear();
-        const month = currentDate.getMonth();
-        // Use the same today reference from the outer scope
-        
-        // Update month/year display
-        currentMonthYear.textContent = `${year}年${month + 1}月`;
-        
         // Clear existing dates
         calendarDates.innerHTML = '';
         
-        // Get first day of month and total days in month
-        const firstDayOfMonth = new Date(year, month, 1);
-        const firstDay = firstDayOfMonth.getDay();
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-        
-        // Find the first day to display (today or first day of month, whichever is later)
-        const firstDayToShow = today > firstDayOfMonth ? today.getDate() : 1;
-        
-        // Add empty cells only for days before the first day to show
-        const firstVisibleDay = new Date(year, month, firstDayToShow);
-        const firstVisibleDayOfWeek = firstVisibleDay.getDay();
-        
-        // Calculate how many empty cells we need at the start
-        const emptyCells = firstVisibleDayOfWeek - firstDay;
-        if (emptyCells > 0) {
-            for (let i = 0; i < emptyCells; i++) {
-                const emptyCell = document.createElement('div');
-                emptyCell.className = 'date-cell empty';
-                calendarDates.appendChild(emptyCell);
-            }
-        }
-        
-        // Add only future and current days of the month
-        for (let day = firstDayToShow; day <= daysInMonth; day++) {
-            const checkDate = new Date(year, month, day);
-            const dateString = checkDate.toISOString().split('T')[0];
-                
+        // Show 7 days starting from today
+        for (let i = 0; i < 7; i++) {
+            const checkDate = new Date(today);
+            checkDate.setDate(today.getDate() + i);
+            
             const dateCell = document.createElement('div');
             dateCell.className = 'date-cell';
-                
+            
             // Check if it's today
-            const isToday = checkDate.toDateString() === today.toDateString();
+            const isToday = i === 0;
             if (isToday) {
                 dateCell.classList.add('today');
             }
             
-            // Check if it's selected
-            if (selectedDate && selectedDate.toDateString() === checkDate.toDateString()) {
-                dateCell.classList.add('selected');
-            }
-                
-                // Add date number
+            // Add date number
             const dateNumber = document.createElement('div');
             dateNumber.className = 'date-number';
-            dateNumber.textContent = day;
+            dateNumber.textContent = checkDate.getDate();
+            
+            // Add day of week
+            const dayOfWeek = document.createElement('div');
+            dayOfWeek.className = 'day-of-week';
+            const days = ['日', '月', '火', '水', '木', '金', '土'];
+            const dayIndex = checkDate.getDay();
+            dayOfWeek.textContent = days[dayIndex];
+            
+            // Add color classes based on day of week
+            if (dayIndex === 0 || dayIndex === 2) { // Sunday (0) or Tuesday (2)
+                dayOfWeek.classList.add('sunday-tuesday');
+            } else if (dayIndex === 6) { // Saturday
+                dayOfWeek.classList.add('saturday');
+            }
             
             // Add availability status
             const availability = document.createElement('div');
             availability.className = 'date-availability';
             
             // Set default availability status (only 'available' or 'full')
-            const status = Math.random() > 0.5 ? 'available' : 'full'; // 50/50 for demo
-            const symbol = status === 'available' ? '○' : '×';          
+            const status = Math.random() > 0.5 ? 'available' : 'full';
+            const symbol = status === 'available' ? '○' : '×';
             availability.textContent = symbol;
             availability.classList.add(`availability-${status}`);
             
+            dateCell.appendChild(dayOfWeek);
             dateCell.appendChild(dateNumber);
             dateCell.appendChild(availability);
             
             // Add click event
             dateCell.addEventListener('click', function() {
                 // Update selected date
-                selectedDate = new Date(year, month, day);
+                selectedDate = new Date(checkDate);
                 
                 // Update UI
                 document.querySelectorAll('.date-cell').forEach(cell => {
@@ -666,23 +656,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 dateCell.classList.add('selected');
                 
                 // Update the booking form date
-                document.getElementById('booking_date').value = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                document.getElementById('booking_date').value = 
+                    `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, '0')}-${String(selectedDate.getDate()).padStart(2, '0')}`;
             });
+            
+            // Select today's date by default
+            if (isToday) {
+                dateCell.click();
+            }
             
             calendarDates.appendChild(dateCell);
         }
+        
+        updateDateRangeDisplay();
     }
-    
-    // Navigation
-    prevMonthBtn.addEventListener('click', function() {
-        currentDate.setMonth(currentDate.getMonth() - 1);
-        renderCalendar();
-    });
-    
-    nextMonthBtn.addEventListener('click', function() {
-        currentDate.setMonth(currentDate.getMonth() + 1);
-        renderCalendar();
-    });
     
     // Initial render
     renderCalendar();
