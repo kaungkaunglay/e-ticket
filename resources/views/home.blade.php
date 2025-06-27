@@ -361,7 +361,7 @@
 
     <div class="container d-flex flex-column gap-4 mt-4" style="padding: 0px 20px;margin-top: -4px !important;">
         <a href="{{ route('restaurant.search') }}" class="btn text-white fw-bold w-100 py-4" 
-        style="font-size: 11px;background-color: #d7003a;border-radius: 13px;border: none;box-shadow: 0 4px 6px rgba(0,0,0,0.1);width: 246px !important;margin-left: 35px;">
+        style="font-size: 11px;background-color: #B22222;border-radius: 13px;border: none;box-shadow: 0 4px 6px rgba(0,0,0,0.1);width: 246px !important;margin-left: 35px;">
             おすすめ店舗 一発検索
         </a>
         <a href="{{ route('restaurant.search') }}" class="btn text-white fw-bold py-3"
