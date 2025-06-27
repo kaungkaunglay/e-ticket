@@ -1,101 +1,142 @@
 <style>
+    /* Global Styles */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+    }
 
-.profile-info {
-    padding: 20px;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-}
+    /* Profile Info Container */
+    .profile-info {
+        padding: 30px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: #ffffff;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        max-width: 600px;
+        margin: 0 auto;
+        margin-top: 50px;
+    }
 
-.form-group {
-    margin-bottom: 20px;
-}
+    h2 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 25px;
+        text-align: center;
+        font-weight: 600;
+    }
 
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
-    color: #333;
-}
+    /* Form Group */
+    .form-group {
+        margin-bottom: 25px;
+    }
 
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #555;
+    }
 
-.form-control {
-    display: block;
-    width: 100%;
-    height: 45px;
-    padding: 8px 15px;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #333;
-    background-color: #fff;
-    border: 2px solid #e0e0e0; 
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
+    .form-control {
+        width: 100%;
+        height: 45px;
+        padding: 10px 15px;
+        font-size: 16px;
+        color: #333;
+        background-color: #fff;
+        border: 2px solid #e0e0e0;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+    }
 
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+        outline: none;
+    }
 
-.form-control:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-    outline: none;
-}
+    /* Invalid Input Style */
+    .form-control.is-invalid {
+        border-color: #dc3545;
+        background-color: #ffe6e6;
+    }
 
+    .form-control.is-invalid:focus {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+    }
 
-.form-control.is-invalid {
-    border-color: #dc3545; 
-    background-color: #ffe6e6; 
-}
+    .invalid-feedback {
+        display: none;
+        margin-top: 5px;
+        font-size: 13px;
+        color: #dc3545;
+    }
 
+    .form-control.is-invalid ~ .invalid-feedback {
+        display: block;
+    }
 
-.form-control.is-invalid:focus {
-    border-color: #dc3545; 
-    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
-}
+    /* Button Styling */
+    .button {
+        display: inline-flex;
+        align-items: center;
+        height: 50px;
+        padding: 0 30px;
+        background-color: #3554D1;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%;
+        justify-content: center;
+    }
 
+    .button:hover {
+        background-color: #2a43a7;
+    }
 
-.invalid-feedback {
-    display: none;
-    width: 100%;
-    margin-top: 5px;
-    font-size: 13px;
-    color: #dc3545;
-}
+    .button:focus {
+        outline: none;
+    }
 
-.form-control.is-invalid ~ .invalid-feedback {
-    display: block; 
-}
+    /* Profile Actions */
+    .profile-actions {
+        margin-top: 30px;
+        text-align: center;
+    }
 
-.button {
-    display: inline-flex;
-    align-items: center;
-    height: 50px;
-    padding: 0 24px;
-    background-color: #3554D1;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    /* Input for Customization */
+    input {
+        border: 2px solid #afa9a9 !important;
+    }
 
-.button:hover {
-    background-color: #2a43a7;
-}
+    /* Media Query for Mobile Devices */
+    @media (max-width: 768px) {
+        .profile-info {
+            padding: 20px;
+        }
 
-.profile-actions {
-    margin-top: 30px;
-}
+        .form-control {
+            font-size: 14px;
+        }
 
-input{
-border: 2px solid #afa9a9 !important;
-}
+        .button {
+            font-size: 14px;
+            padding: 0 20px;
+        }
+    }
 </style>
 
 <div class="tabs__pane -tab-item-3">
-    <div class="col-xl-9">
+    <div class="col-xl-15">
         <div class="profile-info">
-            <h2 class="mb-3">パスワードを変更</h2>
+            <h2>パスワードを変更</h2>
             <form id="password-change-form">
                 @csrf
                 <input type="hidden" name="id" value="{{ $user->id }}">
@@ -194,9 +235,7 @@ border: 2px solid #afa9a9 !important;
 
             document.getElementById('password-change-form').reset();
         } else {
-            let errorMessage = data.message || 'Failed to change password. Please try again.';
-
-            
+            let errorMessage = data.message || 'Failed to change password. Please try again.';            
             if (data.errors) {
                 errorMessage = Object.values(data.errors).join('<br>');
             }

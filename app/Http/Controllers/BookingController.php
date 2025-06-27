@@ -9,10 +9,12 @@ use App\Models\User;
 use App\Models\Favorite;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use App\Mail\BookingConfirmation;
 use App\Mail\BookingConfirmationAdmin;
-use Illuminate\Support\Facades\Validator;
-use PDF;
+use Illuminate\Support\Facades\Session;
 
 class BookingController extends Controller
 {
@@ -99,10 +101,12 @@ class BookingController extends Controller
         // }
     
         $selectedDate = request('date');
-        $hour = str_pad(request('hour'), 2, '0', STR_PAD_LEFT);
-        $minute = request('minute');
-        $people = request('people');
-        $selectedDateTime = $selectedDate . ' ' . $hour . ':' . $minute . ':00';
+        $hour = str_pad(request('hour', '12'), 2, '0', STR_PAD_LEFT); // Default to 12 if not provided
+        $minute = request('minute', '00'); // Default to 00 if not provided
+        $people = request('people', '1'); // Default to 1 if not provided
+        
+        // Ensure the time is properly formatted with single colons
+        $selectedDateTime = "{$selectedDate} {$hour}:{$minute}:00";
     
         return view('booking-detail', compact('restaurant', 'user', 'selectedDate', 'selectedDateTime', 'people'));
     }
@@ -123,10 +127,13 @@ class BookingController extends Controller
         'note' => $request->note,
     ]);
 
+   
+   
     $restaurant = Restaurant::find($request->restaurant_id);
-    
+     
 
-    $bookingPdf = PDF::loadView('emails.booking_pdf', [
+    // Generate PDF for user
+    $userPdf = PDF::loadView('emails.booking_pdf', [
             'booking' => $booking,
             'user' => Auth::user(), 
             'restaurant' => $restaurant
@@ -138,45 +145,119 @@ class BookingController extends Controller
         ->setOption('fontCache', storage_path('fonts/'))
         ->setOption('isHtml5ParserEnabled', true);
 
-      
+    // Generate separate PDF for admin
+    $adminPdf = PDF::loadView('emails.booking_pdf', [
+            'booking' => $booking,
+            'user' => Auth::user(), 
+            'restaurant' => $restaurant
+        ])
+        ->setPaper('a4')
+        ->setOption('defaultFont', 'Noto Sans JP')
+        ->setOption('isRemoteEnabled', true)
+        ->setOption('fontDir', public_path('assets/fonts/NotoSanJP/'))
+        ->setOption('fontCache', storage_path('fonts/'))
+        ->setOption('isHtml5ParserEnabled', true);
 
-   
-    Mail::to(Auth::user()->email)->send(new BookingConfirmation($booking, Auth::user(), $bookingPdf));
-    
+    // Send email to user with their PDF
+    try {
+        Mail::to(Auth::user()->email)->send(new BookingConfirmation($booking));
+    } catch (\Exception $e) {
+        Log::error('Failed to send booking confirmation email: ' . $e->getMessage());
+    }
 
-    Mail::to('webdeveloperkkz@gmail.com')->send(new BookingConfirmationAdmin($booking, Auth::user(), $bookingPdf));
+    // Send email to admin
+    try {
+        $adminEmail = 'webdeveloperkkz@gmail.com'; // Replace with actual admin email
+        Mail::to($adminEmail)->send(new BookingConfirmationAdmin($booking));
+    } catch (\Exception $e) {
+        Log::error('Failed to send admin notification email: ' . $e->getMessage());
+    }
 
     return redirect()->route('booking.thankyou')->with('success', 'Your booking was successful! A confirmation email has been sent.');
 }
 
 
-    public function bookCancel(Request $request) 
-{
-    $request->validate([
-        'id' => 'required|integer|exists:bookings,id',
-    ]);
-    $user_id = auth()->id();
+    /**
+     * Set booking date in session
+     */
+    public function setSession(Request $request)
+    {
+        try {
+            $validated = $request->validate([
+                'date' => 'required|date_format:Y-m-d',
+                'restaurant_id' => 'required|exists:restaurants,id'
+            ]);
 
-    // Find Booking
-    $booking = Booking::where('id', $request->id)
-        ->where('user_id', $user_id)
-        ->first();
+            // Store in session
+            Session::put('booking_date', $validated['date']);
+            Session::put('restaurant_id', $validated['restaurant_id']);
 
-    if (!$booking) {
-        return response()->json([
-            'success' => false,
-            'message' => 'Booking not found or unauthorized'
-        ], 404);
+            return response()->json([
+                'success' => true,
+                'message' => 'Booking date set in session',
+                'date' => $validated['date']
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error setting booking session: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to set booking date'
+            ], 500);
+        }
     }
-    $booking->status = 1;
-    $booking->save();
 
-    return response()->json([
-        'success' => true,
-        'message' => 'Booking has been cancelled successfully',
-        'booking' => $booking
-    ], 200);
-}
+    /**
+     * Cancel a booking
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function bookCancel(Request $request) 
+    {
+        $request->validate([
+            'id' => 'required|integer|exists:bookings,id',
+        ]);
+        
+        /** @var \App\Models\User $user */
+        $user = auth()->user();
+        
+        /** @var Booking $booking */
+        $booking = Booking::with('restaurant')
+            ->where('id', $request->id)
+            ->where('user_id', $user->id)
+            ->first();
+
+        if (!$booking) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Booking not found or unauthorized'
+            ], 404);
+        }
+        
+        // Update booking status to cancelled
+        $booking->status = 1;
+        $booking->save();
+
+        try {
+            // Send cancellation email to admin
+            Mail::to('webdeveloperkkz@gmail.com')
+                ->send(new \App\Mail\BookingCancellation($booking, $user, $booking->restaurant));
+                
+            // Send confirmation to user
+            Mail::to($user->email)
+                ->send(new \App\Mail\BookingCancellation($booking, $user, $booking->restaurant));
+                
+        } catch (\Exception $e) {
+            // Log the error but don't fail the request
+            Log::error('Failed to send cancellation email: ' . $e->getMessage());
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Booking has been cancelled successfully',
+            'booking' => $booking
+        ], 200);
+    }
 
 
     public function thankYou()

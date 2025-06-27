@@ -41,7 +41,6 @@ class UserController extends Controller
             ->join('restaurants', 'favorites.restaurants_id', '=', 'restaurants.id')
             ->get();
 
-        // dd($favorites);
         $bookings = Booking::select('bookings.*', 'restaurants.name as restaurant_name', 'restaurants.address as restaurant_address')
             ->where('bookings.user_id', $user->id)
             ->where(function ($query) {
@@ -49,7 +48,9 @@ class UserController extends Controller
                     ->orWhere('bookings.status', '!=', 1);
             })
             ->join('restaurants', 'bookings.restaurant_id', '=', 'restaurants.id')
-            ->get();
+            ->orderBy('bookings.created_at', 'desc')
+            ->paginate(5);
+            
         return view('user.dashboard', compact('user', 'bookings', 'favorites'));
     }
 

@@ -64,7 +64,7 @@
         }
     }
 </style>
-
+<br><br>
 <div class="col-xl-12 pt-20">
     <div class="" style="background-color: #B22222;">
         <h2 class="mb-3 container" style="color: white;">予約一覧</h2>
@@ -141,6 +141,11 @@
                 </div>
             </div>
             @endforeach
+
+            <!-- Pagination -->
+            <div class="d-flex justify-content-center mt-4">
+                {{ $bookings->links('pagination::bootstrap-4') }}
+            </div>
         </div>
         @endif
     </div>
@@ -153,40 +158,58 @@
     $(document).ready(function() {
         $('.cancel-booking').click(function() {
             let bookingId = $(this).data('id');
+            let bookingCard = $(this).closest('.booking-card');
+            let restaurantName = bookingCard.find('.booking-header').text().trim();
+            
             Swal.fire({
                 title: '予約をキャンセルしますか？',
-                text: "この操作は元に戻せません！",
+                html: `<div style="text-align: left;">
+                    <p>以下の予約をキャンセルします：</p>
+                    <p><strong>レストラン：</strong> ${restaurantName}</p>
+                    <p class="text-danger">※ この操作は元に戻せません！</p>
+                </div>`,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
                 cancelButtonColor: '#3085d6',
-                confirmButtonText: 'はい、キャンセルします！',
-                cancelButtonText: 'いいえ'
+                confirmButtonText: 'はい、キャンセルします',
+                cancelButtonText: 'いいえ、キャンセルしません',
+                reverseButtons: true,
+                showLoaderOnConfirm: true,
+                preConfirm: () => {
+                    return new Promise((resolve) => {
+                        $.ajax({
+                            url: "{{ route('booking.cancel') }}",
+                            type: "get",
+                            data: {
+                                id: bookingId,
+                                _token: "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                resolve(response);
+                            },
+                            error: function(xhr) {
+                                Swal.showValidationMessage(
+                                    xhr.responseJSON?.message || '予約のキャンセル中にエラーが発生しました。'
+                                );
+                            }
+                        });
+                    });
+                },
+                allowOutsideClick: () => !Swal.isLoading()
             }).then((result) => {
                 if (result.isConfirmed) {
-                    $.ajax({
-                        url: "{{ route('booking.cancel') }}",
-                        type: "get",
-                        data: {
-                            id: bookingId,
-                            _token: "{{ csrf_token() }}"
-                        },
-                        success: function(response) {
-                            Swal.fire(
-                                'キャンセル成功！',
-                                '予約がキャンセルされました。',
-                                'success'
-                            ).then(() => {
-                                location.reload();
-                            });
-                        },
-                        error: function(xhr) {
-                            Swal.fire(
-                                'エラー',
-                                xhr.responseJSON.message || '予約をキャンセルできませんでした。',
-                                'error'
-                            );
-                        }
+                    Swal.fire({
+                        title: 'キャンセル完了',
+                        html: `<div style="text-align: left;">
+                            <p>予約が正常にキャンセルされました。</p>
+                            <p>キャンセル確認のメールを送信しました。</p>
+                        </div>`,
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#B22222'
+                    }).then(() => {
+                        location.reload();
                     });
                 }
             });

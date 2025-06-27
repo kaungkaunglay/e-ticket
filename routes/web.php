@@ -104,6 +104,12 @@ Route::middleware('guest')->group(function () {
     Route::get('/password/success', [ForgetPasswordController::class, 'success'])->name('reset_success');
 });
 
+// Booking Routes
+Route::middleware(['auth'])->group(function () {
+    // Set booking date in session
+    Route::post('/booking/set-session', [BookingController::class, 'setSession'])->name('booking.set-session');
+});
+
 // Admin Routes
 Route::middleware(['admin'])->group(function () {
     Route::get('/owner/dashboard', fn() => view('admin.dashboard'))->name('admin.dashboard');

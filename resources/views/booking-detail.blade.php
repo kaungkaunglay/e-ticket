@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('contents')
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 <style>
     .loading-spinner {
         position: absolute;
@@ -110,7 +115,22 @@
         <p class="text-danger fw-bold me-2 t-small">{{ $restaurant->name }}</p>
         <p class="fw-400 t-small">{{ $restaurant->address }}</p>
     </h5>
-    <p class="my-2 fw-semibold t-small">来店日時 {{ $year }}年 {{ $month }}月 <span class="t-small">{{ $day }}</span>日 ({{ $dayOfWeekJapanese }}) {{ $hour }}:{{ $minute }}</p>
+    @php
+        $displayDate = '';
+        if(session('booking_date') && session('restaurant_id') == $restaurant->id) {
+            $sessionDate = new DateTime(session('booking_date'));
+            $sessionYear = $sessionDate->format('Y');
+            $sessionMonth = $sessionDate->format('n');
+            $sessionDay = $sessionDate->format('j');
+            $sessionDayOfWeek = $sessionDate->format('D');
+            $sessionDayOfWeekJapanese = $dayMap[$sessionDayOfWeek] ?? '';
+            $displayDate = "{$sessionYear}年{$sessionMonth}月{$sessionDay}日({$sessionDayOfWeekJapanese}) {$hour}:{$minute}";
+        } else {
+            $displayDate = "{$year}年{$month}月{$day}日({$dayOfWeekJapanese}) {$hour}:{$minute}";
+        }
+    @endphp
+    <p class="my-2 fw-semibold t-small">来店日時 {{ $displayDate }}
+    <a href="#" class="edit-datetime" style="color: #F10146; text-decoration: underline; font-size: 10px; margin-left: 5px;">変更</a></p>
     <p class="fw-400 t-small">¥{{ number_format($restaurant->price_range) }}</p>
 
     <ul class="list-unstyled">
@@ -147,10 +167,14 @@
             </div>
             <div class="ms-4 ps-2">
                 <p class="my-2 t-small">予約者情報 <span class="bg-danger rounded-4 text-white px-1 t-10">必須</span></p>
-                <form action="{{ route('booking.save') }}" method="POST" class="" id="booking-form">
+                <form action="{{ route('booking.save') }}" method="POST" id="booking-form">
     @csrf
     <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
-    <input type="hidden" name="select_date" id="selectedDateTime" value="{{ $selectedDateTime }}">
+    <input type="hidden" name="select_date" id="selected-date" value="{{ $selectedDateTime }}">
+    
+    @if(session('booking_date') && session('restaurant_id') == $restaurant->id)
+        <input type="hidden" name="booking_date" value="{{ session('booking_date') }}">
+    @endif
 
     <div class="bg-secondary-subtle p-3 me-4 w-100">
         <div class="row mt-1">
@@ -277,21 +301,33 @@
     
     document.addEventListener('DOMContentLoaded', function() {
         // Initialize date picker
-        datePicker = flatpickr("#datePicker", {
-            dateFormat: "Y-m-d",
-            locale: "ja",
-            minDate: "today",
-            defaultDate: "{{ $selectedDateTime }}",
-            disable: [
-                function(date) {
-                    const closedDays = [<?php echo implode(',', array_map('intval', explode(',', $restaurant->closed_days))) ?>];
-                    return closedDays.includes(date.getDay());
-                }
-            ]
-        });
+        const datePickerEl = document.getElementById('datePicker');
+        if (datePickerEl) {
+            datePicker = flatpickr(datePickerEl, {
+                dateFormat: "Y-m-d",
+                locale: "ja",
+                minDate: "today",
+                defaultDate: "{{ $selectedDateTime }}",
+                disable: [
+                    function(date) {
+                        const closedDays = [{{ implode(',', array_map('intval', explode(',', $restaurant->closed_days ?? ''))) }}];
+                        return closedDays.includes(date.getDay());
+                    }
+                ]
+            });
+        }
 
         const form = document.getElementById('booking-form');
         const submitButton = document.getElementById('submit-button');
+        const editButtons = document.querySelectorAll('.edit-datetime');
+
+        // Handle edit datetime button click
+        editButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = '{{ route("restaurant.detail", ["id" => $restaurant->id]) }}';
+            });
+        });
 
         if (form) {
             form.addEventListener('submit', function(e) {
@@ -299,10 +335,13 @@
                     e.preventDefault();
                     return;
                 }
-                submitButton.classList.add('is-loading');
-                submitButton.disabled = true;
+                if (submitButton) {
+                    submitButton.classList.add('is-loading');
+                    submitButton.disabled = true;
+                }
             });
         }
+
 
         @if($errors->any())
         if (submitButton) {
@@ -312,64 +351,35 @@
         @endif
     });
 
+    // Function to handle datetime editing (if needed)
     function showDatetimeEdit() {
         isEditingDatetime = true;
-        document.querySelector('.datetime-display').style.display = 'none';
-        document.querySelector('.datetime-input-container').style.display = 'block';
-        datePicker.open();
+        const displayElement = document.querySelector('.datetime-display');
+        const inputContainer = document.querySelector('.datetime-input-container');
+        
+        if (displayElement) displayElement.style.display = 'none';
+        if (inputContainer) inputContainer.style.display = 'block';
+        if (datePicker) datePicker.open();
     }
 
+    // Function to cancel datetime editing (if needed)
     function cancelDatetimeEdit() {
         isEditingDatetime = false;
-        document.querySelector('.datetime-display').style.display = 'block';
-        document.querySelector('.datetime-input-container').style.display = 'none';
-        // Reset to original values
-        datePicker.setDate("{{ $selectedDateTime }}");
-        document.getElementById('hourSelect').value = "{{ $hour }}";
-        document.getElementById('minuteSelect').value = "{{ $minute }}";
-    }
-
-    function saveDatetime() {
-        const selectedDate = datePicker.selectedDates[0];
-        if (!selectedDate) {
-            alert('有効な日付を選択してください');
-            return;
+        const displayElement = document.querySelector('.datetime-display');
+        const inputContainer = document.querySelector('.datetime-input-container');
+        
+        if (displayElement) displayElement.style.display = 'block';
+        if (inputContainer) inputContainer.style.display = 'none';
+        
+        if (datePicker) {
+            datePicker.setDate("{{ $selectedDateTime }}");
         }
-
-        const hour = document.getElementById('hourSelect').value;
-        const minute = document.getElementById('minuteSelect').value;
         
-        const year = selectedDate.getFullYear();
-        const month = selectedDate.getMonth() + 1;
-        const day = selectedDate.getDate();
+        const hourSelect = document.getElementById('hourSelect');
+        const minuteSelect = document.getElementById('minuteSelect');
         
-        const dayMap = {0: '日', 1: '月', 2: '火', 3: '水', 4: '木', 5: '金', 6: '土'};
-        const dayOfWeekJapanese = dayMap[selectedDate.getDay()];
-
-        // Update display
-        document.querySelector('.datetime-display').innerHTML = `
-            来店日時 
-            <span class="fw-bold fs-6">${year}</span>年 
-            <span class="fw-bold fs-6">${month}</span>月 
-            <span class="fw-bold fs-6">${day}</span>日 
-            (${dayOfWeekJapanese}) 
-            <span class="fw-bold fs-6">${hour}:${minute}</span>
-            <span class="datetime-edit" onclick="showDatetimeEdit()">
-                <i class="fas fa-edit"></i> 変更
-            </span>
-        `;
-
-        // Update hidden field
-        const formattedDate = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')} ${hour}:${minute}:00`;
-        document.getElementById('selectedDateTime').value = formattedDate;
-
-        // Update summary display
-        document.querySelector('.fw-semibold').innerHTML = `
-            来店日時 ${year}年 ${month}月 <span class="t-small">${day}</span>日 (${dayOfWeekJapanese}) ${hour}:${minute}
-        `;
-
-        isEditingDatetime = false;
-        cancelDatetimeEdit();
+        if (hourSelect) hourSelect.value = "{{ $hour }}";
+        if (minuteSelect) minuteSelect.value = "{{ $minute }}";
     }
 </script>
 @endsection

@@ -67,8 +67,14 @@
         <div class="details">
             <div class="detail-item">
                 <span class="detail-label">店舗名：</span>
-                {{ $restaurant->name }}
+                <strong>{{ $restaurant->name }}</strong>
             </div>
+            @if($restaurant->price_range)
+            <div class="detail-item">
+                <span class="detail-label">価格帯：</span>
+                ¥{{ $restaurant->price_range }}
+            </div>
+            @endif
             <div class="detail-item">
                 <span class="detail-label">予約日時：</span>
                 {{ \Carbon\Carbon::parse($booking->select_date)->format('Y年m月d日 H:i') }}

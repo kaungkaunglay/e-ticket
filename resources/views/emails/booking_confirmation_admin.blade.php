@@ -15,6 +15,9 @@
     <p><strong>電話番号 :</strong>{{ $user->phone }}</p>
     <ul>
         <li><strong>店舗名：</strong> {{ $restaurant->name }}</li>
+        @if($restaurant->price_range)
+        <li><strong>価格帯：</strong> ¥{{ $restaurant->price_range }}</li>
+        @endif
         <li><strong>予約日時：</strong> {{ $booking->select_date }}</li>
         <li><strong>備考：</strong> {{ $booking->note ?? '特別なリクエストなし' }}</li>
     </ul>
