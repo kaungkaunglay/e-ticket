@@ -297,12 +297,12 @@
                                         </div>
                                     </div>
                                       <br>
-                                    <!-- Search Button -->
+                                   
                                     <div class="">
                                         <button class="search-submit btn btn-primary w-100 rounded-5 py-3"
-                                        style="font-size: 15px;font-weight: bold;background-color: #0066cc;border-radius: 10px !important;height: 30px;padding: 5px 10px;margin-top: -14px;width: 253px !important;margin-left: 20px;">
-                                        <div style="margin-top: -11px;">    
-                                        <i class="icon-search me-2" style="font-size: 1.2em;"></i>&nbsp;&nbsp;
+                                        style="font-size: 11px;font-weight: bold;background-color: #0066cc;border-radius: 10px !important;height: 30px;padding: 5px 10px;margin-top: -14px;width: 253px !important;margin-left: 20px;">
+                                        <div style="margin-top: -7px;">    
+                                        <i class="icon-search me-2" style="font-size: 1.2em;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
                                             検索
                                         </div>
                                     </button>
@@ -361,11 +361,11 @@
 
     <div class="container d-flex flex-column gap-4 mt-4" style="padding: 0px 20px;margin-top: -4px !important;">
         <a href="{{ route('restaurant.search') }}" class="btn text-white fw-bold w-100 py-4" 
-        style="font-size: 15px;background-color: #d7003a;border-radius: 13px;border: none;box-shadow: 0 4px 6px rgba(0,0,0,0.1);width: 220px !important;margin-left: 45px;">
+        style="font-size: 11px;background-color: #d7003a;border-radius: 13px;border: none;box-shadow: 0 4px 6px rgba(0,0,0,0.1);width: 246px !important;margin-left: 35px;">
             おすすめ店舗 一発検索
         </a>
         <a href="{{ route('restaurant.search') }}" class="btn text-white fw-bold py-3"
-        style="margin-top: -18px;font-size: 15px;background-color: #ffa500;border-radius: 12px;border: none;box-shadow: 0 4px 6px rgba(0,0,0,0.1);width: 220px !important;margin-left: 45px;">
+        style="margin-top: -18px;font-size: 11px;background-color: #ffa500;border-radius: 12px;border: none;box-shadow: 0 4px 6px rgba(0,0,0,0.1);width: 243px !important;margin-left: 36px;">
             おすすめ店舗再検索
         </a>
     </div>
