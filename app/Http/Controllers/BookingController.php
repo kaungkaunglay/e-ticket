@@ -158,20 +158,10 @@ class BookingController extends Controller
         ->setOption('fontCache', storage_path('fonts/'))
         ->setOption('isHtml5ParserEnabled', true);
 
-    // Send email to user with their PDF
-    try {
-        Mail::to(Auth::user()->email)->send(new BookingConfirmation($booking));
-    } catch (\Exception $e) {
-        Log::error('Failed to send booking confirmation email: ' . $e->getMessage());
-    }
+    
+        Mail::to(Auth::user()->email)->send(new BookingConfirmation($booking, Auth::user(), $userPdf));
 
-    // Send email to admin
-    try {
-        $adminEmail = 'webdeveloperkkz@gmail.com'; // Replace with actual admin email
-        Mail::to($adminEmail)->send(new BookingConfirmationAdmin($booking));
-    } catch (\Exception $e) {
-        Log::error('Failed to send admin notification email: ' . $e->getMessage());
-    }
+        Mail::to('webdeveloperkkz@gmail.com')->send(new BookingConfirmation($booking, Auth::user(), $adminPdf));
 
     return redirect()->route('booking.thankyou')->with('success', 'Your booking was successful! A confirmation email has been sent.');
 }
